@@ -12,6 +12,8 @@ services:
         value: 10000
       - key: OPENAI_API_KEY
         sync: false
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
 
   # Web Service (Next.js)
   - type: web
@@ -27,3 +29,5 @@ services:
           name: idea-to-deploy-api
           type: web
           property: host
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
