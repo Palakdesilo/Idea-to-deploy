@@ -3,7 +3,7 @@ import * as path from 'path';
 import { randomUUID } from 'crypto';
 import { Project, ProjectStatus, DocCategory, GeneratedDoc } from '@idea-to-deploy/types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
+const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
 const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
 
 export class ProjectManager {

@@ -7,17 +7,11 @@ services:
     region: ohio
     buildCommand: npm install && npm run build
     startCommand: npm start --workspace=@idea-to-deploy/api
-    disk:
-      name: data-disk
-      mountPath: /opt/render/project/src/data
-      sizeGB: 1
     envVars:
       - key: PORT
         value: 10000
       - key: OPENAI_API_KEY
         sync: false
-      - key: DATA_DIR
-        value: /opt/render/project/src/data
 
   # Web Service (Next.js)
   - type: web
