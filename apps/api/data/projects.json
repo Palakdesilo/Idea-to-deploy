@@ -1,0 +1,134 @@
+[
+  {
+    "id": "cfbef073-1e46-4988-aae1-86de54778c32",
+    "name": "I want to create a subscription based social_media...",
+    "description": "I want to create a subscription based social_media_platform ",
+    "createdAt": "2025-12-23T12:44:42.228Z",
+    "status": "DESIGN",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T05:22:01.700Z"
+    }
+  },
+  {
+    "id": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+    "name": "I want to create a subscription based ecommerce_si...",
+    "description": "I want to create a subscription based ecommerce_site ",
+    "createdAt": "2025-12-23T13:09:56.175Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-23T13:10:03.817Z"
+    }
+  },
+  {
+    "id": "cc218731-1cc7-44ef-839e-869dbac215cd",
+    "name": "Want to build a Game",
+    "description": "Want to build a Game",
+    "createdAt": "2025-12-24T05:20:44.490Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T05:21:36.831Z"
+    }
+  },
+  {
+    "id": "5019642d-07ba-402b-a6b9-34559c726045",
+    "name": "New Project",
+    "description": "New Project",
+    "createdAt": "2025-12-24T05:45:58.909Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T05:46:11.856Z"
+    }
+  },
+  {
+    "id": "393915b5-376a-4e0f-868e-f139c13f580e",
+    "name": "Build a web-based Smart Business Management Platfo...",
+    "description": "Build a web-based Smart Business Management Platform that allows businesses to manage users, roles, daily operations, tasks, customers, and business insights through a centralized dashboard. The platform should support secure authentication, role-based access, dynamic dashboards, and scalable modules that can be extended for payments, reporting, and integrations as the business grows.\n\n",
+    "createdAt": "2025-12-24T09:52:57.980Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T09:55:00.620Z"
+    }
+  },
+  {
+    "id": "ff9c4a24-9486-4d59-b36f-0458e8b0df5b",
+    "name": "Build a full-stack e-commerce platform that allows...",
+    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
+    "createdAt": "2025-12-24T10:17:47.325Z",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:17:50.853Z"
+    }
+  },
+  {
+    "id": "814235ee-b128-41e4-9487-36bf264b7845",
+    "name": "Build a subscription-based SaaS platform where use...",
+    "description": "Build a subscription-based SaaS platform where users can register, choose plans, make recurring payments, access features based on subscription level, manage billing, and view usage analytics through a role-based dashboard.",
+    "createdAt": "2025-12-24T10:25:36.789Z",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:25:42.595Z"
+    }
+  },
+  {
+    "id": "ad0a3cc3-5828-4183-8f4d-e0a506f73028",
+    "name": "Build a social media platform that allows users to...",
+    "description": "Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.",
+    "createdAt": "2025-12-24T10:26:14.505Z",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:26:18.737Z"
+    }
+  },
+  {
+    "id": "3b5c6e2d-435c-4bf0-bf2c-ffc0b66f2cd9",
+    "name": "Build a project and task management system that al...",
+    "description": "Build a project and task management system that allows teams to create projects, assign tasks, track progress, collaborate through comments, manage deadlines, and visualize status through dashboards and reports.",
+    "createdAt": "2025-12-24T10:26:34.457Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:26:58.061Z"
+    }
+  },
+  {
+    "id": "5591a0c1-fc4b-4ec0-a4e7-b2ca1859f6ff",
+    "name": "Build a learning management system that allows use...",
+    "description": "Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.",
+    "createdAt": "2025-12-24T10:28:57.275Z",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:29:01.209Z"
+    }
+  },
+  {
+    "id": "a9c8e443-413d-4e67-b2ab-c995da79ca3e",
+    "name": "Build a healthcare appointment management platform...",
+    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
+    "createdAt": "2025-12-24T10:29:18.849Z",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-24T10:29:39.617Z"
+    }
+  }
+]
