@@ -11,7 +11,8 @@
     "build:types": "npm run build --workspace=@idea-to-deploy/types",
     "build:api": "npm run build --workspace=@idea-to-deploy/api",
     "build:web": "npm run build --workspace=@idea-to-deploy/web",
-    "build": "npm run build:types && npm run build --workspaces --if-present"
+    "build:engine": "npm run build --workspace=@idea-to-deploy/engine",
+    "build": "npm run build:types && npm run build:engine && npm run build --workspaces --if-present"
   },
   "keywords": [],
   "author": "",
