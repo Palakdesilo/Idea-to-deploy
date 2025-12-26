@@ -1,1 +1,58 @@
-[{"id":"ce5d2341-26e9-49a2-a906-70916a9c7df8","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"REQUIREMENTS","title":"REQUIREMENTS for I want to create a subscription based ecommerce_si...","content":"# Requirement Document for: I want to create a subscription based ecommerce_site \n\n## 1. Introduction\nThis document outlines the core requirements for the proposed solution.\n\n## 2. Functional Requirements\n- **User Authentication**: System must support secure login/signup.\n- **core Feature**: The system shall implement the main logic for I want to create a subscription based ecommerce_site .\n- **Dashboard**: User dashboard to view metrics.\n\n## 3. Non-Functional Requirements\n- **Performance**: < 200ms response time.\n- **Security**: Data encryption at rest and in transit.\n","isFinal":true},{"id":"b95d0115-a326-4e5a-b1ff-9605ee5c9647","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"PLANNING","title":"PLANNING for I want to create a subscription based ecommerce_si...","content":"# Project Plan\n    \n## Phases\n1. **MVP**: Core features of I want to create a subscription based ecommerce_site .\n2. **Phase 2**: Advanced Analytics.\n","isFinal":true},{"id":"9c27a18b-55a4-4ace-bf1e-e93bf9c3e117","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"ARCHITECTURE","title":"ARCHITECTURE for I want to create a subscription based ecommerce_si...","content":"# Technical Architecture\n\n## Stack\n- **Frontend**: Next.js 14\n- **Backend**: Node.js Express\n- **Database**: PostgreSQL\n\n## Diagrams\n- [System Context Diagram]\n- [ER Diagram]\n","isFinal":true},{"id":"f5263b6e-121b-484d-be50-347211728b40","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"MANAGEMENT","title":"MANAGEMENT for I want to create a subscription based ecommerce_si...","content":"# IPMP\nManaged by AI Manager.","isFinal":true},{"id":"7be30351-8fe6-4066-a298-d65a482cc9ae","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"SCHEDULE_COST","title":"SCHEDULE_COST for I want to create a subscription based ecommerce_si...","content":"# Schedule\nEstimated Timeline: 4 Weeks.","isFinal":true},{"id":"cd90dcd9-2b7e-4744-80ae-dd5ec063ada2","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"QUALITY_RISK","title":"QUALITY_RISK for I want to create a subscription based ecommerce_si...","content":"# Quality Plan\nStandard linting and testing.","isFinal":true},{"id":"66c2ad52-d0f7-4ae1-97be-21d5f27b9afd","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","category":"TESTING_RELEASE","title":"TESTING_RELEASE for I want to create a subscription based ecommerce_si...","content":"# Test Plan\nUnit Tests: Jest\nE2E: Playwright","isFinal":true}]
+[
+    {
+        "id": "ce5d2341-26e9-49a2-a906-70916a9c7df8",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "REQUIREMENTS",
+        "title": "REQUIREMENTS for I want to create a subscription based ecommerce_si...",
+        "content": "# Requirement Document for: I want to create a subscription based ecommerce_site \n\n## 1. Introduction\nThis document outlines the core requirements for the proposed solution.\n\n## 2. Functional Requirements\n- **User Authentication**: System must support secure login/signup.\n- **core Feature**: The system shall implement the main logic for I want to create a subscription based ecommerce_site .\n- **Dashboard**: User dashboard to view metrics.\n\n## 3. Non-Functional Requirements\n- **Performance**: < 200ms response time.\n- **Security**: Data encryption at rest and in transit.\n",
+        "isFinal": true
+    },
+    {
+        "id": "b95d0115-a326-4e5a-b1ff-9605ee5c9647",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "PLANNING",
+        "title": "PLANNING for I want to create a subscription based ecommerce_si...",
+        "content": "# Project Plan\n    \n## Phases\n1. **MVP**: Core features of I want to create a subscription based ecommerce_site .\n2. **Phase 2**: Advanced Analytics.\n",
+        "isFinal": true
+    },
+    {
+        "id": "9c27a18b-55a4-4ace-bf1e-e93bf9c3e117",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "ARCHITECTURE",
+        "title": "ARCHITECTURE for I want to create a subscription based ecommerce_si...",
+        "content": "# Technical Architecture\n\n## Stack\n- **Frontend**: Next.js 14\n- **Backend**: Node.js Express\n- **Database**: PostgreSQL\n\n## Diagrams\n- [System Context Diagram]\n- [ER Diagram]\n",
+        "isFinal": true
+    },
+    {
+        "id": "f5263b6e-121b-484d-be50-347211728b40",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "MANAGEMENT",
+        "title": "MANAGEMENT for I want to create a subscription based ecommerce_si...",
+        "content": "# IPMP\nManaged by AI Manager.",
+        "isFinal": true
+    },
+    {
+        "id": "7be30351-8fe6-4066-a298-d65a482cc9ae",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "SCHEDULE_COST",
+        "title": "SCHEDULE_COST for I want to create a subscription based ecommerce_si...",
+        "content": "# Schedule\nEstimated Timeline: 4 Weeks.",
+        "isFinal": true
+    },
+    {
+        "id": "cd90dcd9-2b7e-4744-80ae-dd5ec063ada2",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "QUALITY_RISK",
+        "title": "QUALITY_RISK for I want to create a subscription based ecommerce_si...",
+        "content": "# Quality Plan\nStandard linting and testing.",
+        "isFinal": true
+    },
+    {
+        "id": "66c2ad52-d0f7-4ae1-97be-21d5f27b9afd",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "category": "TESTING_RELEASE",
+        "title": "TESTING_RELEASE for I want to create a subscription based ecommerce_si...",
+        "content": "# Test Plan\nUnit Tests: Jest\nE2E: Playwright",
+        "isFinal": true
+    }
+]

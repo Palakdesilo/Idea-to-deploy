@@ -24,30 +24,6 @@
     }
   },
   {
-    "id": "cc218731-1cc7-44ef-839e-869dbac215cd",
-    "name": "Want to build a Game",
-    "description": "Want to build a Game",
-    "createdAt": "2025-12-24T05:20:44.490Z",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T05:21:36.831Z"
-    }
-  },
-  {
-    "id": "5019642d-07ba-402b-a6b9-34559c726045",
-    "name": "New Project",
-    "description": "New Project",
-    "createdAt": "2025-12-24T05:45:58.909Z",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T05:46:11.856Z"
-    }
-  },
-  {
     "id": "393915b5-376a-4e0f-868e-f139c13f580e",
     "name": "Build a web-based Smart Business Management Platfo...",
     "description": "Build a web-based Smart Business Management Platform that allows businesses to manage users, roles, daily operations, tasks, customers, and business insights through a centralized dashboard. The platform should support secure authentication, role-based access, dynamic dashboards, and scalable modules that can be extended for payments, reporting, and integrations as the business grows.\n\n",
@@ -124,11 +100,83 @@
     "name": "Build a healthcare appointment management platform...",
     "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
     "createdAt": "2025-12-24T10:29:18.849Z",
-    "status": "DESIGNED",
+    "status": "COMPLETED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:29:39.617Z"
+      "lastUpdated": "2025-12-26T05:48:13.040Z"
+    }
+  },
+  {
+    "id": "aa7555af-d65f-4453-99e3-1cb874350149",
+    "name": "I want to build a customer support platform that a...",
+    "description": "I want to build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.",
+    "createdAt": "2025-12-26T05:49:03.471Z",
+    "status": "NEW",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T05:49:03.471Z"
+    }
+  },
+  {
+    "id": "8ee722a3-812e-4fb7-844a-3b2f324a4e06",
+    "name": "Build an event management platform that allows org...",
+    "description": "Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.",
+    "createdAt": "2025-12-26T06:18:54.608Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T06:20:23.097Z"
+    }
+  },
+  {
+    "id": "69f00221-d827-47ac-9ce5-2d9a07248138",
+    "name": "Build an event management platform that allows org...",
+    "description": "Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.",
+    "createdAt": "2025-12-26T06:24:58.217Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T06:27:28.170Z"
+    }
+  },
+  {
+    "id": "ec453919-2940-41be-83c4-40a5492970c4",
+    "name": "Generate code with a README file included.",
+    "description": "Generate code with a README file included.",
+    "createdAt": "2025-12-26T06:51:01.433Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T06:51:06.773Z"
+    }
+  },
+  {
+    "id": "6ee5744b-bac5-416b-8f25-0db25ffc9270",
+    "name": "Build a real estate platform that allows users to ...",
+    "description": "Build a real estate platform that allows users to browse and filter property listings, schedule visits, communicate with agents, and allows administrators to manage listings, users, and transactions.",
+    "createdAt": "2025-12-26T06:58:20.009Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T06:58:26.858Z"
+    }
+  },
+  {
+    "id": "93b61c5a-473d-4164-9489-4ca99583c93f",
+    "name": "Build a real estate platform that allows users to ...",
+    "description": "Build a real estate platform that allows users to browse and filter property listings, schedule visits, communicate with agents, and allows administrators to manage listings, users, and transactions.",
+    "createdAt": "2025-12-26T07:02:41.066Z",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-26T07:02:47.289Z"
     }
   }
 ]

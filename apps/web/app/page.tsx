@@ -16,24 +16,42 @@ import { API_BASE_URL } from '@/lib/api-config';
 export default function Dashboard() {
     const [projects, setProjects] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [apiStatus, setApiStatus] = useState<'checking' | 'online' | 'offline'>('checking');
     const [filter, setFilter] = useState('All Projects');
     const router = useRouter();
+    const checkApiStatus = async () => {
+        try {
+            const res = await fetch(`${API_BASE_URL}/health`);
+            setApiStatus(res.ok ? 'online' : 'offline');
+        } catch {
+            setApiStatus('offline');
+        }
+    };
+
     const fetchProjects = async () => {
         try {
             const res = await fetch(`${API_BASE_URL}/api/projects`);
             if (res.ok) {
                 const data = await res.json();
                 setProjects(data);
+                setApiStatus('online');
+            } else {
+                setApiStatus('offline');
             }
         } catch (err) {
             console.error(err);
+            setApiStatus('offline');
         } finally {
             setLoading(false);
         }
     };
 
     useEffect(() => {
+        checkApiStatus();
         fetchProjects();
+        // Periodically check API status
+        const interval = setInterval(checkApiStatus, 10000);
+        return () => clearInterval(interval);
     }, []);
 
     const stats = useMemo(() => {
@@ -197,6 +215,14 @@ export default function Dashboard() {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
+                        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/50 border border-slate-800">
+                            <div className={`w-1.5 h-1.5 rounded-full ${apiStatus === 'online' ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]' :
+                                apiStatus === 'offline' ? 'bg-rose-500 animate-pulse' : 'bg-slate-500'
+                                }`} />
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                API: {apiStatus}
+                            </span>
+                        </div>
                         <Link href="/create">
                             <button className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-lg font-bold hover:bg-slate-200 transition text-sm">
                                 <Plus className="w-4 h-4" />
@@ -266,15 +292,35 @@ export default function Dashboard() {
                 ) : (
                     <div className="flex flex-col items-center justify-center py-32 bg-slate-900/20 rounded-[3rem] border-2 border-dashed border-slate-800">
                         <div className="w-20 h-20 bg-slate-800/50 rounded-[2rem] flex items-center justify-center mb-6">
-                            <Folders className="w-10 h-10 text-slate-600" />
+                            {apiStatus === 'offline' ? (
+                                <AlertCircle className="w-10 h-10 text-rose-500" />
+                            ) : (
+                                <Folders className="w-10 h-10 text-slate-600" />
+                            )}
                         </div>
-                        <h3 className="text-2xl font-bold text-slate-300 mb-2">No projects found</h3>
-                        <p className="text-slate-500 mb-8">Start by creating your first product idea pipeline</p>
-                        <Link href="/create">
-                            <button className="bg-white text-black px-8 py-4 rounded-2xl font-black hover:bg-slate-200 transition shadow-xl">
-                                Create New Project
+                        <h3 className="text-2xl font-bold text-slate-300 mb-2">
+                            {apiStatus === 'offline' ? 'API Connection Lost' : 'No projects found'}
+                        </h3>
+                        <p className="text-slate-500 mb-8 max-w-sm text-center">
+                            {apiStatus === 'offline'
+                                ? 'We cannot reach the backend server. Please make sure the API is running on port 4000.'
+                                : 'Start by creating your first product idea pipeline to see it appear here.'}
+                        </p>
+                        {apiStatus === 'offline' ? (
+                            <button
+                                onClick={() => { setLoading(true); checkApiStatus(); fetchProjects(); }}
+                                className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-500 transition shadow-xl flex items-center gap-2"
+                            >
+                                <RotateCcw className="w-5 h-5" />
+                                Retry Connection
                             </button>
-                        </Link>
+                        ) : (
+                            <Link href="/create">
+                                <button className="bg-white text-black px-8 py-4 rounded-2xl font-black hover:bg-slate-200 transition shadow-xl">
+                                    Create New Project
+                                </button>
+                            </Link>
+                        )}
                     </div>
                 )}
             </div>

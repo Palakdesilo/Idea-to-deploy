@@ -1,1 +1,18 @@
-[{"id":"6c7c43d9-adb6-42c7-8eeb-8ebbb8f2753b","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","screenName":"Dashboard","description":"Main user dashboard with metrics.","promptUsed":"Modern SaaS dashboard, dark mode, blue accents, analytics charts","imageUrl":"https://placehold.co/1200x800/1a1a1a/FFF?text=Dashboard+Mockup"},{"id":"114c8297-b45b-4e8d-aa87-f0286a4d4b3e","projectId":"2674f0d4-fa2b-4432-a6a3-d485cddc9fba","screenName":"Settings","description":"User profile and settings.","promptUsed":"Clean settings page, form inputs, sidebar navigation","imageUrl":"https://placehold.co/1200x800/1a1a1a/FFF?text=Settings+page"}]
+[
+    {
+        "id": "6c7c43d9-adb6-42c7-8eeb-8ebbb8f2753b",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "screenName": "Dashboard",
+        "description": "Main user dashboard with metrics.",
+        "promptUsed": "Modern SaaS dashboard, dark mode, blue accents, analytics charts",
+        "imageUrl": "https://placehold.co/1200x800/1a1a1a/FFF?text=Dashboard+Mockup"
+    },
+    {
+        "id": "114c8297-b45b-4e8d-aa87-f0286a4d4b3e",
+        "projectId": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
+        "screenName": "Settings",
+        "description": "User profile and settings.",
+        "promptUsed": "Clean settings page, form inputs, sidebar navigation",
+        "imageUrl": "https://placehold.co/1200x800/1a1a1a/FFF?text=Settings+page"
+    }
+]

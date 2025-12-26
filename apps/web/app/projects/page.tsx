@@ -6,7 +6,8 @@ import {
     Search, Filter, ChevronDown, MoreVertical,
     Folders, CheckCircle2, Activity, Clock,
     ArrowDown, Trash2, ExternalLink, LayoutGrid,
-    Layout, Settings, History, Info, FileText
+    Layout, Settings, History, Info, FileText,
+    ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_BASE_URL } from '@/lib/api-config';
@@ -17,9 +18,13 @@ export default function ProjectsPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState('All Status');
     const [timeFilter, setTimeFilter] = useState('All Time');
-    const [sortBy, setSortBy] = useState('Last Accessed');
+    const [sortBy, setSortBy] = useState('Newest First');
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [currentView, setCurrentView] = useState('History');
+
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState(1);
+    const ITEMS_PER_PAGE = 10
 
     const fetchProjects = () => {
         fetch(`${API_BASE_URL}/api/projects`)
@@ -75,13 +80,38 @@ export default function ProjectsPage() {
     }, [projects]);
 
     const filteredProjects = useMemo(() => {
-        return projects.filter(p => {
+        let result = projects.filter(p => {
             const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 p.description.toLowerCase().includes(searchQuery.toLowerCase());
             const matchesStatus = statusFilter === 'All Status' || p.status === statusFilter.toUpperCase();
             return matchesSearch && matchesStatus;
         });
-    }, [projects, searchQuery, statusFilter]);
+
+        // Sorting
+        result.sort((a, b) => {
+            if (sortBy === 'Newest First' || sortBy === 'Last Accessed') {
+                return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+            }
+            if (sortBy === 'Oldest First') {
+                return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+            }
+            return 0;
+        });
+
+        return result;
+    }, [projects, searchQuery, statusFilter, sortBy]);
+
+    const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+
+    const paginatedProjects = useMemo(() => {
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        return filteredProjects.slice(start, start + ITEMS_PER_PAGE);
+    }, [filteredProjects, currentPage]);
+
+    // Reset pagination on filter change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, statusFilter, sortBy]);
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -234,7 +264,7 @@ export default function ProjectsPage() {
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-800/50">
-                            {filteredProjects.map((project) => (
+                            {paginatedProjects.map((project) => (
                                 <motion.tr
                                     key={project.id}
                                     layout
@@ -316,6 +346,47 @@ export default function ProjectsPage() {
                         </tbody>
                     </table>
                 </div>
+
+                {/* Pagination UI */}
+                {totalPages > 1 && (
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6">
+                        <p className="text-sm font-medium text-slate-500">
+                            Showing <span className="text-slate-300">{(currentPage - 1) * ITEMS_PER_PAGE + 1}</span> to <span className="text-slate-300">{Math.min(currentPage * ITEMS_PER_PAGE, filteredProjects.length)}</span> of <span className="text-slate-300">{filteredProjects.length}</span> projects
+                        </p>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                                disabled={currentPage === 1}
+                                className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+
+                            <div className="flex items-center gap-1 overflow-x-auto max-w-[200px] sm:max-w-none no-scrollbar">
+                                {[...Array(totalPages)].map((_, i) => (
+                                    <button
+                                        key={i + 1}
+                                        onClick={() => setCurrentPage(i + 1)}
+                                        className={`w-10 h-10 flex-shrink-0 rounded-xl font-bold text-xs transition-all ${currentPage === i + 1
+                                            ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+                                            : 'bg-slate-900 border border-slate-800 text-slate-500 hover:text-white hover:bg-slate-800'
+                                            }`}
+                                    >
+                                        {i + 1}
+                                    </button>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                                disabled={currentPage === totalPages}
+                                className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </main>
     );

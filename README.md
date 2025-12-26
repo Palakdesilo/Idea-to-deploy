@@ -27,3 +27,8 @@ An AI-powered automation platform that converts raw product ideas into fully dep
    ```bash
    npm run dev
    ```
+
+3. ##for Run Backend (API Server running on port 4000)
+   ```bash
+   npm run dev --workspace=@idea-to-deploy/api 
+   ```

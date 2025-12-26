@@ -3,7 +3,26 @@ import * as path from 'path';
 import { randomUUID } from 'crypto';
 import { Project, ProjectStatus, DocCategory, GeneratedDoc } from '@idea-to-deploy/types';
 
-const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
+const findDataDir = () => {
+    if (process.env.DATA_DIR) return process.env.DATA_DIR;
+
+    // Try to find apps/api/data relative to the current working directory
+    const cwd = process.cwd();
+    const possiblePaths = [
+        path.join(cwd, 'apps', 'api', 'data'),      // If started from root
+        path.join(cwd, 'data'),                     // If started from apps/api
+        path.join(cwd, '..', '..', 'apps', 'api', 'data') // If started from somewhere else
+    ];
+
+    for (const p of possiblePaths) {
+        if (fs.existsSync(p)) return p;
+    }
+
+    // Default to a folder in the current directory if nothing else is found
+    return path.join(cwd, 'data');
+};
+
+const DATA_DIR = findDataDir();
 const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
 
 export class ProjectManager {
@@ -110,6 +129,16 @@ export class ProjectManager {
     async saveBuildResult(projectId: string, buildResult: any): Promise<void> {
         const buildFile = path.join(DATA_DIR, 'artifacts', projectId, 'build.json');
         await fs.writeJson(buildFile, buildResult);
+    }
+
+    async updateFileContent(projectId: string, filePath: string, content: string): Promise<void> {
+        const buildResult = await this.getBuildResult(projectId);
+        if (buildResult && buildResult.files) {
+            buildResult.files = buildResult.files.map((f: any) =>
+                f.path === filePath ? { ...f, content } : f
+            );
+            await this.saveBuildResult(projectId, buildResult);
+        }
     }
 
     async deleteProject(id: string): Promise<void> {

@@ -4,12 +4,13 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import {
     FileText, Eye, Download, X, Layout,
-    Code, Server, ShieldCheck, ChevronRight,
+    Code, Server, ShieldCheck, ChevronRight, ChevronDown,
     Search, Filter, Share2, RotateCcw,
     Database, Settings, Terminal, Box,
     ClipboardList, Users, ListTodo, Map,
     Activity, Shield, CheckCircle2, Clock,
-    LayoutGrid, History, Plus, AlertCircle
+    LayoutGrid, History, Plus, AlertCircle,
+    Folder, FolderOpen, Copy, Check, Save, Edit3, XCircle
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
@@ -18,6 +19,83 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { API_BASE_URL } from '@/lib/api-config';
 
+
+
+const FileTreeNode = ({ node, level, selectedFile, onSelect }: { node: any, level: number, selectedFile: any, onSelect: (node: any) => void }) => {
+    const [isOpen, setIsOpen] = useState(true);
+    const isSelected = selectedFile?.path === node.path;
+
+    if (node.type === 'folder') {
+        return (
+            <div>
+                <button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-lg text-slate-400 hover:bg-slate-800/50 hover:text-slate-200 transition-colors text-sm"
+                    style={{ paddingLeft: `${(level * 16) + 8}px` }}
+                >
+                    {isOpen ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                    {isOpen ? <FolderOpen className="w-4 h-4 text-blue-400/80" /> : <Folder className="w-4 h-4 text-blue-400/80" />}
+                    <span className="font-medium truncate">{node.name}</span>
+                </button>
+                {isOpen && node.children?.map((child: any) => (
+                    <FileTreeNode key={child.path} node={child} level={level + 1} selectedFile={selectedFile} onSelect={onSelect} />
+                ))}
+            </div>
+        );
+    }
+
+    return (
+        <button
+            onClick={() => onSelect(node)}
+            className={`flex items-center gap-2 w-full text-left px-2 py-1.5 rounded-lg transition-all text-sm group ${isSelected ? 'bg-blue-600/20 text-blue-400 border border-blue-500/20' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-200'
+                }`}
+            style={{ paddingLeft: `${(level * 16) + 24}px` }}
+        >
+            <Code className={`w-4 h-4 ${isSelected ? 'text-blue-400' : 'text-slate-500 group-hover:text-blue-400/60'}`} />
+            <span className="truncate">{node.name}</span>
+            {isSelected && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />}
+        </button>
+    );
+};
+
+const SyntaxHighlightedCode = ({ code, language }: { code: string; language: string }) => {
+    const highlight = (code: string) => {
+        if (!code) return '';
+        let escaped = code
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+
+        if (['typescript', 'javascript', 'tsx', 'jsx', 'json'].includes(language)) {
+            return escaped
+                .replace(/\b(const|let|var|function|export|import|from|default|return|if|else|for|while|await|async|try|catch|class|interface|type|enum|public|private|static|readonly|new|delete|in|of|typeof|instanceof|void|yield)\b/g, '<span class="text-[#c678dd]">$1</span>')
+                .replace(/\b(string|number|boolean|any|true|false|null|undefined|NaN)\b/g, '<span class="text-[#d19a66]">$1</span>')
+                .replace(/(&quot;.*?&quot;|&#039;.*?&#039;|`[\s\S]*?`)/g, '<span class="text-[#98c379]">$1</span>')
+                .replace(/(\/\/.*$)/gm, '<span class="text-[#5c6370] italic">$1</span>')
+                .replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="text-[#5c6370] italic">$1</span>')
+                .replace(/\b(\d+)\b/g, '<span class="text-[#d19a66]">$1</span>');
+        }
+        return escaped;
+    };
+
+    return (
+        <div className="min-w-full inline-block align-middle">
+            <pre className="text-xs md:text-sm font-mono p-6 leading-relaxed text-[#abb2bf] whitespace-pre selection:bg-blue-500/30">
+                <code dangerouslySetInnerHTML={{ __html: highlight(code) }} />
+            </pre>
+        </div>
+    );
+};
+
+const getLanguage = (path: string) => {
+    const ext = path.split('.').pop()?.toLowerCase();
+    if (['ts', 'tsx'].includes(ext || '')) return 'typescript';
+    if (['js', 'jsx'].includes(ext || '')) return 'javascript';
+    if (ext === 'json') return 'json';
+    if (ext === 'css') return 'css';
+    if (ext === 'html') return 'html';
+    return 'text';
+};
 
 export default function ProjectDashboard() {
     const params = useParams();
@@ -40,15 +118,60 @@ export default function ProjectDashboard() {
     const [previewDoc, setPreviewDoc] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [currentView, setCurrentView] = useState('Pipeline');
+    const [selectedFile, setSelectedFile] = useState<any>(null);
+    const [copied, setCopied] = useState(false);
+    const [saving, setSaving] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [originalContent, setOriginalContent] = useState('');
+
+    // Reset editing state when switching files
+    useEffect(() => {
+        setIsEditing(false);
+        setOriginalContent('');
+    }, [selectedFile?.path]);
+
+    const fileTree = useMemo(() => {
+        if (!buildResult || !buildResult.files) return [];
+
+        const root: any[] = [];
+        buildResult.files.forEach((file: any) => {
+            const parts = file.path.split('/');
+            let currentFolder = root;
+            parts.forEach((part: string, index: number) => {
+                const isLast = index === parts.length - 1;
+                let node = currentFolder.find((n: any) => n.name === part);
+                if (!node) {
+                    node = {
+                        name: part,
+                        path: parts.slice(0, index + 1).join('/'),
+                        type: isLast ? 'file' : 'folder',
+                        children: isLast ? undefined : [],
+                        content: isLast ? file.content : undefined
+                    };
+                    currentFolder.push(node);
+                    currentFolder.sort((a: any, b: any) => {
+                        if (a.type !== b.type) return a.type === 'folder' ? -1 : 1;
+                        return a.name.localeCompare(b.name);
+                    });
+                }
+                if (!isLast) {
+                    currentFolder = node.children!;
+                }
+            });
+        });
+        return root;
+    }, [buildResult]);
 
     const categorizedFiles = useMemo(() => {
-        if (!buildResult || !buildResult.files) return { frontend: [], backend: [], tests: [] };
+        if (!buildResult || !buildResult.files) return { frontend: [], backend: [], tests: [], others: [] };
         const files = buildResult.files;
-        return {
-            frontend: files.filter((f: any) => f.path.toLowerCase().includes('web') || f.path.toLowerCase().includes('frontend') || f.path.toLowerCase().includes('ui') || f.path.toLowerCase().includes('app')),
-            backend: files.filter((f: any) => f.path.toLowerCase().includes('api') || f.path.toLowerCase().includes('backend') || f.path.toLowerCase().includes('server') || f.path.toLowerCase().includes('src/index')),
-            tests: files.filter((f: any) => f.path.toLowerCase().includes('test') || f.path.toLowerCase().includes('spec')),
-        };
+
+        const tests = files.filter((f: any) => f.path.toLowerCase().includes('test') || f.path.toLowerCase().includes('spec'));
+        const backend = files.filter((f: any) => !tests.includes(f) && (f.path.toLowerCase().includes('api/') || f.path.toLowerCase().includes('backend/') || f.path.toLowerCase().includes('server/')));
+        const frontend = files.filter((f: any) => !tests.includes(f) && !backend.includes(f) && (f.path.toLowerCase().includes('web/') || f.path.toLowerCase().includes('frontend/') || f.path.toLowerCase().includes('ui/') || f.path.toLowerCase().includes('app/')));
+        const others = files.filter((f: any) => !frontend.includes(f) && !backend.includes(f) && !tests.includes(f));
+
+        return { frontend, backend, tests, others };
     }, [buildResult]);
 
     const steps = [
@@ -85,7 +208,7 @@ export default function ProjectDashboard() {
     useEffect(() => {
         if (activeStep === 1) setActiveTab('Docs');
         else if (activeStep === 2) setActiveTab('Designs');
-        else if (activeStep === 3) setActiveTab('Frontend');
+        else if (activeStep === 3) setActiveTab('Codebase');
     }, [activeStep]);
 
     useEffect(() => {
@@ -165,6 +288,9 @@ export default function ProjectDashboard() {
             if (res.ok) {
                 const data = await res.json();
                 setBuildResult(data);
+                if (data.files && data.files.length > 0 && !selectedFile) {
+                    setSelectedFile(data.files[0]);
+                }
             }
         } catch (error) {
             console.error(error);
@@ -204,6 +330,9 @@ export default function ProjectDashboard() {
             if (res.ok) {
                 const data = await res.json();
                 setBuildResult(data);
+                if (data.files && data.files.length > 0) {
+                    setSelectedFile(data.files[0]);
+                }
                 await fetchProject();
             }
         } catch (e) {
@@ -595,7 +724,20 @@ export default function ProjectDashboard() {
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col justify-center">
-                                                    {project.status === 'PLANNING' || project.status === 'DESIGN' || project.status === 'DESIGNED' ? (
+                                                    {(project.status === 'DESIGNED' || project.status === 'CODING' || project.status === 'COMPLETED') ? (
+                                                        <div className="space-y-4">
+                                                            <div className="flex items-center gap-3 text-emerald-400 font-bold justify-center py-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-lg">
+                                                                <CheckCircle2 className="w-6 h-6" /> Design Completed
+                                                            </div>
+                                                            <button
+                                                                onClick={() => setActiveStep(3)}
+                                                                className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 transition-all flex items-center justify-center gap-3 text-lg group shadow-xl shadow-purple-500/20"
+                                                            >
+                                                                Proceed to Build
+                                                                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                                            </button>
+                                                        </div>
+                                                    ) : (project.status === 'PLANNING' || project.status === 'DESIGN') ? (
                                                         <button
                                                             onClick={runDesign}
                                                             disabled={designing}
@@ -613,19 +755,6 @@ export default function ProjectDashboard() {
                                                                 </>
                                                             )}
                                                         </button>
-                                                    ) : (project.status === 'DESIGNED' || project.status === 'CODING' || project.status === 'COMPLETED') ? (
-                                                        <div className="space-y-4">
-                                                            <div className="flex items-center gap-3 text-emerald-400 font-bold justify-center py-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-lg">
-                                                                <CheckCircle2 className="w-6 h-6" /> Design Completed
-                                                            </div>
-                                                            <button
-                                                                onClick={() => setActiveStep(3)}
-                                                                className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 transition-all flex items-center justify-center gap-3 text-lg group shadow-xl shadow-purple-500/20"
-                                                            >
-                                                                Proceed to Build
-                                                                <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                                                            </button>
-                                                        </div>
                                                     ) : (
                                                         <button disabled className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">
                                                             Complete Analysis First
@@ -726,6 +855,8 @@ export default function ProjectDashboard() {
                                         { id: 'Frontend', count: categorizedFiles.frontend.length, icon: Code, phase: 3 },
                                         { id: 'Backend', count: categorizedFiles.backend.length, icon: Server, phase: 3 },
                                         { id: 'Tests', count: categorizedFiles.tests.length, icon: ShieldCheck, phase: 3 },
+                                        { id: 'Others', count: categorizedFiles.others?.length || 0, icon: Settings, phase: 3 },
+                                        { id: 'Codebase', count: buildResult?.files?.length || 0, icon: Terminal, phase: 3 },
                                     ].filter(tab => tab.phase === activeStep).map((tab) => (
                                         <button
                                             key={tab.id}
@@ -853,45 +984,212 @@ export default function ProjectDashboard() {
                                 )}
 
 
-                                {['Frontend', 'Backend', 'Tests'].includes(activeTab) && (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {(activeTab === 'Frontend' ? categorizedFiles.frontend :
-                                            activeTab === 'Backend' ? categorizedFiles.backend :
-                                                categorizedFiles.tests).map((file: any, idx: number) => (
-                                                    <motion.div
-                                                        key={idx}
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        className="bg-[#1e293b]/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:bg-[#1e293b]/60 transition-all group"
-                                                    >
-                                                        <div className="flex items-start gap-4">
-                                                            <div className="p-3 bg-slate-900/50 rounded-xl border border-slate-700/50">
-                                                                <Code className="w-5 h-5 text-blue-400" />
+                                {activeTab === 'Codebase' && (
+                                    <div className="flex flex-col md:flex-row gap-6 h-[700px] bg-[#0f172a] rounded-[2rem] border border-slate-800 overflow-hidden shadow-2xl">
+                                        {/* Left Sidebar - File Tree */}
+                                        <div className="w-full md:w-80 border-r border-slate-800 flex flex-col bg-slate-950/20">
+                                            <div className="p-5 border-b border-slate-800 bg-slate-900/30">
+                                                <div className="flex items-center justify-between mb-4">
+                                                    <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                                                        <Terminal className="w-4 h-4 text-blue-500" />
+                                                        Project Files
+                                                    </h3>
+                                                    <span className="px-2 py-0.5 bg-slate-800 rounded-md text-[10px] text-slate-500 font-bold border border-slate-700">
+                                                        {buildResult?.files?.length} Files
+                                                    </span>
+                                                </div>
+                                                <div className="relative">
+                                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-600" />
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Filter files..."
+                                                        className="w-full pl-9 pr-4 py-2 bg-slate-900/50 border border-slate-800 rounded-xl text-xs text-slate-300 focus:outline-none focus:border-blue-500/50 placeholder:text-slate-600 transition-all"
+                                                        value={searchQuery}
+                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
+                                                <div className="space-y-1">
+                                                    {fileTree.filter((node: any) => !searchQuery || node.name.toLowerCase().includes(searchQuery.toLowerCase()) || JSON.stringify(node).toLowerCase().includes(searchQuery.toLowerCase())).map((node: any) => (
+                                                        <FileTreeNode key={node.path} node={node} level={0} selectedFile={selectedFile} onSelect={setSelectedFile} />
+                                                    ))}
+                                                    {fileTree.length === 0 && (
+                                                        <div className="text-center py-10">
+                                                            <Code className="w-8 h-8 text-slate-700 mx-auto mb-2" />
+                                                            <p className="text-[10px] text-slate-500">No files generated</p>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Right Panel - Code Viewer */}
+                                        <div className="flex-1 flex flex-col bg-[#020617] h-full overflow-hidden">
+                                            {selectedFile ? (
+                                                <>
+                                                    <div className="px-6 py-4 border-b border-slate-800/60 bg-slate-900/20 flex items-center justify-between">
+                                                        <div className="flex items-center gap-3 min-w-0">
+                                                            <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                                                                <Code className="w-4 h-4 text-blue-400" />
                                                             </div>
-                                                            <div className="flex-1 min-w-0">
-                                                                <h4 className="text-sm font-bold text-white mb-1 truncate">{file.path.split('/').pop()}</h4>
-                                                                <p className="text-[10px] text-slate-500 font-mono truncate">{file.path}</p>
+                                                            <div className="min-w-0">
+                                                                <h4 className="text-sm font-bold text-white truncate">{selectedFile.name || selectedFile.path.split('/').pop()}</h4>
+                                                                <p className="text-[10px] text-slate-500 font-mono truncate">{selectedFile.path}</p>
                                                             </div>
                                                         </div>
-                                                        <div className="mt-6 flex justify-between items-center">
-                                                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                                                                {file.content.length > 1024 ? `${(file.content.length / 1024).toFixed(1)} KB` : `${file.content.length} B`}
-                                                            </span>
+                                                        <div className="flex items-center gap-3">
                                                             <button
                                                                 onClick={() => {
-                                                                    const blob = new Blob([file.content], { type: 'text/plain' });
-                                                                    saveAs(blob, file.path.split('/').pop() || 'file.txt');
+                                                                    if (!isEditing && !originalContent) {
+                                                                        setOriginalContent(selectedFile.content);
+                                                                    }
+                                                                    setIsEditing(!isEditing);
                                                                 }}
-                                                                className="p-2 hover:bg-blue-600/10 rounded-lg text-slate-400 hover:text-blue-400 transition-colors"
+                                                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all text-xs font-bold border justify-center ${isEditing ? 'bg-emerald-600 text-white border-emerald-500 shadow-lg shadow-emerald-500/20' : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                                                                    }`}
+                                                            >
+                                                                {isEditing ? <Eye className="w-3.5 h-3.5" /> : <Edit3 className="w-3.5 h-3.5" />}
+                                                                {isEditing ? 'Preview' : 'Edit Code'}
+                                                            </button>
+                                                            {isEditing && (
+                                                                <>
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            setSelectedFile({ ...selectedFile, content: originalContent });
+                                                                            setOriginalContent('');
+                                                                            setIsEditing(false);
+                                                                        }}
+                                                                        className="flex items-center gap-2 px-3 py-1.5 bg-red-500/10 text-red-400 border border-red-500/20 hover:bg-red-500/20 rounded-lg transition-all text-xs font-bold"
+                                                                    >
+                                                                        <XCircle className="w-3.5 h-3.5" />
+                                                                        Discard
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={async () => {
+                                                                            setSaving(true);
+                                                                            try {
+                                                                                const res = await fetch(`${API_BASE_URL}/api/projects/${id}/build/file`, {
+                                                                                    method: 'PUT',
+                                                                                    headers: { 'Content-Type': 'application/json' },
+                                                                                    body: JSON.stringify({
+                                                                                        path: selectedFile.path,
+                                                                                        content: selectedFile.content
+                                                                                    })
+                                                                                });
+                                                                                if (res.ok) {
+                                                                                    setBuildResult((prev: any) => ({
+                                                                                        ...prev,
+                                                                                        files: prev.files.map((f: any) =>
+                                                                                            f.path === selectedFile.path ? { ...f, content: selectedFile.content } : f
+                                                                                        )
+                                                                                    }));
+                                                                                    setOriginalContent('');
+                                                                                    setIsEditing(false);
+                                                                                }
+                                                                            } catch (e) { console.error(e); }
+                                                                            finally { setSaving(false); }
+                                                                        }}
+                                                                        className={`flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all text-xs font-bold border min-w-[80px] justify-center ${saving ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-blue-600 text-white border-blue-500 shadow-lg shadow-blue-500/20 hover:bg-blue-500'
+                                                                            }`}
+                                                                    >
+                                                                        {saving ? <RotateCcw className="w-3.5 h-3.5 animate-spin" /> : <Save className="w-3.5 h-3.5" />}
+                                                                        {saving ? 'Saving...' : 'Save'}
+                                                                    </button>
+                                                                </>
+                                                            )}
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigator.clipboard.writeText(selectedFile.content);
+                                                                    setCopied(true);
+                                                                    setTimeout(() => setCopied(false), 2000);
+                                                                }}
+                                                                className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-all text-xs font-bold border border-slate-700 min-w-[80px] justify-center"
+                                                            >
+                                                                {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                                                                {copied ? 'Copied!' : 'Copy'}
+                                                            </button>
+                                                            <button
+                                                                onClick={() => {
+                                                                    const blob = new Blob([selectedFile.content], { type: 'text/plain' });
+                                                                    saveAs(blob, selectedFile.name || selectedFile.path.split('/').pop() || 'file.txt');
+                                                                }}
+                                                                className="p-1.5 hover:bg-blue-600/10 rounded-lg text-slate-400 hover:text-blue-400 transition-colors border border-transparent hover:border-blue-500/20"
                                                             >
                                                                 <Download className="w-4 h-4" />
                                                             </button>
                                                         </div>
-                                                    </motion.div>
-                                                ))}
+                                                    </div>
+                                                    <div className="flex-1 overflow-auto custom-scrollbar bg-[rgba(30,30,30,0.5)]">
+                                                        {isEditing ? (
+                                                            <textarea
+                                                                value={selectedFile.content}
+                                                                onChange={(e) => setSelectedFile({ ...selectedFile, content: e.target.value })}
+                                                                className="w-full h-full bg-transparent p-6 text-xs md:text-sm font-mono leading-relaxed text-[#abb2bf] outline-none resize-none selection:bg-blue-500/30 cursor-auto"
+                                                                spellCheck={false}
+                                                                placeholder="Start editing..."
+                                                            />
+                                                        ) : (
+                                                            <SyntaxHighlightedCode code={selectedFile.content} language={getLanguage(selectedFile.path)} />
+                                                        )}
+                                                    </div>
+                                                </>
+                                            ) : (
+                                                <div className="flex-1 flex flex-col items-center justify-center text-center p-10">
+                                                    <div className="w-20 h-20 bg-slate-900/50 rounded-[2rem] border border-slate-800 flex items-center justify-center mb-6 text-slate-700">
+                                                        <Code className="w-10 h-10" />
+                                                    </div>
+                                                    <h3 className="text-xl font-bold text-slate-300 mb-2">Select a file to view</h3>
+                                                    <p className="text-slate-500 max-w-xs mx-auto">
+                                                        Choose a file from the explorer on the left to view its source code and implementation details.
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {['Frontend', 'Backend', 'Tests', 'Others'].includes(activeTab) && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {(activeTab === 'Frontend' ? categorizedFiles.frontend :
+                                            activeTab === 'Backend' ? categorizedFiles.backend :
+                                                activeTab === 'Tests' ? categorizedFiles.tests :
+                                                    categorizedFiles.others).map((file: any, idx: number) => (
+                                                        <motion.div
+                                                            key={idx}
+                                                            initial={{ opacity: 0, y: 10 }}
+                                                            animate={{ opacity: 1, y: 0 }}
+                                                            className="bg-[#1e293b]/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:bg-[#1e293b]/60 transition-all group"
+                                                        >
+                                                            <div className="flex items-start gap-4">
+                                                                <div className="p-3 bg-slate-900/50 rounded-xl border border-slate-700/50">
+                                                                    <Code className="w-5 h-5 text-blue-400" />
+                                                                </div>
+                                                                <div className="flex-1 min-w-0">
+                                                                    <h4 className="text-sm font-bold text-white mb-1 truncate">{file.path.split('/').pop()}</h4>
+                                                                    <p className="text-[10px] text-slate-500 font-mono truncate">{file.path}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div className="mt-6 flex justify-between items-center">
+                                                                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                                                                    {file.content.length > 1024 ? `${(file.content.length / 1024).toFixed(1)} KB` : `${file.content.length} B`}
+                                                                </span>
+                                                                <button
+                                                                    onClick={() => {
+                                                                        const blob = new Blob([file.content], { type: 'text/plain' });
+                                                                        saveAs(blob, file.path.split('/').pop() || 'file.txt');
+                                                                    }}
+                                                                    className="p-2 hover:bg-blue-600/10 rounded-lg text-slate-400 hover:text-blue-400 transition-colors"
+                                                                >
+                                                                    <Download className="w-4 h-4" />
+                                                                </button>
+                                                            </div>
+                                                        </motion.div>
+                                                    ))}
                                         {(activeTab === 'Frontend' ? categorizedFiles.frontend.length :
                                             activeTab === 'Backend' ? categorizedFiles.backend.length :
-                                                categorizedFiles.tests.length) === 0 && (
+                                                activeTab === 'Tests' ? categorizedFiles.tests.length :
+                                                    categorizedFiles.others.length) === 0 && (
                                                 <div className="col-span-full flex flex-col items-center justify-center py-32 bg-slate-900/40 rounded-[2.5rem] border border-dashed border-slate-800">
                                                     <Code className="w-20 h-20 text-slate-800 mb-6" />
                                                     <h3 className="text-2xl font-bold text-slate-300 mb-2">{activeTab} Files</h3>

@@ -5,39 +5,11 @@ export class AIDesigner {
     private projectManager = new ProjectManager();
 
     async generateVisuals(projectId: string, description: string): Promise<UIAsset[]> {
-        console.log("AIDesigner v3 (Unsplash) - Generating visuals...");
+        console.log("AIDesigner v4 (Dynamic) - Generating dynamic visuals...");
         const docs = await this.projectManager.getDocs(projectId);
         const uiuxDoc = docs.find(d => (d.category as any) === 'UI_UX');
-        const projects = await this.projectManager.getAllProjects();
-        const project = projects.find(p => p.id === projectId);
-        const desc = project?.description?.toLowerCase() || '';
-
-        let category = 'business-app';
-        if (desc.includes('ecommerce') || desc.includes('shop') || desc.includes('store')) category = 'ecommerce';
-        else if (desc.includes('social') || desc.includes('chat') || desc.includes('connect')) category = 'social-media';
-        else if (desc.includes('game') || desc.includes('play')) category = 'gaming';
-        else if (desc.includes('health') || desc.includes('fitness')) category = 'healthcare';
-        else if (desc.includes('finance') || desc.includes('bank') || desc.includes('money')) category = 'finance';
 
         const assets: UIAsset[] = [];
-
-        // Curated high-quality Unsplash UI Mockup IDs
-        const uiMockups: Record<string, string[]> = {
-            'ecommerce': [
-                'https://images.unsplash.com/photo-1557821552-17105176677c', 'https://images.unsplash.com/photo-1472851294608-062f824d29cc',
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30', 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d'
-            ],
-            'social-media': [
-                'https://images.unsplash.com/photo-1611162617474-5b21e879e113', 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0',
-                'https://images.unsplash.com/photo-1611605851314-72663f9a11d4', 'https://images.unsplash.com/photo-1611606063065-ee7946f0787a'
-            ],
-            'business-app': [
-                'https://images.unsplash.com/photo-1551288049-bebda4e38f71', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f',
-                'https://images.unsplash.com/photo-1542744094-24638eff586b', 'https://images.unsplash.com/photo-1551434678-e076c223a692'
-            ]
-        };
-
-        const selectedMockups = uiMockups[category] || uiMockups['business-app'];
 
         if (uiuxDoc) {
             const screenSections = uiuxDoc.content.split('### ').slice(1);
@@ -52,7 +24,14 @@ export class AIDesigner {
                 const interactions = section.match(/- \*\*Interactions\*\*: (.*)/)?.[1]?.split(',').map(i => i.trim()) || [];
                 const states = section.match(/- \*\*States\*\*: (.*)/)?.[1]?.split(',').map(s => s.trim()) || [];
 
-                const baseImg = selectedMockups[index % selectedMockups.length];
+                // Generate a highly specific prompt for image generation
+                const prompt = `Premium UI/UX design for a ${description} application, ${screenName} screen. 
+                Features: ${components.join(', ')}. 
+                Style: Modern, sleek, high-fidelity mockup, glassmorphism, vibrant colors, professional digital interface, 4k resolution.`;
+
+                // Using a dynamic image generation placeholder service (Pollinations.ai is great for this)
+                const encodedPrompt = encodeURIComponent(prompt);
+                const imageUrl = `https://pollinations.ai/p/${encodedPrompt}?width=1280&height=720&seed=${index}&nologo=true`;
 
                 assets.push({
                     id: crypto.randomUUID(),
@@ -64,8 +43,8 @@ export class AIDesigner {
                     components,
                     interactions,
                     states,
-                    promptUsed: `Premium UI Mockup for ${screenName}`,
-                    imageUrl: `${baseImg}?q=80&w=1200&auto=format&fit=crop`
+                    promptUsed: prompt,
+                    imageUrl
                 } as any);
             });
         }
@@ -77,8 +56,8 @@ export class AIDesigner {
                 screenName: 'Dashboard',
                 description: 'Overview of system status',
                 promptUsed: 'Modern dashboard mockup',
-                imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop'
-            });
+                imageUrl: 'https://pollinations.ai/p/Modern%20SaaS%20Dashboard%20UI%20Design%20with%20charts%20and%20analytics?width=1280&height=720&nologo=true'
+            } as any);
         }
 
         return assets;

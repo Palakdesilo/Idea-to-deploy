@@ -5,7 +5,16 @@
         "target": "es6",
         "strict": true,
         "esModuleInterop": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": ".",
+        "paths": {
+            "@idea-to-deploy/engine": [
+                "../../packages/engine/src/index.ts"
+            ],
+            "@idea-to-deploy/types": [
+                "../../packages/types/src/index.ts"
+            ]
+        }
     },
     "include": [
         "src/**/*"
