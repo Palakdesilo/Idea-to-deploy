@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { apiClient } from '@/lib/api-client';
-import { Project, GeneratedDoc, UIAsset } from '@idea-to-deploy/types';
+import { Project, GeneratedDoc, UIAsset } from '@/types';
 import ReactMarkdown from 'react-markdown';
 import { API_BASE_URL } from '@/lib/api-config';
 

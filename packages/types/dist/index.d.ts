@@ -6,21 +6,45 @@ export interface Project {
     status: ProjectStatus;
     metrics: ProjectMetrics;
 }
+
 export type ProjectStatus = 'NEW' | 'ANALYSIS' | 'PLANNING' | 'DESIGN' | 'CODING' | 'COMPLETED' | 'FAILED';
+
 export interface ProjectMetrics {
-    progress: number;
+    progress: number; // 0-100
     currentPhase: string;
     lastUpdated: Date;
 }
-export type DocCategory = 'REQUIREMENTS' | 'PLANNING' | 'ARCHITECTURE' | 'MANAGEMENT' | 'SCHEDULE_COST' | 'QUALITY_RISK' | 'TESTING_RELEASE';
+
+// The 7 Documentation Categories (PMP-Compliant)
+export type DocCategory =
+    | 'REQUIREMENTS'
+    | 'PLANNING'
+    | 'ARCHITECTURE'
+    | 'IPMP'
+    | 'SCHEDULE_COST'
+    | 'QUALITY_RISK'
+    | 'TESTING_RELEASE'
+    | 'UI_UX';
+
+export interface ScreenDefinition {
+    name: string;
+    purpose: string;
+    roles: string[];
+    components: string[];
+    interactions: string[];
+    states: string[];
+}
+
+
 export interface GeneratedDoc {
     id: string;
     projectId: string;
     category: DocCategory;
     title: string;
-    content: string;
+    content: string; // Markdown
     isFinal: boolean;
 }
+
 export interface Epic {
     id: string;
     projectId: string;
@@ -28,6 +52,7 @@ export interface Epic {
     description: string;
     status: 'TODO' | 'IN_PROGRESS' | 'DONE';
 }
+
 export interface UserStory {
     id: string;
     epicId: string;
@@ -35,6 +60,7 @@ export interface UserStory {
     acceptanceCriteria: string[];
     points: number;
 }
+
 export interface UIAsset {
     id: string;
     projectId: string;
@@ -42,7 +68,14 @@ export interface UIAsset {
     description: string;
     imageUrl?: string;
     promptUsed: string;
+    purpose?: string;
+    roles?: string[];
+    components?: string[];
+    interactions?: string[];
+    states?: string[];
 }
+
+
 export interface LogEntry {
     timestamp: Date;
     level: 'INFO' | 'WARN' | 'ERROR';

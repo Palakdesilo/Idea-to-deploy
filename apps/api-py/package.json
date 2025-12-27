@@ -1,0 +1,9 @@
+{
+    "name": "@idea-to-deploy/api-py",
+    "version": "1.0.0",
+    "scripts": {
+        "dev": "uvicorn main:app --reload --port 4000",
+        "start": "uvicorn main:app --host 0.0.0.0 --port 4000"
+    },
+    "dependencies": {}
+}

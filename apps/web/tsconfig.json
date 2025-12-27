@@ -27,7 +27,7 @@
                 "./*"
             ],
             "@idea-to-deploy/types": [
-                "../../packages/types/src/index.ts"
+                "./types/index.ts"
             ]
         }
     },

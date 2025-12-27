@@ -2,18 +2,14 @@ services:
   # API Service
   - type: web
     name: idea-to-deploy-api
-    env: node
+    env: python
     plan: free
     region: ohio
-    buildCommand: npm install && npm run build
-    startCommand: npm start --workspace=@idea-to-deploy/api
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: PORT
-        value: 10000
       - key: OPENAI_API_KEY
         sync: false
-      - key: NPM_CONFIG_PRODUCTION
-        value: "false"
 
   # Web Service (Next.js)
   - type: web

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1c21e5ad-90d8-4282-94c4-25d96228a9ad",
+    "projectId": "8df679fd-9125-4083-aa75-d7ba6bb1c5d1",
+    "screenName": "Dashboard",
+    "description": "Design for Build a healthcare appointment",
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+    "promptUsed": "Premium UI",
+    "purpose": "Main view",
+    "roles": [
+      "Admin"
+    ],
+    "components": [
+      "Charts"
+    ],
+    "interactions": [
+      "Click"
+    ],
+    "states": [
+      "Default"
+    ]
+  }
+]

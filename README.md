@@ -1,34 +1,48 @@
 # Idea-to-Deploy Platform
 
-An AI-powered automation platform that converts raw product ideas into fully deployable applications.
+This project is a modern end-to-end AI automation platform that converts product ideas into deployable applications.
 
-## Structures
+## 🏗️ Project Structure
+- **`/frontend`**: Next.js application (React, TailwindCSS, Lucide).
+- **`/backend`**: Python FastAPI application (Pydantic, OpenAI, Uvicorn).
+- **`/backend/data`**: JSON database storing project metadata and artifacts.
 
-- **apps/web**: Next.js 14 + Tailwind CSS Frontend.
-- **apps/api**: Node.js Express Backend.
-- **packages/engine**: Core AI Logic and Generators.
+## 🚀 Getting Started
 
-## Workflow
+### 1. Backend (Python)
+Navigate to the backend directory and install dependencies:
+```bash
+cd backend
+pip install -r requirements.txt
+```
+Run the backend server:
+```bash
+uvicorn main:app --reload --port 4000
+```
 
-1. **Idea Input**: User submits a project idea.
-2. **Analysis**: System generates 7 core requirement documents.
-3. **Planning**: System generates User Stories, Tasks, and Timelines.
-4. **Design**: System generates UI Mockups (Visuals).
-5. **Coding**: System scouts and generates the target codebase.
+### 2. Frontend (Next.js)
+Navigate to the frontend directory and install dependencies:
+```bash
+cd frontend
+npm install
+```
+Run the frontend development server:
+```bash
+npm run dev
+```
 
-## Setup
+The application will be available at `http://localhost:3000`.
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
+## 🛠️ Features
+- **AI Analysis**: Converts text ideas into full PMP-compliant documentation.
+- **AI Design**: Generates UI/UX designs and high-fidelity mockups.
+- **AI Builder**: Scaffolds full-stack codebase automatically.
 
-2. Run Development Environment:
-   ```bash
-   npm run dev
-   ```
 
-3. ##for Run Backend (API Server running on port 4000)
-   ```bash
-   npm run dev --workspace=@idea-to-deploy/api 
-   ```
+cd apps/api
+uvicorn main:app --reload --port 4000
+
+cd apps/web
+npm run dev
+
+npm install

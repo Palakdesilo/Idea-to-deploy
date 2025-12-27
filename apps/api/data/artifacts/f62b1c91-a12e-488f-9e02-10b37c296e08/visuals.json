@@ -1,0 +1,23 @@
+[
+  {
+    "id": "34ddf847-ea35-4ab4-8eb9-d3334fb17c1e",
+    "projectId": "f62b1c91-a12e-488f-9e02-10b37c296e08",
+    "screenName": "Dashboard",
+    "description": "Design for Build a financial management p",
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+    "promptUsed": "Premium UI",
+    "purpose": "Main view",
+    "roles": [
+      "Admin"
+    ],
+    "components": [
+      "Charts"
+    ],
+    "interactions": [
+      "Click"
+    ],
+    "states": [
+      "Default"
+    ]
+  }
+]

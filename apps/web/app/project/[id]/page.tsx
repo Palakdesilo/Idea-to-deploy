@@ -850,14 +850,14 @@ export default function ProjectDashboard() {
                             <div className="flex items-center justify-between border-b border-slate-800/60 pb-1">
                                 <div className="flex items-center gap-2">
                                     {[
-                                        { id: 'Docs', count: docs.length, icon: FileText, phase: 1 },
-                                        { id: 'Designs', count: visuals.length, icon: Layout, phase: 2 },
+                                        { id: 'Docs', count: docs.length, icon: FileText, phase: 1, showAlways: true },
+                                        { id: 'Designs', count: visuals.length, icon: Layout, phase: 2, showAlways: true },
                                         { id: 'Frontend', count: categorizedFiles.frontend.length, icon: Code, phase: 3 },
                                         { id: 'Backend', count: categorizedFiles.backend.length, icon: Server, phase: 3 },
                                         { id: 'Tests', count: categorizedFiles.tests.length, icon: ShieldCheck, phase: 3 },
                                         { id: 'Others', count: categorizedFiles.others?.length || 0, icon: Settings, phase: 3 },
                                         { id: 'Codebase', count: buildResult?.files?.length || 0, icon: Terminal, phase: 3 },
-                                    ].filter(tab => tab.phase === activeStep).map((tab) => (
+                                    ].filter(tab => tab.showAlways || tab.phase === activeStep).map((tab) => (
                                         <button
                                             key={tab.id}
                                             onClick={() => setActiveTab(tab.id)}

@@ -7,12 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspaces --if-present",
-    "build:types": "npm run build --workspace=@idea-to-deploy/types",
-    "build:api": "npm run build --workspace=@idea-to-deploy/api",
+    "dev": "npm run dev:web & npm run dev:api-py",
+    "dev:api-py": "cd apps/api-py && uvicorn main:app --reload --port 4000",
+    "dev:web": "npm run dev --workspace=@idea-to-deploy/web",
     "build:web": "npm run build --workspace=@idea-to-deploy/web",
-    "build:engine": "npm run build --workspace=@idea-to-deploy/engine",
-    "build": "npm run build:types && npm run build:engine && npm run build --workspaces --if-present"
+    "build": "npm run build:web"
   },
   "keywords": [],
   "author": "",

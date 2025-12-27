@@ -1,0 +1,12 @@
+{
+  "projectId": "8df679fd-9125-4083-aa75-d7ba6bb1c5d1",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Project 8df679fd-9125-4083-aa75-d7ba6bb1c5d1\n\nGenerated for: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records."
+    }
+  ],
+  "stats": {
+    "fileCount": 1
+  }
+}

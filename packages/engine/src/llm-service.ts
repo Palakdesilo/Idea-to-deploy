@@ -50,332 +50,273 @@ export class LLMService {
     }
 
     private fallbackGeneration(promptName: string, variables: Record<string, string>): string {
-        const { idea, features, category, project_complexity, creator_name, expected_start_time } = variables;
-        const featureList = (features || 'Core system functionality').split(',').map(f => f.trim());
+        let { idea, canonical_json } = variables;
+        let jsonData: any = null;
+
+        if (canonical_json) {
+            try {
+                jsonData = JSON.parse(canonical_json);
+            } catch (e) {
+                console.warn("Fallback: Failed to parse canonical_json");
+            }
+        }
+
+        if (promptName === 'CANONICAL_JSON') {
+            return JSON.stringify({
+                project_overview: {
+                    summary: idea || "A new digital solution",
+                    problem_statement: "Manual processes are inefficient",
+                    objectives: ["Automate workflows", "Improve user experience", "Provide data insights"]
+                },
+                users: {
+                    target_users: ["Standard Users", "System Administrators"],
+                    user_roles: ["User", "Admin"]
+                },
+                scope: {
+                    in_scope: ["Web interface", "Core database", "User authentication"],
+                    out_of_scope: ["Mobile application", "Offline mode", "Legacy system migration"]
+                },
+                features: {
+                    must_have: ["User Dashboard", "Data Entry Forms", "Reporting Module"],
+                    nice_to_have: ["Dark Mode", "Push Notifications", "Advanced Analytics"]
+                },
+                constraints: {
+                    time: "12 weeks",
+                    budget: "Enterprise standard",
+                    technical: "Modern web stack",
+                    regulatory: "GDPR Compliance"
+                },
+                assumptions: ["Internet connectivity is available", "Users have basic technical proficiency"],
+                risks: ["Integration challenges", "Data security vulnerabilities"],
+                success_metrics: ["90% user adoption", "Reduced processing time"],
+                scalability_expectations: "Support up to 10,000 concurrent users"
+            }, null, 2);
+        }
+
+        const summary = jsonData?.project_overview?.summary || idea || 'Project Alpha';
+        const features = jsonData?.features?.must_have || ['User Management', 'Dashboard', 'Data Analytics'];
+        const roles = jsonData?.users?.user_roles || ['Admin', 'User'];
+        const objectives = jsonData?.project_overview?.objectives || ['Deliver high value', 'Ensure security'];
 
         if (promptName === 'REQUIREMENTS') {
-            return `# 1. Document Control & Versioning
-**Author**: ${creator_name || 'Idea-to-Deploy Platform'}
-**Date**: ${expected_start_time || new Date().toISOString().split('T')[0]}
-**Version**: 1.0.0 (Baseline)
+            return `# Requirement Specification: ${summary}
+            
+## Purpose
+To define the functional and non-functional requirements for the ${summary} system.
 
-# 2. Project Background & Objectives
-This project, **${idea}**, is designed to deliver a high-quality solution in the **${category}** domain. The primary objective is to streamline operations and provide value through specialized features.
+## Scope
+Includes development of ${features.join(', ')}.
 
-# 3. Stakeholder Identification
-- **Project Sponsor**: ${creator_name || 'Business Stakeholder'}
-- **Technical Lead**: AI Architect
-- **End Users**: Users interacting with ${category} services.
+## User Roles
+${roles.map((r: string) => `- **${r}**: Primary user role.`).join('\n')}
 
-# 4. Assumptions & Constraints
-- **Assumption**: Scalable cloud infrastructure is available for deployment.
-- **Constraint**: Delivery within a 12-week timeframe as per standard PMP guidelines.
+## Functional Requirements
+${features.map((f: string, i: number) => `### FR-0${i + 1}: ${f}
+The system shall provide ${f} functionality.`).join('\n\n')}
 
-# 5. In-Scope / Out-of-Scope
-- **In-Scope**: Implementation of ${featureList.slice(0, 3).join(', ')} and core ${category} logic.
-- **Out-of-Scope**: Physical hardware procurement and third-party legacy data cleaning.
+## Non-Functional Requirements
+- **Performance**: System responds within 200ms.
+- **Security**: OAuth2 based authentication.
 
-# 6. Functional Requirements
-${featureList.map((f, i) => `## REQ-00${i + 1}: ${f}
-The system shall provide robust ${f} capabilities to support the core functionality of ${idea}.`).join('\n\n')}
+## Assumptions
+- Stable network environment.
 
-# 7. Non-Functional Requirements
-- **NFR-001 (Performance)**: The ${idea} system must load within 2 seconds.
-- **NFR-002 (Security)**: All data for ${category} must be encrypted at rest and in transit.
+## Constraints
+- Completion within 12 weeks.
 
-# 8. User Roles & Permissions
-- **Admin**: Full access to manage the ${idea} platform.
-- **Standard User**: Access to core ${category} features.
-
-# 9. Business Rules
-Data integrity must be maintained across all **${category}** transactions.
-
-# 10. Use Cases / User Stories
-- **US-001**: As a user, I want to use ${featureList[0] || 'the system'} so that I can achieve my task in ${idea}.
-
-# 11. UI/UX & Screen References
-The interface will follow modern design principles tailored for the **${category}** industry.
-
-# 12. Data Requirements
-Relational database storage optimized for **${category}** data entities.
-
-# 13. Regulatory & Compliance Requirements
-Compliance with industry standards relevant to **${category}** and GDPR.
-
-# 14. Requirement Traceability Matrix (RTM)
-Linking all functional requirements (REQ-001 to REQ-00${featureList.length}) to business objectives.
+## Dependencies
+- Cloud provider availability.
 `;
         }
 
         if (promptName === 'PLANNING') {
-            return `# 1. Project Overview
-Project **${idea}** is a ${project_complexity} complexity project in the **${category}** sector.
+            return `# Project Planning: ${summary}
 
-# 2. Project Governance Structure
-Strict PMP-based governance with a Project Manager overseeing the implementation of ${idea}.
+## Project Goals
+${objectives.map((o: string) => `- ${o}`).join('\n')}
 
-# 3. Project Organization & Roles
-- **Project Manager**: Managing the 12-week schedule.
-- **Developers**: Implementing ${featureList.join(', ')}.
+## Deliverables
+- Functional Prototype
+- Production-Ready Codebase
+- Technical Documentation
 
-# 4. Project Methodology (Agile)
-Agile Scrum methodology with 2-week sprints to iterate on **${idea}** features.
+## Project Phases
+1. Initial Analysis
+2. Core Development
+3. Quality Assurance
+4. Launch
 
-# 5. Work Breakdown Structure (WBS)
-- **Phase 1**: Initial Analysis & ${category} Domain Research
-- **Phase 2**: Development of ${featureList.slice(0, Math.ceil(featureList.length / 2)).join(', ')}
-- **Phase 3**: Integration of remaining features
-- **Phase 4**: Final Testing & Deployment of ${idea}
+## Milestones
+- M1: Scope Definition (Week 2)
+- M2: MVP Completion (Week 8)
+- M3: Final Release (Week 12)
 
-# 6. Deliverables & Milestones
-- **MS-1**: Requirement Sign-off (Week 2)
-- **MS-2**: ${category} MVP Completion (Week 8)
-- **MS-3**: Final Handover of **${idea}** (Week 12)
+## Resource Overview
+- 2 Full-stack Developers
+- 1 UI/UX Designer
+- 1 QA Engineer
 
-# 7. Resource Planning
-Engineers specializing in **${category}** technology stack and cloud architects.
-
-# 8. Communication Management Plan
-Bi-weekly status meetings regarding **${idea}** progress.
-
-# 9. Change Management Plan
-Standard change request process for any scope adjustments in the **${idea}** roadmap.
-
-# 10. Dependency Management
-Depends on the completion of the core **${category}** engine.
-
-# 11. Assumptions & Constraints
-Assumes availability of ${category} domain experts for validation.
-`;
-        }
-
-        if (promptName === 'IPMP') {
-            return `# 1. IPMP Purpose & Scope
-This Integrated Project Management Plan defines the execution strategy for **${idea}**.
-
-# 2. Project Objectives & Success Criteria
-- **Objective**: Successful deployment of ${idea} with ${featureList.length} core features.
-- **Success Criteria**: User acceptance of the ${category} workflow.
-
-# 3. Integrated Baselines (Scope, Schedule, Cost)
-A unified baseline for **${idea}** ensure alignment between scope and the 12-week schedule.
-
-# 4. Governance & Decision Framework
-Escalation matrix focused on ${category} industry standards.
-
-# 5. Integrated Change Control
-Ensures that adding new features to **${idea}** is evaluated for impact on the ${category} delivery.
-
-# 6. Risk, Quality & Procurement Integration
-Integrated management of all ${idea} project facets.
-
-# 7. Stakeholder Engagement Strategy
-Regular demos of **${category}** components.
-
-# 8. Performance Measurement (KPIs, EV, Metrics)
-Tracking velocity of the development of ${featureList[0]} and other modules.
-
-# 9. Reporting & Review Cadence
-Phased reviews at each milestone of **${idea}**.
-
-# 10. Escalation & Issue Resolution
-Defined path for resolving technical blockers in the **${idea}** stack.
-
-# 11. Compliance & Audit Strategy
-Adherence to ${category} compliance standards.
+## Communication Plan
+Weekly stakeholder updates via email and bi-weekly demo calls.
 `;
         }
 
         if (promptName === 'ARCHITECTURE') {
-            const stack = category === 'E-commerce' || category === 'SaaS / Subscription'
-                ? 'Next.js, Node.js, PostgreSQL, Stripe Integration'
-                : 'Next.js, Node.js, PostgreSQL, TailwindCSS';
+            return `# Technical Architecture: ${summary}
 
-            return `# 1. Architecture Overview
-Technical architecture design for **${idea}**, optimized for the **${category}** domain.
+## System Overview
+A robust, scalable web architecture designed for ${summary}.
 
-# 2. System Context Diagram
-Shows how ${idea} interacts with users and external ${category} APIs.
+## High-Level Architecture
+Layered architecture: Presentation, Logic, and Data.
 
-# 3. Logical Architecture
-Breakdown of the system into frontend, backend, and ${category}-specific services.
+## Technology Stack
+- **Frontend**: React / Next.js
+- **Backend**: Node.js / Express
+- **Database**: PostgreSQL
+- **Infrastructure**: AWS / Vercel
 
-# 4. Physical Architecture
-Hosted on scalable cloud infrastructure to support the ${project_complexity} nature of **${idea}**.
+## Data Flow Overview
+Users interact with Frontend -> API calls to Backend -> Transactional data in Database.
 
-# 5. Technology Stack
-Utilizing: ${stack}.
+## Security Considerations
+- TLS 1.3 Encryption
+- JWT Session Management
+- Role-based Access Control
 
-# 6. Application Architecture
-Modular design pattern to separate ${featureList.slice(0, 3).join(', ')} from core platform logic.
+## Scalability Strategy
+Horizontal scaling using containerized microservices.
 
-# 7. Database & Data Flow Design
-Schema design for **${idea}** entities including users and ${category} specific data.
+## Deployment Overview
+Automated CI/CD pipeline with Blue/Green deployment strategy.
+`;
+        }
 
-# 8. API & Integration Strategy
-Secure RESTful endpoints for ${idea} communication.
+        if (promptName === 'IPMP') {
+            return `# Integrated Project Management Plan (IPMP): ${summary}
 
-# 9. Security Architecture
-JWT-based authentication and role-based access for ${idea} users.
+## Project Overview
+Consolidated execution strategy for the ${summary} project.
 
-# 10. Scalability & Performance Design
-Load balancing to handle ${category} traffic spikes.
+## Governance Structure
+Project Sponsor -> Project Manager -> Technical Team.
 
-# 11. Deployment Architecture
-Automated CI/CD pipeline for rapid ${idea} iterations.
+## Scope Management
+Change requests evaluated by CCB (Change Control Board).
 
-# 12. Technical Risks & Mitigations
-Risk: Integration delay with ${category} third-party tools.
-Mitigation: Early prototyping of external interfaces.
+## Schedule Management
+12-week timeline with bi-weekly sprints.
+
+## Cost Management
+Managed within the enterprise operational budget.
+
+## Quality Management
+Unit tests, integration tests, and UAT.
+
+## Risk Management
+Continuous monitoring and mitigation of technical risks.
+
+## Change Control
+Version-controlled codebase and documented requirement changes.
+
+## Communication Management
+Centralized project dashboard for all stakeholders.
 `;
         }
 
         if (promptName === 'SCHEDULE_COST') {
-            return `# 1. Schedule Management Approach
-Methodology for managing the timeline of **${idea}**.
+            return `# Schedule & Cost Estimation: ${summary}
 
-# 2. Project Timeline & Milestones
-High-level roadmap for ${idea}: 12 weeks total.
+## Work Breakdown Structure (High-Level)
+1. Environment Setup
+2. Module Development (${features.slice(0, 2).join(', ')})
+3. Integration
+4. Testing
 
-# 3. Task Dependencies
-Core ${category} engine must be completed before UI integration.
+## Estimated Timeline
+12 weeks total execution time.
 
-# 4. Resource Allocation
-Staffing plan including ${category} specialists.
+## Resource Effort Estimates
+- Dev: 480 hours
+- QA: 160 hours
+- PM: 80 hours
 
-# 5. Critical Path Analysis
-The development of ${featureList[0] || 'core features'} is on the critical path for **${idea}**.
+## Cost Breakdown
+- Labor: $60,000
+- Infrastructure: $5,000
+- Licenses: $2,000
 
-# 6. Cost Estimation Methodology
-Bottom-up estimation based on the ${project_complexity} nature of **${idea}**.
-
-# 7. Budget Breakdown (CAPEX / OPEX)
-Infrastructure costs for hosting **${idea}** and development labor.
-
-# 8. Cost Baseline
-Approved budget for the delivery of ${idea}.
-
-# 9. Cost Control & Tracking
-Monthly tracking of expenses against the **${category}** project budget.
-
-# 10. Earned Value Management (EVM)
-Measuring performance against the planned schedule for **${idea}**.
-
-# 11. Schedule & Cost Risks
-Risk: Scope creep in **${category}** features affecting the ${idea} budget.
+## Contingency Planning
+15% budget buffer for unforeseen technical challenges.
 `;
         }
 
         if (promptName === 'QUALITY_RISK') {
-            return `# 1. Quality Management
-Quality philosophy for the **${idea}** project.
+            return `# Quality & Risk Management: ${summary}
 
-# 2. Quality Objectives
-Ensuring a bug-free experience for ${category} users.
+## Quality Objectives
+Zero critical bugs at launch; 99.9% uptime.
 
-# 3. Quality Standards & Metrics
-Code coverage and performance targets for **${idea}**.
+## Quality Standards
+ISO/IEC 25010 Software Quality Standards.
 
-# 4. Quality Assurance Process
-Defect prevention during the development of ${featureList.slice(0, 2).join(' and ')}.
+## Review & Approval Process
+Peer code reviews and automated linting.
 
-# 5. Quality Control Activities
-Continuous integration and manual testing of **${idea}**.
+## Risk Register
+- RISK-01: Delay in 3rd party API (Medium)
+- RISK-02: Data breach (Low probability, High impact)
 
-# 6. Risk Management
-Identifying risks specific to the **${category}** domain.
-
-# 7. Risk Identification
-- RISK-001: Data privacy issues in ${idea}.
-- RISK-002: Scaling challenges for the ${category} platform.
-
-# 8. Risk Register
-Comprehensive log of all identified risks for **${idea}**.
-
-# 9. Risk Analysis & Prioritization
-Focusing on high-impact risks to the ${idea} launch.
-
-# 10. Risk Response Strategies
-Mitigation plans for technical hurdles in **${idea}**.
-
-# 11. Procurement Management
-Sourcing strategy for **${idea}** external dependencies.
-
-# 12. Procurement Strategy
-Utilizing open-source libraries and cloud services for the **${idea}** tech stack.
-
-# 13. Vendor Selection Criteria
-Standards for third-party ${category} service providers.
-
-# 14. Contract Types
-Standardized agreements for the **${idea}** vendors.
-
-# 15. SLA & Performance Monitoring
-Uptime requirements for the ${idea} production environment.
+## Risk Mitigation Plan
+Early prototyping and rigorous security audits.
 `;
         }
 
         if (promptName === 'TESTING_RELEASE') {
-            return `# 1. Test Strategy
-Testing approach for **${idea}** to ensure ${category} compliance.
+            return `# Testing Strategy: ${summary}
 
-# 2. Test Scope & Objectives
-Verification of all features including ${featureList.join(', ')}.
+## Test Strategy
+Risk-based testing approaching focused on critical paths.
 
-# 3. Test Environment Setup
-Staging environment mirroring the ${idea} production setup.
+## Test Types
+- Unit Testing
+- Integration Testing
+- System Integration (SIT)
+- User Acceptance (UAT)
 
-# 4. Test Types (Unit, Integration, System, UAT)
-Comprehensive testing phases for the **${idea}** platform.
+## Test Scenarios (High-Level)
+- Successful user login
+- ${features[0]} execution
+- Error handling on invalid input
 
-# 5. Test Data Management
-Mocking **${category}** data for secure and effective testing.
+## Entry & Exit Criteria
+- Entry: 100% code completion
+- Exit: 0 critical defects remaining
 
-# 6. Defect Management Process
-Bug tracking for all issues found in **${idea}**.
+## Defect Management
+Jira-based tracking with prioritization matrix.
 
-# 7. Entry & Exit Criteria
-Milestones that must be met before releasing **${idea}**.
-
-# 8. Release Management Strategy
-Phased rollout plan for the ${category} market.
-
-# 9. Deployment Plan
-Step-by-step procedure for the **${idea}** go-live.
-
-# 10. Rollback & Recovery Plan
-Safety procedures in case of ${idea} deployment failure.
-
-# 11. Post-Release Validation
-Smoke tests to confirm ${idea} functionality in production.
-
-# 12. Maintenance & Support Strategy
-Post-launch support for users of the **${idea}** platform.
+## Release Approval
+Final sign-off by Product Owner and QA Lead.
 `;
         }
 
         if (promptName === 'UI_UX') {
-            const screens = ['Dashboard', 'User Profile', 'Settings', 'Search Results', 'Detail View'];
-            return `# UI/UX Design Specification for ${idea}
+            const screens = ['Dashboard', 'Detail View', 'Settings', 'Profile', 'Activity Log'];
+            return `# UI/UX Design Specification: ${summary}
 
 ${screens.map(s => `### ${s} Screen
-- **Purpose**: Providing users with a clear ${s.toLowerCase()} view for ${idea} workflows.
-- **Roles**: Admin, Standard User
-- **Components**: Header, Navigation, Main Content Area, Footer
-- **Interactions**: Click-through navigation and data interaction.
-- **States**: Loading, Active, Empty`).join('\n\n')}
+- **Purpose**: Key interface for ${s}.
+- **Roles**: ${roles.join(', ')}
+- **Components**: Navigation, Header, Content Area
+- **Interactions**: Button clicks, Form submission
+- **States**: Loading, Active, Error`).join('\n\n')}
 `;
         }
 
-        // Default detail for other sections
-        return `# ${promptName} Document for ${idea}
+        return `# ${promptName} Document for ${summary}
         
-This document contains the professional-grade ${promptName} specifications for your **${category}** project. It is designed to be actionable, measurable, and auditable.
-
-**Details:**
-- Complexity: ${project_complexity || 'Enterprise'}
-- Feature Set: ${features}
-- Compliance: PMBOK / PMP Standards
+Professional documentation generated for project ${summary}.
 `;
     }
 }

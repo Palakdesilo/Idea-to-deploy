@@ -10,6 +10,7 @@ import {
     ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Project, GeneratedDoc, UIAsset } from '@/types';
 import { API_BASE_URL } from '@/lib/api-config';
 
 

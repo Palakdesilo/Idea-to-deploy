@@ -1,0 +1,12 @@
+{
+  "projectId": "f62b1c91-a12e-488f-9e02-10b37c296e08",
+  "files": [
+    {
+      "path": "README.md",
+      "content": "# Project f62b1c91-a12e-488f-9e02-10b37c296e08\n\nGenerated for: Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals."
+    }
+  ],
+  "stats": {
+    "fileCount": 1
+  }
+}
