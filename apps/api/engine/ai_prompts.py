@@ -205,3 +205,126 @@ Create a **Detailed UI/UX Design Specification** using the Canonical JSON provid
 4. Accessibility Standards
 5. Mobile Responsiveness
 """
+
+UI_CONTRACTS_PROMPT = """
+You are a UI/UX Architect specializing in creating structured UI contracts.
+
+**Canonical JSON**: {canonical_json}
+
+**Task**: Generate a comprehensive list of ALL screens needed for this application in STRICT JSON format.
+
+**CRITICAL RULES:**
+1. Output MUST be ONLY valid JSON. No markdown, no explanations.
+2. Each screen must have: screen, role, purpose, actions, components, data, states, navigation
+3. Include ALL screens: public pages, auth flows, user dashboards, admin panels, error pages
+4. Be thorough - include login, register, forgot password, 404, 500, etc.
+
+**REQUIRED JSON SCHEMA:**
+{{
+  "ui_contracts": [
+    {{
+      "screen": "Screen Name",
+      "role": "User Role (e.g., Public / Guest, Standard User, Admin)",
+      "purpose": "What this screen does",
+      "actions": ["Action 1", "Action 2"],
+      "components": ["Component 1", "Component 2"],
+      "data": ["Data 1", "Data 2"],
+      "states": ["State 1", "State 2"],
+      "navigation": ["Target Screen 1", "Target Screen 2"]
+    }}
+  ]
+}}
+
+**Example screens to include:**
+- Landing/Home, Product Listing, Product Detail
+- Login, Register, Forgot Password, Reset Password
+- User Dashboard, Profile, Settings
+- Admin Dashboard, Management Screens
+- Cart, Checkout, Order Confirmation
+- Error pages (404, 500)
+"""
+
+WIREFRAMES_PROMPT = """
+You are a UI/UX Designer creating low-fidelity wireframes.
+
+**UI Contracts**: {ui_contracts}
+
+**Task**: Convert the UI contracts into wireframe layouts showing ONLY structure and component placement.
+
+**CRITICAL RULES:**
+1. Output MUST be ONLY valid JSON. No markdown, no explanations.
+2. Use ONLY components from the UI contracts - DO NOT invent new ones
+3. Organize components into logical sections (Header, Sidebar, Main Content, Footer, etc.)
+4. NO colors, NO styling, NO branding - structure only
+
+**REQUIRED JSON SCHEMA:**
+{{
+  "wireframes": [
+    {{
+      "screen": "Screen Name (must match UI contract)",
+      "layout": [
+        {{
+          "section": "Section Name",
+          "components": ["Component 1", "Component 2"]
+        }}
+      ]
+    }}
+  ]
+}}
+"""
+
+UI_DESIGN_PROMPT = """
+You are a UI/UX Designer applying design tokens and component styles to wireframes.
+
+**Wireframes**: {wireframes}
+**UI Contracts**: {ui_contracts}
+
+**Task**: Apply consistent design tokens and component styles to create a complete UI design specification.
+
+**CRITICAL RULES:**
+1. Output MUST be ONLY valid JSON. No markdown, no explanations.
+2. DO NOT change layout structure from wireframes
+3. DO NOT invent new components
+4. Apply professional design tokens: colors, typography, spacing, radius, shadows
+5. Define component styles: Button, Input, Card, Header, Sidebar, Table
+6. Apply styles to each screen's layout
+
+**REQUIRED JSON SCHEMA:**
+{{
+  "design_tokens": {{
+    "colors": {{}},
+    "typography": {{}},
+    "spacing": {{}},
+    "radius": {{}},
+    "shadows": {{}}
+  }},
+  "component_styles": {{
+    "Button": {{}},
+    "Input": {{}},
+    "Card": {{}},
+    "Header": {{}},
+    "Sidebar": {{}},
+    "Table": {{}}
+  }},
+  "screens": [
+    {{
+      "screen": "Screen Name (must match wireframe)",
+      "layout": [
+        {{
+          "section": "Section Name",
+          "style": {{}},
+          "components": [
+            {{
+              "name": "Component Name",
+              "variant": "Component.variant",
+              "additional_properties": {{}}
+            }}
+          ]
+        }}
+      ]
+    }}
+  ]
+}}
+
+Use modern, professional design tokens suitable for the application type.
+"""

@@ -102,7 +102,8 @@ async def analyze_project(id: str):
     
     logger.info(f"Starting analysis with AIAnalyst Version: {ai_analyst.VERSION}")
     
-    docs = await ai_analyst.analyze_idea(project.description)
+    # Pass project_id to enable design artifact generation
+    docs = await ai_analyst.analyze_idea(project.description, project_id=id)
     
     category_titles = {
         'REQUIREMENTS': 'Requirement Document',
