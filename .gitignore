@@ -3,3 +3,5 @@ webpack/
 
 artifacts 
 artifacts/* 
+
+.git/

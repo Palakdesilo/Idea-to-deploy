@@ -1450,6 +1450,10 @@ video {
 .bg-yellow-500\/20 {
   background-color: rgb(234 179 8 / 0.2);
 }
+.bg-indigo-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(79 70 229 / var(--tw-bg-opacity, 1));
+}
 .bg-\[linear-gradient\(to_bottom\2c _transparent\2c _var\(--tw-gradient-from\)_20\%\)\2c _radial-gradient\(ellipse_at_top\2c _var\(--tw-gradient-from\)\2c _transparent\)\] {
   background-image: linear-gradient(to bottom, transparent, var(--tw-gradient-from) 20%), radial-gradient(ellipse at top, var(--tw-gradient-from), transparent);
 }
@@ -1995,6 +1999,10 @@ video {
   --tw-shadow-color: rgb(244 63 94 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
 }
+.shadow-indigo-500\/20 {
+  --tw-shadow-color: rgb(99 102 241 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2234,6 +2242,11 @@ video {
 .hover\:bg-slate-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity, 1));
+}
+ 
+.hover\:bg-indigo-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(99 102 241 / var(--tw-bg-opacity, 1));
 }
  
 .hover\:from-blue-500:hover {
