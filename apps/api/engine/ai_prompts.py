@@ -280,60 +280,50 @@ Avoid generic "Action 1". Use real actions like "Upload Medical Report" or "Comp
 """
 
 WIREFRAMES_PROMPT = """
-You are a Senior UX designer initializing a PROJECT-WIDE ATOMIC WIREFRAME SYSTEM.
+You are a Principal UI/UX Architect designing a world-class digital product. 
 
-**LAYOUT MODE DECK**:
-1. **AUTH MODE** (Login, Register):
-   - NO Sidebar. Header: Screen Info only.
-   - Main: A single `AuthCard` component.
-2. **MARKETING MODE** (Landing Page, Pricing):
-   - NO Sidebar.
-   - Header: Screen Info + `Link` and `Button` nav-links.
-   - Main: Multiple `Card` and `StatCard` sections in a grid.
-3. **APP MODE** (Dashboard, Feed, Profile):
-   - Sidebar REQUIRED: Column on the left with vertical `Button` links.
-   - Header: Screen Info + `SearchBar` and `ProfileCircle` nav-links.
-   - Main: `StatCard` row (SubHeader section) and granular `Table` or `PostCard` list.
+**REFERENCE AESTHETIC**: Think of premium sites like "STOREFRONT" or modern Apple-style landing pages. 
+- High density of content.
+- Diverse layouts (Grids, Split Sections, Carousels).
+- Professional, persuasive copywriting.
 
-**ATOMIC DESIGN RULES**:
-- **placeholder-box**: Use this for generic content placeholders.
-- **ProfileCircle**: Renders as a circle in the top-right.
-- **StatCard**: Always placed in a 3-column grid row. Only for Dashboard/Stats.
-- **PostCard**: Breakdown into Avatar Header, Content Box, and Action Row.
-- **Table**: Standard 4-column structure (Item, Type, Status, Action).
-- **Registration**: AuthCards for Register/Sign-up MUST include a 'Confirm Password' field.
+**Project Idea**: {idea}
+**UI Contracts**: {ui_contracts}
 
-**STRICT DIVERSITY RULES**:
-- **No Mirroring**: DO NOT use the same layout for different screens. 
-- **Settings**: Use vertical stacks of Label+Inputs or grouped Toggles.
-- **Notifications**: Use a vertical list of descriptive Cards (Status, Time, Headline).
-- **Dashboard**: Use the SubHeader row (StatCards) + Table/Feed.
-- **Marketing**: Use Hero sections, Feature grids, and CTA Buttons.
+**STRICT PAGE DENSITY & LAYOUT RULES:**
+1. **FULL PAGE ARCHITECTURE**: Every screen MUST have a `Header`, `Main`, and `Footer`.
+2. **COMPONENT DENSITY**: A screen must have 6-10 components. 
+3. **LAYOUT DIVERSITY**: 
+   - Use `SplitSection` for Hero or feature highlights (Image left/right, Text other side).
+   - Use `ProductGrid` or `FeatureGrid` for browsing.
+   - Use `TestimonialGrid` for social proof.
+   - Use `Newsletter` for engagement.
+4. **NO PLACEHOLDERS**: Every `content` field must be 40-80 words of niche-specific, persuasive copy.
+5. **DYNAMIC NAVIGATION**: Use the `Link` component in Header/Footer to create a real website feel.
 
-**OUTPUT FORMAT**: STRICT JSON ONLY.
+**COMPONENT SCHEMA:**
+- `key`: UNIQUE string
+- `type`: `Hero | SplitSection | ProductGrid | FeatureGrid | TestimonialGrid | Newsletter | StatGrid | Table | PostCard | AuthCard | Card | Banner`
+- `label`: Component Title
+- `content`: Stringified JSON or long-form copy.
+  - For `ProductGrid`: JSON array `[{"name": "...", "price": "$...", "image_desc": "..."}]`
+  - For `TestimonialGrid`: JSON array `[{"user": "...", "rating": 5, "quote": "..."}]`
+  - For `StatGrid`: JSON array `[{"label": "...", "value": "..."}]`
+- `subtext`: Metadata or CTA label.
+
+**JSON OUTPUT FORMAT:**
 {{
   "wireframes": [
     {{
       "screen": "Screen Name",
-      "screenKey": "screenKey",
-      "route": "/path",
-      "shellType": "Marketing | Auth | Internal",
-      "purpose": "Screen Subtitle",
+      "screenKey": "camelCase",
+      "purpose": "Detailed UX goal",
       "layout": [
         {{
-          "section": "Header | Sidebar | Main | SubHeader",
-          "components": [
-            {{
-              "key": "UniqueKey",
-              "type": "ProfileCircle | SearchBar | Input | Button | Link | StatCard | Table | PostCard | AuthCard | Card",
-              "label": "Visible text",
-              "annotation": "UX behavior note"
-            }}
-          ]
+          "section": "Header | Main | Footer",
+          "components": [...]
         }}
-      ],
-      "primary_action": "Main Button Label",
-      "flow": "Navigation description"
+      ]
     }}
   ]
 }}
@@ -430,4 +420,23 @@ Ensure the layoutType and sections reflect the actual complexity of the project 
     ]
   }}
 }}
+"""
+
+VISUAL_PROMPT_PROMPT = """
+You are a Creative Director for a world-class design agency.
+
+**Project Idea**: {idea}
+**Screen Name**: {screen_name}
+**Screen Purpose**: {purpose}
+
+**Task**: Generate a highly detailed, professional prompt for an AI image generator (like Pollinations or Midjourney) to create a high-fidelity UI mockup of this specific screen.
+
+**Prompt Requirements**:
+1. **Style**: Describe the visual style (e.g., Glassmorphism, Brutalism, Minimalist, Neumorphism).
+2. **Atmosphere**: Describe the mood and lighting.
+3. **Color Palette**: Use specific, sophisticated color names.
+4. **Layout**: Mention the structural elements (e.g., "centered authentication card", "complex data grid with vibrant charts").
+5. **Technical Details**: Include terms like "4k resolution", "sharp focus", "soft shadows", "premium UI/UX design".
+
+**OUTPUT**: ONLY the prompt string. NO markdown, NO quotes.
 """

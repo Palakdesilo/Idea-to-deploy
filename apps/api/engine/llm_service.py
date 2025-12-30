@@ -5,32 +5,55 @@ from typing import Dict, Any, Optional
 
 class LLMService:
     def __init__(self):
-        self.api_key = os.getenv("OPENAI_API_KEY")
-        self.client = None
-        if self.api_key:
-            try:
-                from openai import OpenAI
-                self.client = OpenAI(api_key=self.api_key)
-            except:
-                pass
-
-    async def generate_content(self, prompt_name: str, variables: Dict[str, str], template: str) -> str:
-        if self.api_key and self.client:
-            try:
-                formatted_prompt = template
-                for k, v in variables.items():
-                    formatted_prompt = formatted_prompt.replace(f"{{{k}}}", str(v))
-                
-                response = self.client.chat.completions.create(
-                    model="gpt-4-turbo-preview",
-                    messages=[{"role": "user", "content": formatted_prompt}],
+        self.openai_key = os.getenv("OPENAI_API_KEY")
+        self.gemini_key = os.getenv("GEMINI_API_KEY")
+        self.primary_llm = None
+        self.fallback_llm = None
+        
+        try:
+            from langchain_google_genai import ChatGoogleGenerativeAI
+            from langchain_openai import ChatOpenAI
+            
+            if self.gemini_key:
+                self.primary_llm = ChatGoogleGenerativeAI(
+                    model="gemini-1.5-pro",
+                    google_api_key=self.gemini_key,
                     temperature=0.7
                 )
-                return response.choices[0].message.content
+            
+            if self.openai_key:
+                self.fallback_llm = ChatOpenAI(
+                    model="gpt-4-turbo-preview",
+                    openai_api_key=self.openai_key,
+                    temperature=0.7
+                )
+        except Exception as e:
+            print(f"LLMService Init Error: {e}")
+
+    async def generate_content(self, prompt_name: str, variables: Dict[str, str], template: str) -> str:
+        formatted_prompt = template
+        for k, v in variables.items():
+            formatted_prompt = formatted_prompt.replace(f"{{{k}}}", str(v))
+
+        # Try Primary (Gemini via LangChain)
+        if self.primary_llm:
+            try:
+                # Add a system instruction hidden in the prompt for high quality
+                enriched_prompt = f"System: You are an elite software architect and UI designer. Aim for the highest possible quality/density. Reference premium brands like Apple and Storefront.\n\nUser: {formatted_prompt}"
+                response = await self.primary_llm.ainvoke(enriched_prompt)
+                return response.content
             except Exception as e:
-                return self.fallback_generation(prompt_name, variables)
-        else:
-            return self.fallback_generation(prompt_name, variables)
+                print(f"Primary LLM Error: {e}")
+        
+        # Fallback to OpenAI via LangChain
+        if self.fallback_llm:
+            try:
+                response = await self.fallback_llm.ainvoke(formatted_prompt)
+                return response.content
+            except Exception as e:
+                print(f"Fallback LLM Error: {e}")
+        
+        return self.fallback_generation(prompt_name, variables)
 
     def fallback_generation(self, prompt_name: str, variables: Dict[str, str]) -> str:
         canonical_json = variables.get('canonical_json')

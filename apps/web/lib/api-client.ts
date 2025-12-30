@@ -29,5 +29,10 @@ export const apiClient = {
         const res = await fetch(`${API_BASE}/projects/${id}/analyze`, { method: 'POST' });
         if (!res.ok) throw new Error('Analysis failed');
         return res.json();
+    },
+    getVisuals: async (id: string) => {
+        const res = await fetch(`${API_BASE}/projects/${id}/visuals`);
+        if (!res.ok) throw new Error('Visuals not found');
+        return res.json();
     }
 };

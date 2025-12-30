@@ -24,18 +24,6 @@
     }
   },
   {
-    "id": "393915b5-376a-4e0f-868e-f139c13f580e",
-    "name": "Build a web-based Smart Business Management Platfo...",
-    "description": "Build a web-based Smart Business Management Platform that allows businesses to manage users, roles, daily operations, tasks, customers, and business insights through a centralized dashboard. The platform should support secure authentication, role-based access, dynamic dashboards, and scalable modules that can be extended for payments, reporting, and integrations as the business grows.\n\n",
-    "createdAt": "2025-12-24T09:52:57.980000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T09:55:00.620000+00:00"
-    }
-  },
-  {
     "id": "ff9c4a24-9486-4d59-b36f-0458e8b0df5b",
     "name": "Build a full-stack e-commerce platform that allows...",
     "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
@@ -60,18 +48,6 @@
     }
   },
   {
-    "id": "ad0a3cc3-5828-4183-8f4d-e0a506f73028",
-    "name": "Build a social media platform that allows users to...",
-    "description": "Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.",
-    "createdAt": "2025-12-24T10:26:14.505000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:26:18.737000+00:00"
-    }
-  },
-  {
     "id": "3b5c6e2d-435c-4bf0-bf2c-ffc0b66f2cd9",
     "name": "Build a project and task management system that al...",
     "description": "Build a project and task management system that allows teams to create projects, assign tasks, track progress, collaborate through comments, manage deadlines, and visualize status through dashboards and reports.",
@@ -81,66 +57,6 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-24T10:26:58.061000+00:00"
-    }
-  },
-  {
-    "id": "5591a0c1-fc4b-4ec0-a4e7-b2ca1859f6ff",
-    "name": "Build a learning management system that allows use...",
-    "description": "Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.",
-    "createdAt": "2025-12-24T10:28:57.275000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:29:01.209000+00:00"
-    }
-  },
-  {
-    "id": "aa7555af-d65f-4453-99e3-1cb874350149",
-    "name": "I want to build a customer support platform that a...",
-    "description": "I want to build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.",
-    "createdAt": "2025-12-26T05:49:03.471000+00:00",
-    "status": "NEW",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T05:49:03.471000+00:00"
-    }
-  },
-  {
-    "id": "69f00221-d827-47ac-9ce5-2d9a07248138",
-    "name": "Build an event management platform that allows org...",
-    "description": "Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.",
-    "createdAt": "2025-12-26T06:24:58.217000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T06:27:28.170000+00:00"
-    }
-  },
-  {
-    "id": "93b61c5a-473d-4164-9489-4ca99583c93f",
-    "name": "Build a real estate platform that allows users to ...",
-    "description": "Build a real estate platform that allows users to browse and filter property listings, schedule visits, communicate with agents, and allows administrators to manage listings, users, and transactions.",
-    "createdAt": "2025-12-26T07:02:41.066000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T07:02:47.289000+00:00"
-    }
-  },
-  {
-    "id": "8df679fd-9125-4083-aa75-d7ba6bb1c5d1",
-    "name": "Build a healthcare appointment management platform...",
-    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
-    "createdAt": "2025-12-26T17:44:44.549564",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T17:46:41.000719"
     }
   },
   {
@@ -213,6 +129,42 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-30T15:06:44.165980"
+    }
+  },
+  {
+    "id": "2cdc4683-a2d7-4ce7-8e24-d415fab6a9b4",
+    "name": "Want a platform when I can sell my handmade things...",
+    "description": "Want a platform when I can sell my handmade things...\n",
+    "createdAt": "2025-12-30T16:13:25.180569",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T16:13:30.376851"
+    }
+  },
+  {
+    "id": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "name": "I want to create virtual influencer. Where I can g...",
+    "description": "I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n",
+    "createdAt": "2025-12-30T16:29:59.687726",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T16:30:02.980733"
+    }
+  },
+  {
+    "id": "b7ffe1c2-0588-4000-8c27-a8fc9d01faa7",
+    "name": "I want to build one to one and one to many chat ap...",
+    "description": "I want to build one to one and one to many chat app.\n\n",
+    "createdAt": "2025-12-30T16:59:58.174229",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T17:00:01.666039"
     }
   }
 ]

@@ -17,12 +17,17 @@ export default function ProjectDashboard({ params }: { params: { id: string } })
         // Initial fetch
         apiClient.getProject(params.id).then(setProject).catch(console.error);
         apiClient.getDocs(params.id).then(setDocs).catch(console.error);
+        apiClient.getVisuals(params.id).then(setVisuals).catch(console.error);
 
         // Poll for status updates
         const interval = setInterval(async () => {
             try {
                 const p = await apiClient.getProject(params.id);
                 setProject(p);
+                if (p.status === 'DESIGNED' && visuals.length === 0) {
+                    const v = await apiClient.getVisuals(params.id);
+                    setVisuals(v);
+                }
             } catch (e) {
                 console.error(e);
             }
@@ -45,7 +50,7 @@ export default function ProjectDashboard({ params }: { params: { id: string } })
                     </div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-mono \${getStatusColor(project.status)}`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-mono ${getStatusColor(project.status)}`}>
                         {project.status}
                     </span>
                 </div>
@@ -57,19 +62,19 @@ export default function ProjectDashboard({ params }: { params: { id: string } })
                     <div className="col-span-3 border rounded-xl bg-card/50 p-4 space-y-2">
                         <button
                             onClick={() => setActiveTab('docs')}
-                            className={`w-full text-left px-4 py-2 rounded-lg transition \${activeTab === 'docs' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
+                            className={`w-full text-left px-4 py-2 rounded-lg transition ${activeTab === 'docs' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
                         >
                             Documentation
                         </button>
                         <button
                             onClick={() => setActiveTab('visuals')}
-                            className={`w-full text-left px-4 py-2 rounded-lg transition \${activeTab === 'visuals' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
+                            className={`w-full text-left px-4 py-2 rounded-lg transition ${activeTab === 'visuals' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
                         >
                             Visual Design
                         </button>
                         <button
                             onClick={() => setActiveTab('code')}
-                            className={`w-full text-left px-4 py-2 rounded-lg transition \${activeTab === 'code' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
+                            className={`w-full text-left px-4 py-2 rounded-lg transition ${activeTab === 'code' ? 'bg-primary/20 text-primary' : 'hover:bg-neutral-800'}`}
                         >
                             Codebase
                         </button>
@@ -103,43 +108,63 @@ export default function ProjectDashboard({ params }: { params: { id: string } })
                                     <button
                                         onClick={async () => {
                                             setLoadingDesign(true);
-                                            // trigger design
                                             await fetch(`${API_BASE_URL}/api/projects/${params.id}/design`, { method: 'POST' });
-                                            // Mock fetch back for now or wait for poll (if we persisted)
-                                            // For demo:
-                                            setTimeout(() => {
-                                                setVisuals([
-                                                    {
-                                                        id: '1', projectId: params.id, screenName: 'Dashboard', description: 'Main Dashboard',
-                                                        promptUsed: 'Dashboard', imageUrl: 'https://placehold.co/800x600/1a1a1a/FFF?text=Dashboard'
-                                                    },
-                                                    {
-                                                        id: '2', projectId: params.id, screenName: 'Mobile App', description: 'Mobile View',
-                                                        promptUsed: 'Mobile', imageUrl: 'https://placehold.co/400x800/1a1a1a/FFF?text=Mobile+View'
-                                                    }
-                                                ]);
-                                                setLoadingDesign(false);
-                                            }, 2000);
+                                            // Status polling will pick up the results
                                         }}
                                         disabled={loadingDesign || visuals.length > 0}
                                         className="bg-primary text-primary-foreground px-4 py-2 rounded hover:opacity-90 disabled:opacity-50"
                                     >
-                                        {loadingDesign ? 'Generating...' : visuals.length > 0 ? 'Regenerate' : 'Generate Visuals'}
+                                        {loadingDesign ? 'Generating...' : visuals.length > 0 ? 'Design Ready' : 'Generate Visuals'}
                                     </button>
                                 </div>
 
                                 {visuals.length > 0 ? (
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         {visuals.map(v => (
-                                            <div key={v.id} className="border rounded-lg overflow-hidden bg-black">
-                                                <img src={v.imageUrl} alt={v.screenName} className="w-full h-auto opacity-90 hover:opacity-100 transition" />
-                                                <div className="p-2 text-xs text-neutral-400 border-t border-neutral-900">{v.screenName}</div>
+                                            <div key={v.id} className="border rounded-xl overflow-hidden bg-neutral-900 flex flex-col group">
+                                                <div className="relative aspect-video bg-black overflow-hidden">
+                                                    <img
+                                                        src={v.imageUrl}
+                                                        alt={v.screenName}
+                                                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-500 group-hover:scale-105"
+                                                    />
+                                                </div>
+                                                <div className="p-4 flex flex-col gap-3">
+                                                    <div>
+                                                        <h3 className="font-bold text-base text-white">{v.screenName}</h3>
+                                                        <p className="text-xs text-neutral-400 line-clamp-1">{v.description}</p>
+                                                    </div>
+                                                    <div className="flex gap-2">
+                                                        {v.wireframeKey && (
+                                                            <a
+                                                                href={`${API_BASE_URL}/api/projects/${params.id}/wireframes/${v.wireframeKey}.html`}
+                                                                target="_blank"
+                                                                className="flex-1 text-center py-2 bg-neutral-800 hover:bg-neutral-700 text-xs font-bold rounded-lg transition"
+                                                            >
+                                                                Live Wireframe
+                                                            </a>
+                                                        )}
+                                                        {v.uiKey && (
+                                                            <a
+                                                                href={`${API_BASE_URL}/api/projects/${params.id}/ui/${v.uiKey}.html`}
+                                                                target="_blank"
+                                                                className="flex-1 text-center py-2 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-lg transition"
+                                                            >
+                                                                Live UI
+                                                            </a>
+                                                        )}
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
-                                    <div className="flex-1 flex items-center justify-center text-neutral-500 border border-dashed rounded-lg mx-auto w-full">
-                                        <p>No visuals generated yet. Click Generate to start AI Designer.</p>
+                                    <div className="flex-1 flex flex-col items-center justify-center text-neutral-500 border border-dashed rounded-xl p-12">
+                                        <div className="w-16 h-16 bg-neutral-900 rounded-full flex items-center justify-center mb-4">
+                                            <svg className="w-8 h-8 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        </div>
+                                        <p className="font-sans">No visuals generated yet.</p>
+                                        <p className="text-xs mt-2 font-sans opacity-60">Click "Generate Visuals" to start the AI design process.</p>
                                     </div>
                                 )}
                             </div>

@@ -73,6 +73,8 @@ export interface UIAsset {
     components?: string[];
     interactions?: string[];
     states?: string[];
+    wireframeKey?: string;
+    uiKey?: string;
 }
 
 
