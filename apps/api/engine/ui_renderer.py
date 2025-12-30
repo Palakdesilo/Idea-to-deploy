@@ -170,7 +170,7 @@ td {{ padding: 16px 12px; border-bottom: 1px solid var(--border-color); }}
         header_nav_html = ""
         main_content_html = ""
         
-        is_dashboard = any(x in wf.get("screen", "") for x in ["Dashboard", "Feed", "Home", "Analytics"])
+        is_dashboard = (wf.get("shellType") == "Internal") or any(x in wf.get("screen", "") for x in ["Dashboard", "Feed", "Home", "Analytics", "Timeline", "Gallery", "Matrix", "History", "Skill"])
 
         for section in wf.get("layout", []):
             s_type = section.get("section", "Main")
@@ -273,20 +273,88 @@ td {{ padding: 16px 12px; border-bottom: 1px solid var(--border-color); }}
                             </button>
                         </div>
                     '''
+                elif ctype == "TimelineItem":
+                    section_html += f'''
+                        <div class="flex" style="gap:24px; position:relative; margin-bottom:12px;">
+                            <div class="col" style="align-items:center;">
+                                <div style="width:14px; height:14px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 4px rgba(79, 70, 229, 0.1); z-index:2;"></div>
+                                <div style="width:2px; flex:1; background:linear-gradient(to bottom, var(--border-color), transparent); margin: 4px 0;"></div>
+                            </div>
+                            <div class="card flex-1" style="margin-bottom:20px; border-left: 4px solid var(--primary);">
+                                <div class="flex" style="justify-content:space-between; align-items:flex-start;">
+                                    <div class="col" style="gap:4px;">
+                                        <h4 style="font-size:17px; font-weight:700; color:var(--text-primary);">{label}</h4>
+                                        <p style="font-size:13px; font-weight:500; color:var(--primary);">{comp.get("annotation", "Achievement Node")}</p>
+                                    </div>
+                                    <span style="font-size:11px; font-weight:700; background:rgba(79, 70, 229, 0.05); border:1px solid rgba(79, 70, 229, 0.1); padding:4px 10px; border-radius:20px; color:var(--primary);">2024 - 2025</span>
+                                </div>
+                                <p style="font-size:14px; color:var(--text-secondary); margin-top:12px; line-height:1.5;">Successfully led the transition to a micro-frontend architecture, improving deployment speed by 40% and enhancing overall system stability.</p>
+                            </div>
+                        </div>
+                    '''
+                elif ctype == "SkillItem":
+                    section_html += f'''
+                        <div style="display:inline-flex; align-items:center; gap:10px; padding:10px 20px; background:white; border:1px solid var(--border-color); border-radius:30px; margin-right:12px; margin-bottom:12px; box-shadow:var(--shadow-sm); transition: transform 0.2s; cursor:default;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="width:10px; height:10px; border-radius:50%; background:var(--primary); box-shadow: 0 0 8px var(--primary);"></div>
+                            <span style="font-size:14px; font-weight:600; color:var(--text-primary);">{label}</span>
+                        </div>
+                    '''
+                elif ctype == "ProjectCard":
+                    section_html += f'''
+                        <div class="card col" style="padding:0; overflow:hidden; margin-bottom:24px;">
+                            <div class="skeleton" style="height:180px; width:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color:#dee2e6;">
+                                <span style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em;">Project Preview</span>
+                            </div>
+                            <div class="col" style="padding:20px;">
+                                <div class="flex" style="justify-content:space-between; align-items:center;">
+                                    <h4 style="font-size:18px; font-weight:700;">{label}</h4>
+                                    <span style="font-size:11px; background:var(--bg-color); padding:4px 8px; border-radius:4px; font-weight:600;">Case Study</span>
+                                </div>
+                                <p style="font-size:14px; color:var(--text-secondary); margin:12px 0;">Comprehensive overview of the design process, technical challenges, and final outcomes for this specific project.</p>
+                                <div class="flex" style="gap:8px;">
+                                    <div style="font-size:11px; padding:2px 8px; background:#f1f5f9; border-radius:4px; color:#64748b;">React</div>
+                                    <div style="font-size:11px; padding:2px 8px; background:#f1f5f9; border-radius:4px; color:#64748b;">Node.js</div>
+                                </div>
+                            </div>
+                        </div>
+                    '''
                 elif ctype == "Button":
                     btn_class = "btn-primary" if "Continue" in label or "Submit" in label else "btn"
                     section_html += f'<button class="{btn_class}">{label}</button>'
                 elif ctype == "Input":
                     section_html += f'<div class="col" style="gap:6px;"><label style="font-size:13px; font-weight:600;">{label}</label><input type="text" class="input-field" placeholder="Enter value..."></div>'
                 elif ctype == "Card":
-                    section_html += f'<div class="card col"><h4 style="font-size:16px; font-weight:600;">{label}</h4><p style="font-size:14px; color:var(--text-secondary);">{comp.get("annotation", "")}</p></div>'
+                    section_html += f'''
+                        <div class="card col" style="padding: 24px; border-top: 4px solid var(--primary); transition: box-shadow 0.3s;">
+                            <div class="flex" style="align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(79, 70, 229, 0.1); display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                </div>
+                                <h4 style="font-size: 17px; font-weight: 700;">{label}</h4>
+                            </div>
+                            <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">{comp.get("annotation", "Standard descriptive text providing more context about this specific design element or content block.")}</p>
+                            <div class="flex" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #f1f5f9; gap: 12px; font-size: 12px; color: var(--text-secondary);">
+                                <span>Updated: Dec 30</span>
+                                <span>•</span>
+                                <span style="color: var(--primary); font-weight: 600; cursor: pointer;">View Details →</span>
+                            </div>
+                        </div>
+                    '''
                 else:
-                    section_html += f'<div class="card" style="background:#f9fafb;">{label}</div>'
+                    section_html += f'''
+                        <div class="card" style="background: #ffffff; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 8px; height: 32px; background: #e2e8f0; border-radius: 4px;"></div>
+                            <div class="col" style="gap: 4px;">
+                                <span style="font-size: 14px; font-weight: 600;">{label}</span>
+                                <span style="font-size: 12px; color: var(--text-secondary);">System Metadata Component</span>
+                            </div>
+                        </div>
+                    '''
 
             if s_type == "SubHeader":
                  main_content_html += f'<div class="grid grid-3" style="margin-bottom:32px;">{section_html}</div>'
             else:
-                main_content_html += section_html
+                main_content_html += f'<div class="grid grid-2" style="gap: 20px;">{section_html}</div>'
 
         layout_body = ""
         if is_dashboard:

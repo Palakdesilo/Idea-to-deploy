@@ -316,6 +316,8 @@ You are a Senior UX designer initializing a PROJECT-WIDE ATOMIC WIREFRAME SYSTEM
     {{
       "screen": "Screen Name",
       "screenKey": "screenKey",
+      "route": "/path",
+      "shellType": "Marketing | Auth | Internal",
       "purpose": "Screen Subtitle",
       "layout": [
         {{

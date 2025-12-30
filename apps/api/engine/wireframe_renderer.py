@@ -247,6 +247,38 @@ td { border-bottom: 1px solid var(--border-color); padding: 10px; }
                             </div>
                         </div>
                     '''
+                elif ctype == "ProjectCard":
+                    section_html += f'''
+                        <div class="col" style="border: 1px solid var(--border-color); padding: 0; border-radius: 8px; margin-bottom: 20px; overflow:hidden;">
+                            <div class="placeholder-box" style="height: 120px;">[Project Preview Placeholder]</div>
+                            <div class="col" style="padding:16px;">
+                                <div class="section-title">{label}</div>
+                                <div class="placeholder-box" style="height: 40px; font-size:12px;">[Project Abstract]</div>
+                                <div class="flex" style="gap:8px; margin-top:8px;">
+                                    <div class="placeholder-box" style="padding:2px 8px; font-size:10px;">[Tag 1]</div>
+                                    <div class="placeholder-box" style="padding:2px 8px; font-size:10px;">[Tag 2]</div>
+                                </div>
+                            </div>
+                        </div>
+                    '''
+                elif ctype == "TimelineItem":
+                    section_html += f'''
+                        <div class="flex" style="gap:16px;">
+                            <div class="col" style="align-items:center; width:20px;">
+                                <div class="placeholder-box" style="width:10px; height:10px; min-height:10px; border-radius:50%; background:var(--text-secondary);"></div>
+                                <div style="width:1px; flex:1; background:var(--border-color);"></div>
+                            </div>
+                            <div class="col flex-1" style="border:1px solid var(--border-color); padding:12px; border-radius:4px; margin-bottom:12px;">
+                                <div class="section-title">{label}</div>
+                                <div class="placeholder-box" style="height:40px;">[Timeline Evidence]</div>
+                                <p class="annotation">{annot}</p>
+                            </div>
+                        </div>
+                    '''
+                elif ctype == "SkillItem":
+                    section_html += f'''
+                        <div class="placeholder-box" style="display:inline-block; padding:4px 12px; border-radius:20px; margin:0 4px 8px 0;">{label}</div>
+                    '''
                 elif ctype == "Button":
                     btn_class = "btn-primary" if "Continue" in label or "Submit" in label else "btn"
                     section_html += f'<div class="{btn_class}">{label}</div>'

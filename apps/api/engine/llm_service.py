@@ -101,32 +101,37 @@ class LLMService:
             return f"# UI/UX Design Specification: {summary}\n\n## Screens\n- Landing Page\n- Dashboard"
 
         if prompt_name == 'SCREEN_INVENTORY':
-            # Smarter fallback using idea keywords
             lower_idea = idea.lower()
             screens = [
                 {"name": "Landing Page", "category": "Public", "description": "Welcome screen"},
-                {"name": "Login", "category": "Auth", "description": "Login page"},
-                {"name": "Register", "category": "Auth", "description": "Sign up page"}
+                {"name": "Login", "category": "Auth", "description": "Access account"},
             ]
             
-            if "social" in lower_idea or "content" in lower_idea:
-                screens.append({"name": "Home Feed", "category": "User", "description": "Social feed of posts"})
-                screens.append({"name": "Create Post", "category": "User", "description": "Create new content"})
-                screens.append({"name": "Profile", "category": "User", "description": "User profile screen"})
-            
-            if "chat" in lower_idea or "message" in lower_idea:
-                screens.append({"name": "Messages", "category": "User", "description": "List of conversations"})
-                screens.append({"name": "Chat Detail", "category": "User", "description": "One-on-one chat screen"})
+            # Detect Niche
+            is_portfolio = any(x in lower_idea for x in ["portfolio", "showcase", "cv", "resume", "student"])
+            is_social = any(x in lower_idea for x in ["social", "community", "chat", "network"])
+            is_ecommerce = any(x in lower_idea for x in ["store", "shop", "ecommerce", "cart", "product"])
+            is_learning = any(x in lower_idea for x in ["learn", "course", "lms", "education", "student"])
 
-            if "subscription" in lower_idea or "payment" in lower_idea or "ecommerce" in lower_idea:
-                screens.append({"name": "Pricing Plans", "category": "User", "description": "Subscription options"})
-                screens.append({"name": "Payment Gateway", "category": "User", "description": "Secure checkout"})
-                screens.append({"name": "Transaction History", "category": "User", "description": "List of payments"})
+            if is_portfolio:
+                screens.append({"name": "Work Gallery", "category": "User", "description": "Showcase of projects"})
+                screens.append({"name": "Experience Timeline", "category": "User", "description": "Work and education history"})
+                screens.append({"name": "Skill Matrix", "category": "User", "description": "Technical and soft skills"})
+            elif is_social:
+                screens.append({"name": "Home Feed", "category": "User", "description": "Social feed of posts"})
+                screens.append({"name": "Friend List", "category": "User", "description": "Connected people"})
+            elif is_ecommerce:
+                screens.append({"name": "Product Catalog", "category": "User", "description": "Browsing items"})
+                screens.append({"name": "Shopping Cart", "category": "User", "description": "Reviewing selected items"})
+                screens.append({"name": "Checkout", "category": "User", "description": "Payment and shipping"})
+            elif is_learning:
+                screens.append({"name": "Course Dashboard", "category": "User", "description": "Track progress"})
+                screens.append({"name": "Lesson View", "category": "User", "description": "Video or text content"})
 
             screens.extend([
-                {"name": "Dashboard", "category": "User", "description": "Main user interface"},
-                {"name": "Settings", "category": "User", "description": "User preferences"},
-                {"name": "Notifications", "category": "User", "description": "Activity alerts"}
+                {"name": "User Dashboard", "category": "User", "description": "Main control center"},
+                {"name": "Account Settings", "category": "User", "description": "Profile management"},
+                {"name": "Alert Center", "category": "User", "description": "All notifications"}
             ])
 
             return json.dumps({"screen_inventory": screens}, indent=2)
@@ -138,19 +143,28 @@ class LLMService:
             except: pass
             
             screens = inventory.get('screen_inventory', [])
-            if not screens:
-                screens = [{"name": "Landing Page", "role": "Public"}]
+            if not screens: screens = [{"name": "Landing Page"}]
             
             contracts = []
             for s in screens:
                 name = s.get('name', 'Screen')
+                desc = s.get('description', f"Interface for {name}")
+                
+                # Dynamic components based on screen name
+                comps = ["Header", "Nav"]
+                if "Feed" in name or "Gallery" in name: comps += ["Search", "Grid", "CardList"]
+                elif "Catalog" in name: comps += ["Filter", "ProductGrid"]
+                elif "Settings" in name: comps += ["Form", "Tabs", "Toggles"]
+                elif "Dashboard" in name: comps += ["Stats", "SummaryTable", "ActivityFeed"]
+                else: comps += ["Content", "Footer"]
+
                 contracts.append({
                     "screen": name,
                     "role": s.get('category', 'User'),
-                    "purpose": s.get('description', f"Interaction for {name}"),
-                    "actions": ["View Content", "Interact"],
-                    "components": ["Header", "ContentArea", "Footer"],
-                    "data": ["id", "title"],
+                    "purpose": desc,
+                    "actions": ["Explore", "Submit"],
+                    "components": comps,
+                    "data": ["id", "title", "metadata"],
                     "state": ["Default"],
                     "navigation": ["Dashboard"]
                 })
@@ -163,131 +177,68 @@ class LLMService:
             except: pass
             
             screens = contracts_data.get('ui_contracts', [])
-            if not screens:
-                screens = [{"screen": "Landing Page"}]
+            if not screens: screens = [{"screen": "Landing Page"}]
             
             wireframes = []
             for s in screens:
                 name = s.get('screen', 'Screen')
                 key = name[0].lower() + name[1:].replace(' ', '')
-                
-                is_landing = any(x in name for x in ["Landing", "Home", "Welcome"])
                 is_auth = any(x in name for x in ["Login", "Sign", "Register", "Password"])
+                is_landing = any(x in name for x in ["Landing", "Home", "Welcome"])
+                
+                header = {"section": "Header", "components": [{"key": "S1", "type": "SearchBar", "label": "Search..."}, {"key": "U1", "type": "ProfileCircle", "label": "User"}]}
+                sidebar = {"section": "Sidebar", "components": [{"key": "N1", "type": "Button", "label": "Home"}, {"key": "N2", "type": "Button", "label": name}]}
                 
                 layout = []
-                
                 if is_auth:
-                    layout = [
-                        {
-                            "section": "Main",
-                            "components": [
-                                {"key": "Auth", "type": "AuthCard", "label": "Switch to Register", "annotation": "Centered Auth Block"}
-                            ]
-                        }
-                    ]
+                    layout = [{"section": "Main", "components": [{"key": "Auth", "type": "AuthCard", "label": name, "annotation": "Auth block"}]}]
                 elif is_landing:
                     layout = [
-                        {
-                            "section": "Header",
-                            "components": [
-                                {"key": "L1", "type": "Link", "label": "Features"},
-                                {"key": "L2", "type": "Link", "label": "Pricing"},
-                                {"key": "B1", "type": "Button", "label": "Get Started"}
-                            ]
-                        },
-                        {
-                            "section": "Main",
-                            "components": [
-                                {"key": "H1", "type": "Card", "label": "Hero Headline", "annotation": "Main value proposition"},
-                                {"key": "F1", "type": "StatCard", "label": "Metric 1", "annotation": "Proof point"},
-                                {"key": "F2", "type": "StatCard", "label": "Metric 2", "annotation": "Proof point"},
-                                {"key": "F3", "type": "StatCard", "label": "Metric 3", "annotation": "Proof point"}
-                            ]
-                        }
+                        {"section": "Header", "components": [{"key": "H1", "type": "Link", "label": "Features"}, {"key": "H2", "type": "Button", "label": "Join"}]},
+                        {"section": "Main", "components": [{"key": "Hero", "type": "Card", "label": idea.split()[-1].capitalize() + " Platform", "annotation": "Value prop"}]}
                     ]
                 else:
-                    # Dashboard / App Mode
-                    is_settings = any(x in name for x in ["Setting", "Account", "Config"])
-                    is_notifications = any(x in name for x in ["Notification", "Message", "Alert"])
-                    is_profile = any(x in name for x in ["Profile", "User", "Bio"])
-                    
-                    header = {
-                        "section": "Header",
-                        "components": [
-                            {"key": "Search", "type": "SearchBar", "label": "Search..."},
-                            {"key": "User", "type": "ProfileCircle", "label": "User Profile"}
-                        ]
-                    }
-                    sidebar = {
-                        "section": "Sidebar",
-                        "components": [
-                            {"key": "Nav1", "type": "Button", "label": "Dashboard"},
-                            {"key": "Nav2", "type": "Button", "label": "Analytics"},
-                            {"key": "Nav3", "type": "Button", "label": "Settings"}
-                        ]
-                    }
-
-                    if is_settings:
-                        layout = [header, sidebar, {
-                            "section": "Main",
-                            "components": [
-                                {"key": "I1", "type": "Input", "label": "Display Name", "annotation": "User's public name"},
-                                {"key": "I2", "type": "Input", "label": "Email Address", "annotation": "Primary contact"},
-                                {"key": "I3", "type": "Card", "label": "Privacy Settings", "annotation": "Toggle visibility rules"},
-                                {"key": "B1", "type": "Button", "label": "Save Changes"}
-                            ]
-                        }]
-                    elif is_notifications:
-                        layout = [header, sidebar, {
-                            "section": "Main",
-                            "components": [
-                                {"key": "N1", "type": "Card", "label": "New Subscription", "annotation": "2 minutes ago"},
-                                {"key": "N2", "type": "Card", "label": "Payment Received", "annotation": "1 hour ago"},
-                                {"key": "N3", "type": "Card", "label": "System Update", "annotation": "Yesterday"}
-                            ]
-                        }]
-                    elif is_profile:
-                        layout = [header, sidebar, 
-                        {
-                            "section": "SubHeader",
-                            "components": [
-                                {"key": "P1", "type": "StatCard", "label": "Posts Made"},
-                                {"key": "P2", "type": "StatCard", "label": "Followers"},
-                                {"key": "P3", "type": "StatCard", "label": "Engagement"}
-                            ]
-                        },
-                        {
-                            "section": "Main",
-                            "components": [
-                                {"key": "Bio", "type": "Card", "label": "User Biography", "annotation": "Short description about the user"},
-                                {"key": "Feed", "type": "Table", "label": "Recent Activity"}
-                            ]
-                        }]
+                    # Dynamic Niche-Specific Layouts
+                    if "Gallery" in name or "Feed" in name:
+                        layout = [header, sidebar, {"section": "Main", "components": [
+                            {"key": "C1", "type": "ProjectCard", "label": "Case Study: Mobile App Design"},
+                            {"key": "C2", "type": "ProjectCard", "label": "Brand Identity: Fintech Startup"}
+                        ]}]
+                    elif "Timeline" in name or "History" in name:
+                        layout = [header, sidebar, {"section": "Main", "components": [
+                            {"key": "T1", "type": "TimelineItem", "label": "Lead Developer Role", "annotation": "2022 - Present"},
+                            {"key": "T2", "type": "TimelineItem", "label": "Senior Designer Role", "annotation": "2020 - 2022"},
+                            {"key": "T3", "type": "TimelineItem", "label": "University Education", "annotation": "2016 - 2020"}
+                        ]}]
+                    elif "Skill" in name or "Ability" in name:
+                        layout = [header, sidebar, {"section": "Main", "components": [
+                            {"key": "S1", "type": "SkillItem", "label": "Python"},
+                            {"key": "S2", "type": "SkillItem", "label": "Next.js"},
+                            {"key": "S3", "type": "SkillItem", "label": "UI Design"},
+                            {"key": "S4", "type": "SkillItem", "label": "Cloud Arch"}
+                        ]}]
+                    elif "Settings" in name:
+                         layout = [header, sidebar, {"section": "Main", "components": [
+                            {"key": "I1", "type": "Input", "label": "Display Info"},
+                            {"key": "I2", "type": "Button", "label": "Save Preferences"}
+                        ]}]
+                    elif "Dashboard" in name or "Stats" in name:
+                         layout = [header, sidebar, 
+                            {"section": "SubHeader", "components": [
+                                {"key": "M1", "type": "StatCard", "label": "Core Metric"},
+                                {"key": "M2", "type": "StatCard", "label": "Secondary"},
+                                {"key": "M3", "type": "StatCard", "label": "Growth"}
+                            ]},
+                            {"section": "Main", "components": [{"key": "T1", "type": "Table", "label": "Recent Activity"}]}
+                         ]
                     else:
-                        layout = [header, sidebar, 
-                        {
-                            "section": "SubHeader",
-                            "components": [
-                                {"key": "S1", "type": "StatCard", "label": "Metric A"},
-                                {"key": "S2", "type": "StatCard", "label": "Metric B"},
-                                {"key": "S3", "type": "StatCard", "label": "Metric C"}
-                            ]
-                        },
-                        {
-                            "section": "Main",
-                            "components": [
-                                {"key": "P1", "type": "PostCard", "label": "General Overview Feed"},
-                                {"key": "T1", "type": "Table", "label": "Data Records"}
-                            ]
-                        }]
+                        layout = [header, sidebar, {"section": "Main", "components": [
+                            {"key": "X1", "type": "Card", "label": f"{name} Content", "annotation": "Main workspace area"}
+                        ]}]
 
                 wireframes.append({
-                    "screen": name,
-                    "screenKey": key,
-                    "purpose": f"Overview and management for {name}",
-                    "layout": layout,
-                    "primary_action": "Create New",
-                    "flow": "Navigation → Action → Confirmation"
+                    "screen": name, "screenKey": key, "route": "/"+key, "shellType": "Internal",
+                    "purpose": s.get('purpose', ""), "layout": layout, "primary_action": "Proceed", "flow": "Standard flow"
                 })
             return json.dumps({"wireframes": wireframes}, indent=2)
 

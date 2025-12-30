@@ -132,18 +132,6 @@
     }
   },
   {
-    "id": "f62b1c91-a12e-488f-9e02-10b37c296e08",
-    "name": "Build a financial management platform that allows ...",
-    "description": "Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.",
-    "createdAt": "2025-12-26T17:28:44.276603",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T17:32:10.465007"
-    }
-  },
-  {
     "id": "8df679fd-9125-4083-aa75-d7ba6bb1c5d1",
     "name": "Build a healthcare appointment management platform...",
     "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
@@ -213,6 +201,18 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-30T12:31:57.112272"
+    }
+  },
+  {
+    "id": "1381afac-ce3a-4d41-a581-e55a6561fe27",
+    "name": "A student portfolio\n",
+    "description": "A student portfolio\n",
+    "createdAt": "2025-12-30T14:46:25.043771",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T14:50:37.008521"
     }
   }
 ]
