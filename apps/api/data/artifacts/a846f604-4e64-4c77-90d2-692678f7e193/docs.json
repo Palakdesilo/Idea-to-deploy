@@ -1,0 +1,58 @@
+[
+  {
+    "id": "318d123a-a507-42d9-a4a1-716f2f7ef11a",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "1f1a15fe-118f-4365-98ef-85278e0f2980",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "22ebcd1e-20ef-4fe8-bf67-8a9d4c03b6b5",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "a6aa931a-9e9c-4161-bfb1-5fdab5e373df",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "ce5b9583-a075-448a-9a88-9f7b954617ef",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "426afb3a-154c-4be5-aece-2ebccb0740fc",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "49711f2c-18b6-4384-917b-ef7763e7fc8d",
+    "projectId": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

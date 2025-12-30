@@ -4,7 +4,7 @@ from datetime import datetime
 import uuid
 
 ProjectStatus = Literal['NEW', 'ANALYSIS', 'PLANNING', 'DESIGN', 'DESIGNED', 'CODING', 'COMPLETED', 'FAILED']
-DocCategory = Literal['REQUIREMENTS', 'PLANNING', 'ARCHITECTURE', 'IPMP', 'SCHEDULE_COST', 'QUALITY_RISK', 'TESTING_RELEASE', 'UI_UX']
+DocCategory = Literal['REQUIREMENTS', 'PLANNING', 'ARCHITECTURE', 'IPMP', 'SCHEDULE_COST', 'QUALITY_RISK', 'TESTING_RELEASE']
 
 class ProjectMetrics(BaseModel):
     progress: int = 0

@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev:web & npm run dev:api-py",
-    "dev:api-py": "cd apps/api-py && uvicorn main:app --reload --port 4000",
+    "dev": "npm run dev:web & npm run dev:api",
+    "dev:api": "cd apps/api && uvicorn main:app --reload --port 4000",
     "dev:web": "npm run dev --workspace=@idea-to-deploy/web",
     "build:web": "npm run build --workspace=@idea-to-deploy/web",
     "build": "npm run build:web"

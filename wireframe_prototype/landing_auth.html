@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing & Auth - Low-Fi Wireframe</title>
+    <link rel="stylesheet" href="low-fi-system.css">
+</head>
+
+<body>
+    <div class="wireframe-container">
+
+        <!-- Screen 1: Landing Page -->
+        <div class="screen-card relative">
+            <header>
+                <div class="screen-info">
+                    <h1>Landing Page</h1>
+                    <p>Public Storefront</p>
+                </div>
+                <div class="nav-links">
+                    <div class="btn">Explore</div>
+                    <div class="btn">Pricing</div>
+                    <div class="btn">Login</div>
+                    <div class="btn btn-primary">Sign Up</div>
+                </div>
+            </header>
+
+            <div class="grid grid-2">
+                <div class="col">
+                    <div class="placeholder-box" style="height: 60px; margin-bottom: 16px;">Hero Headline Placeholder
+                    </div>
+                    <div class="placeholder-box" style="height: 120px; margin-bottom: 24px;">Subheading / value
+                        proposition placeholder text.</div>
+                    <div class="flex">
+                        <div class="btn btn-primary">Primary: Sign Up</div>
+                        <div class="btn">Secondary: Explore Creators</div>
+                    </div>
+                    <div class="annotation">Flow: Landing → Sign Up / Login / Explore</div>
+                </div>
+                <div class="col">
+                    <div class="section">
+                        <div class="section-title">Feature Cards (x3)</div>
+                        <div class="grid grid-3">
+                            <div class="col">
+                                <p style="font-size: 12px; margin-bottom: 4px;">Feature Card</p>
+                                <div class="placeholder-box" style="height: 60px;"></div>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 12px; margin-bottom: 4px;">Feature Card</p>
+                                <div class="placeholder-box" style="height: 60px;"></div>
+                            </div>
+                            <div class="col">
+                                <p style="font-size: 12px; margin-bottom: 4px;">Feature Card</p>
+                                <div class="placeholder-box" style="height: 60px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Creator Showcase (Grid)</div>
+                <div class="grid grid-4 text-center">
+                    <div class="placeholder-box">Creator Card</div>
+                    <div class="placeholder-box">Creator Card</div>
+                    <div class="placeholder-box">Creator Card</div>
+                    <div class="placeholder-box">Creator Card</div>
+                </div>
+            </div>
+
+            <footer class="section" style="border-top: 1px solid var(--border-color); padding-top: 20px;">
+                <p class="annotation">Footer Links Placeholder</p>
+            </footer>
+        </div>
+
+        <!-- Screen 2: Sign Up / Login -->
+        <div class="screen-card relative">
+            <div class="status-labels">States: Loading / Error</div>
+            <header>
+                <div class="screen-info">
+                    <h1>Sign Up / Login</h1>
+                    <p>Centered card auth layout</p>
+                </div>
+            </header>
+
+            <div class="flex" style="justify-content: center; padding: 40px 0;">
+                <div class="col"
+                    style="width: 400px; border: 1px solid var(--border-color); padding: 32px; border-radius: 8px;">
+                    <div class="section-title" style="text-align: center;">Auth Card</div>
+
+                    <p style="font-size: 12px; margin-bottom: 4px;">Email</p>
+                    <div class="input-field">[Input Field]</div>
+
+                    <p style="font-size: 12px; margin-bottom: 4px;">Password</p>
+                    <div class="input-field">[Input Field]</div>
+
+                    <div class="flex" style="justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <label style="font-size: 12px;"><input type="checkbox"> Remember me</label>
+                        <p style="font-size: 12px; text-decoration: underline;">Forgot password</p>
+                    </div>
+
+                    <div class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">Continue</div>
+
+                    <div
+                        style="text-align: center; border-bottom: 1px solid var(--border-color); line-height: 0.1em; margin: 10px 0 20px;">
+                        <span
+                            style="background:#fff; padding:0 10px; font-size: 12px; color: var(--text-secondary);">OR</span>
+                    </div>
+
+                    <div class="btn" style="width: 100%; margin-bottom: 16px;">Continue with Google</div>
+
+                    <p class="annotation" style="text-align: center;">Link: Switch to Login / Sign Up</p>
+
+                    <div class="placeholder-box"
+                        style="margin-top: 24px; color: #d32f2f; border-color: #f44336; background: #ffebee;">
+                        Error placeholder: Invalid credentials / Email already in use
+                    </div>
+
+                    <div class="placeholder-box" style="margin-top: 12px; background: #f5f5f5;">
+                        Loading placeholder: [Loader]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav style="text-align: center; margin-top: 40px;">
+            <a href="onboarding.html" class="btn btn-primary">Next: Onboarding →</a>
+        </nav>
+
+    </div>
+</body>
+
+</html>

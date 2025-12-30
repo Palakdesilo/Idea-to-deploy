@@ -1,0 +1,328 @@
+{
+  "wireframes": [
+    {
+      "screen": "Landing Page",
+      "screenKey": "landingPage",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Login",
+      "screenKey": "login",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Register",
+      "screenKey": "register",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Home Feed",
+      "screenKey": "homeFeed",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Create Post",
+      "screenKey": "createPost",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Profile",
+      "screenKey": "profile",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Pricing Plans",
+      "screenKey": "pricingPlans",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Payment Gateway",
+      "screenKey": "paymentGateway",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Transaction History",
+      "screenKey": "transactionHistory",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Dashboard",
+      "screenKey": "dashboard",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Settings",
+      "screenKey": "settings",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    },
+    {
+      "screen": "Notifications",
+      "screenKey": "notifications",
+      "layout": [
+        {
+          "section": "Header",
+          "components": [
+            "Logo",
+            "Nav"
+          ]
+        },
+        {
+          "section": "Main",
+          "components": [
+            "Header",
+            "ContentArea",
+            "Footer"
+          ]
+        },
+        {
+          "section": "Footer",
+          "components": [
+            "Links"
+          ]
+        }
+      ]
+    }
+  ]
+}

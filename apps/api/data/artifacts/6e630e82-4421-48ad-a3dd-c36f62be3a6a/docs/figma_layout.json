@@ -1,0 +1,191 @@
+{
+  "figma": {
+    "pages": [
+      {
+        "name": "Project Wireframes / UI",
+        "frames": [
+          {
+            "name": "landingPage",
+            "description": "Landing Page",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "login",
+            "description": "Login",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "register",
+            "description": "Register",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "homeFeed",
+            "description": "Home Feed",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "createPost",
+            "description": "Create Post",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "profile",
+            "description": "Profile",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "pricingPlans",
+            "description": "Pricing Plans",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "paymentGateway",
+            "description": "Payment Gateway",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "transactionHistory",
+            "description": "Transaction History",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "dashboard",
+            "description": "Dashboard",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "settings",
+            "description": "Settings",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "notifications",
+            "description": "Notifications",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

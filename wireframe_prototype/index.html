@@ -1,190 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireframe Prototype - Screen List</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Wireframe Prototype - SocialSub</title>
+    <link rel="stylesheet" href="low-fi-system.css">
+    <style>
+        .stage-card {
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #fff;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .stage-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-primary);
+        }
+    </style>
 </head>
+
 <body>
-    <div class="index-page">
-        <h1>Project Wireframes</h1>
-        <ul class="screen-list">
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/landingPage.html">Landing Page / Home Screen</a>
-                    <div class="meta">Public | /</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/productCatalog.html">Product Catalog / Search Results Screen</a>
-                    <div class="meta">Public | /products</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/productDetail.html">Product Detail Screen</a>
-                    <div class="meta">Public | /products/:id</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/login.html">Login Screen</a>
-                    <div class="meta">Public | /login</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/registration.html">User Registration Screen</a>
-                    <div class="meta">Public | /register</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/forgotPassword.html">Forgot Password Screen</a>
-                    <div class="meta">Public | /forgot-password</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/resetPassword.html">Reset Password Screen</a>
-                    <div class="meta">Public | /reset-password</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/cartSummaryGuest.html">Cart Summary Screen (Guest)</a>
-                    <div class="meta">Public | /cart</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/privacyPolicy.html">Privacy Policy & Terms of Service Screen</a>
-                    <div class="meta">Public | /privacy-policy</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/notFound.html">404 Not Found Screen</a>
-                    <div class="meta">Public | /404</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/serverError.html">500 Internal Server Error Screen</a>
-                    <div class="meta">Public | /500</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/userDashboard.html">User Dashboard Screen</a>
-                    <div class="meta">User | /dashboard</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/userProfile.html">User Profile Management Screen</a>
-                    <div class="meta">User | /profile</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/settings.html">Settings Screen</a>
-                    <div class="meta">User | /settings</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/shoppingCart.html">Shopping Cart Screen</a>
-                    <div class="meta">User | /cart</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/checkoutShipping.html">Checkout - Step 1: Shipping Address Screen</a>
-                    <div class="meta">User | /checkout/shipping</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/checkoutPayment.html">Checkout - Step 2: Payment Method Screen</a>
-                    <div class="meta">User | /checkout/payment</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/checkoutReview.html">Checkout - Step 3: Order Review Screen</a>
-                    <div class="meta">User | /checkout/review</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/orderConfirmation.html">Order Confirmation Screen</a>
-                    <div class="meta">User | /order/confirmation</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/orderHistory.html">Order History Screen</a>
-                    <div class="meta">User | /orders</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/orderDetail.html">Order Detail Screen</a>
-                    <div class="meta">User | /orders/:id</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/returnRefund.html">Return / Refund Request Screen</a>
-                    <div class="meta">User | /orders/:id/return</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/adminDashboard.html">Admin Dashboard Screen</a>
-                    <div class="meta">Admin | /admin</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/userManagementList.html">User Management - List Screen</a>
-                    <div class="meta">Admin | /admin/users</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/userManagementDetail.html">User Management - Detail / Edit Screen</a>
-                    <div class="meta">Admin | /admin/users/:id</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/productManagementList.html">Product Management - List Screen (Inventory)</a>
-                    <div class="meta">Admin | /admin/products</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/productManagementEdit.html">Add / Edit Product Screen</a>
-                    <div class="meta">Admin | /admin/products/:id/edit</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/orderManagementList.html">Order Management - List Screen</a>
-                    <div class="meta">Admin | /admin/orders</div>
-                </div>
-            </li>
-            <li class="screen-item">
-                <div class="info">
-                    <a href="screens/orderManagementDetail.html">Order Management - Detail Screen</a>
-                    <div class="meta">Admin | /admin/orders/:id</div>
-                </div>
-            </li>
-        </ul>
+    <div class="wireframe-container">
+        <header style="margin-bottom: 60px;">
+            <div class="screen-info">
+                <h1 style="font-size: 32px;">SocialSub Wireframe System</h1>
+                <p>Low-fidelity architectural prototypes following Senior UX guidelines.</p>
+            </div>
+            <div class="btn btn-primary">Project: Subscription Social Media</div>
+        </header>
+
+        <div class="grid grid-3">
+            <a href="landing_auth.html" class="stage-card col">
+                <div class="section-title">Stage 1</div>
+                <h3>Landing & Auth</h3>
+                <p class="annotation">Public storefront, login, and registration flow.</p>
+            </a>
+            <a href="onboarding.html" class="stage-card col">
+                <div class="section-title">Stage 2</div>
+                <h3>User Onboarding</h3>
+                <p class="annotation">Role selection (Fan vs Creator) and detailed setup.</p>
+            </a>
+            <a href="dashboards.html" class="stage-card col">
+                <div class="section-title">Stage 3</div>
+                <h3>Core Experience</h3>
+                <p class="annotation">Personalized feeds and high-level creator statistics.</p>
+            </a>
+            <a href="content_profile.html" class="stage-card col">
+                <div class="section-title">Stage 4</div>
+                <h3>Profile & Creation</h3>
+                <p class="annotation">Monetized content profiles and post management.</p>
+            </a>
+            <a href="finance_settings.html" class="stage-card col">
+                <div class="section-title">Stage 5</div>
+                <h3>Finance & Admin</h3>
+                <p class="annotation">Transactions, earnings, and system notifications.</p>
+            </a>
+        </div>
+
+        <div class="section"
+            style="margin-top: 80px; padding: 40px; border: 1px dashed var(--border-color); border-radius: 12px; background: #fff;">
+            <div class="section-title">Architectural Principles Applied</div>
+            <div class="grid grid-2">
+                <ul class="annotation" style="line-height: 2;">
+                    <li>✔ **Grayscale Hierarchy**: Using weight and size over color.</li>
+                    <li>✔ **Structural Components**: Use of standardized [Placeholders].</li>
+                    <li>✔ **Consistent Flow**: Logic clearly defined with flow annotations.</li>
+                </ul>
+                <ul class="annotation" style="line-height: 2;">
+                    <li>✔ **Responsive Patterns**: Stacking and collapse notes included.</li>
+                    <li>✔ **State Awareness**: Explicit Loading, Error, and Empty states.</li>
+                    <li>✔ **Accessibility**: Logical layout and clear labeling.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

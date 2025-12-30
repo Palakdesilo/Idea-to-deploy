@@ -194,80 +194,144 @@ Create a **Testing & Release Plan** using the Canonical JSON provided.
 
 UI_UX_PROMPT = """
 You are a Senior UI/UX Designer.
-Create a **Detailed UI/UX Design Specification** using the Canonical JSON provided.
+Create a **Detailed UI/UX Design Specification** in STRICT JSON format.
 
 **Canonical JSON**: {canonical_json}
 
-**CRITICAL: Use these 5 sections.**
-1. Design System & Style Guide
-2. User Flows
-3. Screen Specifications (Purpose, Roles, Components, Interactions, States)
-4. Accessibility Standards
-5. Mobile Responsiveness
+**REQUIRED JSON SCHEMA:**
+{{
+  "design_system": {{
+    "style_guide": "Summary of system",
+    "typography": [],
+    "colors": []
+  }},
+  "user_flows": [],
+  "screen_specifications": [
+    {{
+      "name": "Screen Name",
+      "purpose": "Screen purpose",
+      "roles": [],
+      "components": [],
+      "interactions": [],
+      "states": []
+    }}
+  ],
+  "accessibility": "Standards followed",
+  "responsiveness": "Strategy description"
+}}
+"""
+
+SCREEN_INVENTORY_PROMPT = """
+You are a UI/UX Strategist. 
+Analyze the original Project Idea and the generated documentation bundle to identify a UNIQUE screen inventory. 
+
+**Project Idea**: {idea}
+
+**Input Documentation Bundle**:
+{bundle}
+
+**Task**: Generate a comprehensive list of screens tailored specifically to this project's requirements. 
+Do NOT just provide "Dashboard" or "Settings" if they aren't relevant. 
+Focus on the specific workflows defined in the Functional Requirements (REQ-XXX) and Use Cases.
+
+Include:
+- Public pages specific to the business niche
+- Specific User features and workflows
+- Relevant Admin/Backoffice screens for this specific data
+- Edge cases relevant to this project
+
+**Output Format**: STRICT JSON ONLY.
+{{
+  "screen_inventory": [
+    {{
+      "name": "Screen Name",
+      "category": "Auth / User / Admin / Public / etc.",
+      "description": "How this screen solves a specific project objective"
+    }}
+  ]
+}}
 """
 
 UI_CONTRACTS_PROMPT = """
-You are a UI/UX Architect specializing in creating structured UI contracts.
+You are a UI/UX Architect. 
+Convert the Screen Inventory into detailed UI contracts.
 
-**Canonical JSON**: {canonical_json}
+**Project Idea**: {idea}
+**Screen Inventory**: {screen_inventory}
 
-**Task**: Generate a comprehensive list of ALL screens needed for this application in STRICT JSON format.
-
-**CRITICAL RULES:**
-1. Output MUST be ONLY valid JSON. No markdown, no explanations.
-2. Each screen must have: screen, role, purpose, actions, components, data, states, navigation
-3. Include ALL screens: public pages, auth flows, user dashboards, admin panels, error pages
-4. Be thorough - include login, register, forgot password, 404, 500, etc.
+**Task**: For EACH screen, define exactly what data and actions it needs based on the Project Idea.
+Avoid generic "Action 1". Use real actions like "Upload Medical Report" or "Compare Subscription Plans" as appropriate for the project.
 
 **REQUIRED JSON SCHEMA:**
 {{
   "ui_contracts": [
     {{
       "screen": "Screen Name",
-      "role": "User Role (e.g., Public / Guest, Standard User, Admin)",
-      "purpose": "What this screen does",
-      "actions": ["Action 1", "Action 2"],
-      "components": ["Component 1", "Component 2"],
-      "data": ["Data 1", "Data 2"],
-      "states": ["State 1", "State 2"],
-      "navigation": ["Target Screen 1", "Target Screen 2"]
+      "role": "User Role",
+      "purpose": "Specific project goal this screen fulfills",
+      "actions": ["Project-specific Action A", "Project-specific Action B"],
+      "components": ["Component Key 1", "Component Key 2"],
+      "data": ["Data Field 1", "Data Field 2"],
+      "states": ["Default", "Error", "Specific State X"],
+      "navigation": ["Target Screen Key"]
     }}
   ]
 }}
-
-**Example screens to include:**
-- Landing/Home, Product Listing, Product Detail
-- Login, Register, Forgot Password, Reset Password
-- User Dashboard, Profile, Settings
-- Admin Dashboard, Management Screens
-- Cart, Checkout, Order Confirmation
-- Error pages (404, 500)
 """
 
 WIREFRAMES_PROMPT = """
-You are a UI/UX Designer creating low-fidelity wireframes.
+You are a Senior UX designer initializing a PROJECT-WIDE ATOMIC WIREFRAME SYSTEM.
 
-**UI Contracts**: {ui_contracts}
+**LAYOUT MODE DECK**:
+1. **AUTH MODE** (Login, Register):
+   - NO Sidebar. Header: Screen Info only.
+   - Main: A single `AuthCard` component.
+2. **MARKETING MODE** (Landing Page, Pricing):
+   - NO Sidebar.
+   - Header: Screen Info + `Link` and `Button` nav-links.
+   - Main: Multiple `Card` and `StatCard` sections in a grid.
+3. **APP MODE** (Dashboard, Feed, Profile):
+   - Sidebar REQUIRED: Column on the left with vertical `Button` links.
+   - Header: Screen Info + `SearchBar` and `ProfileCircle` nav-links.
+   - Main: `StatCard` row (SubHeader section) and granular `Table` or `PostCard` list.
 
-**Task**: Convert the UI contracts into wireframe layouts showing ONLY structure and component placement.
+**ATOMIC DESIGN RULES**:
+- **placeholder-box**: Use this for generic content placeholders.
+- **ProfileCircle**: Renders as a circle in the top-right.
+- **StatCard**: Always placed in a 3-column grid row. Only for Dashboard/Stats.
+- **PostCard**: Breakdown into Avatar Header, Content Box, and Action Row.
+- **Table**: Standard 4-column structure (Item, Type, Status, Action).
+- **Registration**: AuthCards for Register/Sign-up MUST include a 'Confirm Password' field.
 
-**CRITICAL RULES:**
-1. Output MUST be ONLY valid JSON. No markdown, no explanations.
-2. Use ONLY components from the UI contracts - DO NOT invent new ones
-3. Organize components into logical sections (Header, Sidebar, Main Content, Footer, etc.)
-4. NO colors, NO styling, NO branding - structure only
+**STRICT DIVERSITY RULES**:
+- **No Mirroring**: DO NOT use the same layout for different screens. 
+- **Settings**: Use vertical stacks of Label+Inputs or grouped Toggles.
+- **Notifications**: Use a vertical list of descriptive Cards (Status, Time, Headline).
+- **Dashboard**: Use the SubHeader row (StatCards) + Table/Feed.
+- **Marketing**: Use Hero sections, Feature grids, and CTA Buttons.
 
-**REQUIRED JSON SCHEMA:**
+**OUTPUT FORMAT**: STRICT JSON ONLY.
 {{
   "wireframes": [
     {{
-      "screen": "Screen Name (must match UI contract)",
+      "screen": "Screen Name",
+      "screenKey": "screenKey",
+      "purpose": "Screen Subtitle",
       "layout": [
         {{
-          "section": "Section Name",
-          "components": ["Component 1", "Component 2"]
+          "section": "Header | Sidebar | Main | SubHeader",
+          "components": [
+            {{
+              "key": "UniqueKey",
+              "type": "ProfileCircle | SearchBar | Input | Button | Link | StatCard | Table | PostCard | AuthCard | Card",
+              "label": "Visible text",
+              "annotation": "UX behavior note"
+            }}
+          ]
         }}
-      ]
+      ],
+      "primary_action": "Main Button Label",
+      "flow": "Navigation description"
     }}
   ]
 }}
@@ -327,4 +391,41 @@ You are a UI/UX Designer applying design tokens and component styles to wirefram
 }}
 
 Use modern, professional design tokens suitable for the application type.
+"""
+
+FIGMA_LAYOUT_PROMPT = """
+You are a FIGMA Layout Architect. 
+
+**Project Idea**: {idea}
+**UI Contracts**: {ui_contracts}
+**Wireframes**: {wireframes}
+
+**Task**: Generate a highly structured Figma layout plan.
+Ensure the layoutType and sections reflect the actual complexity of the project (e.g., if it's a Finance app, use a dashboardShell; if it's a Landing Page, use fullPage).
+
+**REQUIRED JSON SCHEMA:**
+{{
+  "figma": {{
+    "pages": [
+      {{
+        "name": "Project Wireframes / UI",
+        "frames": [
+          {{
+            "name": "screenKey",
+            "description": "Contextual description",
+            "layoutType": "fullPage | twoColumn | dashboardShell | centeredForm",
+            "sections": [
+              {{
+                "name": "Section Name",
+                "components": [
+                  {{ "key": "ComponentKey" }}
+                ]
+              }}
+            ]
+          }}
+        ]
+      }}
+    ]
+  }}
+}}
 """

@@ -44,7 +44,7 @@
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:17:50.853000+00:00"
+      "lastUpdated": "2025-12-29T16:10:47.894109"
     }
   },
   {
@@ -96,18 +96,6 @@
     }
   },
   {
-    "id": "a9c8e443-413d-4e67-b2ab-c995da79ca3e",
-    "name": "Build a healthcare appointment management platform...",
-    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
-    "createdAt": "2025-12-24T10:29:18.849000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T05:48:13.040000+00:00"
-    }
-  },
-  {
     "id": "aa7555af-d65f-4453-99e3-1cb874350149",
     "name": "I want to build a customer support platform that a...",
     "description": "I want to build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.",
@@ -117,18 +105,6 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-26T05:49:03.471000+00:00"
-    }
-  },
-  {
-    "id": "8ee722a3-812e-4fb7-844a-3b2f324a4e06",
-    "name": "Build an event management platform that allows org...",
-    "description": "Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.",
-    "createdAt": "2025-12-26T06:18:54.608000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T06:20:23.097000+00:00"
     }
   },
   {
@@ -144,30 +120,6 @@
     }
   },
   {
-    "id": "ec453919-2940-41be-83c4-40a5492970c4",
-    "name": "Generate code with a README file included.",
-    "description": "Generate code with a README file included.",
-    "createdAt": "2025-12-26T06:51:01.433000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T06:51:06.773000+00:00"
-    }
-  },
-  {
-    "id": "6ee5744b-bac5-416b-8f25-0db25ffc9270",
-    "name": "Build a real estate platform that allows users to ...",
-    "description": "Build a real estate platform that allows users to browse and filter property listings, schedule visits, communicate with agents, and allows administrators to manage listings, users, and transactions.",
-    "createdAt": "2025-12-26T06:58:20.009000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T06:58:26.858000+00:00"
-    }
-  },
-  {
     "id": "93b61c5a-473d-4164-9489-4ca99583c93f",
     "name": "Build a real estate platform that allows users to ...",
     "description": "Build a real estate platform that allows users to browse and filter property listings, schedule visits, communicate with agents, and allows administrators to manage listings, users, and transactions.",
@@ -177,18 +129,6 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-26T07:02:47.289000+00:00"
-    }
-  },
-  {
-    "id": "19eba42b-dbb0-4a8a-a8fc-79a5340cb728",
-    "name": "fdfdcad",
-    "description": "fdfdcad",
-    "createdAt": "2025-12-26T17:27:37.631531",
-    "status": "PLANNING",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-26T17:28:44.251615"
     }
   },
   {
@@ -216,27 +156,51 @@
     }
   },
   {
-    "id": "8f4ad166-6e4f-489f-acac-37450ce9ba9a",
+    "id": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
     "name": "I want to build a platfrom that Automatically dete...",
     "description": "I want to build a platfrom that Automatically detect Police van or Ambulance with Smart bump system.\n\n",
-    "createdAt": "2025-12-27T11:03:18.482960",
+    "createdAt": "2025-12-29T15:15:17.950050",
     "status": "DESIGNED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-27T18:25:11.120044"
+      "lastUpdated": "2025-12-29T15:17:04.120850"
     }
   },
   {
-    "id": "c4f3ec09-133b-4ddc-90e6-e0d053f7afda",
-    "name": "I want to build a platfrom that Automatically dete...",
-    "description": "I want to build a platfrom that Automatically detect Police van or Ambulance with Smart bump system.\n\n",
-    "createdAt": "2025-12-27T18:30:16.123734",
+    "id": "6e630e82-4421-48ad-a3dd-c36f62be3a6a",
+    "name": "create a social media web app with subscription ",
+    "description": "create a social media web app with subscription ",
+    "createdAt": "2025-12-29T18:43:49.280804",
     "status": "DESIGNED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-27T18:34:30.317109"
+      "lastUpdated": "2025-12-29T18:44:29.601271"
+    }
+  },
+  {
+    "id": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "name": "Build a financial management platform that allows ...",
+    "description": "Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n",
+    "createdAt": "2025-12-30T12:05:28.278854",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T12:06:04.385207"
+    }
+  },
+  {
+    "id": "a846f604-4e64-4c77-90d2-692678f7e193",
+    "name": "Build a healthcare appointment management platform...",
+    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n",
+    "createdAt": "2025-12-30T12:20:16.559750",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T12:20:50.676934"
     }
   }
 ]

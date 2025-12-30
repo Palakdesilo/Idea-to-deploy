@@ -964,18 +964,29 @@ export default function ProjectDashboard() {
                                                                 <span>{visual.interactions?.length || 0} Interactions</span>
                                                             </div>
                                                         </div>
-                                                        <button
-                                                            onClick={() => {
-                                                                const link = document.createElement('a');
-                                                                link.href = visual.imageUrl;
-                                                                link.download = `${visual.screenName.toLowerCase()}-design.png`;
-                                                                link.click();
-                                                            }}
-                                                            className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all text-xs font-bold border border-slate-700"
-                                                        >
-                                                            <Download className="w-4 h-4" />
-                                                            Full Mockup
-                                                        </button>
+                                                        <div className="flex items-center gap-2">
+                                                            {visual.wireframeKey && (
+                                                                <button
+                                                                    onClick={() => window.open(`${API_BASE_URL}/api/projects/${id}/wireframes/${visual.wireframeKey}.html`, '_blank')}
+                                                                    className="flex items-center gap-2 px-4 py-2 bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 rounded-xl transition-all text-xs font-black border border-blue-500/20"
+                                                                >
+                                                                    <Eye className="w-4 h-4" />
+                                                                    Live Wireframe
+                                                                </button>
+                                                            )}
+                                                            <button
+                                                                onClick={() => {
+                                                                    const link = document.createElement('a');
+                                                                    link.href = visual.imageUrl;
+                                                                    link.download = `${visual.screenName.toLowerCase()}-design.png`;
+                                                                    link.click();
+                                                                }}
+                                                                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition-all text-xs font-bold border border-slate-700"
+                                                            >
+                                                                <Download className="w-4 h-4" />
+                                                                Full Mockup
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </motion.div>

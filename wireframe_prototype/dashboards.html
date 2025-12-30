@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboards - Low-Fi Wireframe</title>
+    <link rel="stylesheet" href="low-fi-system.css">
+</head>
+
+<body>
+    <div class="wireframe-container">
+
+        <!-- Screen 5: Fan Dashboard / Home Feed -->
+        <div class="screen-card relative">
+            <div class="status-labels">State: [Loader] on fetch</div>
+            <header>
+                <div class="screen-info">
+                    <h1>Fan Dashboard</h1>
+                    <p>Home Feed</p>
+                </div>
+                <div class="col" style="width: 300px;">
+                    <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 4px;">Search</p>
+                    <div class="placeholder-box" style="height: 36px; min-height: 36px;">[Search Bar]</div>
+                </div>
+            </header>
+
+            <div class="flex">
+                <!-- Sidebar -->
+                <div class="col sidebar">
+                    <div class="section-title">Sidebar</div>
+                    <div class="btn" style="text-align: left; margin-bottom: 8px;">Home</div>
+                    <div class="btn" style="text-align: left; margin-bottom: 8px;">Subscriptions</div>
+                    <div class="btn" style="text-align: left; margin-bottom: 8px;">Messages</div>
+                    <div class="btn" style="text-align: left; margin-bottom: 8px;">Wallet</div>
+                    <div class="btn" style="text-align: left; margin-bottom: 8px;">Settings</div>
+
+                    <div class="annotation"
+                        style="margin-top: 40px; border: 1px dashed var(--border-color); padding: 10px;">
+                        Mobile: Sidebar collapses into bottom nav (note)
+                    </div>
+                </div>
+
+                <!-- Feed Content -->
+                <div class="col flex-1">
+                    <div class="section-title">Post Card</div>
+                    <div class="col"
+                        style="border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div class="flex" style="margin-bottom: 16px;">
+                            <div class="placeholder-box" style="width: 40px; height: 40px; border-radius: 50%;"></div>
+                            <div class="col flex-1">
+                                <div class="placeholder-box" style="height: 12px; width: 140px; margin-bottom: 6px;">
+                                </div>
+                                <div class="placeholder-box" style="height: 10px; width: 80px;"></div>
+                            </div>
+                        </div>
+                        <div class="placeholder-box" style="height: 120px; margin-bottom: 16px;">
+                            [Content Placeholder]
+                        </div>
+                        <div class="flex">
+                            <div class="btn" style="font-size: 11px;">[Like]</div>
+                            <div class="btn" style="font-size: 11px;">[Comment]</div>
+                            <div class="btn btn-primary" style="font-size: 11px;">[Unlock / Subscribe]</div>
+                        </div>
+                    </div>
+
+                    <!-- Post Card (Locked) -->
+                    <div class="section-title">Post Card (Locked Preview)</div>
+                    <div class="col" style="border: 1px solid var(--border-color); padding: 20px; border-radius: 8px;">
+                        <div class="placeholder-box"
+                            style="height: 80px; margin-bottom: 16px; border: 1px dashed var(--border-color);">
+                            [Locked Content Placeholder]
+                        </div>
+                        <div class="flex" style="justify-content: space-between; align-items: center;">
+                            <p class="annotation">Primary CTA: Subscribe</p>
+                            <div class="btn btn-primary">Subscribe</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 6: Creator Dashboard -->
+        <div class="screen-card relative">
+            <header>
+                <div class="screen-info">
+                    <h1>Creator Dashboard</h1>
+                    <p>Manage content, earnings, fans</p>
+                </div>
+                <div class="btn btn-primary">Create Post</div>
+            </header>
+
+            <div class="grid grid-3" style="margin-bottom: 32px;">
+                <div class="col" style="border: 1px solid var(--border-color); padding: 16px; border-radius: 8px;">
+                    <div class="section-title">Stat Card</div>
+                    <div class="placeholder-box" style="height: 60px; font-size: 24px;"></div>
+                    <p class="annotation">Earnings</p>
+                </div>
+                <div class="col" style="border: 1px solid var(--border-color); padding: 16px; border-radius: 8px;">
+                    <div class="section-title">Stat Card</div>
+                    <div class="placeholder-box" style="height: 60px; font-size: 24px;"></div>
+                    <p class="annotation">Subscribers</p>
+                </div>
+                <div class="col" style="border: 1px solid var(--border-color); padding: 16px; border-radius: 8px;">
+                    <div class="section-title">Stat Card</div>
+                    <div class="placeholder-box" style="height: 60px; font-size: 24px;"></div>
+                    <p class="annotation">Posts</p>
+                </div>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="col">
+                    <div class="section-title">Recent Posts (Table)</div>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid var(--border-color); text-align: left;">
+                                <th style="padding: 10px;">Post</th>
+                                <th style="padding: 10px;">Type</th>
+                                <th style="padding: 10px;">Status</th>
+                                <th style="padding: 10px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 10px;">Row</td>
+                                <td style="padding: 10px;">Free/Paid</td>
+                                <td style="padding: 10px;">Published</td>
+                                <td style="padding: 10px;"><span style="text-decoration: underline;">View</span></td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);">
+                                <td style="padding: 10px;">Row</td>
+                                <td style="padding: 10px;">Free/Paid</td>
+                                <td style="padding: 10px;">Draft</td>
+                                <td style="padding: 10px;"><span style="text-decoration: underline;">Edit</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <div class="section-title">Earnings Chart Placeholder</div>
+                    <div class="placeholder-box" style="height: 180px;">
+                        [Chart Placeholder]
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav style="text-align: center; margin-top: 40px;">
+            <a href="onboarding.html" class="btn">← Back: Onboarding</a>
+            <a href="content_profile.html" class="btn btn-primary">Next: Content & Profile →</a>
+        </nav>
+
+    </div>
+</body>
+
+</html>

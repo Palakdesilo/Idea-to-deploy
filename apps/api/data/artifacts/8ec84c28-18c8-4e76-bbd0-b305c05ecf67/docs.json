@@ -1,0 +1,66 @@
+[
+  {
+    "id": "4afbb0fc-924d-4f84-a818-cb5ecae6db97",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Smart Bump System Requirement Document\n\n---\n\n## 1. Document Control & Versioning\n\n**Version 1.0**  \n**Date:** 2023-01-01  \n**Author:** Project Consultant Team  \n**Approval:** [Name], Project Sponsor  \n\n---\n\n## 2. Project Background & Objectives\n\n**Summary:**  \nThis project is focused on developing a platform with a smart bump system to automatically detect the presence of police vans or ambulances. The aim is to facilitate quick and efficient response times during emergencies by identifying these vehicles and alerting nearby drivers or clearing the path.\n\n**Problem Statement:**  \nThe challenge of delays in emergency vehicles reaching their destinations due to traffic congestion and drivers' unawareness is significant in urban areas, often leading to delayed medical or law enforcement interventions.\n\n**Objectives:**  \n- Reduce emergency response times by identifying and prioritizing emergency vehicles in traffic.\n- Increase public safety by ensuring quicker on-scene presence of emergency services.\n- Enhance traffic management through smart technology integration.\n\n---\n\n## 3. Stakeholder Identification\n\n- Traffic Management Authorities\n- Emergency Services (Police, Ambulance)\n- System Administrators\n- Field Operators\n- Emergency Response Coordinators\n\n---\n\n## 4. Assumptions & Constraints\n\n**Assumptions:**\n- Emergency vehicles are equipped with identifiable signals.\n- Sufficient infrastructure exists for initial deployment.\n\n**Constraints:**\n- Time: 6 months.\n- Budget: Medium-scale funding.\n- Technical: Requires integration with existing traffic management infrastructures.\n- Regulatory: Must comply with traffic and data protection regulations.\n\n---\n\n## 5. In-Scope / Out-of-Scope\n\n**In-Scope:**\n- Vehicle detection module.\n- Emergency vehicle verification.\n- User notification system.\n\n**Out-of-Scope:**\n- Personal vehicle tracking.\n- Expansion to pedestrian zones.\n\n---\n\n## 6. Functional Requirements\n\n- **REQ-001:** The system must detect emergency vehicles in real-time.\n- **REQ-002:** The system must verify the detected vehicle is an authorized emergency vehicle.\n- **REQ-003:** The system must notify relevant users (drivers, traffic control units) about the emergency vehicle.\n\n---\n\n## 7. Non-Functional Requirements\n\n- **NFR-001:** The system must achieve high availability with 99.9% uptime.\n- **NFR-002:** The system must ensure data privacy and comply with data protection regulations.\n- **NFR-003:** The system should be scalable to accommodate a metropolitan area with 5k+ intersections within 2 years.\n\n---\n\n## 8. User Roles & Permissions\n\n- **System Administrator:** Full access to system configuration and user management.\n- **Field Operator:** Access to deployment and maintenance modules.\n- **Emergency Response Coordinator:** Access to real-time data and reporting tools.\n\n---\n\n## 9. Business Rules\n\n- The system shall prioritize emergency vehicles over all other traffic.\n- Emergency vehicle signals must be authenticated to prevent false positives.\n\n---\n\n## 10. Use Cases / User Stories\n\n- **User Story 1:** As a Field Operator, I want to install vehicle detection modules at intersections so that the system can detect approaching emergency vehicles.\n- **User Story 2:** As a System Administrator, I need to ensure that the system correctly identifies and verifies emergency vehicles to provide accurate notifications.\n\n---\n\n## 11. UI/UX & Screen References\n\n*(This section would typically include mockups and descriptions for the user interface. Due to the format, it is not possible to include actual images or detailed designs.)*\n\n**Screen 01:** Dashboard for System Administrators showing system status and alerts.  \n**Screen 02:** Notification panel for Field Operators with real-time updates on system deployments.  \n**Screen 03:** Emergency vehicle verification interface for Emergency Response Coordinators.\n\n---\n\n## 12. Data Requirements\n\n- Vehicle detection data: Type, speed, and location of detected vehicles.\n- Emergency vehicle credentials: Verification data for authenticating emergency vehicles.\n- Notification logs: Records of all user notifications sent by the system.\n\n---\n\n## 13. Regulatory & Compliance Requirements\n\n- The system must comply with local traffic regulations.\n- The system must adhere to data protection laws, ensuring user data privacy and security.\n\n---\n\n## 14. Requirement Traceability Matrix (RTM)\n\n| Requirement ID | Source | Test Case | Status |\n|----------------|--------|-----------|--------|\n| REQ-001 | Project Overview | Verify real-time detection of emergency vehicles | To be tested |\n| REQ-002 | Scope: In-Scope | Verify emergency vehicle verification process | To be tested |\n| REQ-003 | Features: Must Have | Test notification system efficiency | To be tested |\n| NFR-001 | Constraints: Technical | Assess system uptime over a month | To be tested |\n| NFR-002 | Constraints: Regulatory | Review compliance with data protection regulations | To be tested |\n| NFR-003 | Scalability Expectations | Load test for scalability assessment | To be tested |\n\n---\n\nThis requirement document establishes the foundation for the development and implementation of the smart bump system to address the project's goals and challenges. It will serve as a guideline for all stakeholders involved in the project.",
+    "isFinal": true
+  },
+  {
+    "id": "bb26d098-1fcc-47d8-8d13-a2425f1801cd",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "e72738a5-0d6b-4cdc-93db-d02124de282a",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "eac59598-d8b6-4db1-8d1d-b129ac9c60eb",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Goals\nReduce emergency response times by identifying and prioritizing emergency vehicles in traffic.\nIncrease public safety by ensuring quicker on-scene presence of emergency services.\nEnhance traffic management by integrating smart technology.",
+    "isFinal": true
+  },
+  {
+    "id": "e7e34ca5-823d-44c4-aabd-e1e228465b36",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "e76ae086-65d4-42ff-9c03-770bb9be9e7a",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "59064b44-f3ce-4b95-a32d-341b32ad0f71",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  },
+  {
+    "id": "7fefbfca-b6ce-4889-841e-5f394e1ad5fc",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "category": "UI_UX",
+    "title": "UI/UX Design Specification",
+    "content": "# UI/UX Design Specification: This project aims to develop a platform that utilizes a smart bump system to automatically detect the presence of police vans or ambulances, facilitating quick and efficient response times in emergencies. The system will identify these vehicles and potentially clear the path or alert nearby drivers.\n\n## Screens\n- Landing Page\n- Dashboard",
+    "isFinal": true
+  }
+]

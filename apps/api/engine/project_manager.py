@@ -9,29 +9,28 @@ from typing import List, Optional, Any
 # Add parent directory to sys.path to find models
 sys.path.append(str(Path(__file__).parent.parent))
 
-try:
-    from models import Project, GeneratedDoc, ProjectStatus
-except ImportError:
-    # If the above fails, try absolute path addition
-    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    from models import Project, GeneratedDoc, ProjectStatus
+from models import Project, GeneratedDoc, ProjectStatus
 
 def find_data_dir():
+    # Use root data directory
     data_dir_env = os.getenv("DATA_DIR")
     if data_dir_env:
         return Path(data_dir_env)
     
+    # Try current directory or monorepo locations
     cwd = Path.cwd()
-    possible_paths = [
-        cwd / "apps" / "api" / "data",
-        cwd / "data",
-        cwd / ".." / ".." / "apps" / "api" / "data"
-    ]
+    # If in apps, look for apps/api/data
+    if (cwd / "api" / "data").exists():
+        return cwd / "api" / "data"
     
-    for p in possible_paths:
-        if p.exists():
-            return p
-            
+    # If in apps/api, look for data
+    if (cwd / "data").exists():
+        return cwd / "data"
+    
+    # Root check
+    if (cwd / "apps" / "api" / "data").exists():
+        return cwd / "apps" / "api" / "data"
+    
     return cwd / "data"
 
 DATA_DIR = find_data_dir()
@@ -53,11 +52,16 @@ class ProjectManager:
 
     async def create_project(self, name: str, description: str) -> Project:
         projects = await self.get_all_projects()
-        new_project = Project(name=name, description=description)
+        new_project = Project(
+            name=name,
+            description=description
+        )
         projects.append(new_project)
         await self._save_projects(projects)
+        
         project_dir = ARTIFACTS_DIR / new_project.id
         project_dir.mkdir(parents=True, exist_ok=True)
+        
         return new_project
 
     async def get_all_projects(self) -> List[Project]:
@@ -92,36 +96,52 @@ class ProjectManager:
             return [GeneratedDoc(**d) for d in data]
 
     async def save_doc(self, project_id: str, category: str, title: str, content: str) -> GeneratedDoc:
-        doc = GeneratedDoc(projectId=project_id, category=category, title=title, content=content)
+        doc = GeneratedDoc(
+            projectId=project_id,
+            category=category,
+            title=title,
+            content=content
+        )
+        
         docs_file = ARTIFACTS_DIR / project_id / "docs.json"
         docs = []
         if docs_file.exists():
             with open(docs_file, 'r') as f:
                 docs_data = json.load(f)
                 docs = [GeneratedDoc(**d) for d in docs_data]
+                
+        # Remove old doc of same category
         docs = [d for d in docs if d.category != category]
         docs.append(doc)
+        
         with open(docs_file, 'w') as f:
             json.dump([d.dict() for d in docs], f, default=self._serialize_datetime, indent=2)
+            
         return doc
 
     async def get_visuals(self, project_id: str) -> List[Any]:
         visuals_file = ARTIFACTS_DIR / project_id / "visuals.json"
-        if not visuals_file.exists(): return []
-        with open(visuals_file, 'r') as f: return json.load(f)
+        if not visuals_file.exists():
+            return []
+        with open(visuals_file, 'r') as f:
+            return json.load(f)
 
     async def save_visuals(self, project_id: str, visuals: List[Any]):
         visuals_file = ARTIFACTS_DIR / project_id / "visuals.json"
-        with open(visuals_file, 'w') as f: json.dump(visuals, f, default=self._serialize_datetime, indent=2)
+        with open(visuals_file, 'w') as f:
+            json.dump(visuals, f, default=self._serialize_datetime, indent=2)
 
     async def get_build_result(self, project_id: str) -> Optional[Any]:
         build_file = ARTIFACTS_DIR / project_id / "build.json"
-        if not build_file.exists(): return None
-        with open(build_file, 'r') as f: return json.load(f)
+        if not build_file.exists():
+            return None
+        with open(build_file, 'r') as f:
+            return json.load(f)
 
     async def save_build_result(self, project_id: str, build_result: Any):
         build_file = ARTIFACTS_DIR / project_id / "build.json"
-        with open(build_file, 'w') as f: json.dump(build_result, f, default=self._serialize_datetime, indent=2)
+        with open(build_file, 'w') as f:
+            json.dump(build_result, f, default=self._serialize_datetime, indent=2)
 
     async def update_file_content(self, project_id: str, file_path: str, content: str):
         result = await self.get_build_result(project_id)
@@ -136,6 +156,7 @@ class ProjectManager:
         projects = await self.get_all_projects()
         projects = [p for p in projects if p.id != id]
         await self._save_projects(projects)
+        
         project_dir = ARTIFACTS_DIR / id
         if project_dir.exists():
             import shutil

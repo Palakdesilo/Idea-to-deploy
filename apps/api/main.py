@@ -2,6 +2,7 @@ import logging
 import sys
 import os
 from fastapi import FastAPI, HTTPException, Request, Response, Depends
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 from pydantic import BaseModel
@@ -9,20 +10,11 @@ from pydantic import BaseModel
 # Add current directory to sys.path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-try:
-    from models import Project, ProjectStatus, GeneratedDoc
-    from engine.project_manager import ProjectManager
-    from engine.ai_analyst import AIAnalyst
-    from engine.ai_designer import AIDesigner
-    from engine.ai_builder import AIBuilder
-except ImportError:
-    # Fallback for different run contexts
-    sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "engine"))
-    from models import Project, ProjectStatus, GeneratedDoc
-    from engine.project_manager import ProjectManager
-    from engine.ai_analyst import AIAnalyst
-    from engine.ai_designer import AIDesigner
-    from engine.ai_builder import AIBuilder
+from models import Project, ProjectStatus, GeneratedDoc
+from engine.project_manager import ProjectManager, ARTIFACTS_DIR
+from engine.ai_analyst import AIAnalyst
+from engine.ai_designer import AIDesigner
+from engine.ai_builder import AIBuilder
 
 # Configure Logging
 logging.basicConfig(level=logging.INFO)
@@ -38,7 +30,6 @@ async def root():
         "frontend_url": "http://localhost:3000",
         "documentation": "/docs"
     }
-
 
 # CORS Configuration
 app.add_middleware(
@@ -112,15 +103,15 @@ async def analyze_project(id: str):
         'IPMP': 'Integrated Project Management Plan (IPMP)',
         'SCHEDULE_COST': 'Schedule & Cost Plan',
         'QUALITY_RISK': 'Quality, Risk & Procurement Plan',
-        'TESTING_RELEASE': 'Testing & Release Plan',
-        'UI_UX': 'UI/UX Design Specification'
+        'TESTING_RELEASE': 'Testing & Release Plan'
     }
     
     saved_docs = []
     for category, content in docs.items():
-        title = category_titles.get(category, f"{category} Document")
-        saved = await project_manager.save_doc(id, category, title, content)
-        saved_docs.append(saved)
+        if category in category_titles:
+            title = category_titles[category]
+            saved = await project_manager.save_doc(id, category, title, content)
+            saved_docs.append(saved)
         
     await project_manager.update_project_status(id, "PLANNING")
     
@@ -140,6 +131,22 @@ async def design_project(id: str):
     await project_manager.update_project_status(id, "DESIGNED")
     
     return {"success": True, "visuals": visuals}
+
+@app.get("/api/projects/{id}/wireframes/{filename:path}")
+async def serve_wireframe(id: str, filename: str):
+    # We assume wireframes are stored in ARTIFACTS_DIR/:id/wireframes
+    file_path = ARTIFACTS_DIR / id / "wireframes" / filename
+    if not file_path.exists():
+        # Try with .html extension
+        if (file_path.with_suffix(".html")).exists():
+            file_path = file_path.with_suffix(".html")
+        # Try index.html fallback
+        elif (ARTIFACTS_DIR / id / "wireframes" / "index.html").exists():
+            file_path = ARTIFACTS_DIR / id / "wireframes" / "index.html"
+        else:
+            raise HTTPException(status_code=404, detail=f"Wireframe '{filename}' not found.")
+    
+    return FileResponse(file_path)
 
 @app.get("/api/projects/{id}/visuals")
 async def get_project_visuals(id: str):

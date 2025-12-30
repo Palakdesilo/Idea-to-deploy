@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content & Profile - Low-Fi Wireframe</title>
+    <link rel="stylesheet" href="low-fi-system.css">
+</head>
+
+<body>
+    <div class="wireframe-container">
+
+        <!-- Screen 7: Post Creation -->
+        <div class="screen-card relative">
+            <div class="status-labels">States: Upload progress / Success</div>
+            <header>
+                <div class="screen-info">
+                    <h1>Post Creation</h1>
+                    <p>Modal or full page</p>
+                </div>
+            </header>
+
+            <div class="col" style="border: 1px solid var(--border-color); padding: 32px; border-radius: 8px;">
+                <p style="font-size: 12px; margin-bottom: 4px;">Caption</p>
+                <div class="placeholder-box" style="height: 80px; margin-bottom: 24px;">[Textarea]</div>
+
+                <div class="grid grid-2">
+                    <div class="col">
+                        <p style="font-size: 12px; margin-bottom: 4px;">Media Upload</p>
+                        <div class="placeholder-box" style="height: 120px; border: 1px dashed var(--border-color);">
+                            [Upload Placeholder]
+                        </div>
+                    </div>
+                    <div class="col">
+                        <p style="font-size: 12px; margin-bottom: 4px;">Post Type</p>
+                        <div class="placeholder-box" style="margin-bottom: 16px;">[Toggle: Free / Paid]</div>
+
+                        <p style="font-size: 12px; margin-bottom: 4px;">Unlock Price (Paid only)</p>
+                        <div class="input-field">[Input Field]</div>
+                    </div>
+                </div>
+
+                <div class="flex" style="justify-content: flex-end; gap: 12px; margin-top: 32px;">
+                    <div class="btn">Cancel</div>
+                    <div class="btn btn-primary">Publish</div>
+                </div>
+
+                <div class="grid grid-2" style="margin-top: 24px;">
+                    <div class="placeholder-box">Upload Progress: [Loader]</div>
+                    <div class="placeholder-box">Success: Post Published</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 8: Creator Profile -->
+        <div class="screen-card relative">
+            <div class="status-labels">Flow: Profile → Subscribe → Feed Access</div>
+            <header>
+                <div class="screen-info">
+                    <h1>Creator Profile</h1>
+                    <p>Conversion screen: Subscribe</p>
+                </div>
+            </header>
+
+            <div class="flex">
+                <!-- Profile Info -->
+                <div class="col flex-1">
+                    <div class="flex" style="margin-bottom: 24px; align-items: flex-end;">
+                        <div class="placeholder-box" style="width: 100px; height: 100px; border-radius: 8px;"></div>
+                        <div class="col flex-1" style="padding-bottom: 10px;">
+                            <div class="placeholder-box" style="height: 20px; width: 200px; margin-bottom: 8px;"></div>
+                            <div class="placeholder-box" style="height: 14px; width: 300px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="placeholder-box" style="height: 80px; margin-bottom: 32px;">
+                        [Creator Bio Placeholder]
+                    </div>
+
+                    <div class="section-title">Posts Preview Grid</div>
+                    <div class="grid grid-3">
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                        <div class="placeholder-box" style="height: 150px;">Post</div>
+                    </div>
+                </div>
+
+                <!-- Subscription Box -->
+                <div class="col"
+                    style="width: 350px; border: 1px solid var(--border-color); padding: 24px; border-radius: 8px; align-self: flex-start;">
+                    <div class="section-title">Subscription Box</div>
+
+                    <p style="font-size: 12px; margin-bottom: 4px;">Price</p>
+                    <div class="placeholder-box" style="height: 48px; margin-bottom: 24px; font-size: 20px;"></div>
+
+                    <p style="font-size: 12px; margin-bottom: 4px;">Benefits</p>
+                    <div class="placeholder-box" style="height: 32px; margin-bottom: 8px;"></div>
+                    <div class="placeholder-box" style="height: 32px; margin-bottom: 8px;"></div>
+                    <div class="placeholder-box" style="height: 32px; margin-bottom: 24px;"></div>
+
+                    <div class="btn btn-primary" style="width: 100%;">Subscribe</div>
+
+                    <div class="annotation" style="margin-top: 20px; text-align: center;">
+                        States: Active / Expiring / Renew / Payment Issue (placeholder)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav style="text-align: center; margin-top: 40px;">
+            <a href="dashboards.html" class="btn">← Back: Dashboards</a>
+            <a href="finance_settings.html" class="btn btn-primary">Next: Finance & Settings →</a>
+        </nav>
+
+    </div>
+</body>
+
+</html>

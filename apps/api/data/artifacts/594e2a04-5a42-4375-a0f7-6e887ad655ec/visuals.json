@@ -1,0 +1,155 @@
+[
+  {
+    "id": "1295097f-68cb-4780-91f3-558cb6e2207d",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Landing Page",
+    "description": "Overview and management for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Landing%20Page%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Professional UI mockup, Landing Page for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Landing Page",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "L1",
+      "L2",
+      "B1",
+      "H1",
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingPage"
+  },
+  {
+    "id": "c5c70a94-ce99-4c3a-95bb-c1c98ad537fc",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Login",
+    "description": "Overview and management for Login",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Login%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Professional UI mockup, Login for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Login",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "Auth"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login"
+  },
+  {
+    "id": "f2d6a2dc-62a9-4a9e-9ca5-c1a1d20c03ae",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Register",
+    "description": "Overview and management for Register",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Register%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Professional UI mockup, Register for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Register",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "Auth"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register"
+  },
+  {
+    "id": "c26658df-39c2-4b96-a185-83ddacff7cdb",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Dashboard",
+    "description": "Overview and management for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Dashboard%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Professional UI mockup, Dashboard for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Dashboard",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "Search",
+      "User",
+      "Nav1",
+      "Nav2",
+      "Nav3",
+      "S1",
+      "S2",
+      "S3",
+      "P1",
+      "T1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard"
+  },
+  {
+    "id": "301d6596-d35d-4ba0-bea4-2cc22bc5a414",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Settings",
+    "description": "Overview and management for Settings",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Settings%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Professional UI mockup, Settings for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Settings",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "Search",
+      "User",
+      "Nav1",
+      "Nav2",
+      "Nav3",
+      "S1",
+      "S2",
+      "S3",
+      "P1",
+      "T1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings"
+  },
+  {
+    "id": "aacba771-6344-40d4-adee-32ed242d4201",
+    "projectId": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
+    "screenName": "Notifications",
+    "description": "Overview and management for Notifications",
+    "imageUrl": "https://pollinations.ai/p/Professional%20UI%20mockup,%20Notifications%20for%20Build%20a%20financial%20management%20platform%20that%20allows%20users%20to%20track%20expenses,%20categorize%20transactions,%20set%20budgets,%20view%20analytics%20dashboards,%20and%20receive%20alerts%20for%20spending%20limits%20and%20financial%20goals.\n\n.%20Modern%20SaaS%20design,%20high-fidelity,%20blue%20and%20white%20theme,%204k.?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "Professional UI mockup, Notifications for Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n. Modern SaaS design, high-fidelity, blue and white theme, 4k.",
+    "purpose": "Overview and management for Notifications",
+    "roles": [
+      "User"
+    ],
+    "components": [
+      "Search",
+      "User",
+      "Nav1",
+      "Nav2",
+      "Nav3",
+      "S1",
+      "S2",
+      "S3",
+      "P1",
+      "T1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "notifications"
+  }
+]
