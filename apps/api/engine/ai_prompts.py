@@ -338,59 +338,59 @@ You are a Senior UX designer initializing a PROJECT-WIDE ATOMIC WIREFRAME SYSTEM
 """
 
 UI_DESIGN_PROMPT = """
-You are a UI/UX Designer applying design tokens and component styles to wireframes.
+You are a Senior UI/UX Designer converting wireframes into niche-perfect Visual Interfaces.
 
+**Project Idea**: {idea}
 **Wireframes**: {wireframes}
 **UI Contracts**: {ui_contracts}
 
-**Task**: Apply consistent design tokens and component styles to create a complete UI design specification.
+**THEMATIC STYLE GUIDE**:
+Select the most appropriate archetype based on the project idea:
+1. **E-COMMERCE**: Palette: Crisp White, Bold Black (#1a1a1a), and a vibrant CTA color (e.g., #E44D26 or #00a8e8). Style: Clean product cards, sharp shadows, prominent pricing.
+2. **FINANCE/BANKING**: Palette: Deep Navy (#0d1117), Slate Grey, and Emerald Green (#10b981) for values. Style: Professional, ultra-clean borders, condensed typography for data.
+3. **SOCIAL/COMMUNITY**: Palette: Soft Grey backgrounds, Vibrant Blue (#1da1f2) or Purple (#6366f1) accents. Style: Rounded avatars, high-contrast like/comment buttons, fluid spacing.
+4. **HEALTH/WELLNESS**: Palette: Soft Mint (#f0fff4) or Sky Blue, with Charcoal text. Style: Large whitespace, rounded corners (12px+), calming soft shadows.
+5. **SAAS/DASHBOARD**: Palette: Neutral Grey, White, and a strong Indigo (#4f46e5) brand color. Style: Glassmorphism touches, subtle border-bottoms, clear hierarchy.
+
+**Task**: Apply these thematic design tokens to create a complete UI design specification.
 
 **CRITICAL RULES:**
-1. Output MUST be ONLY valid JSON. No markdown, no explanations.
-2. DO NOT change layout structure from wireframes
-3. DO NOT invent new components
-4. Apply professional design tokens: colors, typography, spacing, radius, shadows
-5. Define component styles: Button, Input, Card, Header, Sidebar, Table
-6. Apply styles to each screen's layout
+1. Output MUST be ONLY valid JSON.
+2. Apply the specific archetype colors to `design_tokens`.
+3. Fill `component_styles` with detailed CSS properties (box-shadow, border-radius, font-weight).
+4. Match every screen in `wireframes` to a screen in the `screens` array.
 
 **REQUIRED JSON SCHEMA:**
 {{
   "design_tokens": {{
-    "colors": {{}},
-    "typography": {{}},
-    "spacing": {{}},
-    "radius": {{}},
-    "shadows": {{}}
+    "colors": {{
+      "primary": "Hex code based on archetype",
+      "background": "#f8f9fa",
+      "card_bg": "#ffffff",
+      "text_main": "#1a1a1a",
+      "accent": "Hex code"
+    }},
+    "typography": {{
+       "font_family": "Inter, sans-serif",
+       "heading_size": "24px",
+       "body_size": "14px"
+    }},
+    "spacing": {{ "padding": "24px", "gap": "16px" }},
+    "radius": {{ "large": "12px", "medium": "8px", "small": "4px" }},
+    "shadows": {{ "soft": "0 4px 12px rgba(0,0,0,0.05)", "card": "0 1px 3px rgba(0,0,0,0.1)" }}
   }},
   "component_styles": {{
-    "Button": {{}},
-    "Input": {{}},
-    "Card": {{}},
-    "Header": {{}},
-    "Sidebar": {{}},
-    "Table": {{}}
+    "Button": {{ "bg": "var(--primary)", "text": "#ffffff", "radius": "var(--radius-medium)" }},
+    "Card": {{ "bg": "var(--card-bg)", "shadow": "var(--shadow-card)", "radius": "var(--radius-large)" }},
+    "Input": {{ "border": "#e0e0e0", "focus": "var(--primary)" }}
   }},
   "screens": [
     {{
-      "screen": "Screen Name (must match wireframe)",
-      "layout": [
-        {{
-          "section": "Section Name",
-          "style": {{}},
-          "components": [
-            {{
-              "name": "Component Name",
-              "variant": "Component.variant",
-              "additional_properties": {{}}
-            }}
-          ]
-        }}
-      ]
+      "screen": "Screen Name",
+      "theme_override": "Special styling note for this screen"
     }}
   ]
 }}
-
-Use modern, professional design tokens suitable for the application type.
 """
 
 FIGMA_LAYOUT_PROMPT = """

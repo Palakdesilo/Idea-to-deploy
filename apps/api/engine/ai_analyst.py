@@ -127,7 +127,8 @@ class AIAnalyst:
                     'UI_DESIGN',
                     {
                         "wireframes": wireframes_json,
-                        "ui_contracts": ui_contracts_json
+                        "ui_contracts": ui_contracts_json,
+                        "idea": idea_description
                     },
                     UI_DESIGN_PROMPT
                 )

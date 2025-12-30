@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 from typing import List, Dict, Any
 from .wireframe_renderer import WireframeRenderer
+from .ui_renderer import UIRenderer
 
 class AIDesigner:
     async def generate_visuals(self, project_id: str, description: str) -> List[Dict[str, Any]]:
@@ -11,19 +12,27 @@ class AIDesigner:
         pm = ProjectManager()
         visuals = []
         
-        # 1. Load structured wireframes.json from artifacts if it exists
+        # 1. Load structured wireframes and UI designs from artifacts
         artifacts_dir = Path(__file__).parent.parent / "data" / "artifacts" / project_id / "docs"
         wireframes_file = artifacts_dir / "wireframes.json"
+        ui_design_file = artifacts_dir / "ui_design.json"
         
         if wireframes_file.exists():
             try:
                 with open(wireframes_file, 'r', encoding='utf-8') as f:
-                    data = json.loads(f.read())
-                    screens = data.get('wireframes', [])
+                    wire_data = json.loads(f.read())
+                    screens = wire_data.get('wireframes', [])
                     
-                    # Render these JSON wireframes to HTML files
+                    # Render Low-Fi Wireframes
                     renderer = WireframeRenderer()
                     renderer.render_project(project_id, screens)
+                    
+                    # Render High-Fi UI if design tokens exist
+                    if ui_design_file.exists():
+                        with open(ui_design_file, 'r', encoding='utf-8') as f2:
+                            ui_data = json.loads(f2.read())
+                            ui_renderer = UIRenderer()
+                            ui_renderer.render_project(project_id, screens, ui_data)
                     
                     for idx, wf in enumerate(screens):
                         raw_name = wf.get('screen', wf.get('screenTitle', wf.get('screenKey', 'Screen')))
@@ -43,7 +52,14 @@ class AIDesigner:
                                 else:
                                     all_components.append(str(comp))
 
-                        prompt = f"Professional UI mockup, {screen_name} for {description}. Modern SaaS design, high-fidelity, blue and white theme, 4k."
+                        # Determine the visual theme for the prompt based on the description
+                        theme = "modern SaaS"
+                        if any(x in description.lower() for x in ["ecommerce", "shop", "store"]): theme = "vibrant e-commerce"
+                        elif any(x in description.lower() for x in ["bank", "finance", "money"]): theme = "clean professional finance"
+                        elif any(x in description.lower() for x in ["social", "community", "chat"]): theme = "interactive social media"
+                        elif any(x in description.lower() for x in ["health", "medical", "doctor"]): theme = "soft medical wellness"
+
+                        prompt = f"Professional high-fidelity UI design for {screen_name}, {theme} platform. {description[:100]}..., 4k, clean layout, professional color palette."
                         image_url = f"https://pollinations.ai/p/{prompt.replace(' ', '%20')}?width=1280&height=720&seed={idx}&nologo=true"
 
                         visuals.append({
@@ -58,7 +74,8 @@ class AIDesigner:
                             "components": all_components,
                             "interactions": [],
                             "states": ["Default"],
-                            "wireframeKey": screen_key
+                            "wireframeKey": screen_key,
+                            "uiKey": screen_key if ui_design_file.exists() else None
                         })
             except Exception as e:
                 print(f"AIDesigner: Error loading wireframes.json: {e}")

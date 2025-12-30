@@ -137,15 +137,25 @@ async def serve_wireframe(id: str, filename: str):
     # We assume wireframes are stored in ARTIFACTS_DIR/:id/wireframes
     file_path = ARTIFACTS_DIR / id / "wireframes" / filename
     if not file_path.exists():
-        # Try with .html extension
         if (file_path.with_suffix(".html")).exists():
             file_path = file_path.with_suffix(".html")
-        # Try index.html fallback
         elif (ARTIFACTS_DIR / id / "wireframes" / "index.html").exists():
             file_path = ARTIFACTS_DIR / id / "wireframes" / "index.html"
         else:
             raise HTTPException(status_code=404, detail=f"Wireframe '{filename}' not found.")
-    
+    return FileResponse(file_path)
+
+@app.get("/api/projects/{id}/ui/{filename:path}")
+async def serve_ui(id: str, filename: str):
+    # High-Fi UI stored in ARTIFACTS_DIR/:id/ui
+    file_path = ARTIFACTS_DIR / id / "ui" / filename
+    if not file_path.exists():
+        if (file_path.with_suffix(".html")).exists():
+            file_path = file_path.with_suffix(".html")
+        elif (ARTIFACTS_DIR / id / "ui" / "index.html").exists():
+            file_path = ARTIFACTS_DIR / id / "ui" / "index.html"
+        else:
+            raise HTTPException(status_code=404, detail=f"UI Prototype '{filename}' not found.")
     return FileResponse(file_path)
 
 @app.get("/api/projects/{id}/visuals")
