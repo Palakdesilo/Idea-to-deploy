@@ -17,7 +17,8 @@ class UIRenderer:
         }
 
     def render_project(self, project_id: str, wireframes: List[Dict[str, Any]], ui_design: Dict[str, Any]):
-        output_dir = Path(__file__).parent.parent / "data" / "artifacts" / project_id / "ui"
+        from .project_manager import ARTIFACTS_DIR
+        output_dir = ARTIFACTS_DIR / project_id / "ui"
         output_dir.mkdir(parents=True, exist_ok=True)
         
         tokens = ui_design.get("design_tokens", self.default_tokens)

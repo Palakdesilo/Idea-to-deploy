@@ -131,7 +131,8 @@ td { border-bottom: 1px solid var(--border-color); padding: 10px; }
 """
 
     def render_project(self, project_id: str, wireframes_json: List[Dict[str, Any]]):
-        output_dir = Path(__file__).parent.parent / "data" / "artifacts" / project_id / "wireframes"
+        from .project_manager import ARTIFACTS_DIR
+        output_dir = ARTIFACTS_DIR / project_id / "wireframes"
         output_dir.mkdir(parents=True, exist_ok=True)
         
         with open(output_dir / "style.css", "w", encoding="utf-8") as f:

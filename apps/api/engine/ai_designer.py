@@ -10,13 +10,13 @@ from .ai_prompts import VISUAL_PROMPT_PROMPT
 
 class AIDesigner:
     async def generate_visuals(self, project_id: str, description: str) -> List[Dict[str, Any]]:
-        from .project_manager import ProjectManager
+        from .project_manager import ProjectManager, ARTIFACTS_DIR
         pm = ProjectManager()
         llm = LLMService()
         visuals = []
         
         # 1. Load structured wireframes and UI designs from artifacts
-        artifacts_dir = Path(__file__).parent.parent / "data" / "artifacts" / project_id / "docs"
+        artifacts_dir = ARTIFACTS_DIR / project_id / "docs"
         wireframes_file = artifacts_dir / "wireframes.json"
         ui_design_file = artifacts_dir / "ui_design.json"
         

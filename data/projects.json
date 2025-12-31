@@ -120,6 +120,18 @@
     }
   },
   {
+    "id": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "name": "A student portfolio\n",
+    "description": "A student portfolio\n",
+    "createdAt": "2025-12-30T15:06:06.132181",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-30T15:06:44.165980"
+    }
+  },
+  {
     "id": "2cdc4683-a2d7-4ce7-8e24-d415fab6a9b4",
     "name": "Want a platform when I can sell my handmade things...",
     "description": "Want a platform when I can sell my handmade things...\n",
@@ -151,20 +163,44 @@
     "status": "DESIGNED",
     "metrics": {
       "progress": 0,
-      "currentPhase": "Initi  alization",
+      "currentPhase": "Initialization",
       "lastUpdated": "2025-12-30T18:21:31.822321"
     }
   },
   {
-    "id": "e1c22f76-e80a-40f6-aaed-61b051a998bf",
-    "name": "Create a portfolio website\n",
-    "description": "Create a portfolio website\n",
-    "createdAt": "2025-12-31T18:31:58.577650",
+    "id": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "name": "I want to create a platform where I can connect di...",
+    "description": "I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "createdAt": "2025-12-31T17:02:46.058922",
     "status": "COMPLETED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-31T18:32:09.182898"
+      "lastUpdated": "2025-12-31T17:02:50.787897"
+    }
+  },
+  {
+    "id": "2b64ecdd-a37a-4773-a207-521176a05b07",
+    "name": "CREATE A SOCIAL MEDIA PLATFORM\n",
+    "description": "CREATE A SOCIAL MEDIA PLATFORM\n",
+    "createdAt": "2025-12-31T17:51:13.950806",
+    "status": "FAILED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-31T17:51:18.814007"
+    }
+  },
+  {
+    "id": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "name": "CREATE A SOCIAL MEDIA PLATFORM\n",
+    "description": "CREATE A SOCIAL MEDIA PLATFORM\n",
+    "createdAt": "2025-12-31T17:52:41.949817",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2025-12-31T17:52:56.073660"
     }
   }
 ]

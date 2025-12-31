@@ -27,6 +27,11 @@ def find_data_dir():
     if (cwd / "data").exists():
         return cwd / "data"
     
+    # Check parent directories (project root)
+    # This helps when running from apps/api but data is in project root
+    if (cwd.parent.parent / "data").exists():
+        return cwd.parent.parent / "data"
+
     # Root check
     if (cwd / "apps" / "api" / "data").exists():
         return cwd / "apps" / "api" / "data"
@@ -161,6 +166,28 @@ class ProjectManager:
         if project_dir.exists():
             import shutil
             shutil.rmtree(project_dir)
+
+    async def read_generated_code(self, project_id: str) -> Optional[Any]:
+        code_dir = ARTIFACTS_DIR / project_id / "code"
+        if not code_dir.exists():
+            return None
+            
+        files = []
+        for file_path in code_dir.rglob('*'):
+            if file_path.is_file():
+                try:
+                     # Attempt to read as text, skip binary
+                     with open(file_path, 'r', encoding='utf-8') as f:
+                         content = f.read()
+                         rel_path = file_path.relative_to(code_dir).as_posix()
+                         files.append({
+                             "path": rel_path,
+                             "content": content
+                         })
+                except UnicodeDecodeError:
+                    pass # Skip binary files
+                    
+        return {"files": files}
 
     async def _save_projects(self, projects: List[Project]):
         with open(PROJECTS_FILE, 'w') as f:

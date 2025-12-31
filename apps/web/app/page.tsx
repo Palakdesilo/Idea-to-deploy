@@ -21,16 +21,24 @@ export default function Dashboard() {
     const router = useRouter();
     const checkApiStatus = async () => {
         try {
-            const res = await fetch(`${API_BASE_URL}/health`);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            const res = await fetch(`${API_BASE_URL}/health`, { signal: controller.signal });
+            clearTimeout(timeoutId);
             setApiStatus(res.ok ? 'online' : 'offline');
-        } catch {
+        } catch (err) {
+            console.error('Health check failed:', err);
             setApiStatus('offline');
         }
     };
 
     const fetchProjects = async () => {
         try {
-            const res = await fetch(`${API_BASE_URL}/api/projects`);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+            const res = await fetch(`${API_BASE_URL}/api/projects`, { signal: controller.signal });
+            clearTimeout(timeoutId);
+
             if (res.ok) {
                 const data = await res.json();
                 setProjects(data);
@@ -39,7 +47,7 @@ export default function Dashboard() {
                 setApiStatus('offline');
             }
         } catch (err) {
-            console.error(err);
+            console.error('Fetch projects failed:', err);
             setApiStatus('offline');
         } finally {
             setLoading(false);

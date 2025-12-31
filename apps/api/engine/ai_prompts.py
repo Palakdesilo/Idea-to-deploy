@@ -440,3 +440,254 @@ You are a Creative Director for a world-class design agency.
 
 **OUTPUT**: ONLY the prompt string. NO markdown, NO quotes.
 """
+
+PAGE_CODE_PROMPT = """
+You are an expert Senior Frontend Engineer.
+Your task is to Write a production-ready Next.js 14 Page component for a specific screen.
+
+**Project Context**: {idea}
+**Screen Name**: {screen_name}
+**Wireframe Definition**: 
+{wireframe}
+
+**Technical Stack**:
+- Framework: **Next.js 14** (App Router).
+- Styling: **Tailwind CSS** (Use utility classes heavily).
+- Icons: **lucide-react** (Import specific icons: `import {{ IconName }} from 'lucide-react'`).
+- Validation: **zod** (Define schemas for all forms).
+- Components: Build the UI inline using standard HTML/Tailwind.
+
+**Requirements**:
+1. **No Placeholders**: Do NOT use "lorem ipsum" or "TODO". Write real, persuasive copy tailored to {idea}.
+2. **Interactive Forms**: 
+   - Use `useState` for form fields.
+   - Use `zod` to validate inputs before submission.
+   - Show inline validation errors in red text.
+   - Show a loading spinner during submission (`isSubmitting` state).
+   - Show a success toast/message after submission.
+3. **API Integration**:
+   - Use `fetch` to call backend API at `http://localhost:8000/api/...`.
+   - Handle 400/422/500 errors gracefully by showing a red error alert.
+4. **Resilience**: 
+   - Ensure imports are valid. 
+   - Check if data exists before mapping (`data?.map(...)`).
+   - Add a 'Retry' button if data loading fails.
+5. **Layout**:
+   - Every page must have a proper Navbar (simplified) and Footer if public.
+   - Dashboard pages should assume a Sidebar is present or render a simple one.
+
+**Output Format**:
+Return ONLY the raw React code (TSX). 
+Do not wrap in markdown fenced blocks (```tsx). 
+Start directly with imports.
+"""
+
+COMPONENT_LIBRARY_PROMPT = """
+You are a Senior UI Engineer creating a reusable component library.
+
+**Project Context**: {idea}
+**Component Type**: {component_type}
+
+**Task**: Create a production-ready, reusable React component with TypeScript.
+
+**Requirements**:
+1. Use TypeScript with proper prop types
+2. Style with Tailwind CSS utility classes
+3. Include variants (primary, secondary, outline, etc.) where applicable
+4. Add proper accessibility attributes (aria-labels, roles)
+5. Include JSDoc comments for props
+6. Make it fully responsive
+
+**Component Types to Support**:
+- Button (with variants, sizes, loading states)
+- Card (with header, body, footer sections)
+- Input (text, email, password with validation states)
+- Modal (with backdrop, close button)
+- Table (with sorting, pagination)
+- Badge (status indicators)
+
+**Output Format**:
+Return ONLY the raw React component code (TSX).
+Do not wrap in markdown fenced blocks.
+Start directly with imports.
+"""
+
+FASTAPI_ROUTE_PROMPT = """
+You are a Senior Backend Engineer specializing in Python FastAPI.
+
+**Project Context**: {idea}
+**Screen**: {screen_name}
+**Entity Name**: {entity_name}
+**Actions**: {actions}
+**Data Fields**: {data_fields}
+
+**Task**: Generate a complete FastAPI router module for this entity with CRUD operations.
+
+**Technical Stack**:
+- Framework: FastAPI
+- ORM: SQLAlchemy
+- Validation: Pydantic
+- Auth: JWT tokens
+- Database: PostgreSQL
+
+**Requirements**:
+1. **Pydantic Schemas**: Define `Base`, `Create`, `Update`, and `Response` schemas.
+   - Using strict typing (str, int, float, bool, datetime).
+   - `Response` schema must include `id`, `created_at`, `updated_at`.
+2. **Error Handling**:
+   - Return 404 if item not found.
+   - Return 401/403 for unauthorized actions.
+   - Return 422 automatically via Pydantic.
+3. **Authentication**:
+   - Protect write operations (POST, PUT, DELETE) with `Depends(get_current_user)`.
+   - Read operations can be public if it makes sense for {entity_name}, otherwise protect them.
+4. **Database Safety**:
+   - Comment out the actual database session commit line (`# db.commit()`) and add a `# TODO: Uncomment when DB is configured` comment to prevent crashes if DB isn't running.
+   - Use `db.refresh(item)` after commit.
+5. **Structure**:
+   - Imports: `fastapi`, `sqlalchemy`, `pydantic`.
+   - Router definition.
+   - Schema definitions.
+   - Route handlers.
+
+**Output Format**:
+Return ONLY the raw Python code.
+Do not wrap in markdown fenced blocks.
+Start directly with imports.
+"""
+
+SQLALCHEMY_MODEL_PROMPT = """
+You are a Database Architect specializing in SQLAlchemy.
+
+**Project Context**: {idea}
+**UI Contracts**: {ui_contracts}
+
+**Task**: Generate SQLAlchemy models for all entities in this project.
+
+**Requirements**:
+1. **Completeness**: Create a model for every entity implied by this project (e.g., User, Product, Post, Order).
+2. **Relationships**: Define proper `ForeignKey` and `relationship`.
+3. **Optimized**: Add indexes for frequently queried fields.
+4. **Base**: Inherit from `database.Base`.
+5. **Types**: Use correct SQLAlchemy types (Integer, String, DateTime, Boolean, Text, JSON).
+6. **User Model**: MUST include `id`, `email`, `hashed_password`, `name`, `created_at`.
+
+**Example Output**:
+```python
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, Text
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+from database import Base
+
+class User(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True, index=True)
+    # ...
+```
+
+**Output Format**:
+Return ONLY the raw Python code.
+Do not wrap in markdown fenced blocks.
+Start directly with imports.
+"""
+
+AUTH_SETUP_PROMPT = """
+You are a Security Engineer specializing in FastAPI authentication.
+
+**Project Context**: {idea}
+
+**Task**: Generate a secure JWT authentication system.
+
+**Requirements**:
+1. **JWT Strategy**: Use `python-jose` to create access tokens (30 min exp) and refresh tokens (7 days exp).
+2. **Password Hashing**: Use `passlib` with `bcrypt` context.
+3. **Endpoints**:
+   - `POST /auth/register`: Create new user.
+   - `POST /auth/login`: Return access_token and refresh_token.
+   - `POST /auth/refresh`: Use refresh_token to get new access_token.
+   - `GET /auth/me`: Get current user profile.
+4. **Dependencies**:
+   - `get_db`: Yields database session.
+   - `get_current_user`: Validates token and returns User object.
+   - `get_current_active_user`: Ensures user is not suspended.
+
+**Output Format**:
+Return THREE separate code blocks labeled exactly:
+### auth.py
+### auth_routes.py
+### dependencies.py
+
+Do not wrap in markdown fenced blocks.
+"""
+
+PROJECT_CONFIG_PROMPT = """
+You are a DevOps Engineer setting up a full-stack project.
+
+**Project Context**: {idea}
+**Project Name**: {project_name}
+
+**Task**: Generate all configuration files for a production-ready project.
+
+**Files to Generate**:
+1. **Frontend (Next.js)**:
+   - package.json (with all dependencies)
+   - tsconfig.json
+   - next.config.js
+   - tailwind.config.js
+   - postcss.config.js
+   - .env.example
+
+2. **Backend (Python FastAPI)**:
+   - requirements.txt
+   - main.py (FastAPI app entry point)
+   - config.py (settings with pydantic)
+   - database.py (SQLAlchemy setup)
+   - .env.example
+
+3. **Deployment**:
+   - docker-compose.yml (frontend, backend, postgres)
+   - Dockerfile (for backend)
+   - Dockerfile.frontend (for frontend)
+   - .dockerignore
+   - .gitignore
+
+4. **Documentation**:
+   - README.md (comprehensive setup guide)
+   - API_DOCS.md (API endpoint documentation)
+
+**Output Format**:
+Return each file's content labeled with:
+### filename
+[content]
+
+Do not wrap in markdown fenced blocks.
+"""
+
+README_TEMPLATE_PROMPT = """
+You are a Technical Writer creating project documentation.
+
+**Project Context**: {idea}
+**Project Name**: {project_name}
+**Tech Stack**: Next.js 14, Python FastAPI, PostgreSQL, SQLAlchemy
+
+**Task**: Generate a comprehensive README.md file.
+
+**Sections to Include**:
+1. Project Title and Description
+2. Features (based on project idea)
+3. Tech Stack
+4. Prerequisites (Node.js, Python, PostgreSQL)
+5. Installation Steps (detailed, step-by-step)
+6. Environment Variables (.env setup)
+7. Running the Application (dev and production)
+8. API Documentation (link to /docs)
+9. Project Structure (directory tree)
+10. Contributing Guidelines
+11. License
+
+**Output Format**:
+Return ONLY the markdown content for README.md.
+Do not wrap in additional markdown fenced blocks.
+Use proper markdown formatting with headers, code blocks, lists.
+"""
+

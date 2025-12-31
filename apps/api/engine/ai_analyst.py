@@ -18,6 +18,7 @@ from .ai_prompts import (
     FIGMA_LAYOUT_PROMPT
 )
 from typing import Dict, List
+from .project_manager import ARTIFACTS_DIR
 
 class AIAnalyst:
     VERSION = "2.1.0-PY-DESIGN"
@@ -176,7 +177,7 @@ class AIAnalyst:
 
     def _save_design_artifacts(self, project_id: str, screen_inventory: str, ui_contracts: str, wireframes: str, ui_design: str, figma_layout: str = None, ui_ux: str = None):
         """Save design artifacts as separate JSON files"""
-        artifacts_dir = Path(__file__).parent.parent / "data" / "artifacts" / project_id / "docs"
+        artifacts_dir = ARTIFACTS_DIR / project_id / "docs"
         artifacts_dir.mkdir(parents=True, exist_ok=True)
         
         # Save UI_UX if provided

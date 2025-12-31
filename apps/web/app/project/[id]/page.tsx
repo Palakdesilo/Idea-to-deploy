@@ -124,6 +124,137 @@ export default function ProjectDashboard() {
     const [isEditing, setIsEditing] = useState(false);
     const [originalContent, setOriginalContent] = useState('');
 
+    // Preview State
+    const [previewStatus, setPreviewStatus] = useState<any>({ backend: 'stopped', frontend: 'stopped' });
+    const [previewLogs, setPreviewLogs] = useState<any>({ backend: '', frontend: '' });
+    const [activePreviewTab, setActivePreviewTab] = useState('backend');
+
+    const togglePreview = async (component: string) => {
+        const isRunning = previewStatus[component] === 'running';
+        try {
+            if (isRunning) {
+                await fetch(`${API_BASE_URL}/api/projects/${id}/preview/stop?component=${component}`, { method: 'POST' });
+                setPreviewStatus({ ...previewStatus, [component]: 'stopped' });
+            } else {
+                setPreviewLogs({ ...previewLogs, [component]: 'Installing dependencies & Starting server... This may take a few minutes.' });
+                // Optimistic update
+                setPreviewStatus({ ...previewStatus, [component]: 'starting' });
+
+                const res = await fetch(`${API_BASE_URL}/api/projects/${id}/preview/start?component=${component}`, { method: 'POST' });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.detail || 'Failed to start');
+                }
+
+                setPreviewStatus({ ...previewStatus, [component]: 'running', [`${component}Port`]: data.port });
+            }
+        } catch (e: any) {
+            console.error(e);
+            setPreviewStatus({ ...previewStatus, [component]: 'error' });
+            setPreviewLogs({ ...previewLogs, [component]: e.message || 'Failed to start. Check server logs.' });
+        }
+    };
+
+    const fetchLogs = async () => {
+        if (currentView !== 'Preview') return;
+        try {
+            // Check Backend
+            if (previewStatus.backend !== 'stopped') {
+                const res = await fetch(`${API_BASE_URL}/api/projects/${id}/preview/logs?component=backend`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setPreviewLogs((prev: any) => ({ ...prev, backend: data.logs }));
+                    if (data.status !== previewStatus.backend && previewStatus.backend !== 'starting') {
+                        setPreviewStatus((prev: any) => ({ ...prev, backend: data.status }));
+                    }
+                }
+            }
+            // Check Frontend
+            if (previewStatus.frontend !== 'stopped') {
+                const res = await fetch(`${API_BASE_URL}/api/projects/${id}/preview/logs?component=frontend`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setPreviewLogs((prev: any) => ({ ...prev, frontend: data.logs }));
+                    if (data.status !== previewStatus.frontend && previewStatus.frontend !== 'starting') {
+                        setPreviewStatus((prev: any) => ({ ...prev, frontend: data.status }));
+                    }
+                }
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    useEffect(() => {
+        if (currentView === 'Preview') {
+            const interval = setInterval(fetchLogs, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [currentView, previewStatus]);
+
+    const attemptFix = async (component: string) => {
+        const log = previewLogs[component];
+        if (!log) {
+            alert("No logs found to analyze.");
+            return;
+        }
+
+        // Intelligent log parsing
+        let filePath = '';
+
+        if (component === 'backend') {
+            // Python Traceback: File "path/to/file.py", line 10
+            const match = log.match(/File "([^"]+)"/);
+            filePath = match ? match[1] : 'backend/main.py';
+        } else {
+            // Frontend/Next.js Error Patterns
+            // 1. Absolute path in syntax error: D:\...\frontend\app\globals.css
+            // 2. Relative path: ./app/page.tsx
+            const match = log.match(/(?:[a-zA-Z]:\\|[\\\/]).*?frontend[\\\/](.*?)(?:\s|$|:)/) ||
+                log.match(/(\.\/app\/.*?\.(?:tsx|ts|js|jsx|css))/);
+
+            if (match) {
+                // If we matched the relative part inside frontend (Group 1 of first regex)
+                // or the relative path (Group 1 of second regex)
+                filePath = match[1].replace(/\\/g, '/');
+
+                // Remove trailing :line:col if present (regex should handle, but extra safety)
+                filePath = filePath.split(':')[0];
+
+                // Normalize relative path
+                if (filePath.startsWith('./')) filePath = filePath.substring(2);
+                if (!filePath.startsWith('frontend/')) filePath = `frontend/${filePath}`;
+            } else {
+                filePath = 'frontend/app/page.tsx'; // Fallback
+            }
+        }
+
+        const displayPath = filePath.split(/[\\/]/).pop();
+
+        const confirmFix = confirm(`AI detected an error in ${displayPath} (${filePath}).\n\nAttempt to auto-fix this file?`);
+        if (!confirmFix) return;
+
+        try {
+            // Pass the raw log and the calculated path
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/preview/fix?error_log=${encodeURIComponent(log)}&file_path=${encodeURIComponent(filePath)}`, { method: 'POST' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.action === 'restarted') {
+                    alert(`Fix applied to ${data.file}! Server automatically restarted.`);
+                } else {
+                    alert(`Fix applied to ${data.file}! You may need to manually restart the server.`);
+                }
+            } else {
+                const err = await res.json();
+                alert(`Failed to apply fix: ${err.detail}`);
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Fix failed due to network error.');
+        }
+    };
+
     // Reset editing state when switching files
     useEffect(() => {
         setIsEditing(false);
@@ -181,16 +312,8 @@ export default function ProjectDashboard() {
     ];
 
     const downloadZip = async () => {
-        if (!buildResult) return;
-
         try {
-            const zip = new JSZip();
-            buildResult.files.forEach((file: any) => {
-                zip.file(file.path, file.content);
-            });
-
-            const content = await zip.generateAsync({ type: "blob" });
-            saveAs(content, `${project.name.replace(/\s+/g, '-').toLowerCase().slice(0, 30)}.zip`);
+            window.open(`${API_BASE_URL}/api/projects/${id}/code/download`, '_blank');
         } catch (error) {
             console.error('Download failed', error);
             alert('Download failed. Check console.');
@@ -326,18 +449,31 @@ export default function ProjectDashboard() {
     const runBuild = async () => {
         setCoding(true);
         try {
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/build`, { method: 'POST' });
-            if (res.ok) {
-                const data = await res.json();
-                setBuildResult(data);
-                if (data.files && data.files.length > 0) {
-                    setSelectedFile(data.files[0]);
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/generate-code`, { method: 'POST' });
+            if (!res.ok) throw new Error('Failed to start generation');
+
+            // Poll for status
+            const pollInterval = setInterval(async () => {
+                const projectRes = await fetch(`${API_BASE_URL}/api/projects/${id}`);
+                if (projectRes.ok) {
+                    const projectData = await projectRes.json();
+                    setProject(projectData);
+
+                    if (projectData.status === 'COMPLETED' || projectData.status === 'FAILED') {
+                        clearInterval(pollInterval);
+                        setCoding(false);
+                        await fetchProject();
+                        await fetchBuild();
+
+                        if (projectData.status === 'FAILED') {
+                            alert('Code generation failed. Please try again.');
+                        }
+                    }
                 }
-                await fetchProject();
-            }
+            }, 3000);
+
         } catch (e) {
             console.error(e);
-        } finally {
             setCoding(false);
         }
     };
@@ -565,6 +701,7 @@ export default function ProjectDashboard() {
                     {[
                         { id: 'Pipeline', label: 'Development Pipeline', icon: Activity },
                         { id: 'Results', label: 'Output Assets', icon: Box, hidden: !isCompleted && docs.length === 0 },
+                        { id: 'Preview', label: 'Live Preview', icon: Eye, hidden: !isCompleted },
                     ].filter(tab => !tab.hidden).map((tab) => (
                         <button
                             key={tab.id}
@@ -584,6 +721,131 @@ export default function ProjectDashboard() {
                 </div>
 
                 <AnimatePresence mode="wait">
+                    {currentView === 'Preview' && (
+                        <motion.div
+                            key="preview"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                            className="max-w-7xl mx-auto"
+                        >
+                            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                                {/* Controls */}
+                                <div className="lg:col-span-1 space-y-6">
+                                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                                        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                                            <Server className="w-5 h-5 text-blue-400" />
+                                            Servers
+                                        </h3>
+
+                                        {/* Backend Control */}
+                                        <div className="mb-6">
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-sm font-semibold text-slate-300">Backend API</span>
+                                                <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${previewStatus.backend === 'running' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-500'}`}>
+                                                    {previewStatus.backend}
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() => togglePreview('backend')}
+                                                disabled={previewStatus.backend === 'starting'}
+                                                className={`w-full py-2 rounded-lg text-sm font-bold transition-all ${previewStatus.backend === 'running'
+                                                    ? 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/20'
+                                                    : 'bg-emerald-600 text-white hover:bg-emerald-500 shadow-lg shadow-emerald-500/20'
+                                                    }`}
+                                            >
+                                                {previewStatus.backend === 'running' ? 'Stop Server' : previewStatus.backend === 'starting' ? 'Starting...' : 'Start Server'}
+                                            </button>
+                                        </div>
+
+                                        {/* Frontend Control */}
+                                        <div>
+                                            <div className="flex items-center justify-between mb-2">
+                                                <span className="text-sm font-semibold text-slate-300">Frontend App</span>
+                                                <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full ${previewStatus.frontend === 'running' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-500'}`}>
+                                                    {previewStatus.frontend}
+                                                </span>
+                                            </div>
+                                            <button
+                                                onClick={() => togglePreview('frontend')}
+                                                disabled={previewStatus.frontend === 'starting'}
+                                                className={`w-full py-2 rounded-lg text-sm font-bold transition-all ${previewStatus.frontend === 'running'
+                                                    ? 'bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/20'
+                                                    : 'bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-500/20'
+                                                    }`}
+                                            >
+                                                {previewStatus.frontend === 'running' ? 'Stop Server' : previewStatus.frontend === 'starting' ? 'Starting...' : 'Start App'}
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                                        <h3 className="text-sm font-bold mb-4 text-slate-400 uppercase tracking-wider">Troubleshooting</h3>
+                                        <button
+                                            onClick={() => attemptFix(activePreviewTab)}
+                                            className="w-full py-3 bg-purple-600/10 border border-purple-500/20 text-purple-400 hover:bg-purple-600/20 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all"
+                                        >
+                                            <ShieldCheck className="w-4 h-4" />
+                                            Auto-Fix Error
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Terminal / Preview Area */}
+                                <div className="lg:col-span-3 h-[600px] flex flex-col bg-[#0f172a] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                                    <div className="flex items-center border-b border-slate-800 bg-slate-900/50 px-4">
+                                        <button
+                                            onClick={() => setActivePreviewTab('backend')}
+                                            className={`px-6 py-4 text-sm font-bold border-b-2 transition-colors ${activePreviewTab === 'backend' ? 'border-emerald-500 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
+                                        >
+                                            Backend Logs
+                                        </button>
+                                        <button
+                                            onClick={() => setActivePreviewTab('frontend')}
+                                            className={`px-6 py-4 text-sm font-bold border-b-2 transition-colors ${activePreviewTab === 'frontend' ? 'border-blue-500 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
+                                        >
+                                            Frontend Logs
+                                        </button>
+                                        <button
+                                            onClick={() => setActivePreviewTab('browser')}
+                                            className={`px-6 py-4 text-sm font-bold border-b-2 transition-colors ${activePreviewTab === 'browser' ? 'border-purple-500 text-white' : 'border-transparent text-slate-500 hover:text-slate-300'}`}
+                                        >
+                                            Live Browser
+                                        </button>
+                                    </div>
+
+                                    <div className="flex-1 overflow-auto bg-[#0a0f1c] p-6 font-mono text-xs md:text-sm">
+                                        {activePreviewTab === 'browser' ? (
+                                            previewStatus.frontend === 'running' ? (
+                                                <div className="w-full h-full flex items-center justify-center flex-col gap-4">
+                                                    <p className="text-slate-400">Application running on port {previewStatus.frontendPort || 3000}</p>
+                                                    <a
+                                                        href={`http://localhost:${previewStatus.frontendPort || 3000}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-500/20 flex items-center gap-2"
+                                                    >
+                                                        <Eye className="w-4 h-4" />
+                                                        Open in New Tab
+                                                    </a>
+                                                </div>
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-slate-500">
+                                                    Start the Frontend server to view the app
+                                                </div>
+                                            )
+                                        ) : (
+                                            <div className="whitespace-pre-wrap text-slate-300 leading-relaxed">
+                                                {previewLogs[activePreviewTab] || "No logs yet. Start the server to see output."}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+
                     {currentView === 'Pipeline' ? (
                         <motion.div
                             key="pipeline"

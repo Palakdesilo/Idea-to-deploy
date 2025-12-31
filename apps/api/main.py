@@ -1,7 +1,7 @@
 import logging
 import sys
 import os
-from fastapi import FastAPI, HTTPException, Request, Response, Depends
+from fastapi import FastAPI, HTTPException, Request, Response, Depends, BackgroundTasks
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
@@ -15,6 +15,7 @@ from engine.project_manager import ProjectManager, ARTIFACTS_DIR
 from engine.ai_analyst import AIAnalyst
 from engine.ai_designer import AIDesigner
 from engine.ai_builder import AIBuilder
+from engine.ai_coder import AICoder
 
 # Configure Logging
 logging.basicConfig(level=logging.INFO)
@@ -45,6 +46,100 @@ project_manager = ProjectManager()
 ai_analyst = AIAnalyst()
 ai_designer = AIDesigner()
 ai_builder = AIBuilder()
+from engine.project_runner import ProjectRunner
+
+ai_coder = AICoder()
+project_runner = ProjectRunner(ARTIFACTS_DIR)
+
+# ... (keep existing endpoints) ...
+
+@app.post("/api/projects/{id}/preview/start")
+async def start_preview(id: str, component: str = "backend"):
+    """Start the preview server for backend or frontend"""
+    # 1. Install Dependencies first
+    success, msg = await project_runner.install_dependencies(id, component)
+    if not success:
+        raise HTTPException(status_code=500, detail=msg)
+    
+    # 2. Assign Port (Simple logic: Backend 8000+ID_HASH, Frontend 3000+ID_HASH)
+    # For now, let's use fixed ports for single user mode, or random
+    import random
+    port = 8000 if component == "backend" else 3000
+    # Add offset to avoid conflict with main app
+    port += random.randint(1, 100)
+    
+    # 3. Start Server
+    success, msg = await project_runner.start_server(id, component, port)
+    if not success:
+        raise HTTPException(status_code=500, detail=msg)
+        
+    return {"status": "running", "port": port, "message": msg}
+
+@app.post("/api/projects/{id}/preview/stop")
+async def stop_preview(id: str, component: str):
+    await project_runner.stop_server(id, component)
+    return {"status": "stopped"}
+
+@app.get("/api/projects/{id}/preview/logs")
+async def get_preview_logs(id: str, component: str):
+    logs = await project_runner.get_logs(id, component)
+    status = await project_runner.check_health(id, component)
+    return {"status": status, "logs": logs}
+
+@app.post("/api/projects/{id}/preview/fix")
+async def fix_preview_error(id: str, error_log: str, file_path: str):
+    """Auto-fix code based on error log"""
+    # Fix: Strip ANSI escape codes that might be present in the path if captured from terminal output
+    import re
+    file_path = re.sub(r'\x1b\[[0-9;]*[mK]', '', file_path).strip()
+    
+    # Read file content
+    project = await project_manager.get_project(id)
+    code_dir = ARTIFACTS_DIR / id / "code"
+    full_path = code_dir / file_path
+    
+    if not full_path.exists():
+        logger.error(f"Fix Error: File not found at {full_path}")
+        raise HTTPException(status_code=404, detail=f"File not found at: {full_path}")
+        
+    with open(full_path, "r", encoding="utf-8") as f:
+        current_code = f.read()
+        
+    # Generate fix using LLM
+    prompt = f"""
+    The following code has an error when running.
+    
+    FILE: {file_path}
+    CODE:
+    {current_code}
+    
+    ERROR LOG:
+    {error_log}
+    
+    TASK: Fix the code to resolve the error. Return ONLY the fixed code.
+    IMPORTANT: Do NOT output any conversational text, headers, or markdown formatting. Output pure code only. Do not start with # FIX_ERROR.
+    """
+    
+    fixed_code = await ai_coder.llm.generate_content("FIX_ERROR", {}, prompt)
+    fixed_code = ai_coder._clean_code(fixed_code)
+    
+    # Save fix
+    # Save fix
+    with open(full_path, "w", encoding="utf-8") as f:
+        f.write(fixed_code)
+        
+    # Attempt to restart the server if it was running
+    component = "backend" if "backend" in file_path else "frontend"
+    server_key = f"{id}_{component}"
+    existing_port = project_runner.ports.get(server_key)
+    
+    restart_status = "saved"
+    if existing_port:
+        await project_runner.start_server(id, component, existing_port)
+        restart_status = "restarted"
+        
+    return {"status": "fixed", "file": file_path, "action": restart_status}
+
 
 class IdeaRequest(BaseModel):
     idea: str
@@ -179,14 +274,15 @@ async def build_project(id: str):
 
 @app.get("/api/projects/{id}/build")
 async def get_project_build(id: str):
+    # Try to read generated code from disk first (AICoder output)
+    build_result = await project_manager.read_generated_code(id)
+    
+    if build_result:
+        return build_result
+
+    # Fallback to stored build.json (Old AIBuilder output)
     build_result = await project_manager.get_build_result(id)
     
-    if not build_result:
-        project = await project_manager.get_project(id)
-        if project and project.status == "COMPLETED":
-            build_result = await ai_builder.build_project(id, project.description)
-            await project_manager.save_build_result(id, build_result)
-            
     return build_result
 
 class UpdateFileRequest(BaseModel):
@@ -197,6 +293,45 @@ class UpdateFileRequest(BaseModel):
 async def update_project_file(id: str, request: UpdateFileRequest):
     await project_manager.update_file_content(id, request.path, request.content)
     return {"success": True}
+
+# Code Generation Endpoints
+
+@app.post("/api/projects/{id}/generate-code")
+async def generate_code(id: str, background_tasks: BackgroundTasks):
+    project = await project_manager.get_project(id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    await project_manager.update_project_status(id, "CODING")
+    
+    async def generate_task(project_id, project_name, description):
+        try:
+            logger.info(f"Starting code generation for {project_id}")
+            await ai_coder.generate_full_stack_app(project_id, project_name, description)
+            await project_manager.update_project_status(project_id, "COMPLETED")
+            logger.info(f"Code generation completed for {project_id}")
+        except Exception as e:
+            logger.error(f"Code generation failed: {e}")
+            await project_manager.update_project_status(project_id, "FAILED")
+
+    background_tasks.add_task(generate_task, id, project.name, project.description)
+    
+    return {"message": "Code generation started", "status": "CODING"}
+
+@app.get("/api/projects/{id}/code/download")
+async def download_code(id: str):
+    project = await project_manager.get_project(id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+        
+    project_name = project.name
+    zip_filename = f"{project_name.lower().replace(' ', '-')}-generated.zip"
+    zip_path = ARTIFACTS_DIR / id / zip_filename
+    
+    if not zip_path.exists():
+         raise HTTPException(status_code=404, detail="Code package not found. Please generate code first.")
+         
+    return FileResponse(zip_path, media_type='application/zip', filename=zip_filename)
 
 if __name__ == "__main__":
     import uvicorn
