@@ -1,5 +1,5 @@
 CANONICAL_JSON_PROMPT = """
-You are a Product Strategy Expert. 
+You are a Product Strategy Expert and Venture Architect. 
 Your task is to transform a high-level project idea into a **Structured Canonical JSON Object**.
 This JSON will serve as the single source of truth for all downstream documentation.
 
@@ -8,36 +8,37 @@ This JSON will serve as the single source of truth for all downstream documentat
 **CRITICAL RULES:**
 1.  **Output MUST be ONLY valid JSON**. No markdown formatting, no preamble.
 2.  **Schema Consistency**: You must adhere to the structure below.
-3.  **Expansion**: Expand the idea realistically. If an idea is "A gym app", define user roles (Trainer, Member), core features (Workout logging, etc.), and risks.
-4.  **Conservative Scope**: Do not over-engineer. Focus on core MVP requirements.
+3.  **Expansion**: Deeply expand the idea. If it's a "Gym App", think about specific niches (e.g., CrossFit management, Yoga wellness, or Personal Training CRM). 
+4.  **No Generic Roles**: Use domain-specific roles. Instead of "User", use "Patient", "Athlete", "Collector", etc.
+5.  **Unique Value Proposition**: Define 3-5 unique features that differentiate this from standard templates.
 
 **REQUIRED JSON SCHEMA:**
 {{
   "project_overview": {{
-    "summary": "Detailed 2-3 sentence overview",
-    "problem_statement": "The specific problem this solves",
-    "objectives": ["Goal 1", "Goal 2", "Goal 3"]
+    "summary": "Detailed 2-3 sentence overview with a unique angle",
+    "problem_statement": "The specific bottleneck or friction point this solves",
+    "objectives": ["Unique Goal 1", "Unique Goal 2", "Unique Goal 3"]
   }},
   "users": {{
-    "target_users": ["User Type A", "User Type B"],
-    "user_roles": ["Admin", "Standard User", "etc."]
+    "target_users": ["Niche User Type A", "Niche User Type B"],
+    "user_roles": ["Domain Role 1", "Domain Role 2", "Secondary Role"]
   }},
   "scope": {{
-    "in_scope": ["Feature A", "Feature B", "Module C"],
-    "out_of_scope": ["Feature X", "Future expansion Y"]
+    "in_scope": ["Feature A (Unique)", "Feature B (Core)", "Module C (Integration)"],
+    "out_of_scope": ["Generic Feature X", "Future expansion Y"]
   }},
   "features": {{
-    "must_have": ["Core Feature 1", "Core Feature 2"],
+    "must_have": ["Niche-Specific Core 1", "Niche-Specific Core 2"],
     "nice_to_have": ["Extra 1", "Extra 2"]
   }},
   "constraints": {{
     "time": "e.g., 12 weeks",
     "budget": "e.g., Enterprise standard",
-    "technical": "e.g., Cloud-native",
-    "regulatory": "e.g., GDPR"
+    "technical": "e.g., Edge computing, AI-integrated",
+    "regulatory": "e.g., HIPAA, GDPR"
   }},
   "assumptions": ["Assumption 1", "Assumption 2"],
-  "risks": ["Risk 1", "Risk 2"],
+  "risks": ["Domain-specific Risk 1", "Risk 2"],
   "success_metrics": ["Metric 1", "Metric 2"],
   "scalability_expectations": "e.g., Support 10k concurrent users"
 }}
@@ -222,94 +223,92 @@ Create a **Detailed UI/UX Design Specification** in STRICT JSON format.
 """
 
 SCREEN_INVENTORY_PROMPT = """
-You are a UI/UX Strategist. 
-Analyze the original Project Idea and the generated documentation bundle to identify a UNIQUE screen inventory. 
+You are a Senior Product Designer & UI/UX Architect. 
+Analyze the Project Idea and the generated documentation to identify a PROJECT-WISE DIFFERENT screen inventory.
 
 **Project Idea**: {idea}
 
 **Input Documentation Bundle**:
 {bundle}
 
-**Task**: Generate a comprehensive list of screens tailored specifically to this project's requirements. 
-Do NOT just provide "Dashboard" or "Settings" if they aren't relevant. 
-Focus on the specific workflows defined in the Functional Requirements (REQ-XXX) and Use Cases.
+**STRICT GENERATION RULES:**
+1. **NO GENERIC SCREENS**: Do NOT use default names like "Dashboard", "Settings", or "Home Feed" unless they are logically the only option for this specific idea.
+2. **DOMAIN-FIRST NAMING**: If the project is for medical use, screens should be named like "Patient Wellness Prism", "Clinical Record Vault", etc.
+3. **ONLY NECESSARY SCREENS**: Explicitly decide which screens are required for THIS project. Avoid bloat.
+4. **UNIQUE WORKFLOWS**: Focus on screens that solve the specific workflows defined in the Functional Requirements.
+5. **USER ROLES**: Ensure screens are mapped to the specific roles (e.g., "Athlete Perspective", "Coach Command Center").
 
-Include:
-- Public pages specific to the business niche
-- Specific User features and workflows
-- Relevant Admin/Backoffice screens for this specific data
-- Edge cases relevant to this project
+**Include**:
+- Custom landing experiences (not a generic landing page)
+- Core feature screens that are unique to this business model
+- Specific management/admin screens derived from the data model
 
 **Output Format**: STRICT JSON ONLY.
 {{
   "screen_inventory": [
     {{
-      "name": "Screen Name",
-      "category": "Auth / User / Admin / Public / etc.",
-      "description": "How this screen solves a specific project objective"
+      "name": "Unique Screen Name",
+      "category": "Role-Specific Category",
+      "description": "The specific business value this screen provides",
+      "route": "/url-safe-path"
     }}
   ]
 }}
 """
 
 UI_CONTRACTS_PROMPT = """
-You are a UI/UX Architect. 
-Convert the Screen Inventory into detailed UI contracts.
+You are a UI/UX Architect & Full-Stack Engineer.
+Define dynamic UI Contracts for each discovered screen.
 
 **Project Idea**: {idea}
 **Screen Inventory**: {screen_inventory}
 
-**Task**: For EACH screen, define exactly what data and actions it needs based on the Project Idea.
-Avoid generic "Action 1". Use real actions like "Upload Medical Report" or "Compare Subscription Plans" as appropriate for the project.
+**TASK**: Map data and actions to screens using STRICTLY IDEA-BASED logic.
+Avoid generic "Action 1 / Action 2". Use real, domain-specific actions related to the idea.
+
+**REQUIRED DATA & ACTIONS:**
+- For a Marketplace: "Escrow Request", "Verify Seller Identity", "Dynamic Price Negotiation".
+- For a SaaS: "Sync Cloud Workspace", "Generate AI Insight", "Export Audit Trail".
+- For a Social App: "Ripple Content", "Connect via Prism", "Burn Notification".
 
 **REQUIRED JSON SCHEMA:**
 {{
   "ui_contracts": [
     {{
       "screen": "Screen Name",
-      "role": "User Role",
-      "purpose": "Specific project goal this screen fulfills",
-      "actions": ["Project-specific Action A", "Project-specific Action B"],
-      "components": ["Component Key 1", "Component Key 2"],
-      "data": ["Data Field 1", "Data Field 2"],
-      "states": ["Default", "Error", "Specific State X"],
-      "navigation": ["Target Screen Key"]
+      "role": "Specific Domain Role",
+      "purpose": "What makes this screen vital to the project",
+      "actions": ["Real Project Action A", "Real Project Action B"],
+      "components": ["Contextual Component 1", "Contextual Component 2"],
+      "data": ["Domain Data A", "Domain Data B"],
+      "states": ["Active", "Empty (Niche Desc)", "Error (Niche Desc)"],
+      "navigation": ["Target Screen Name"]
     }}
   ]
 }}
 """
 
 WIREFRAMES_PROMPT = """
-You are a Principal UI/UX Architect designing a world-class digital product. 
-
-**REFERENCE AESTHETIC**: Think of premium sites like "STOREFRONT" or modern Apple-style landing pages. 
-- High density of content.
-- Diverse layouts (Grids, Split Sections, Carousels).
-- Professional, persuasive copywriting.
+You are a Lead UI/UX Architect creating a high-fidelity full-stack web application.
+Do NOT reuse any generic layouts. 
 
 **Project Idea**: {idea}
 **UI Contracts**: {ui_contracts}
 
-**STRICT PAGE DENSITY & LAYOUT RULES:**
-1. **FULL PAGE ARCHITECTURE**: Every screen MUST have a `Header`, `Main`, and `Footer`.
-2. **COMPONENT DENSITY**: A screen must have 6-10 components. 
-3. **LAYOUT DIVERSITY**: 
-   - Use `SplitSection` for Hero or feature highlights (Image left/right, Text other side).
-   - Use `ProductGrid` or `FeatureGrid` for browsing.
-   - Use `TestimonialGrid` for social proof.
-   - Use `Newsletter` for engagement.
-4. **NO PLACEHOLDERS**: Every `content` field must be 40-80 words of niche-specific, persuasive copy.
-5. **DYNAMIC NAVIGATION**: Use the `Link` component in Header/Footer to create a real website feel.
+**TASK**: Generate unique wireframe layouts in JSON format.
+Each project must have a different number of screens, different naming, and different layouts depending on the idea.
 
-**COMPONENT SCHEMA:**
-- `key`: UNIQUE string
-- `type`: `Hero | SplitSection | ProductGrid | FeatureGrid | TestimonialGrid | Newsletter | StatGrid | Table | PostCard | AuthCard | Card | Banner`
-- `label`: Component Title
-- `content`: Stringified JSON or long-form copy.
-  - For `ProductGrid`: JSON array `[{"name": "...", "price": "$...", "image_desc": "..."}]`
-  - For `TestimonialGrid`: JSON array `[{"user": "...", "rating": 5, "quote": "..."}]`
-  - For `StatGrid`: JSON array `[{"label": "...", "value": "..."}]`
-- `subtext`: Metadata or CTA label.
+**LAYOUT OPTIONS (Choose for variety):**
+- `fullPage`: Massive immersive experience.
+- `splitVisual`: Concentrated action on one side, visual context on the other.
+- `dashboardShell`: Sidebar-driven tool with complex grid system.
+- `centeredFlow`: Minimalist focused task execution.
+- `masonryGrid`: Dynamic content discovery.
+
+**VARYING COMPONENT DENSITY:**
+- Public pages: High visual density, 8-12 sections.
+- Tool pages: High operational density, 3-column layouts.
+- Modal/Overlay: Focus layouts.
 
 **JSON OUTPUT FORMAT:**
 {{
@@ -317,11 +316,20 @@ You are a Principal UI/UX Architect designing a world-class digital product.
     {{
       "screen": "Screen Name",
       "screenKey": "camelCase",
-      "purpose": "Detailed UX goal",
+      "layoutType": "fullPage | splitVisual | dashboardShell | centeredFlow | masonry",
+      "purpose": "Project-specific goal",
       "layout": [
         {{
-          "section": "Header | Main | Footer",
-          "components": [...]
+          "section": "Header | Sidebar | Main | Footer | Overlay",
+          "components": [
+            {{
+              "key": "UniqueComponentKey",
+              "type": "Hero | FeatureGrid | Stats | ActionCard | Feed | ProfileHeader | ...",
+              "label": "Domain Title",
+              "content": "Rich, persuasive copy of 50-80 words or detailed data JSON",
+              "subtext": "Niche-specific metadata"
+            }}
+          ]
         }}
       ]
     }}
@@ -330,56 +338,30 @@ You are a Principal UI/UX Architect designing a world-class digital product.
 """
 
 UI_DESIGN_PROMPT = """
-You are a Senior UI/UX Designer converting wireframes into niche-perfect Visual Interfaces.
+You are a Premium UI Designer specialized in Gemini-style aesthetics.
+Create a modern, premium visual UI for the project.
 
 **Project Idea**: {idea}
 **Wireframes**: {wireframes}
 **UI Contracts**: {ui_contracts}
 
-**THEMATIC STYLE GUIDE**:
-Select the most appropriate archetype based on the project idea:
-1. **E-COMMERCE**: Palette: Crisp White, Bold Black (#1a1a1a), and a vibrant CTA color (e.g., #E44D26 or #00a8e8). Style: Clean product cards, sharp shadows, prominent pricing.
-2. **FINANCE/BANKING**: Palette: Deep Navy (#0d1117), Slate Grey, and Emerald Green (#10b981) for values. Style: Professional, ultra-clean borders, condensed typography for data.
-3. **SOCIAL/COMMUNITY**: Palette: Soft Grey backgrounds, Vibrant Blue (#1da1f2) or Purple (#6366f1) accents. Style: Rounded avatars, high-contrast like/comment buttons, fluid spacing.
-4. **HEALTH/WELLNESS**: Palette: Soft Mint (#f0fff4) or Sky Blue, with Charcoal text. Style: Large whitespace, rounded corners (12px+), calming soft shadows.
-5. **SAAS/DASHBOARD**: Palette: Neutral Grey, White, and a strong Indigo (#4f46e5) brand color. Style: Glassmorphism touches, subtle border-bottoms, clear hierarchy.
-
-**Task**: Apply these thematic design tokens to create a complete UI design specification.
-
-**CRITICAL RULES:**
-1. Output MUST be ONLY valid JSON.
-2. Apply the specific archetype colors to `design_tokens`.
-3. Fill `component_styles` with detailed CSS properties (box-shadow, border-radius, font-weight).
-4. Match every screen in `wireframes` to a screen in the `screens` array.
+**DESIGN ARCHITECTURE:**
+1. **Color Selection**: Do NOT use plain red/blue. Use curated HSL palettes. (e.g., Deep Slate, Neon Indigo, Glassmorphic White).
+2. **Typography**: Use modern Google Fonts (Inter, Outfit, Roboto).
+3. **Layout Polish**: Define exact spacing tokens (8px, 16px, 24px, 48px).
+4. **Premium Touches**: Add rules for hover states, scale transitions, and subtle borders.
 
 **REQUIRED JSON SCHEMA:**
 {{
   "design_tokens": {{
-    "colors": {{
-      "primary": "Hex code based on archetype",
-      "background": "#f8f9fa",
-      "card_bg": "#ffffff",
-      "text_main": "#1a1a1a",
-      "accent": "Hex code"
-    }},
-    "typography": {{
-       "font_family": "Inter, sans-serif",
-       "heading_size": "24px",
-       "body_size": "14px"
-    }},
-    "spacing": {{ "padding": "24px", "gap": "16px" }},
-    "radius": {{ "large": "12px", "medium": "8px", "small": "4px" }},
-    "shadows": {{ "soft": "0 4px 12px rgba(0,0,0,0.05)", "card": "0 1px 3px rgba(0,0,0,0.1)" }}
-  }},
-  "component_styles": {{
-    "Button": {{ "bg": "var(--primary)", "text": "#ffffff", "radius": "var(--radius-medium)" }},
-    "Card": {{ "bg": "var(--card-bg)", "shadow": "var(--shadow-card)", "radius": "var(--radius-large)" }},
-    "Input": {{ "border": "#e0e0e0", "focus": "var(--primary)" }}
+    "palette": {{ "background": "HSL HEX", "surface": "HSL HEX", "primary": "HSL HEX", "accent": "HSL HEX" }},
+    "typography": {{ "heading": "Font Name", "body": "Font Name", "scale": "Modern Value" }},
+    "effects": {{ "radius": "16px", "blur": "12px", "shadow": "Premium Soft Shadow" }}
   }},
   "screens": [
     {{
       "screen": "Screen Name",
-      "theme_override": "Special styling note for this screen"
+      "visual_spec": "Detailed description of the visual vibe and unique animation/transition for this screen"
     }}
   ]
 }}
@@ -442,44 +424,29 @@ You are a Creative Director for a world-class design agency.
 """
 
 PAGE_CODE_PROMPT = """
-You are an expert Senior Frontend Engineer.
-Your task is to Write a production-ready Next.js 14 Page component for a specific screen.
+You are an expert Senior Full-Stack Engineer and UI/UX Architect.
+Your task is to write a production-ready Next.js 14 Page component that is UNIQUE and PREMIUM.
 
 **Project Context**: {idea}
 **Screen Name**: {screen_name}
 **Wireframe Definition**: 
 {wireframe}
 
-**Technical Stack**:
-- Framework: **Next.js 14** (App Router).
-- Styling: **Tailwind CSS** (Use utility classes heavily).
-- Icons: **lucide-react** (Import specific icons: `import {{ IconName }} from 'lucide-react'`).
-- Validation: **zod** (Define schemas for all forms).
-- Components: Build the UI inline using standard HTML/Tailwind.
+**STRICT CODE RULES:**
+1. **NO GENERIC LAYOUTS**: Use the `layoutType` in the wireframe to drive the structure. If it's `splitVisual`, use a 2-column flex/grid.
+2. **RICH AESTHETICS**: Use Tailwind for glassmorphism, gradients, and subtle animations (framer-motion if needed).
+3. **DO NOT REUSE TEMPLATES**: Every page must feel custom-built for {idea}.
+4. **DOMAIN-SPECIFIC COPY**: Write 50-100 words of real, persuasive text. Avoid "Lorem Ipsum".
+5. **INTERACTIVE ELEMENTS**: Include real form validation with `zod`, loading states, and domain-specific icons from `lucide-react`.
 
-**Requirements**:
-1. **No Placeholders**: Do NOT use "lorem ipsum" or "TODO". Write real, persuasive copy tailored to {idea}.
-2. **Interactive Forms**: 
-   - Use `useState` for form fields.
-   - Use `zod` to validate inputs before submission.
-   - Show inline validation errors in red text.
-   - Show a loading spinner during submission (`isSubmitting` state).
-   - Show a success toast/message after submission.
-3. **API Integration**:
-   - Use `fetch` to call backend API at `http://localhost:8000/api/...`.
-   - Handle 400/422/500 errors gracefully by showing a red error alert.
-4. **Resilience**: 
-   - Ensure imports are valid. 
-   - Check if data exists before mapping (`data?.map(...)`).
-   - Add a 'Retry' button if data loading fails.
-5. **Layout**:
-   - Every page must have a proper Navbar (simplified) and Footer if public.
-   - Dashboard pages should assume a Sidebar is present or render a simple one.
+**Technical Stack**:
+- Next.js 14 (App Router)
+- Tailwind CSS (Premium utilities)
+- Lucide React Icons
+- React State Management
 
 **Output Format**:
-Return ONLY the raw React code (TSX). 
-Do not wrap in markdown fenced blocks (```tsx). 
-Start directly with imports.
+Return ONLY the raw React code (TSX). Do not wrap in markdown fenced blocks.
 """
 
 COMPONENT_LIBRARY_PROMPT = """

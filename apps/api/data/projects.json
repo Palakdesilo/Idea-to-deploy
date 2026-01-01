@@ -1,17 +1,5 @@
 [
   {
-    "id": "cfbef073-1e46-4988-aae1-86de54778c32",
-    "name": "I want to create a subscription based social_media...",
-    "description": "I want to create a subscription based social_media_platform ",
-    "createdAt": "2025-12-23T12:44:42.228000+00:00",
-    "status": "DESIGN",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T05:22:01.700000+00:00"
-    }
-  },
-  {
     "id": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
     "name": "I want to create a subscription based ecommerce_si...",
     "description": "I want to create a subscription based ecommerce_site ",
@@ -24,30 +12,6 @@
     }
   },
   {
-    "id": "ff9c4a24-9486-4d59-b36f-0458e8b0df5b",
-    "name": "Build a full-stack e-commerce platform that allows...",
-    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
-    "createdAt": "2025-12-24T10:17:47.325000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T16:10:47.894109"
-    }
-  },
-  {
-    "id": "814235ee-b128-41e4-9487-36bf264b7845",
-    "name": "Build a subscription-based SaaS platform where use...",
-    "description": "Build a subscription-based SaaS platform where users can register, choose plans, make recurring payments, access features based on subscription level, manage billing, and view usage analytics through a role-based dashboard.",
-    "createdAt": "2025-12-24T10:25:36.789000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:25:42.595000+00:00"
-    }
-  },
-  {
     "id": "3b5c6e2d-435c-4bf0-bf2c-ffc0b66f2cd9",
     "name": "Build a project and task management system that al...",
     "description": "Build a project and task management system that allows teams to create projects, assign tasks, track progress, collaborate through comments, manage deadlines, and visualize status through dashboards and reports.",
@@ -57,30 +21,6 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-24T10:26:58.061000+00:00"
-    }
-  },
-  {
-    "id": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
-    "name": "I want to build a platfrom that Automatically dete...",
-    "description": "I want to build a platfrom that Automatically detect Police van or Ambulance with Smart bump system.\n\n",
-    "createdAt": "2025-12-29T15:15:17.950050",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T15:17:04.120850"
-    }
-  },
-  {
-    "id": "6e630e82-4421-48ad-a3dd-c36f62be3a6a",
-    "name": "create a social media web app with subscription ",
-    "description": "create a social media web app with subscription ",
-    "createdAt": "2025-12-29T18:43:49.280804",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T18:44:29.601271"
     }
   },
   {
@@ -105,18 +45,6 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-30T12:20:50.676934"
-    }
-  },
-  {
-    "id": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
-    "name": "Premium Sneaker Marketplace",
-    "description": "Premium Sneaker Marketplace",
-    "createdAt": "2025-12-30T12:31:21.361092",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:31:57.112272"
     }
   },
   {
@@ -151,7 +79,7 @@
     "status": "DESIGNED",
     "metrics": {
       "progress": 0,
-      "currentPhase": "Initi  alization",
+      "currentPhase": "Initialization",
       "lastUpdated": "2025-12-30T18:21:31.822321"
     }
   },
@@ -165,6 +93,54 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2025-12-31T18:32:09.182898"
+    }
+  },
+  {
+    "id": "3eff4f27-dba0-4196-9f02-22e278d61541",
+    "name": "Want to create a social media webapp",
+    "description": "Want to create a social media webapp",
+    "createdAt": "2026-01-01T11:26:32.322637",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T11:28:08.395079"
+    }
+  },
+  {
+    "id": "75b7cb34-ca90-47f2-8676-8697e958e839",
+    "name": "A futuristic logistics platform for asteroid minin...",
+    "description": "A futuristic logistics platform for asteroid mining",
+    "createdAt": "2026-01-01T11:40:11.699969",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T11:40:41.318934"
+    }
+  },
+  {
+    "id": "c52291dc-3d63-47a7-b99d-b23eafd44bbd",
+    "name": "A futuristic logistics platform for asteroid minin...",
+    "description": "A futuristic logistics platform for asteroid mining is the end-to-end digital brain that plans, coordinates, tracks, optimizes, and monetizes everything involved in extracting resources from asteroids and moving them to where they\u2019re needed (orbit, Moon, Mars, or Earth).\n\nThink of it as SpaceX + Maersk + AWS + Bloomberg, but for space resources.",
+    "createdAt": "2026-01-01T11:49:06.601428",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T11:50:52.552489"
+    }
+  },
+  {
+    "id": "4939e1ae-6cc8-46f4-81e3-01782e3c5ae5",
+    "name": "Build a full-stack e-commerce platform that allows...",
+    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.",
+    "createdAt": "2026-01-01T11:52:49.759442",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T11:53:52.078767"
     }
   }
 ]

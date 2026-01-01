@@ -205,59 +205,52 @@ class LLMService:
             wireframes = []
             for s in screens:
                 name = s.get('screen', 'Screen')
-                key = name[0].lower() + name[1:].replace(' ', '')
-                is_auth = any(x in name for x in ["Login", "Sign", "Register", "Password"])
-                is_landing = any(x in name for x in ["Landing", "Home", "Welcome"])
+                key = name.lower().replace(' ', '')
+                is_auth = any(x in name.lower() for x in ["login", "sign", "register", "password"])
+                is_landing = any(x in name.lower() for x in ["landing", "home", "welcome"])
                 
                 header = {"section": "Header", "components": [{"key": "S1", "type": "SearchBar", "label": "Search..."}, {"key": "U1", "type": "ProfileCircle", "label": "User"}]}
                 sidebar = {"section": "Sidebar", "components": [{"key": "N1", "type": "Button", "label": "Home"}, {"key": "N2", "type": "Button", "label": name}]}
                 
                 layout = []
                 if is_auth:
-                    layout = [{"section": "Main", "components": [{"key": "Auth", "type": "AuthCard", "label": name, "annotation": "Auth block"}]}]
+                    layout = [{"section": "AuthShell", "layoutType": "authShell", "components": [{"key": "Auth", "type": "AuthCard", "label": name, "annotation": "Secure Login"}]}]
                 elif is_landing:
                     layout = [
-                        {"section": "Header", "components": [{"key": "H1", "type": "Link", "label": "Features"}, {"key": "H2", "type": "Button", "label": "Join"}]},
-                        {"section": "Main", "components": [{"key": "Hero", "type": "Card", "label": idea.split()[-1].capitalize() + " Platform", "annotation": "Value prop"}]}
+                        {"section": "Hero", "layoutType": "heroSplit", "components": [
+                            {"key": "H1", "type": "Hero", "label": idea.split()[-1].capitalize() + " Platform", "content": f"The next generation of {idea}.", "subtext": "Get Started"}
+                        ]},
+                        {"section": "Features", "layoutType": "masonryGrid", "components": [
+                            {"key": "F1", "type": "FeatureGrid", "label": "High Performance", "content": "Lightning fast speed for elite teams."},
+                            {"key": "F2", "type": "FeatureGrid", "label": "AI Driven", "content": "Intelligent insights at your fingertips."},
+                            {"key": "F3", "type": "FeatureGrid", "label": "Scalable", "content": "Grows with your business needs."}
+                        ]}
                     ]
                 else:
                     # Dynamic Niche-Specific Layouts
-                    if "Gallery" in name or "Feed" in name:
-                        layout = [header, sidebar, {"section": "Main", "components": [
-                            {"key": "C1", "type": "ProjectCard", "label": "Case Study: Mobile App Design"},
-                            {"key": "C2", "type": "ProjectCard", "label": "Brand Identity: Fintech Startup"}
-                        ]}]
-                    elif "Timeline" in name or "History" in name:
-                        layout = [header, sidebar, {"section": "Main", "components": [
-                            {"key": "T1", "type": "TimelineItem", "label": "Lead Developer Role", "annotation": "2022 - Present"},
-                            {"key": "T2", "type": "TimelineItem", "label": "Senior Designer Role", "annotation": "2020 - 2022"},
-                            {"key": "T3", "type": "TimelineItem", "label": "University Education", "annotation": "2016 - 2020"}
-                        ]}]
-                    elif "Skill" in name or "Ability" in name:
-                        layout = [header, sidebar, {"section": "Main", "components": [
-                            {"key": "S1", "type": "SkillItem", "label": "Python"},
-                            {"key": "S2", "type": "SkillItem", "label": "Next.js"},
-                            {"key": "S3", "type": "SkillItem", "label": "UI Design"},
-                            {"key": "S4", "type": "SkillItem", "label": "Cloud Arch"}
-                        ]}]
-                    elif "Settings" in name:
-                         layout = [header, sidebar, {"section": "Main", "components": [
-                            {"key": "I1", "type": "Input", "label": "Display Info"},
-                            {"key": "I2", "type": "Button", "label": "Save Preferences"}
-                        ]}]
-                    elif "Dashboard" in name or "Stats" in name:
-                         layout = [header, sidebar, 
-                            {"section": "SubHeader", "components": [
-                                {"key": "M1", "type": "StatCard", "label": "Core Metric"},
-                                {"key": "M2", "type": "StatCard", "label": "Secondary"},
-                                {"key": "M3", "type": "StatCard", "label": "Growth"}
+                    if any(x in name.lower() for x in ["gallery", "feed", "work"]):
+                        layout = [
+                            {"section": "Content", "layoutType": "masonryGrid", "components": [
+                                {"key": "C1", "type": "ProjectCard", "label": "Case Study: Mobile App Design", "content": "Mobile UX focus", "subtext": "View Case"},
+                                {"key": "C2", "type": "ProjectCard", "label": "Brand Identity: Fintech", "content": "Modern branding", "subtext": "View Case"},
+                                {"key": "C3", "type": "ProjectCard", "label": "Web Platform: E-commerce", "content": "Scalable web app", "subtext": "View Case"}
+                            ]}
+                        ]
+                    elif any(x in name.lower() for x in ["dashboard", "analytics", "stats"]):
+                        layout = [
+                            {"section": "Metrics", "layoutType": "grid", "grid_cols": 12, "components": [
+                                {"key": "M1", "type": "StatCard", "label": "Total Active Users", "content": "42.5k", "subtext": "+12% Growth"},
+                                {"key": "M2", "type": "StatCard", "label": "Revenue (ARR)", "content": "$1.2M", "subtext": "Target reached"},
+                                {"key": "M3", "type": "StatCard", "label": "Engagement", "content": "78%", "subtext": "High retention"}
                             ]},
-                            {"section": "Main", "components": [{"key": "T1", "type": "Table", "label": "Recent Activity"}]}
-                         ]
+                            {"section": "Data", "layoutType": "grid", "components": [{"key": "T1", "type": "Table", "label": "Recent Activity", "content": "Transaction History"}]}
+                        ]
                     else:
-                        layout = [header, sidebar, {"section": "Main", "components": [
-                            {"key": "X1", "type": "Card", "label": f"{name} Content", "annotation": "Main workspace area"}
-                        ]}]
+                        layout = [
+                            {"section": "Main", "layoutType": "grid", "components": [
+                                {"key": "X1", "type": "Card", "label": f"{name} Overview", "content": f"Comprehensive management interface for {name}."}
+                            ]}
+                        ]
 
                 wireframes.append({
                     "screen": name, "screenKey": key, "route": "/"+key, "shellType": "Internal",

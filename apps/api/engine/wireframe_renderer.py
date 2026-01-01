@@ -175,11 +175,10 @@ td { border-bottom: 1px solid var(--border-color); padding: 10px; }
         for section in wf.get("layout", []):
             s_type = section.get("section", "Main")
             section_html = ""
-            
             for comp in section.get("components", []):
                 ctype = comp.get("type", "Box")
                 label = comp.get("label", "Label")
-                content = comp.get("content", "Lorem ipsum...")
+                content = comp.get("content", "")
                 subtext = comp.get("subtext", "")
                 annot = comp.get("annotation", "")
                 
@@ -202,10 +201,10 @@ td { border-bottom: 1px solid var(--border-color); padding: 10px; }
                     section_html += f'''
                         <div class="col" style="padding: 60px 0; text-align: center; border-bottom: 2px dashed var(--border-color); margin-bottom: 40px;">
                             <h1 style="font-size: 32px; font-weight: 800; margin-bottom: 12px;">{label} [HERO]</h1>
-                            <div class="placeholder-box" style="height: 60px; max-width: 600px; margin: 0 auto 24px;">{content[:100]}...</div>
+                            <div class="placeholder-box" style="height: 60px; max-width: 600px; margin: 0 auto 24px;">{content[:140]}...</div>
                             <div class="flex" style="justify-content: center;">
-                                <a href="{link_url}" class="btn btn-primary" style="text-decoration:none;">Primary CTA</a>
-                                <div class="btn">Secondary Action</div>
+                                <a href="{link_url}" class="btn btn-primary" style="text-decoration:none;">{subtext or "Action"}</a>
+                                <div class="btn">Secondary</div>
                             </div>
                         </div>
                     '''
@@ -338,11 +337,8 @@ td { border-bottom: 1px solid var(--border-color); padding: 10px; }
                                 {confirm_field}
                                 <div class="flex" style="justify-content: space-between; align-items: center; margin-bottom: 24px;">
                                     <label style="font-size: 12px;"><input type="checkbox"> Remember me</label>
-                                    <p style="font-size: 12px; text-decoration: underline;">Forgot password</p>
                                 </div>
-                                <div class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">Continue</div>
-                                <div class="separator"><span>OR</span></div>
-                                <div class="btn" style="width: 100%; margin-bottom: 16px;">Continue with Google</div>
+                                <div class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">{label}</div>
                             </div>
                         </div>
                     '''

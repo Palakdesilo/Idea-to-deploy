@@ -1,7 +1,8 @@
 node_modules
 webpack/
-
-artifacts 
-artifacts/* 
-
-.git/
+artifacts/
+*.json
+.env
+.DS_Store
+dist/
+.next/

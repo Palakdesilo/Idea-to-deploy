@@ -27,7 +27,7 @@ export default function Dashboard() {
             clearTimeout(timeoutId);
             setApiStatus(res.ok ? 'online' : 'offline');
         } catch (err) {
-            console.error('Health check failed:', err);
+            console.error('Health check failed for URL:', `${API_BASE_URL}/health`, err);
             setApiStatus('offline');
         }
     };

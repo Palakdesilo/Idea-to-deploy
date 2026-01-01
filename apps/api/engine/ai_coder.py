@@ -41,6 +41,7 @@ class AICoder:
         # Load design artifacts
         wireframes = self._load_json(artifacts_dir / "docs" / "wireframes.json")
         ui_contracts = self._load_json(artifacts_dir / "docs" / "ui_contracts.json")
+        ui_design = self._load_json(artifacts_dir / "docs" / "ui_design.json")
         
         if not wireframes or not ui_contracts:
             print("AICoder: Missing wireframes or UI contracts, using fallback generation")
@@ -53,7 +54,7 @@ class AICoder:
         
         # Phase 1: Generate Frontend
         print("AICoder: Generating frontend...")
-        await self.generate_nextjs_app(frontend_dir, wireframes, description, project_name)
+        await self.generate_nextjs_app(frontend_dir, wireframes, ui_design, description, project_name)
         
         # Phase 2: Generate Backend
         print("AICoder: Generating backend...")
@@ -70,7 +71,7 @@ class AICoder:
         print(f"AICoder: Generation complete! ZIP at {zip_path}")
         return str(zip_path)
     
-    async def generate_nextjs_app(self, output_dir: Path, wireframes: List[Dict], description: str, project_name: str):
+    async def generate_nextjs_app(self, output_dir: Path, wireframes: List[Dict], ui_design: Dict, description: str, project_name: str):
         """Generate Next.js frontend application"""
         output_dir.mkdir(parents=True, exist_ok=True)
         
@@ -87,7 +88,7 @@ class AICoder:
         await self._generate_root_layout(app_dir, project_name)
         
         # Generate global CSS
-        await self._generate_global_css(app_dir)
+        await self._generate_global_css(app_dir, ui_design)
         
         # Generate pages from wireframes
         for wf in wireframes.get('wireframes', []) if isinstance(wireframes, dict) else wireframes:
@@ -663,34 +664,47 @@ export default function RootLayout({{
         with open(app_dir / "layout.tsx", "w", encoding="utf-8") as f:
             f.write(layout_code)
     
-    async def _generate_global_css(self, app_dir: Path):
-        """Generate global CSS with Tailwind"""
-        css_content = """@tailwind base;
+    async def _generate_global_css(self, app_dir: Path, ui_design: Dict = None):
+        """Generate global CSS with Tailwind and Design Tokens"""
+        
+        # Default premium tokens if none provided
+        tokens = {
+            "palette": {
+                "background": "#0F172A",
+                "surface": "#1E293B",
+                "primary": "#8B5CF6",
+                "foreground": "#F8FAFC"
+            }
+        }
+        
+        if ui_design and 'design_tokens' in ui_design:
+            tokens = ui_design['design_tokens']
+        
+        palette = tokens.get('palette', tokens.get('colors', {}))
+        
+        css_content = f"""@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-  }
-  
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
-}
+:root {{
+  --background: {palette.get('background', '#0F172A')};
+  --foreground: {palette.get('foreground', palette.get('text_main', '#F8FAFC'))};
+  --primary: {palette.get('primary', '#8B5CF6')};
+  --surface: {palette.get('surface', palette.get('card_bg', '#1E293B'))};
+  --accent: {palette.get('accent', '#F472B6')};
+}}
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+body {{
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+}}
+
+.glass {{
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}}
 """
         with open(app_dir / "globals.css", "w", encoding="utf-8") as f:
             f.write(css_content)

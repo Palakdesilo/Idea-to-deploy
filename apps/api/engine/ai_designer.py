@@ -25,147 +25,73 @@ class AIDesigner:
                 with open(wireframes_file, 'r', encoding='utf-8') as f:
                     wire_data = json.loads(f.read())
                     screens = wire_data.get('wireframes', [])
+                    
+                    # Get project name
+                    project = await pm.get_project(project_id)
+                    project_name = project.name if project else "Project"
 
-                    # INJECT MISSING CORE SCREENS
-                    # This ensures Landing, Login, Register etc always exist even if AI missed them
-                    existing_keys = set(s.get("screenKey", "").lower() for s in screens)
-                    defaults_needed = ["Landing Page", "Login", "Register", "Dashboard", "Settings", "Analytics", "Profile"]
-                    
-                    for d_name in defaults_needed:
-                        d_key = d_name.lower().replace(" ", "")
-                        if d_key not in existing_keys:
-                            # Construct default layout
-                            layout = []
-                            if "landing" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": "Product"}]},
-                                    {"section": "Hero", "components": [{"type": "Hero", "label": "Build Faster", "content": "The ultimate platform for your needs.", "subtext": "Get Started"}]},
-                                    {"section": "Features", "components": [{"type": "FeatureGrid", "label": "Key Features", "content": "AI Powered Analysis"}]},
-                                    {"section": "Testimonials", "components": [{"type": "TestimonialGrid", "label": "What Users Say", "content": [{"user": "Alex", "quote": "Incredible tool!", "rating": 5}]}]},
-                                    {"section": "Footer", "components": [{"type": "Footer", "label": "Footer"}]}
-                                ]
-                            elif "login" in d_key or "register" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": "Product"}]},
-                                    {"section": "Auth", "components": [{"type": "AuthCard", "label": d_name}]},
-                                    {"section": "Footer", "components": [{"type": "Footer", "label": "Footer"}]}
-                                ]
-                            elif "dashboard" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": d_name}]},
-                                    {"section": "Sidebar", "components": [{"type": "Sidebar", "label": "Nav"}]},
-                                    {"section": "Stats", "components": [{"type": "StatGrid", "label": "Overview", "content": [{"label": "Total Users", "value": "12.5k"}, {"label": "Revenue", "value": "$120k"}, {"label": "Growth", "value": "+24%"}]}]},
-                                    {"section": "Table", "components": [{"type": "Table", "label": "Recent Transactions", "content": [{"item": "Subscription", "date": "2m ago", "status": "Paid"}, {"item": "Refund", "date": "1h ago", "status": "Pending"}]}]}
-                                ]
-                            elif "settings" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": d_name}]},
-                                    {"section": "Sidebar", "components": [{"type": "Sidebar", "label": "Nav"}]},
-                                    {"section": "Profile Settings", "components": [
-                                        {"type": "Input", "label": "Full Name", "subtext": "Enter your name"},
-                                        {"type": "Input", "label": "Email Address", "subtext": "Enter your email"},
-                                        {"type": "Button", "label": "Save Changes", "variant": "primary"}
-                                    ]},
-                                    {"section": "Preferences", "components": [
-                                        {"type": "Input", "label": "Notification Email", "subtext": "Secondary email"},
-                                        {"type": "Button", "label": "Update Password", "variant": "outline"}
-                                    ]}
-                                ]
-                            elif "analytics" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": d_name}]},
-                                    {"section": "Sidebar", "components": [{"type": "Sidebar", "label": "Nav"}]},
-                                    {"section": "MainCharts", "components": [{"type": "StatGrid", "label": "Traffic Sources", "content": [{"label": "Organic", "value": "45%"}, {"label": "Social", "value": "30%"}, {"label": "Direct", "value": "25%"}]}]},
-                                    {"section": "Engagement", "components": [{"type": "StatGrid", "label": "Engagement", "content": [{"label": "Bounce Rate", "value": "42%"}, {"label": "Avg. Session", "value": "4m 30s"}]}]},
-                                    {"section": "Detailed Data", "components": [{"type": "Table", "label": "Top Pages", "content": [{"item": "/home", "date": "15k views", "status": "High"}, {"item": "/pricing", "date": "8k views", "status": "Med"}]}]}
-                                ]
-                            elif "profile" in d_key:
-                                layout = [
-                                    {"section": "Header", "components": [{"type": "Header", "label": d_name}]},
-                                    {"section": "Sidebar", "components": [{"type": "Sidebar", "label": "Nav"}]},
-                                    {"section": "UserInfo", "components": [
-                                        {"type": "Input", "label": "Username", "subtext": "johndoe123"},
-                                        {"type": "Input", "label": "Bio", "subtext": "Product Designer at Tech Co."},
-                                        {"type": "Button", "label": "Edit Profile", "variant": "primary"}
-                                    ]},
-                                    {"section": "Activity", "components": [{"type": "PostCard", "label": "Recent Post", "content": "Just launched my new portfolio!"}]}
-                                ]
-                                
-                            screens.append({
-                                "screen": d_name,
-                                "screenKey": d_key,
-                                "purpose": f"User interaction for {d_name}",
-                                "layout": layout,
-                                "role": "User"
-                            })
-                    
                     # Render Low-Fi Wireframes
                     renderer = WireframeRenderer()
                     renderer.render_project(project_id, screens)
                     
-                    # Render High-Fi UI if design tokens exist
+                    # Render High-Fi UI
+                    ui_data = {}
                     if ui_design_file.exists():
                         with open(ui_design_file, 'r', encoding='utf-8') as f2:
                             ui_data = json.loads(f2.read())
-                            ui_renderer = UIRenderer()
-                            ui_renderer.render_project(project_id, screens, ui_data)
-                    else:
-                        # Even if no UI tokens, render UI with defaults
-                        ui_renderer = UIRenderer()
-                        ui_renderer.render_project(project_id, screens, {})
                     
-                    for idx, wf in enumerate(screens):
-                        raw_name = wf.get('screen', wf.get('screenTitle', wf.get('screenKey', 'Screen')))
-                        screen_name = raw_name.split(' / ')[0].replace(' Screen', '').strip()
-                        screen_key = wf.get('screenKey')
-                        
-                        if not screen_key:
-                            # Fallback camelCase
-                            screen_key = screen_name[0].lower() + screen_name[1:].replace(' ', '')
-                        
-                        # Extract flat list of all components across all sections for metadata
-                        all_components = []
-                        for section in wf.get('layout', []):
-                            for comp in section.get('components', []):
-                                if isinstance(comp, dict):
-                                    all_components.append(comp.get('key', 'Component'))
-                                else:
-                                    all_components.append(str(comp))
-                                    
-                        # Determine roles
-                        screen_lower = screen_name.lower()
-                        roles = ["Admin", "User"] if screen_lower in ["dashboard", "settings", "analytics"] else ["Public", "User"]
+                    ui_renderer = UIRenderer()
+                    ui_renderer.render_project(project_id, screens, ui_data, project_name=project_name)
+                
+                for idx, wf in enumerate(screens):
+                    raw_name = wf.get('screen', wf.get('screenTitle', wf.get('screenKey', 'Screen')))
+                    screen_name = raw_name.split(' / ')[0].replace(' Screen', '').strip()
+                    screen_key = wf.get('screenKey', '').lower()
+                    if not screen_key:
+                        screen_key = screen_name.lower().replace(' ', '')
+                    
+                    # Extract flat list of all components across all sections for metadata
+                    all_components = []
+                    for section in wf.get('layout', []):
+                        for comp in section.get('components', []):
+                            if isinstance(comp, dict):
+                                all_components.append(comp.get('key', 'Component'))
+                            else:
+                                all_components.append(str(comp))
+                                
+                    # Determine roles
+                    screen_lower = screen_name.lower()
+                    roles = ["Admin", "User"] if screen_lower in ["dashboard", "settings", "analytics"] else ["Public", "User"]
 
-                        # Determine the visual theme using Gemini (as requested)
-                        # prompt = f"Modern UI, {screen_name} for {description}. 4k."
-                        visual_prompt = await llm.generate_content(
-                            'VISUAL_PROMPT',
-                            {
-                                "idea": description,
-                                "screen_name": screen_name,
-                                "purpose": wf.get('purpose', f"Interface for {screen_name}")
-                            },
-                            VISUAL_PROMPT_PROMPT
-                        )
-                        prompt = visual_prompt or f"Modern UI, {screen_name} for {description}. 4k."
-                        
-                        image_url = f"https://pollinations.ai/p/{prompt.replace(' ', '%20')}?width=1280&height=720&seed={idx}&nologo=true"
+                    # Determine the visual theme using Gemini (as requested)
+                    visual_prompt = await llm.generate_content(
+                        'VISUAL_PROMPT',
+                        {
+                            "idea": description,
+                            "screen_name": screen_name,
+                            "purpose": wf.get('purpose', f"Interface for {screen_name}")
+                        },
+                        VISUAL_PROMPT_PROMPT
+                    )
+                    prompt = visual_prompt or f"Modern UI, {screen_name} for {description}. 4k."
+                    
+                    image_url = f"https://pollinations.ai/p/{prompt.replace(' ', '%20')}?width=1280&height=720&seed={idx}&nologo=true"
 
-                        visuals.append({
-                            "id": str(uuid.uuid4()),
-                            "projectId": project_id,
-                            "screenName": screen_name,
-                            "description": wf.get('purpose', f"Interface for {screen_name}"),
-                            "imageUrl": image_url,
-                            "promptUsed": prompt,
-                            "purpose": wf.get('purpose', ""),
-                            "roles": roles,
-                            "components": all_components,
-                            "interactions": [],
-                            "states": ["Default"],
-                            "wireframeKey": screen_key,
-                            "uiKey": screen_key
-                        })
+                    visuals.append({
+                        "id": str(uuid.uuid4()),
+                        "projectId": project_id,
+                        "screenName": screen_name,
+                        "description": wf.get('purpose', f"Interface for {screen_name}"),
+                        "imageUrl": image_url,
+                        "promptUsed": prompt,
+                        "purpose": wf.get('purpose', ""),
+                        "roles": roles,
+                        "components": all_components,
+                        "interactions": [],
+                        "states": ["Default"],
+                        "wireframeKey": screen_key,
+                        "uiKey": screen_key
+                    })
             except Exception as e:
                 print(f"AIDesigner: Error loading wireframes.json: {e}")
 
