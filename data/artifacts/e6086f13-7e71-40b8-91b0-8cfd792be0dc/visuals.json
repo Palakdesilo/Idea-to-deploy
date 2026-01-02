@@ -1,0 +1,310 @@
+[
+  {
+    "id": "4651730c-2e39-44a7-a8d3-c261985f5543",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Landing Page",
+    "description": "Welcome screen",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Welcome screen",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "H1",
+      "H2",
+      "Hero"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingPage",
+    "uiKey": "landingPage"
+  },
+  {
+    "id": "6967a10b-f8ce-4490-8001-87551688aef6",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Login",
+    "description": "Access account",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Access account",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "f270223e-19f5-4ffe-8736-3ed9ef1cc8b6",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Home Feed",
+    "description": "Social feed of posts",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Social feed of posts",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "homeFeed",
+    "uiKey": "homeFeed"
+  },
+  {
+    "id": "65db8924-9473-4e48-99fd-191ecdc2b634",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Friend List",
+    "description": "Connected people",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Connected people",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "S1",
+      "U1",
+      "N1",
+      "N2",
+      "X1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "friendList",
+    "uiKey": "friendList"
+  },
+  {
+    "id": "a576614b-9ef7-4154-b1c3-6fd4d04a0a09",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "User Dashboard",
+    "description": "Main control center",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Main control center",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "S1",
+      "U1",
+      "N1",
+      "N2",
+      "M1",
+      "M2",
+      "M3",
+      "T1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "userDashboard",
+    "uiKey": "userDashboard"
+  },
+  {
+    "id": "3e7b23c5-c3bd-4140-8c99-061a24aaa479",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Account Settings",
+    "description": "Profile management",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "Profile management",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "S1",
+      "U1",
+      "N1",
+      "N2",
+      "I1",
+      "I2"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "accountSettings",
+    "uiKey": "accountSettings"
+  },
+  {
+    "id": "300d52f3-900b-4fe4-a5c2-4ef91d1d36b5",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Alert Center",
+    "description": "All notifications",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=6&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "All notifications",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "alertCenter",
+    "uiKey": "alertCenter"
+  },
+  {
+    "id": "bd1d274e-34e9-4ee3-b617-574997aab338",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Register",
+    "description": "User interaction for Register",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=7&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "32649bf5-bc39-48d9-8ece-06bd2dc5a14f",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Dashboard",
+    "description": "User interaction for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=8&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "157a3a1e-5570-48ec-b4a4-8e344b723360",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Settings",
+    "description": "User interaction for Settings",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=9&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  },
+  {
+    "id": "c3206fb0-5961-48f8-b063-d92e9b401f60",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Analytics",
+    "description": "User interaction for Analytics",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=10&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "User interaction for Analytics",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "analytics",
+    "uiKey": "analytics"
+  },
+  {
+    "id": "81832570-36f9-4e92-8052-d6cd75a51c33",
+    "projectId": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
+    "screenName": "Profile",
+    "description": "User interaction for Profile",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM\n?width=1280&height=720&seed=11&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for CREATE A SOCIAL MEDIA PLATFORM\n",
+    "purpose": "User interaction for Profile",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "profile",
+    "uiKey": "profile"
+  }
+]

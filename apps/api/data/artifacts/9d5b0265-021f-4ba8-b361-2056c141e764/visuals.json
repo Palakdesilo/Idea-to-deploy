@@ -1,0 +1,163 @@
+[
+  {
+    "id": "a77f897f-b97c-43fe-8e73-638100f33822",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "c1f97fef-f5d7-4208-b192-04de80025933",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "7ccbeb6f-ae04-4c02-b918-28d19940106b",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "a845bbf9-dd2c-4193-9f6b-29d4fd3f8394",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "0be0f261-2daa-4d88-9c58-cc93b02d9dc9",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  },
+  {
+    "id": "2768d79f-c9a5-4a42-a2da-f260e1aa7923",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Analytics",
+    "description": "Interface for Analytics",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Analytics%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "Modern Analytics screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Analytics",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "analytics",
+    "uiKey": "analytics"
+  },
+  {
+    "id": "7a31a100-6257-4bc2-9fef-b02942ad8c68",
+    "projectId": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "screenName": "Profile",
+    "description": "Interface for Profile",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Profile%20screen%20for%20Build%20a%20learning%20management%20system%20that%20allows%20users%20to%20enroll%20in%20courses,%20access%20learning%20materials,%20complete%20assignments,%20take%20assessments,%20track%20progress,%20and%20allows%20instructors%20to%20manage%20content%20and%20students%20through%20dashboards..%204k.?width=1280&height=720&seed=6&nologo=true",
+    "promptUsed": "Modern Profile screen for Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.. 4k.",
+    "purpose": "User interaction for Profile",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "profile",
+    "uiKey": "profile"
+  }
+]

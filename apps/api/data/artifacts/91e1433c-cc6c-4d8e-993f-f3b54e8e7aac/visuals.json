@@ -1,0 +1,112 @@
+[
+  {
+    "id": "c3c4bee5-3366-4fa9-8c36-45cd765cc1a4",
+    "projectId": "91e1433c-cc6c-4d8e-993f-f3b54e8e7aac",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20a%20customer%20support%20platform%20that%20allows%20users%20to%20submit%20support%20tickets,%20track%20status,%20communicate%20with%20support%20agents,%20and%20allows%20administrators%20to%20manage%20tickets,%20SLAs,%20and%20performance%20dashboards..%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "e3a479f0-301e-4833-a4cd-6c48f06c4597",
+    "projectId": "91e1433c-cc6c-4d8e-993f-f3b54e8e7aac",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20a%20customer%20support%20platform%20that%20allows%20users%20to%20submit%20support%20tickets,%20track%20status,%20communicate%20with%20support%20agents,%20and%20allows%20administrators%20to%20manage%20tickets,%20SLAs,%20and%20performance%20dashboards..%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "1cc0eb15-61ab-48f6-89e0-dfdbce5a0611",
+    "projectId": "91e1433c-cc6c-4d8e-993f-f3b54e8e7aac",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20a%20customer%20support%20platform%20that%20allows%20users%20to%20submit%20support%20tickets,%20track%20status,%20communicate%20with%20support%20agents,%20and%20allows%20administrators%20to%20manage%20tickets,%20SLAs,%20and%20performance%20dashboards..%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "f6ee19a0-94a8-49a2-98cd-ab10b7ba8b58",
+    "projectId": "91e1433c-cc6c-4d8e-993f-f3b54e8e7aac",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20a%20customer%20support%20platform%20that%20allows%20users%20to%20submit%20support%20tickets,%20track%20status,%20communicate%20with%20support%20agents,%20and%20allows%20administrators%20to%20manage%20tickets,%20SLAs,%20and%20performance%20dashboards..%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "848b9af3-9efe-4593-8d24-7dccf6baac23",
+    "projectId": "91e1433c-cc6c-4d8e-993f-f3b54e8e7aac",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20a%20customer%20support%20platform%20that%20allows%20users%20to%20submit%20support%20tickets,%20track%20status,%20communicate%20with%20support%20agents,%20and%20allows%20administrators%20to%20manage%20tickets,%20SLAs,%20and%20performance%20dashboards..%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  }
+]

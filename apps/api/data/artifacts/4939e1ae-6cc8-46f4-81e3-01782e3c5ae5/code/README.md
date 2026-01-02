@@ -1,0 +1,1 @@
+# README_TEMPLATE Document for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.

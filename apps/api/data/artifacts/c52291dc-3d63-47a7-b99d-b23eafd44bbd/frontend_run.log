@@ -1,0 +1,15 @@
+
+--- STARTING SERVER ON PORT 3099 ---
+
+> a-futuristic-logistics-platform-for-asteroid-minin...@0.1.0 dev
+> next dev -p 3099
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3099
+
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.6s (426 modules)
+ ✓ Compiled in 214ms (219 modules)
+ ✓ Compiled /not-found in 174ms (417 modules)
+ ✓ Compiled /login in 145ms (419 modules)

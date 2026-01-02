@@ -1,0 +1,118 @@
+
+--- STARTING SERVER ON PORT 3013 ---
+
+> build-a-customer-support-platform-that-allows-user...@0.1.0 dev
+> next dev -p 3013
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3013
+
+ ✓ Ready in 2.5s
+ ○ Compiling / ...
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\@swc\helpers\node_modules\tslib isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+ ⨯ ./node_modules/next/dist/client/components/promise-queue.js:16:40
+Module not found: Can't resolve '@swc/helpers/_/_class_private_field_loose_base'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/next/dist/client/components/router-reducer/reducers/prefetch-reducer.js
+./node_modules/next/dist/client/components/router-reducer/router-reducer.js
+./node_modules/next/dist/shared/lib/router/action-queue.js
+./node_modules/next/dist/client/app-index.js
+./node_modules/next/dist/client/app-next-dev.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\@swc\helpers\node_modules\tslib isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+ ⨯ ./node_modules/next/dist/client/components/promise-queue.js:16:40
+Module not found: Can't resolve '@swc/helpers/_/_class_private_field_loose_base'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/next/dist/client/components/router-reducer/reducers/prefetch-reducer.js
+./node_modules/next/dist/client/components/router-reducer/router-reducer.js
+./node_modules/next/dist/shared/lib/router/action-queue.js
+./node_modules/next/dist/client/app-index.js
+./node_modules/next/dist/client/app-next-dev.js
+ ⨯ ./node_modules/next/dist/client/components/promise-queue.js:16:40
+Module not found: Can't resolve '@swc/helpers/_/_class_private_field_loose_base'
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./node_modules/next/dist/client/components/router-reducer/reducers/prefetch-reducer.js
+./node_modules/next/dist/client/components/router-reducer/router-reducer.js
+./node_modules/next/dist/shared/lib/router/action-queue.js
+./node_modules/next/dist/client/app-index.js
+./node_modules/next/dist/client/app-next-dev.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\@swc\helpers\node_modules\tslib isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+--- STARTING SERVER ON PORT 3094 ---
+
+> build-a-customer-support-platform-that-allows-user...@0.1.0 dev
+> next dev -p 3094
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3094
+
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\@swc\helpers\node_modules\tslib isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\@swc\helpers\node_modules\tslib isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+ ✓ Ready in 2.4s
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\node_modules\source-map-js isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\node_modules\nanoid isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\0c023619-d39c-4093-8e5b-508fdd49c386\\code\\frontend\\app'
+}
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\0c023619-d39c-4093-8e5b-508fdd49c386\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\0c023619-d39c-4093-8e5b-508fdd49c386\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\0c023619-d39c-4093-8e5b-508fdd49c386\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\0c023619-d39c-4093-8e5b-508fdd49c386\\code\\frontend\\app'
+}
+^C^C

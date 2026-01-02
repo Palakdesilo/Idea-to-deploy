@@ -1,0 +1,163 @@
+[
+  {
+    "id": "6bc93a0f-be2c-4a6e-af88-47c188c5123d",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "65d14785-d8c8-447b-888c-cdee4cef4e07",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "48ff09ce-8260-420f-93e6-5999e7b9ce30",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "74376fc9-7f56-4cf6-bfc0-4c99ecc8e887",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "a60b6f22-18df-4e96-b9f0-770a08b85583",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  },
+  {
+    "id": "2a836171-012e-4ec0-9f35-340b35f24c24",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Analytics",
+    "description": "Interface for Analytics",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Analytics%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "Modern Analytics screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Analytics",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "analytics",
+    "uiKey": "analytics"
+  },
+  {
+    "id": "385b3194-559e-46c7-9759-f48c2d363642",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "screenName": "Profile",
+    "description": "Interface for Profile",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Profile%20screen%20for%20CREATE%20A%20SOCIAL%20MEDIA%20PLATFORM.%204k.?width=1280&height=720&seed=6&nologo=true",
+    "promptUsed": "Modern Profile screen for CREATE A SOCIAL MEDIA PLATFORM. 4k.",
+    "purpose": "User interaction for Profile",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "profile",
+    "uiKey": "profile"
+  }
+]

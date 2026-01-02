@@ -1,125 +1,5 @@
 [
   {
-    "id": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
-    "name": "I want to create a subscription based ecommerce_si...",
-    "description": "I want to create a subscription based ecommerce_site ",
-    "createdAt": "2025-12-23T13:09:56.175000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-23T13:10:03.817000+00:00"
-    }
-  },
-  {
-    "id": "3b5c6e2d-435c-4bf0-bf2c-ffc0b66f2cd9",
-    "name": "Build a project and task management system that al...",
-    "description": "Build a project and task management system that allows teams to create projects, assign tasks, track progress, collaborate through comments, manage deadlines, and visualize status through dashboards and reports.",
-    "createdAt": "2025-12-24T10:26:34.457000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:26:58.061000+00:00"
-    }
-  },
-  {
-    "id": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
-    "name": "Build a financial management platform that allows ...",
-    "description": "Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n",
-    "createdAt": "2025-12-30T12:05:28.278854",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:06:04.385207"
-    }
-  },
-  {
-    "id": "a846f604-4e64-4c77-90d2-692678f7e193",
-    "name": "Build a healthcare appointment management platform...",
-    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n",
-    "createdAt": "2025-12-30T12:20:16.559750",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:20:50.676934"
-    }
-  },
-  {
-    "id": "2cdc4683-a2d7-4ce7-8e24-d415fab6a9b4",
-    "name": "Want a platform when I can sell my handmade things...",
-    "description": "Want a platform when I can sell my handmade things...\n",
-    "createdAt": "2025-12-30T16:13:25.180569",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T16:13:30.376851"
-    }
-  },
-  {
-    "id": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
-    "name": "I want to create virtual influencer. Where I can g...",
-    "description": "I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n",
-    "createdAt": "2025-12-30T16:29:59.687726",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T16:30:02.980733"
-    }
-  },
-  {
-    "id": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
-    "name": "I want to build a chatapp where 2 people can chat ...",
-    "description": "I want to build a chatapp where 2 people can chat online.\n\n",
-    "createdAt": "2025-12-30T18:21:27.435411",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T18:21:31.822321"
-    }
-  },
-  {
-    "id": "e1c22f76-e80a-40f6-aaed-61b051a998bf",
-    "name": "Create a portfolio website\n",
-    "description": "Create a portfolio website\n",
-    "createdAt": "2025-12-31T18:31:58.577650",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-31T18:32:09.182898"
-    }
-  },
-  {
-    "id": "3eff4f27-dba0-4196-9f02-22e278d61541",
-    "name": "Want to create a social media webapp",
-    "description": "Want to create a social media webapp",
-    "createdAt": "2026-01-01T11:26:32.322637",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2026-01-01T11:28:08.395079"
-    }
-  },
-  {
-    "id": "75b7cb34-ca90-47f2-8676-8697e958e839",
-    "name": "A futuristic logistics platform for asteroid minin...",
-    "description": "A futuristic logistics platform for asteroid mining",
-    "createdAt": "2026-01-01T11:40:11.699969",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2026-01-01T11:40:41.318934"
-    }
-  },
-  {
     "id": "c52291dc-3d63-47a7-b99d-b23eafd44bbd",
     "name": "A futuristic logistics platform for asteroid minin...",
     "description": "A futuristic logistics platform for asteroid mining is the end-to-end digital brain that plans, coordinates, tracks, optimizes, and monetizes everything involved in extracting resources from asteroids and moving them to where they\u2019re needed (orbit, Moon, Mars, or Earth).\n\nThink of it as SpaceX + Maersk + AWS + Bloomberg, but for space resources.",
@@ -132,15 +12,99 @@
     }
   },
   {
-    "id": "4939e1ae-6cc8-46f4-81e3-01782e3c5ae5",
+    "id": "fa63b2f3-85e8-4111-b6f9-d346d99360a5",
     "name": "Build a full-stack e-commerce platform that allows...",
-    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.",
-    "createdAt": "2026-01-01T11:52:49.759442",
+    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
+    "createdAt": "2026-01-01T12:07:56.927918",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T12:08:00.655345"
+    }
+  },
+  {
+    "id": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "name": "Build a social media platform that allows users to...",
+    "description": "Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n",
+    "createdAt": "2026-01-01T12:27:18.580556",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T12:27:21.573991"
+    }
+  },
+  {
+    "id": "9d5b0265-021f-4ba8-b361-2056c141e764",
+    "name": "Build a learning management system that allows use...",
+    "description": "Build a learning management system that allows users to enroll in courses, access learning materials, complete assignments, take assessments, track progress, and allows instructors to manage content and students through dashboards.",
+    "createdAt": "2026-01-01T13:02:05.392344",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T13:02:17.001964"
+    }
+  },
+  {
+    "id": "4d0e6b6f-74dd-456c-8c98-d03d0086b08c",
+    "name": "Build a social media platform that allows users to...",
+    "description": "Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n",
+    "createdAt": "2026-01-01T13:33:05.312221",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T13:33:30.453165"
+    }
+  },
+  {
+    "id": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "name": "Build a full-stack e-commerce platform that allows...",
+    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
+    "createdAt": "2026-01-01T15:38:30.103292",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T15:38:36.220240"
+    }
+  },
+  {
+    "id": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "name": "Build a healthcare appointment management platform...",
+    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.",
+    "createdAt": "2026-01-01T15:41:20.704576",
     "status": "COMPLETED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2026-01-01T11:53:52.078767"
+      "lastUpdated": "2026-01-01T16:31:47.965049"
+    }
+  },
+  {
+    "id": "1a6fb9a3-7d0d-4299-8d36-903162a4da4f",
+    "name": "Build a customer support platform that allows user...",
+    "description": "Build a customer support platform that allows users to submit support tickets, track status, communicate with support agents, and allows administrators to manage tickets, SLAs, and performance dashboards.\n\n",
+    "createdAt": "2026-01-01T18:33:59.552318",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-01T18:34:08.653256"
+    }
+  },
+  {
+    "id": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "name": "Build an event management platform that allows org...",
+    "description": "Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n",
+    "createdAt": "2026-01-02T10:31:26.643273",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-02T10:31:43.218388"
     }
   }
 ]

@@ -1,0 +1,136 @@
+
+--- STARTING SERVER ON PORT 3044 ---
+
+> create-a-social-media-platform@0.1.0 dev
+> next dev -p 3044
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3044
+
+ ✓ Ready in 2.6s
+ ○ Compiling / ...
+ ⨯ ./app/globals.css:1:1
+Syntax error: D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app\globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+ [90m   | [39m[1m[31m^[39m[22m
+ [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+ [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+ ⨯ ./app/globals.css:1:1
+Syntax error: D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app\globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+ [90m   | [39m[1m[31m^[39m[22m
+ [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+ [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[11].oneOf[12].use[2]!D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[11].oneOf[12].use[3]!D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+
+--- STARTING SERVER ON PORT 3044 ---
+
+> create-a-social-media-platform@0.1.0 dev
+> next dev -p 3044
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3044
+
+ ✓ Ready in 2.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 1296ms (431 modules)
+ ⨯ Error: The default export is not a React Component in page: "/"
+    at async Promise.all (index 0)
+ ⨯ Error: The default export is not a React Component in page: "/"
+    at async Promise.all (index 0)
+digest: "2256995432"
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ Error: The default export is not a React Component in page: "/"
+    at async Promise.all (index 0)
+ ⨯ Error: The default export is not a React Component in page: "/"
+    at async Promise.all (index 0)
+digest: "2256995432"
+
+--- STARTING SERVER ON PORT 3044 ---
+
+> create-a-social-media-platform@0.1.0 dev
+> next dev -p 3044
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3044
+
+ ✓ Ready in 2.3s
+
+--- STARTING SERVER ON PORT 3044 ---
+
+> create-a-social-media-platform@0.1.0 dev
+> next dev -p 3044
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3044
+
+ ✓ Ready in 2s
+
+--- STARTING SERVER ON PORT 3044 ---
+
+> create-a-social-media-platform@0.1.0 dev
+> next dev -p 3044
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3044
+
+ ✓ Ready in 2s
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\data\\artifacts\\86a41124-128c-4e40-a99d-d7db5b55394f\\code\\frontend\\app'
+}
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\data\\artifacts\\86a41124-128c-4e40-a99d-d7db5b55394f\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\data\\artifacts\\86a41124-128c-4e40-a99d-d7db5b55394f\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\data\artifacts\86a41124-128c-4e40-a99d-d7db5b55394f\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\data\\artifacts\\86a41124-128c-4e40-a99d-d7db5b55394f\\code\\frontend\\app'
+}

@@ -1,0 +1,44 @@
+{
+  "screen_inventory": [
+    {
+      "name": "Landing Page",
+      "category": "Public",
+      "description": "Welcome screen"
+    },
+    {
+      "name": "Login",
+      "category": "Auth",
+      "description": "Access account"
+    },
+    {
+      "name": "Work Gallery",
+      "category": "User",
+      "description": "Showcase of projects"
+    },
+    {
+      "name": "Experience Timeline",
+      "category": "User",
+      "description": "Work and education history"
+    },
+    {
+      "name": "Skill Matrix",
+      "category": "User",
+      "description": "Technical and soft skills"
+    },
+    {
+      "name": "User Dashboard",
+      "category": "User",
+      "description": "Main control center"
+    },
+    {
+      "name": "Account Settings",
+      "category": "User",
+      "description": "Profile management"
+    },
+    {
+      "name": "Alert Center",
+      "category": "User",
+      "description": "All notifications"
+    }
+  ]
+}

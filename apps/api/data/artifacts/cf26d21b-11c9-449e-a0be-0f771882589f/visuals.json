@@ -1,0 +1,163 @@
+[
+  {
+    "id": "2ea6c2af-5f8f-4823-a311-2a9b301d9d73",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "2955e1c1-c2b3-4ec5-bebd-a569ba545c4b",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "f5a89437-0bfa-444d-b0c6-53fbc5d04e68",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "e956a699-6272-4f8e-a101-fb3e0cb461fd",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "11fc5c39-651f-42e6-8f9a-4cdb84d9b4c0",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  },
+  {
+    "id": "e35d4efd-d162-4e5f-b09b-ccee8f8e2663",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Analytics",
+    "description": "Interface for Analytics",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Analytics%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "Modern Analytics screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Analytics",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "analytics",
+    "uiKey": "analytics"
+  },
+  {
+    "id": "3d4679b3-7a42-4571-bf95-4f6442a15093",
+    "projectId": "cf26d21b-11c9-449e-a0be-0f771882589f",
+    "screenName": "Profile",
+    "description": "Interface for Profile",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Profile%20screen%20for%20Build%20a%20social%20media%20platform%20that%20allows%20users%20to%20create%20profiles,%20post%20content,%20edit%20and%20schedule%20posts,%20interact%20through%20likes%20and%20comments,%20chat%20in%20real%20time,%20receive%20notifications,%20and%20manage%20privacy%20settings.\n\n.%204k.?width=1280&height=720&seed=6&nologo=true",
+    "promptUsed": "Modern Profile screen for Build a social media platform that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings.\n\n. 4k.",
+    "purpose": "User interaction for Profile",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "profile",
+    "uiKey": "profile"
+  }
+]

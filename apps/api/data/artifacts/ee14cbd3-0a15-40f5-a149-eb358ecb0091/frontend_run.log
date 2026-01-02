@@ -1,0 +1,15 @@
+
+--- STARTING SERVER ON PORT 3098 ---
+
+> build-an-event-management-platform-that-allows-org...@0.1.0 dev
+> next dev -p 3098
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3098
+
+ ✓ Ready in 3.6s
+ ○ Compiling / ...
+ ✓ Compiled / in 3.3s (472 modules)
+ ✓ Compiled in 264ms (238 modules)
+ ✓ Compiled /register in 222ms (460 modules)
+ ✓ Compiled /dashboard in 142ms (471 modules)

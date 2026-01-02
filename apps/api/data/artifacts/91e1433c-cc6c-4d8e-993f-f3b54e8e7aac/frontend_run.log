@@ -1,0 +1,73 @@
+
+--- STARTING SERVER ON PORT 3034 ---
+
+> build-a-customer-support-platform-that-allows-user...@0.1.0 dev
+> next dev -p 3034
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3034
+
+ ✓ Ready in 3.5s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.5s (426 modules)
+ ✓ Compiled in 232ms (219 modules)
+ ✓ Compiled /register in 172ms (414 modules)
+ ✓ Compiled /dashboard in 223ms (416 modules)
+ ✓ Compiled in 107ms (201 modules)
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\\code\\frontend\\app'
+}
+Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\\code\\frontend\\app'
+}
+ ⨯ unhandledRejection: Error: ENOENT: no such file or directory, scandir 'D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\app'
+    at async Object.readdir (node:internal/fs/promises:958:18)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:39:29
+    at async Promise.all (index 0)
+    at async recursiveReadDir (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\lib\recursive-readdir.js:32:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:71:25
+    at async Promise.all (index 0)
+    at async BatchedFileReader.load (D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:67:25)
+    at async D:\Palak\Idea-to-deploy\apps\api\data\artifacts\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\code\frontend\node_modules\next\dist\server\future\route-matcher-providers\dev\helpers\file-reader\batched-file-reader.js:41:26 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'scandir',
+  path: 'D:\\Palak\\Idea-to-deploy\\apps\\api\\data\\artifacts\\91e1433c-cc6c-4d8e-993f-f3b54e8e7aac\\code\\frontend\\app'
+}
+ ✓ Compiled in 48ms (201 modules)

@@ -1,0 +1,159 @@
+{
+  "pages": [
+    {
+      "name": "Wireframes",
+      "frames": [
+        {
+          "type": "FRAME",
+          "name": "Landing Page",
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 600,
+          "children": [],
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              }
+            }
+          ],
+          "strokes": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
+              }
+            }
+          ],
+          "strokeWeight": 1
+        },
+        {
+          "type": "FRAME",
+          "name": "Login",
+          "x": 850,
+          "y": 0,
+          "width": 800,
+          "height": 600,
+          "children": [],
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              }
+            }
+          ],
+          "strokes": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
+              }
+            }
+          ],
+          "strokeWeight": 1
+        },
+        {
+          "type": "FRAME",
+          "name": "Register",
+          "x": 1700,
+          "y": 0,
+          "width": 800,
+          "height": 600,
+          "children": [],
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              }
+            }
+          ],
+          "strokes": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
+              }
+            }
+          ],
+          "strokeWeight": 1
+        },
+        {
+          "type": "FRAME",
+          "name": "Dashboard",
+          "x": 2550,
+          "y": 0,
+          "width": 800,
+          "height": 600,
+          "children": [],
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              }
+            }
+          ],
+          "strokes": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
+              }
+            }
+          ],
+          "strokeWeight": 1
+        },
+        {
+          "type": "FRAME",
+          "name": "Settings",
+          "x": 3400,
+          "y": 0,
+          "width": 800,
+          "height": 600,
+          "children": [],
+          "fills": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 1,
+                "g": 1,
+                "b": 1
+              }
+            }
+          ],
+          "strokes": [
+            {
+              "type": "SOLID",
+              "color": {
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
+              }
+            }
+          ],
+          "strokeWeight": 1
+        }
+      ]
+    }
+  ]
+}

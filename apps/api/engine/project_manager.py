@@ -72,9 +72,36 @@ class ProjectManager:
     async def get_all_projects(self) -> List[Project]:
         if not PROJECTS_FILE.exists():
             return []
-        with open(PROJECTS_FILE, 'r') as f:
-            data = json.load(f)
-            return [Project(**p) for p in data]
+        
+        try:
+            with open(PROJECTS_FILE, 'r') as f:
+                data = json.load(f)
+            
+            # Synchronize with filesystem: only return projects that actually have artifact folders
+            # This ensures that if a user manually deletes a folder, it disappears from the UI.
+            valid_projects = []
+            projects_to_keep = []
+            
+            dirty = False
+            for p_data in data:
+                p_id = p_data.get('id')
+                if p_id and (ARTIFACTS_DIR / p_id).exists():
+                    valid_projects.append(Project(**p_data))
+                    projects_to_keep.append(p_data)
+                else:
+                    # Project folder is missing, mark as dirty to clean up projects.json later
+                    dirty = True
+            
+            if dirty:
+                # OPTIONAL: Automatically clean up projects.json if folders are missing
+                # This keeps the history in sync with the filesystem
+                with open(PROJECTS_FILE, 'w') as f:
+                    json.dump(projects_to_keep, f, default=self._serialize_datetime, indent=2)
+            
+            return valid_projects
+        except Exception as e:
+            print(f"ProjectManager: Error loading projects: {e}")
+            return []
 
     async def get_project(self, id: str) -> Optional[Project]:
         projects = await self.get_all_projects()
@@ -173,10 +200,33 @@ class ProjectManager:
             return None
             
         files = []
+        # Define ignored directories and files
+        ignored_dirs = {
+            'node_modules', '.next', '__pycache__', '.git', 
+            '.pytest_cache', 'dist', 'build', 'coverage', 
+            'venv', 'env', '.idea', '.vscode'
+        }
+        ignored_files = {
+            'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 
+            '.DS_Store', 'Thumbs.db'
+        }
+
         for file_path in code_dir.rglob('*'):
             if file_path.is_file():
+                # Check if file is in an ignored directory
+                parts = file_path.relative_to(code_dir).parts
+                if any(part in ignored_dirs for part in parts):
+                    continue
+                    
+                if file_path.name in ignored_files:
+                    continue
+
                 try:
                      # Attempt to read as text, skip binary
+                     # Limit file size to avoid loading huge files (e.g. 1MB limit)
+                     if file_path.stat().st_size > 1_000_000:
+                         continue
+
                      with open(file_path, 'r', encoding='utf-8') as f:
                          content = f.read()
                          rel_path = file_path.relative_to(code_dir).as_posix()
@@ -186,6 +236,8 @@ class ProjectManager:
                          })
                 except UnicodeDecodeError:
                     pass # Skip binary files
+                except Exception as e:
+                    print(f"Error reading file {file_path}: {e}")
                     
         return {"files": files}
 

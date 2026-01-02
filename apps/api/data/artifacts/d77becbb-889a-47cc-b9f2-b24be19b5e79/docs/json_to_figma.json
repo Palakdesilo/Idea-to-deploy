@@ -1,0 +1,492 @@
+[
+  {
+    "type": "FRAME",
+    "name": "Landing Page",
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 800,
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Hero",
+        "x": 40,
+        "y": 40,
+        "width": 1120,
+        "height": 160,
+        "children": [
+          {
+            "type": "RECTANGLE",
+            "name": "Welcome",
+            "x": 20,
+            "y": 40,
+            "width": 1080,
+            "height": 40,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0.9,
+                  "g": 0.9,
+                  "b": 0.9
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Welcome",
+            "characters": "Welcome",
+            "x": 35,
+            "y": 52,
+            "fontSize": 12,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.95,
+              "g": 0.95,
+              "b": 0.95
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.8,
+              "g": 0.8,
+              "b": 0.8
+            }
+          }
+        ],
+        "strokeWeight": 1
+      }
+    ],
+    "fills": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
+    "strokes": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "strokeWeight": 1
+  },
+  {
+    "type": "FRAME",
+    "name": "Login",
+    "x": 1300,
+    "y": 0,
+    "width": 1200,
+    "height": 800,
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Content",
+        "x": 40,
+        "y": 40,
+        "width": 1120,
+        "height": 160,
+        "children": [
+          {
+            "type": "RECTANGLE",
+            "name": "Login",
+            "x": 20,
+            "y": 40,
+            "width": 1080,
+            "height": 40,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0.9,
+                  "g": 0.9,
+                  "b": 0.9
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Login",
+            "characters": "Login",
+            "x": 35,
+            "y": 52,
+            "fontSize": 12,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.95,
+              "g": 0.95,
+              "b": 0.95
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.8,
+              "g": 0.8,
+              "b": 0.8
+            }
+          }
+        ],
+        "strokeWeight": 1
+      }
+    ],
+    "fills": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
+    "strokes": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "strokeWeight": 1
+  },
+  {
+    "type": "FRAME",
+    "name": "Register",
+    "x": 2600,
+    "y": 0,
+    "width": 1200,
+    "height": 800,
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Content",
+        "x": 40,
+        "y": 40,
+        "width": 1120,
+        "height": 160,
+        "children": [
+          {
+            "type": "RECTANGLE",
+            "name": "Register",
+            "x": 20,
+            "y": 40,
+            "width": 1080,
+            "height": 40,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0.9,
+                  "g": 0.9,
+                  "b": 0.9
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Register",
+            "characters": "Register",
+            "x": 35,
+            "y": 52,
+            "fontSize": 12,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.95,
+              "g": 0.95,
+              "b": 0.95
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.8,
+              "g": 0.8,
+              "b": 0.8
+            }
+          }
+        ],
+        "strokeWeight": 1
+      }
+    ],
+    "fills": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
+    "strokes": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "strokeWeight": 1
+  },
+  {
+    "type": "FRAME",
+    "name": "Dashboard",
+    "x": 3900,
+    "y": 0,
+    "width": 1200,
+    "height": 800,
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Content",
+        "x": 40,
+        "y": 40,
+        "width": 1120,
+        "height": 160,
+        "children": [
+          {
+            "type": "RECTANGLE",
+            "name": "Dashboard",
+            "x": 20,
+            "y": 40,
+            "width": 1080,
+            "height": 40,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0.9,
+                  "g": 0.9,
+                  "b": 0.9
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Dashboard",
+            "characters": "Dashboard",
+            "x": 35,
+            "y": 52,
+            "fontSize": 12,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.95,
+              "g": 0.95,
+              "b": 0.95
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.8,
+              "g": 0.8,
+              "b": 0.8
+            }
+          }
+        ],
+        "strokeWeight": 1
+      }
+    ],
+    "fills": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
+    "strokes": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "strokeWeight": 1
+  },
+  {
+    "type": "FRAME",
+    "name": "Settings",
+    "x": 5200,
+    "y": 0,
+    "width": 1200,
+    "height": 800,
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Content",
+        "x": 40,
+        "y": 40,
+        "width": 1120,
+        "height": 160,
+        "children": [
+          {
+            "type": "RECTANGLE",
+            "name": "Settings",
+            "x": 20,
+            "y": 40,
+            "width": 1080,
+            "height": 40,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0.9,
+                  "g": 0.9,
+                  "b": 0.9
+                }
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Settings",
+            "characters": "Settings",
+            "x": 35,
+            "y": 52,
+            "fontSize": 12,
+            "fills": [
+              {
+                "type": "SOLID",
+                "color": {
+                  "r": 0,
+                  "g": 0,
+                  "b": 0
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.95,
+              "g": 0.95,
+              "b": 0.95
+            }
+          }
+        ],
+        "strokes": [
+          {
+            "type": "SOLID",
+            "color": {
+              "r": 0.8,
+              "g": 0.8,
+              "b": 0.8
+            }
+          }
+        ],
+        "strokeWeight": 1
+      }
+    ],
+    "fills": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 1,
+          "g": 1,
+          "b": 1
+        }
+      }
+    ],
+    "strokes": [
+      {
+        "type": "SOLID",
+        "color": {
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "strokeWeight": 1
+  }
+]

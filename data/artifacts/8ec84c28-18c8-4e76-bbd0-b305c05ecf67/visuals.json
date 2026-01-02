@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2c0a397b-f2f7-4816-9d05-6e995ed06892",
+    "projectId": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
+    "screenName": "Dashboard",
+    "description": "Design for I want to build a platfrom tha",
+    "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+    "promptUsed": "Premium UI",
+    "purpose": "Main view",
+    "roles": [
+      "Admin"
+    ],
+    "components": [
+      "Charts"
+    ],
+    "interactions": [
+      "Click"
+    ],
+    "states": [
+      "Default"
+    ]
+  }
+]

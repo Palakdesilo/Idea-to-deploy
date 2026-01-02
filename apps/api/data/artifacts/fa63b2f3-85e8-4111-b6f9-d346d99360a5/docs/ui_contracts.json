@@ -1,0 +1,214 @@
+{
+  "ui_contracts": [
+    {
+      "screen": "Landing Page",
+      "role": "Public",
+      "purpose": "Welcome screen",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Content",
+        "Footer"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Login",
+      "role": "Auth",
+      "purpose": "Access account",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Content",
+        "Footer"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Product Catalog",
+      "role": "User",
+      "purpose": "Browsing items",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Filter",
+        "ProductGrid"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Shopping Cart",
+      "role": "User",
+      "purpose": "Reviewing selected items",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Content",
+        "Footer"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Checkout",
+      "role": "User",
+      "purpose": "Payment and shipping",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Content",
+        "Footer"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "User Dashboard",
+      "role": "User",
+      "purpose": "Main control center",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Stats",
+        "SummaryTable",
+        "ActivityFeed"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Account Settings",
+      "role": "User",
+      "purpose": "Profile management",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Form",
+        "Tabs",
+        "Toggles"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    },
+    {
+      "screen": "Alert Center",
+      "role": "User",
+      "purpose": "All notifications",
+      "actions": [
+        "Explore",
+        "Submit"
+      ],
+      "components": [
+        "Header",
+        "Nav",
+        "Content",
+        "Footer"
+      ],
+      "data": [
+        "id",
+        "title",
+        "metadata"
+      ],
+      "state": [
+        "Default"
+      ],
+      "navigation": [
+        "Dashboard"
+      ]
+    }
+  ]
+}

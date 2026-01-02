@@ -1,0 +1,788 @@
+{
+    "figma": {
+        "pages": [
+            {
+                "name": "Wireframes",
+                "frames": [
+                    {
+                        "name": "landingPage",
+                        "description": "Landing Page / Home Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Hero Area",
+                                "components": [
+                                    {
+                                        "key": "HeroCarousel"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Promotional Section",
+                                "components": [
+                                    {
+                                        "key": "PromotionalBanners"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Featured Products",
+                                "components": [
+                                    {
+                                        "key": "FeaturedProductsGrid"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "productCatalog",
+                        "description": "Product Catalog / Search Results Screen",
+                        "layoutType": "twoColumn",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Sidebar",
+                                "components": [
+                                    {
+                                        "key": "FilterSidebar"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ProductGrid"
+                                    },
+                                    {
+                                        "key": "PaginationControls"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "productDetail",
+                        "description": "Product Detail Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Product Display",
+                                "components": [
+                                    {
+                                        "key": "ProductGallery"
+                                    },
+                                    {
+                                        "key": "ProductInfo"
+                                    },
+                                    {
+                                        "key": "AddToCartButton"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Reviews",
+                                "components": [
+                                    {
+                                        "key": "ReviewsSection"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "login",
+                        "description": "Login Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "LoginForm"
+                                    },
+                                    {
+                                        "key": "SubmitButton"
+                                    },
+                                    {
+                                        "key": "ForgotPasswordLink"
+                                    },
+                                    {
+                                        "key": "SocialLoginButtons"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "registration",
+                        "description": "User Registration Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "RegistrationForm"
+                                    },
+                                    {
+                                        "key": "SubmitButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "forgotPassword",
+                        "description": "Forgot Password Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "EmailInputField"
+                                    },
+                                    {
+                                        "key": "SubmitButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "resetPassword",
+                        "description": "Reset Password Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "NewPasswordForm"
+                                    },
+                                    {
+                                        "key": "SubmitButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "cartSummaryGuest",
+                        "description": "Cart Summary Screen (Guest)",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Cart Items",
+                                "components": [
+                                    {
+                                        "key": "CartItemList"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Order Summary",
+                                "components": [
+                                    {
+                                        "key": "OrderSummary"
+                                    },
+                                    {
+                                        "key": "CheckoutCTAButton"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "privacyPolicy",
+                        "description": "Privacy Policy & Terms of Service Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "TextContentArea"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "notFound",
+                        "description": "404 Not Found Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ErrorMessage"
+                                    },
+                                    {
+                                        "key": "SearchBar"
+                                    },
+                                    {
+                                        "key": "BackToHomeButton"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "serverError",
+                        "description": "500 Internal Server Error Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ErrorMessage"
+                                    },
+                                    {
+                                        "key": "SupportContactInfo"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "userDashboard",
+                        "description": "User Dashboard Screen",
+                        "layoutType": "dashboardShell",
+                        "sections": [
+                            {
+                                "name": "Header",
+                                "components": [
+                                    {
+                                        "key": "GlobalHeader"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Sidebar",
+                                "components": [
+                                    {
+                                        "key": "DashboardSidebar"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "RecentActivitySummary"
+                                    },
+                                    {
+                                        "key": "QuickLinks"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Footer",
+                                "components": [
+                                    {
+                                        "key": "GlobalFooter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "userProfile",
+                        "description": "User Profile Management Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ProfileForm"
+                                    },
+                                    {
+                                        "key": "SaveButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "settings",
+                        "description": "Settings Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "NotificationToggles"
+                                    },
+                                    {
+                                        "key": "PasswordChangeForm"
+                                    },
+                                    {
+                                        "key": "SecuritySettingsSection"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "shoppingCart",
+                        "description": "Shopping Cart Screen",
+                        "layoutType": "twoColumn",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "CartList"
+                                    },
+                                    {
+                                        "key": "CouponInput"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Order Summary",
+                                "components": [
+                                    {
+                                        "key": "OrderSummary"
+                                    },
+                                    {
+                                        "key": "CheckoutButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "checkoutShipping",
+                        "description": "Checkout - Step 1: Shipping Address Screen",
+                        "layoutType": "twoColumn",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "AddressList"
+                                    },
+                                    {
+                                        "key": "AddressFormModal"
+                                    },
+                                    {
+                                        "key": "NextButton"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Sidebar",
+                                "components": [
+                                    {
+                                        "key": "OrderSummarySidebar"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "checkoutPayment",
+                        "description": "Checkout - Step 2: Payment Method Screen",
+                        "layoutType": "twoColumn",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "PaymentMethodSelector"
+                                    },
+                                    {
+                                        "key": "CreditCardForm"
+                                    },
+                                    {
+                                        "key": "PlaceOrderButton"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Sidebar",
+                                "components": [
+                                    {
+                                        "key": "OrderSummarySidebar"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "checkoutReview",
+                        "description": "Checkout - Step 3: Order Review Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "SummaryOfAllDetails"
+                                    },
+                                    {
+                                        "key": "ConfirmButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "orderConfirmation",
+                        "description": "Order Confirmation Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "SuccessMessage"
+                                    },
+                                    {
+                                        "key": "OrderDetailsSummary"
+                                    },
+                                    {
+                                        "key": "ContinueShoppingButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "orderHistory",
+                        "description": "Order History Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "OrderListTable"
+                                    },
+                                    {
+                                        "key": "Pagination"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "orderDetail",
+                        "description": "Order Detail Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "OrderStatusTracker"
+                                    },
+                                    {
+                                        "key": "ItemList"
+                                    },
+                                    {
+                                        "key": "BillingShippingInfo"
+                                    },
+                                    {
+                                        "key": "Actions"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "returnRefund",
+                        "description": "Return / Refund Request Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ReturnForm"
+                                    },
+                                    {
+                                        "key": "ItemSelector"
+                                    },
+                                    {
+                                        "key": "ReasonDropdown"
+                                    },
+                                    {
+                                        "key": "SubmitButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "adminDashboard",
+                        "description": "Admin Dashboard Screen",
+                        "layoutType": "dashboardShell",
+                        "sections": [
+                            {
+                                "name": "Sidebar",
+                                "components": [
+                                    {
+                                        "key": "AdminSidebar"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "StatCards"
+                                    },
+                                    {
+                                        "key": "RecentOrdersWidget"
+                                    },
+                                    {
+                                        "key": "NotificationsAlerts"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "userManagementList",
+                        "description": "User Management - List Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "SearchFilterBar"
+                                    },
+                                    {
+                                        "key": "UserDataTable"
+                                    },
+                                    {
+                                        "key": "Pagination"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "userManagementDetail",
+                        "description": "User Management - Detail / Edit Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "UserProfileForm"
+                                    },
+                                    {
+                                        "key": "StatusControls"
+                                    },
+                                    {
+                                        "key": "ActivityLog"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "productManagementList",
+                        "description": "Product Management - List Screen (Inventory)",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "SearchFilterBar"
+                                    },
+                                    {
+                                        "key": "AddProductButton"
+                                    },
+                                    {
+                                        "key": "ProductTable"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "productManagementEdit",
+                        "description": "Add / Edit Product Screen",
+                        "layoutType": "centeredForm",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "ProductForm"
+                                    },
+                                    {
+                                        "key": "ImageUploader"
+                                    },
+                                    {
+                                        "key": "CategorySelector"
+                                    },
+                                    {
+                                        "key": "SaveButton"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "orderManagementList",
+                        "description": "Order Management - List Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "StatusFilterTabs"
+                                    },
+                                    {
+                                        "key": "BulkActionsBar"
+                                    },
+                                    {
+                                        "key": "OrderTable"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "name": "orderManagementDetail",
+                        "description": "Order Management - Detail Screen",
+                        "layoutType": "fullPage",
+                        "sections": [
+                            {
+                                "name": "Main Content",
+                                "components": [
+                                    {
+                                        "key": "OrderDetails"
+                                    },
+                                    {
+                                        "key": "CustomerInfo"
+                                    },
+                                    {
+                                        "key": "StatusWorkflowButtons"
+                                    },
+                                    {
+                                        "key": "TrackingInput"
+                                    },
+                                    {
+                                        "key": "RefundControls"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

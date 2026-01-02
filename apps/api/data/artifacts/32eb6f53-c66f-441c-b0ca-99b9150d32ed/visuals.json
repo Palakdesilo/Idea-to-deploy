@@ -1,0 +1,112 @@
+[
+  {
+    "id": "63fe456c-9a22-4dfa-b0b2-d8d61dc76b3e",
+    "projectId": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20a%20healthcare%20appointment%20management%20platform%20that%20allows%20patients%20to%20register,%20book%20appointments,%20manage%20medical%20profiles,%20receive%20notifications,%20and%20allows%20healthcare%20providers%20to%20manage%20schedules%20and%20patient%20records..%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "ea0d6a46-2f5d-4909-a37e-9789b1c992ae",
+    "projectId": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20a%20healthcare%20appointment%20management%20platform%20that%20allows%20patients%20to%20register,%20book%20appointments,%20manage%20medical%20profiles,%20receive%20notifications,%20and%20allows%20healthcare%20providers%20to%20manage%20schedules%20and%20patient%20records..%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "006da4a3-dc05-4c19-a459-d148977290e9",
+    "projectId": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20a%20healthcare%20appointment%20management%20platform%20that%20allows%20patients%20to%20register,%20book%20appointments,%20manage%20medical%20profiles,%20receive%20notifications,%20and%20allows%20healthcare%20providers%20to%20manage%20schedules%20and%20patient%20records..%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "034c5ba0-fbfa-4c65-ab24-5a356a8baccd",
+    "projectId": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20a%20healthcare%20appointment%20management%20platform%20that%20allows%20patients%20to%20register,%20book%20appointments,%20manage%20medical%20profiles,%20receive%20notifications,%20and%20allows%20healthcare%20providers%20to%20manage%20schedules%20and%20patient%20records..%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "c069bf96-b784-459a-9426-68275a3aacec",
+    "projectId": "32eb6f53-c66f-441c-b0ca-99b9150d32ed",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20a%20healthcare%20appointment%20management%20platform%20that%20allows%20patients%20to%20register,%20book%20appointments,%20manage%20medical%20profiles,%20receive%20notifications,%20and%20allows%20healthcare%20providers%20to%20manage%20schedules%20and%20patient%20records..%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  }
+]

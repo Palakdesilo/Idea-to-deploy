@@ -1,0 +1,116 @@
+{
+  "figma": {
+    "pages": [
+      {
+        "name": "Project Wireframes / UI",
+        "frames": [
+          {
+            "name": "landingPage",
+            "description": "Landing Page",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "login",
+            "description": "Login",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "homeFeed",
+            "description": "Home Feed",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "friendList",
+            "description": "Friend List",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "userDashboard",
+            "description": "User Dashboard",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "accountSettings",
+            "description": "Account Settings",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "alertCenter",
+            "description": "Alert Center",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

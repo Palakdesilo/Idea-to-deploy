@@ -1,0 +1,112 @@
+[
+  {
+    "id": "495350b1-4dd1-4a38-839a-dcec69c6924d",
+    "projectId": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20a%20full-stack%20e-commerce%20platform%20that%20allows%20users%20to%20register,%20browse%20products,%20manage%20a%20shopping%20cart,%20place%20orders,%20make%20payments,%20track%20order%20status,%20and%20manage%20returns,%20with%20an%20admin%20dashboard%20for%20product,%20inventory,%20and%20order%20management.\n\n.%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "ea3c1bde-36f9-4568-9892-7720447847a0",
+    "projectId": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20a%20full-stack%20e-commerce%20platform%20that%20allows%20users%20to%20register,%20browse%20products,%20manage%20a%20shopping%20cart,%20place%20orders,%20make%20payments,%20track%20order%20status,%20and%20manage%20returns,%20with%20an%20admin%20dashboard%20for%20product,%20inventory,%20and%20order%20management.\n\n.%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "04dbe46c-62ad-4391-9e0a-651d08610c6d",
+    "projectId": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20a%20full-stack%20e-commerce%20platform%20that%20allows%20users%20to%20register,%20browse%20products,%20manage%20a%20shopping%20cart,%20place%20orders,%20make%20payments,%20track%20order%20status,%20and%20manage%20returns,%20with%20an%20admin%20dashboard%20for%20product,%20inventory,%20and%20order%20management.\n\n.%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "11044ee0-9e40-4c13-ab40-d3350da1395f",
+    "projectId": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20a%20full-stack%20e-commerce%20platform%20that%20allows%20users%20to%20register,%20browse%20products,%20manage%20a%20shopping%20cart,%20place%20orders,%20make%20payments,%20track%20order%20status,%20and%20manage%20returns,%20with%20an%20admin%20dashboard%20for%20product,%20inventory,%20and%20order%20management.\n\n.%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "b80a71a5-68fd-4fa2-8283-5ac256dd6829",
+    "projectId": "a10ec8e8-fd36-4876-adfb-f089e954f322",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20a%20full-stack%20e-commerce%20platform%20that%20allows%20users%20to%20register,%20browse%20products,%20manage%20a%20shopping%20cart,%20place%20orders,%20make%20payments,%20track%20order%20status,%20and%20manage%20returns,%20with%20an%20admin%20dashboard%20for%20product,%20inventory,%20and%20order%20management.\n\n.%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  }
+]

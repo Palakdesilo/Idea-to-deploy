@@ -1,0 +1,26 @@
+
+--- STARTING SERVER ON PORT 3098 ---
+
+> build-a-healthcare-appointment-management-platform...@0.1.0 dev
+> next dev -p 3098
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3098
+
+ ✓ Ready in 3.5s
+
+--- STARTING SERVER ON PORT 3037 ---
+
+> build-a-healthcare-appointment-management-platform...@0.1.0 dev
+> next dev -p 3037
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3037
+
+ ✓ Ready in 3s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.4s (426 modules)
+ ✓ Compiled in 175ms (219 modules)
+ ✓ Compiled /register in 164ms (414 modules)
+ ✓ Compiled /login in 125ms (416 modules)
+ ✓ Compiled /dashboard in 130ms (418 modules)

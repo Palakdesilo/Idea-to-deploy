@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard | Build a full-stack e-commerce platform that allows...</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                BUILD A FULL
+            </div>
+            <nav class="sidebar-menu" style="margin-top: 40px; display:flex; flex-direction:column; gap:8px;">
+                <a href="landingpage.html" class="menu-item ">Landing Page</a><a href="login.html" class="menu-item ">Login</a><a href="productcatalog.html" class="menu-item ">Product Catalog</a><a href="shoppingcart.html" class="menu-item ">Shopping Cart</a><a href="checkout.html" class="menu-item ">Checkout</a><a href="userdashboard.html" class="menu-item active">User Dashboard</a>
+            </nav>
+            <div style="margin-top: auto;" class="avatar">U</div>
+        </aside>
+        <main class="app-main">
+            <header class="top-bar">
+                <h1 style="font-size: 20px; font-weight: 800;">User Dashboard</h1>
+                <div style="display: flex; gap: 20px; align-items:center;">
+                    <div class="btn btn-outline" style="padding: 10px 20px; font-size:12px;">+ Create New</div>
+                </div>
+            </header>
+            <div class="grid-layout grid-cols-12 section-padding">
+            <div class="col-span-4">
+                <div class="card-premium">
+                    <h4 style="font-size: 12px; font-weight: 800; opacity: 0.5; text-transform: uppercase; margin-bottom: 12px;">Total Active Users</h4>
+                    <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;">42.5k</div>
+                    <p style="font-size: 13px; opacity: 0.6;">+12% Growth</p>
+                </div>
+            </div>
+            
+            <div class="col-span-4">
+                <div class="card-premium">
+                    <h4 style="font-size: 12px; font-weight: 800; opacity: 0.5; text-transform: uppercase; margin-bottom: 12px;">Revenue (ARR)</h4>
+                    <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;">$1.2M</div>
+                    <p style="font-size: 13px; opacity: 0.6;">Target reached</p>
+                </div>
+            </div>
+            
+            <div class="col-span-4">
+                <div class="card-premium">
+                    <h4 style="font-size: 12px; font-weight: 800; opacity: 0.5; text-transform: uppercase; margin-bottom: 12px;">Engagement</h4>
+                    <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;">78%</div>
+                    <p style="font-size: 13px; opacity: 0.6;">High retention</p>
+                </div>
+            </div>
+            </div><div class="grid-layout grid-cols-12 section-padding">
+            <div class="col-span-12">
+                <div class="card-premium" style="padding: 0;">
+                    <div style="padding: 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;">
+                        <h3 style="font-weight: 800;">Recent Activity</h3>
+                        <div class="btn btn-outline" style="padding: 6px 12px; font-size: 11px;">View All</div>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="opacity: 0.5; font-size: 11px; text-transform: uppercase;">
+                            <th style="text-align: left; padding: 16px 24px;">Entry</th>
+                            <th style="text-align: left; padding: 16px 24px;">Metadata</th>
+                            <th style="text-align: right; padding: 16px 24px;">Action</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px 24px; font-weight: 600;">Sample Entry</td>
+                            <td style="padding: 16px 24px; opacity: 0.6;">Value data point</td>
+                            <td style="padding: 16px 24px; text-align: right;"><span class="btn btn-outline" style="padding: 4px 10px; font-size: 10px;">Select</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

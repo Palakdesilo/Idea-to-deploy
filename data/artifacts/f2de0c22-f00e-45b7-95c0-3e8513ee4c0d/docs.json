@@ -1,0 +1,58 @@
+[
+  {
+    "id": "89a8d010-8d61-4db8-a59a-1d3ad1fb5392",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: Premium Sneaker Marketplace\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "b16a4580-ea48-4369-a533-d1a25ae1f497",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: Premium Sneaker Marketplace\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "50a27d0f-925e-48ce-a11f-1f47512c52f2",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: Premium Sneaker Marketplace\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "866a1717-3d69-4501-97ac-6f872b2fb6d9",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): Premium Sneaker Marketplace\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "f1dd6dd1-1b17-4d22-82de-98fd592eb87a",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: Premium Sneaker Marketplace\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "fc67579d-726a-40d9-9292-e145d72bfb99",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: Premium Sneaker Marketplace\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "66a4e2a0-1455-40a6-b317-fd6430031002",
+    "projectId": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: Premium Sneaker Marketplace\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

@@ -12,7 +12,7 @@ This project is a modern end-to-end AI automation platform that converts product
 ### 1. Backend (Python)
 Navigate to the backend directory and install dependencies:
 ```bash
-cd backend
+cd apps/api
 pip install -r requirements.txt
 ```
 Run the backend server:
@@ -23,7 +23,7 @@ uvicorn main:app --reload --port 4000
 ### 2. Frontend (Next.js)
 Navigate to the frontend directory and install dependencies:
 ```bash
-cd frontend
+cd apps/web
 npm install
 ```
 Run the frontend development server:
@@ -37,12 +37,3 @@ The application will be available at `http://localhost:3000`.
 - **AI Analysis**: Converts text ideas into full PMP-compliant documentation.
 - **AI Design**: Generates UI/UX designs and high-fidelity mockups.
 - **AI Builder**: Scaffolds full-stack codebase automatically.
-
-
-cd apps/api
-uvicorn main:app --reload --port 4000
-
-cd apps/web
-npm run dev
-
-npm install

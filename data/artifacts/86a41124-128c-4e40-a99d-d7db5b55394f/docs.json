@@ -1,0 +1,58 @@
+[
+  {
+    "id": "83dd6212-b94d-4d1c-b001-f5c36fe2ab19",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: CREATE A SOCIAL MEDIA PLATFORM\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "b250bc54-af98-410a-af8d-8a66240f64d2",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: CREATE A SOCIAL MEDIA PLATFORM\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "94426a67-3b63-425a-b2fb-49ef74c50e92",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: CREATE A SOCIAL MEDIA PLATFORM\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "804528fc-3267-4df0-a3d2-ba8cb4ecb66b",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): CREATE A SOCIAL MEDIA PLATFORM\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "2501fe9d-98ff-4344-8d16-c3d398a17ceb",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: CREATE A SOCIAL MEDIA PLATFORM\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "6cc8d9e2-4f90-4304-bd27-b88aa2f1b07b",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: CREATE A SOCIAL MEDIA PLATFORM\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "461fb4d3-46e3-4ad1-b6e6-b7d4e2e94b68",
+    "projectId": "86a41124-128c-4e40-a99d-d7db5b55394f",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: CREATE A SOCIAL MEDIA PLATFORM\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

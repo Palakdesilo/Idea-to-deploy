@@ -1,0 +1,1257 @@
+{
+    "design_tokens": {
+        "colors": {
+            "primary": "#2563EB",
+            "primary_hover": "#1D4ED8",
+            "secondary": "#64748B",
+            "success": "#10B981",
+            "error": "#EF4444",
+            "warning": "#F59E0B",
+            "background": "#FFFFFF",
+            "surface": "#F8FAFC",
+            "border": "#E2E8F0",
+            "text_primary": "#0F172A",
+            "text_secondary": "#64748B",
+            "text_muted": "#94A3B8"
+        },
+        "typography": {
+            "font_family": "Inter, system-ui, sans-serif",
+            "h1": {
+                "size": "32px",
+                "weight": "700",
+                "line_height": "40px"
+            },
+            "h2": {
+                "size": "24px",
+                "weight": "600",
+                "line_height": "32px"
+            },
+            "h3": {
+                "size": "20px",
+                "weight": "600",
+                "line_height": "28px"
+            },
+            "h4": {
+                "size": "18px",
+                "weight": "600",
+                "line_height": "24px"
+            },
+            "body": {
+                "size": "16px",
+                "weight": "400",
+                "line_height": "24px"
+            },
+            "small": {
+                "size": "14px",
+                "weight": "400",
+                "line_height": "20px"
+            },
+            "caption": {
+                "size": "12px",
+                "weight": "400",
+                "line_height": "16px"
+            }
+        },
+        "spacing": {
+            "xs": "4px",
+            "sm": "8px",
+            "md": "16px",
+            "lg": "24px",
+            "xl": "32px",
+            "2xl": "48px",
+            "3xl": "64px"
+        },
+        "radius": {
+            "sm": "4px",
+            "md": "8px",
+            "lg": "12px",
+            "full": "9999px"
+        },
+        "shadows": {
+            "sm": "0 1px 2px rgba(0,0,0,0.05)",
+            "md": "0 4px 6px rgba(0,0,0,0.1)",
+            "lg": "0 10px 15px rgba(0,0,0,0.1)"
+        }
+    },
+    "component_styles": {
+        "Button": {
+            "primary": {
+                "background": "$colors.primary",
+                "color": "#FFFFFF",
+                "padding": "$spacing.sm $spacing.md",
+                "border_radius": "$radius.md",
+                "font_weight": "600",
+                "hover": {
+                    "background": "$colors.primary_hover"
+                }
+            },
+            "secondary": {
+                "background": "$colors.surface",
+                "color": "$colors.text_primary",
+                "border": "1px solid $colors.border",
+                "padding": "$spacing.sm $spacing.md",
+                "border_radius": "$radius.md",
+                "font_weight": "600"
+            }
+        },
+        "Input": {
+            "default": {
+                "border": "1px solid $colors.border",
+                "padding": "$spacing.sm $spacing.md",
+                "border_radius": "$radius.md",
+                "background": "$colors.background",
+                "font_size": "$typography.body.size"
+            }
+        },
+        "Card": {
+            "default": {
+                "background": "$colors.background",
+                "border": "1px solid $colors.border",
+                "border_radius": "$radius.lg",
+                "padding": "$spacing.lg",
+                "shadow": "$shadows.sm"
+            }
+        },
+        "Header": {
+            "default": {
+                "background": "$colors.background",
+                "border_bottom": "1px solid $colors.border",
+                "padding": "$spacing.md $spacing.xl",
+                "height": "64px"
+            }
+        },
+        "Sidebar": {
+            "default": {
+                "background": "$colors.surface",
+                "border_right": "1px solid $colors.border",
+                "width": "256px",
+                "padding": "$spacing.lg"
+            }
+        },
+        "Table": {
+            "default": {
+                "border": "1px solid $colors.border",
+                "border_radius": "$radius.lg",
+                "header_background": "$colors.surface",
+                "row_hover": "$colors.surface"
+            }
+        }
+    },
+    "screens": [
+        {
+            "screen": "Landing Page / Home Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "style": {
+                        "background": "$colors.background",
+                        "border_bottom": "1px solid $colors.border",
+                        "padding": "$spacing.md $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Global Header (Logo, Search, Nav, Account, Cart)",
+                            "variant": "Header.default",
+                            "elements": {
+                                "logo": {
+                                    "height": "32px"
+                                },
+                                "search": {
+                                    "component": "Input.default",
+                                    "width": "400px"
+                                },
+                                "nav_links": {
+                                    "color": "$colors.text_primary",
+                                    "spacing": "$spacing.lg"
+                                },
+                                "icons": {
+                                    "size": "24px",
+                                    "color": "$colors.text_secondary"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "section": "Hero Area",
+                    "style": {
+                        "padding": "$spacing.3xl 0",
+                        "background": "$colors.surface"
+                    },
+                    "components": [
+                        {
+                            "name": "Hero Carousel",
+                            "variant": "Card.default",
+                            "height": "480px",
+                            "border_radius": "$radius.lg"
+                        }
+                    ]
+                },
+                {
+                    "section": "Promotional Section",
+                    "style": {
+                        "padding": "$spacing.2xl 0"
+                    },
+                    "components": [
+                        {
+                            "name": "Promotional Banners",
+                            "variant": "Card.default",
+                            "layout": "grid",
+                            "gap": "$spacing.lg"
+                        }
+                    ]
+                },
+                {
+                    "section": "Featured Products",
+                    "style": {
+                        "padding": "$spacing.2xl 0"
+                    },
+                    "components": [
+                        {
+                            "name": "Featured Products Grid",
+                            "layout": "grid",
+                            "columns": "4",
+                            "gap": "$spacing.lg",
+                            "item": {
+                                "variant": "Card.default",
+                                "image_height": "240px",
+                                "padding": "$spacing.md"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "style": {
+                        "background": "$colors.surface",
+                        "border_top": "1px solid $colors.border",
+                        "padding": "$spacing.2xl $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Global Footer",
+                            "color": "$colors.text_secondary",
+                            "font_size": "$typography.small.size"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Product Catalog / Search Results Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "style": {
+                        "variant": "Header.default"
+                    },
+                    "components": [
+                        {
+                            "name": "Global Header",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Sidebar",
+                    "style": {
+                        "variant": "Sidebar.default"
+                    },
+                    "components": [
+                        {
+                            "name": "Filter Sidebar (Categories, Price Range)",
+                            "variant": "Sidebar.default",
+                            "spacing": "$spacing.md"
+                        }
+                    ]
+                },
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Product Grid (Image, Title, Price)",
+                            "layout": "grid",
+                            "columns": "3",
+                            "gap": "$spacing.lg",
+                            "item": {
+                                "variant": "Card.default"
+                            }
+                        },
+                        {
+                            "name": "Pagination Controls",
+                            "margin_top": "$spacing.xl",
+                            "button_variant": "Button.secondary"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "style": {
+                        "variant": "Header.default"
+                    },
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Product Detail Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "components": [
+                        {
+                            "name": "Global Header",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Product Display",
+                    "style": {
+                        "padding": "$spacing.2xl",
+                        "display": "flex",
+                        "gap": "$spacing.2xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Product Gallery",
+                            "width": "50%",
+                            "border_radius": "$radius.lg"
+                        },
+                        {
+                            "name": "Product Info (Title, Price, Description)",
+                            "width": "50%",
+                            "spacing": "$spacing.lg"
+                        },
+                        {
+                            "name": "Add to Cart Button",
+                            "variant": "Button.primary",
+                            "width": "100%"
+                        }
+                    ]
+                },
+                {
+                    "section": "Reviews",
+                    "style": {
+                        "padding": "$spacing.2xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Reviews Section",
+                            "variant": "Card.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Login Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "max_width": "400px",
+                        "margin": "auto",
+                        "padding": "$spacing.3xl $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Login Form (Email, Password)",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Submit Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        },
+                        {
+                            "name": "\"Forgot Password?\" Link",
+                            "color": "$colors.primary",
+                            "font_size": "$typography.small.size",
+                            "margin_top": "$spacing.sm"
+                        },
+                        {
+                            "name": "Social Login Buttons (Optional)",
+                            "variant": "Button.secondary",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "User Registration Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "max_width": "400px",
+                        "margin": "auto",
+                        "padding": "$spacing.3xl $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Registration Form (Name, Email, Password, Confirm Password)",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Submit Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Forgot Password Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "max_width": "400px",
+                        "margin": "auto",
+                        "padding": "$spacing.3xl $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Email Input Field",
+                            "variant": "Input.default",
+                            "width": "100%"
+                        },
+                        {
+                            "name": "Submit Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Reset Password Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "max_width": "400px",
+                        "margin": "auto",
+                        "padding": "$spacing.3xl $spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "New Password Form",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Submit Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Cart Summary Screen (Guest)",
+            "layout": [
+                {
+                    "section": "Header",
+                    "components": [
+                        {
+                            "name": "Global Header",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Cart Items",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Cart Item List (Image, Name, Price, Qty)",
+                            "spacing": "$spacing.md",
+                            "item_variant": "Card.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Order Summary",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Order Summary (Subtotal, Est. Tax/Shipping)",
+                            "variant": "Card.default"
+                        },
+                        {
+                            "name": "Checkout CTA Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Privacy Policy & Terms of Service Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "components": [
+                        {
+                            "name": "Global Header",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.2xl",
+                        "max_width": "800px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Text Content Area",
+                            "font_size": "$typography.body.size",
+                            "line_height": "$typography.body.line_height",
+                            "color": "$colors.text_primary"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "404 Not Found Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "components": [
+                        {
+                            "name": "Global Header",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.3xl",
+                        "text_align": "center",
+                        "max_width": "600px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Error Message",
+                            "font_size": "$typography.h1.size",
+                            "color": "$colors.text_primary",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Search Bar",
+                            "variant": "Input.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "\"Back to Home\" Button",
+                            "variant": "Button.primary"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "500 Internal Server Error Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.3xl",
+                        "text_align": "center",
+                        "max_width": "600px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Error Message",
+                            "font_size": "$typography.h1.size",
+                            "color": "$colors.error",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Support Contact Info",
+                            "font_size": "$typography.body.size",
+                            "color": "$colors.text_secondary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "User Dashboard Screen",
+            "layout": [
+                {
+                    "section": "Header",
+                    "components": [
+                        {
+                            "name": "Global Header (Logged In State)",
+                            "variant": "Header.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Sidebar",
+                    "components": [
+                        {
+                            "name": "Dashboard Sidebar",
+                            "variant": "Sidebar.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Recent Activity Summary",
+                            "variant": "Card.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Quick Links",
+                            "layout": "grid",
+                            "columns": "3",
+                            "gap": "$spacing.md"
+                        }
+                    ]
+                },
+                {
+                    "section": "Footer",
+                    "components": [
+                        {
+                            "name": "Global Footer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "User Profile Management Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "600px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Profile Form",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Save Button",
+                            "variant": "Button.primary",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Settings Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "800px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Notification Toggles",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Password Change Form",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg",
+                            "margin_bottom": "$spacing.lg",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Security Settings Section",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Shopping Cart Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Cart List",
+                            "spacing": "$spacing.md",
+                            "item_variant": "Card.default"
+                        },
+                        {
+                            "name": "Coupon Input",
+                            "variant": "Input.default",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                },
+                {
+                    "section": "Order Summary",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Order Summary",
+                            "variant": "Card.default"
+                        },
+                        {
+                            "name": "Checkout Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.md"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Checkout - Step 1: Shipping Address Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Address List",
+                            "spacing": "$spacing.md",
+                            "item_variant": "Card.default"
+                        },
+                        {
+                            "name": "Address Form Modal",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl"
+                        },
+                        {
+                            "name": "\"Next\" Button",
+                            "variant": "Button.primary",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                },
+                {
+                    "section": "Sidebar",
+                    "components": [
+                        {
+                            "name": "Order Summary Sidebar",
+                            "variant": "Card.default"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Checkout - Step 2: Payment Method Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Payment Method Selector",
+                            "spacing": "$spacing.md"
+                        },
+                        {
+                            "name": "Credit Card Form (Stripe/Provider)",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "\"Place Order\" Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                },
+                {
+                    "section": "Sidebar",
+                    "components": [
+                        {
+                            "name": "Order Summary Sidebar",
+                            "variant": "Card.default"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Checkout - Step 3: Order Review Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "800px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Summary of All Details",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl"
+                        },
+                        {
+                            "name": "\"Confirm\" Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Order Confirmation Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.3xl",
+                        "max_width": "600px",
+                        "margin": "auto",
+                        "text_align": "center"
+                    },
+                    "components": [
+                        {
+                            "name": "Success Message",
+                            "color": "$colors.success",
+                            "font_size": "$typography.h2.size",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Order Details Summary",
+                            "variant": "Card.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "\"Continue Shopping\" Button",
+                            "variant": "Button.primary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Order History Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Order List Table/Cards (Date, Total, Status)",
+                            "variant": "Table.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Pagination",
+                            "variant": "Button.secondary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Order Detail Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "900px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Order Status Tracker",
+                            "margin_bottom": "$spacing.xl"
+                        },
+                        {
+                            "name": "Item List",
+                            "variant": "Card.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Billing/Shipping Info",
+                            "variant": "Card.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Actions (Cancel/Return)",
+                            "variant": "Button.secondary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Return / Refund Request Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "600px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Return Form",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md"
+                        },
+                        {
+                            "name": "Item Selector",
+                            "margin_bottom": "$spacing.md"
+                        },
+                        {
+                            "name": "Reason Dropdown",
+                            "variant": "Input.default",
+                            "margin_bottom": "$spacing.md"
+                        },
+                        {
+                            "name": "Submit Button",
+                            "variant": "Button.primary",
+                            "width": "100%",
+                            "margin_top": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Admin Dashboard Screen",
+            "layout": [
+                {
+                    "section": "Sidebar",
+                    "components": [
+                        {
+                            "name": "Admin Sidebar",
+                            "variant": "Sidebar.default"
+                        }
+                    ]
+                },
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Stat Cards (Total Sales, New Users, Orders)",
+                            "layout": "grid",
+                            "columns": "3",
+                            "gap": "$spacing.lg",
+                            "margin_bottom": "$spacing.xl"
+                        },
+                        {
+                            "name": "Recent Orders Widget",
+                            "variant": "Card.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Notifications/Alerts",
+                            "variant": "Card.default"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "User Management - List Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Search/Filter Bar",
+                            "variant": "Input.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "User Data Table",
+                            "variant": "Table.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Pagination",
+                            "variant": "Button.secondary"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "User Management - Detail / Edit Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "800px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "User Profile Form",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Status Controls (Ban/Activate)",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Activity Log",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Product Management - List Screen (Inventory)",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Search/Filter Bar",
+                            "variant": "Input.default",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "\"Add Product\" Button",
+                            "variant": "Button.primary",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Product Table (Image, SKU, Stock, Price)",
+                            "variant": "Table.default"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Add / Edit Product Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "800px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Product Form (Title, Desc, Price, SKU)",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "spacing": "$spacing.md",
+                            "input_variant": "Input.default"
+                        },
+                        {
+                            "name": "Image Uploader",
+                            "variant": "Card.default",
+                            "margin_top": "$spacing.lg"
+                        },
+                        {
+                            "name": "Category Selector",
+                            "variant": "Input.default",
+                            "margin_top": "$spacing.md"
+                        },
+                        {
+                            "name": "Save Button",
+                            "variant": "Button.primary",
+                            "margin_top": "$spacing.xl"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Order Management - List Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl"
+                    },
+                    "components": [
+                        {
+                            "name": "Status Filter Tabs",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Bulk Actions Bar",
+                            "variant": "Button.secondary",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Order Table",
+                            "variant": "Table.default"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "screen": "Order Management - Detail Screen",
+            "layout": [
+                {
+                    "section": "Main Content",
+                    "style": {
+                        "padding": "$spacing.xl",
+                        "max_width": "900px",
+                        "margin": "auto"
+                    },
+                    "components": [
+                        {
+                            "name": "Order Details",
+                            "variant": "Card.default",
+                            "padding": "$spacing.xl",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Customer Info",
+                            "variant": "Card.default",
+                            "padding": "$spacing.lg",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Status Workflow Buttons",
+                            "variant": "Button.primary",
+                            "margin_bottom": "$spacing.lg"
+                        },
+                        {
+                            "name": "Tracking Input",
+                            "variant": "Input.default",
+                            "margin_bottom": "$spacing.md"
+                        },
+                        {
+                            "name": "Refund Controls",
+                            "variant": "Button.secondary"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "isFinal": true,
+    "id": "99999999-9999-9999-9999-999999999999",
+    "projectId": "ff9c4a24-9486-4d59-b36f-0458e8b0df5b",
+    "category": "UI_UX",
+    "title": "UI Design"
+}

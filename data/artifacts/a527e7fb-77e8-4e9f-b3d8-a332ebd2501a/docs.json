@@ -1,0 +1,58 @@
+[
+  {
+    "id": "90eed2c2-0003-4e29-a308-ba6b095a3c93",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "799b9231-413a-49dc-b587-a9b46e8e7327",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "d64b5314-37be-4a26-b49c-03c61dfe3aa3",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "ff2230ac-f2e8-4689-8fec-cbc656f63bbe",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): I want to build a chatapp where 2 people can chat online.\n\n\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "6376ae0a-6b41-415e-8e1f-7024107c00e8",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "ec82b4ec-0f4b-413d-88e1-caf3fc0ab0b6",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "bd47d9fd-9cb2-4eff-9591-99718d712335",
+    "projectId": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: I want to build a chatapp where 2 people can chat online.\n\n\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

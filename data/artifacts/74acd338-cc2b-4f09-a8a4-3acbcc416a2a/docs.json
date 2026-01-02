@@ -1,0 +1,58 @@
+[
+  {
+    "id": "3ee6701e-fd69-405c-8b8d-1af74caa3eaf",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: A student portfolio\n\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "7c4690b5-86f5-4c6c-bde2-0c477be0ad11",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: A student portfolio\n\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "03ba8cdf-97d4-4a34-8c89-c0e9d1463aa6",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: A student portfolio\n\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "75f9c856-2bca-445c-aace-4785b28d743f",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): A student portfolio\n\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "e7edc698-1d43-4f5a-a06b-1846c684998a",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: A student portfolio\n\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "f3237970-db6b-4ff7-be9c-2309abbb7a0a",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: A student portfolio\n\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "d3954b89-166a-413a-b58e-2e60310cfd36",
+    "projectId": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: A student portfolio\n\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

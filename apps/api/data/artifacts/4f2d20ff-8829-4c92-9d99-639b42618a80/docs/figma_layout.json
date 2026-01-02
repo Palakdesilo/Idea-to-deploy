@@ -1,0 +1,131 @@
+{
+  "figma": {
+    "pages": [
+      {
+        "name": "Project Wireframes / UI",
+        "frames": [
+          {
+            "name": "landingPage",
+            "description": "Landing Page",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "login",
+            "description": "Login",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "workGallery",
+            "description": "Work Gallery",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "experienceTimeline",
+            "description": "Experience Timeline",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "skillMatrix",
+            "description": "Skill Matrix",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "userDashboard",
+            "description": "User Dashboard",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "accountSettings",
+            "description": "Account Settings",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "alertCenter",
+            "description": "Alert Center",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

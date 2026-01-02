@@ -1,0 +1,58 @@
+[
+  {
+    "id": "e0c6d32f-3df8-4bb4-9f9d-74ed9628ec66",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "9dd64293-6ad2-47e4-873b-caad882ad14c",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "af87d63b-c90e-457b-872b-9283382ba960",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "cc6b71bd-167a-4809-a54b-bfb0b9321c95",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "2e2f8809-7451-4e0c-ad2a-9418ba1a1851",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "592f34b5-35bd-498d-811c-47638c0911df",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "66e21350-bd9c-4d5b-ad96-42478f917bdc",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]

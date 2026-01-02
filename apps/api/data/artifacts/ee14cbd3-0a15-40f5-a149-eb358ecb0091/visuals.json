@@ -1,0 +1,112 @@
+[
+  {
+    "id": "3297c615-4b8b-4aa4-869f-5f56fbae61d0",
+    "projectId": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "screenName": "Landing Page",
+    "description": "Interface for Landing Page",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Landing%20Page%20screen%20for%20Build%20an%20event%20management%20platform%20that%20allows%20organizers%20to%20create%20events,%20sell%20tickets,%20manage%20attendees,%20process%20payments,%20and%20allows%20users%20to%20discover%20events,%20purchase%20tickets,%20and%20receive%20notifications.\n\n.%204k.?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "Modern Landing Page screen for Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n. 4k.",
+    "purpose": "User interaction for Landing Page",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingpage",
+    "uiKey": "landingpage"
+  },
+  {
+    "id": "8800844e-d7ef-465a-bac3-a1e4f1f9f1da",
+    "projectId": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "screenName": "Login",
+    "description": "Interface for Login",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Login%20screen%20for%20Build%20an%20event%20management%20platform%20that%20allows%20organizers%20to%20create%20events,%20sell%20tickets,%20manage%20attendees,%20process%20payments,%20and%20allows%20users%20to%20discover%20events,%20purchase%20tickets,%20and%20receive%20notifications.\n\n.%204k.?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "Modern Login screen for Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n. 4k.",
+    "purpose": "User interaction for Login",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "e13751ef-571b-4ee8-a975-20706fcebe79",
+    "projectId": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "screenName": "Register",
+    "description": "Interface for Register",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Register%20screen%20for%20Build%20an%20event%20management%20platform%20that%20allows%20organizers%20to%20create%20events,%20sell%20tickets,%20manage%20attendees,%20process%20payments,%20and%20allows%20users%20to%20discover%20events,%20purchase%20tickets,%20and%20receive%20notifications.\n\n.%204k.?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "Modern Register screen for Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n. 4k.",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "927b6e9c-a152-4d6e-bccd-3fe0232886ad",
+    "projectId": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "screenName": "Dashboard",
+    "description": "Interface for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Dashboard%20screen%20for%20Build%20an%20event%20management%20platform%20that%20allows%20organizers%20to%20create%20events,%20sell%20tickets,%20manage%20attendees,%20process%20payments,%20and%20allows%20users%20to%20discover%20events,%20purchase%20tickets,%20and%20receive%20notifications.\n\n.%204k.?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "Modern Dashboard screen for Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n. 4k.",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "5e7928f8-90a2-4ff6-808b-693b949c3243",
+    "projectId": "ee14cbd3-0a15-40f5-a149-eb358ecb0091",
+    "screenName": "Settings",
+    "description": "Interface for Settings",
+    "imageUrl": "https://pollinations.ai/p/Modern%20Settings%20screen%20for%20Build%20an%20event%20management%20platform%20that%20allows%20organizers%20to%20create%20events,%20sell%20tickets,%20manage%20attendees,%20process%20payments,%20and%20allows%20users%20to%20discover%20events,%20purchase%20tickets,%20and%20receive%20notifications.\n\n.%204k.?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "Modern Settings screen for Build an event management platform that allows organizers to create events, sell tickets, manage attendees, process payments, and allows users to discover events, purchase tickets, and receive notifications.\n\n. 4k.",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "User"
+    ],
+    "components": [],
+    "interactions": [
+      "Click",
+      "Input"
+    ],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  }
+]

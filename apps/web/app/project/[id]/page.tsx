@@ -112,6 +112,7 @@ export default function ProjectDashboard() {
     const [visuals, setVisuals] = useState<any[]>([]);
 
     const [coding, setCoding] = useState(false);
+    const [loadingBuild, setLoadingBuild] = useState(false);
     const [buildResult, setBuildResult] = useState<any>(null);
     const [activeStep, setActiveStep] = useState(1);
     const [activeTab, setActiveTab] = useState('Docs');
@@ -345,7 +346,7 @@ export default function ProjectDashboard() {
 
     const fetchProject = async (isInitial = false) => {
         try {
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}`);
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}?t=${Date.now()}`);
             if (!res.ok) throw new Error('Failed to fetch project');
             const data = await res.json();
             setProject(data);
@@ -383,7 +384,7 @@ export default function ProjectDashboard() {
 
     const fetchDocs = async () => {
         try {
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/docs`);
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/docs?t=${Date.now()}`);
             if (res.ok) {
                 const data = await res.json();
                 setDocs(data);
@@ -406,8 +407,9 @@ export default function ProjectDashboard() {
     };
 
     const fetchBuild = async () => {
+        setLoadingBuild(true);
         try {
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/build`);
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/build?t=${Date.now()}`);
             if (res.ok) {
                 const data = await res.json();
                 setBuildResult(data);
@@ -417,6 +419,8 @@ export default function ProjectDashboard() {
             }
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoadingBuild(false);
         }
     };
 
@@ -454,7 +458,7 @@ export default function ProjectDashboard() {
 
             // Poll for status
             const pollInterval = setInterval(async () => {
-                const projectRes = await fetch(`${API_BASE_URL}/api/projects/${id}`);
+                const projectRes = await fetch(`${API_BASE_URL}/api/projects/${id}?t=${Date.now()}`);
                 if (projectRes.ok) {
                     const projectData = await projectRes.json();
                     setProject(projectData);
@@ -1281,13 +1285,20 @@ export default function ProjectDashboard() {
                                             </div>
                                             <div className="flex-1 overflow-y-auto p-3 custom-scrollbar">
                                                 <div className="space-y-1">
-                                                    {fileTree.filter((node: any) => !searchQuery || node.name.toLowerCase().includes(searchQuery.toLowerCase()) || JSON.stringify(node).toLowerCase().includes(searchQuery.toLowerCase())).map((node: any) => (
+                                                    {loadingBuild && (
+                                                        <div className="text-center py-10 text-slate-500 text-xs">
+                                                            <RotateCcw className="w-5 h-5 animate-spin mx-auto mb-2 opacity-50" />
+                                                            Loading files...
+                                                        </div>
+                                                    )}
+                                                    {!loadingBuild && fileTree.filter((node: any) => !searchQuery || node.name.toLowerCase().includes(searchQuery.toLowerCase()) || JSON.stringify(node).toLowerCase().includes(searchQuery.toLowerCase())).map((node: any) => (
                                                         <FileTreeNode key={node.path} node={node} level={0} selectedFile={selectedFile} onSelect={setSelectedFile} />
                                                     ))}
-                                                    {fileTree.length === 0 && (
+                                                    {!loadingBuild && fileTree.length === 0 && (
                                                         <div className="text-center py-10">
                                                             <Code className="w-8 h-8 text-slate-700 mx-auto mb-2" />
                                                             <p className="text-[10px] text-slate-500">No files generated</p>
+                                                            <button onClick={fetchBuild} className="mt-2 text-[10px] text-blue-400 hover:underline">Retry</button>
                                                         </div>
                                                     )}
                                                 </div>

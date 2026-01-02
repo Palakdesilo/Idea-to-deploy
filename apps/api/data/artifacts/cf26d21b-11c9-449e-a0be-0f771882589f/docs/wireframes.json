@@ -1,0 +1,246 @@
+{
+  "wireframes": [
+    {
+      "screen": "Venture Entrance",
+      "screenKey": "ventureentrance",
+      "route": "/ventureentrance",
+      "shellType": "Internal",
+      "purpose": "High-conversion entry point for the social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. ecosystem.",
+      "layout": [
+        {
+          "section": "Auth",
+          "layoutType": "authShell",
+          "components": [
+            {
+              "key": "A1",
+              "type": "AuthCard",
+              "label": "Settings. Secure Access",
+              "content": "Authenticated entry to the social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. orchestration layer."
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    },
+    {
+      "screen": "Secure Access",
+      "screenKey": "secureaccess",
+      "route": "/secureaccess",
+      "shellType": "Internal",
+      "purpose": "Enterprise-grade authentication portal.",
+      "layout": [
+        {
+          "section": "Auth",
+          "layoutType": "authShell",
+          "components": [
+            {
+              "key": "A1",
+              "type": "AuthCard",
+              "label": "Settings. Secure Access",
+              "content": "Authenticated entry to the social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. orchestration layer."
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    },
+    {
+      "screen": "Global Pulse Feed",
+      "screenKey": "globalpulsefeed",
+      "route": "/globalpulsefeed",
+      "shellType": "Internal",
+      "purpose": "Real-time stream of community interactions.",
+      "layout": [
+        {
+          "section": "Status",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "H",
+              "type": "Hero",
+              "label": "Settings. Pulse",
+              "content": "Real-time stream of all community interactions and social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. updates."
+            }
+          ]
+        },
+        {
+          "section": "Feed",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "P1",
+              "type": "Post",
+              "label": "Alex Chen",
+              "content": "Just achieved an 84% increase in Settings. efficiency using the new Prism bridge!",
+              "subtext": "12 minutes ago"
+            },
+            {
+              "key": "P2",
+              "type": "Post",
+              "label": "Sarah Miller",
+              "content": "Excited to announce the new social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. integration with global endpoints. See results in the Command Center.",
+              "subtext": "45 minutes ago"
+            },
+            {
+              "key": "P3",
+              "type": "Post",
+              "label": "David Ross",
+              "content": "The strategic trajectory for Settings. looks promising. Milestone 4 achieved!",
+              "subtext": "2 hours ago"
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    },
+    {
+      "screen": "Nexus Connect",
+      "screenKey": "nexusconnect",
+      "route": "/nexusconnect",
+      "shellType": "Internal",
+      "purpose": "Discover and bridge with new collaborators.",
+      "layout": [
+        {
+          "section": "Header",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "H1",
+              "type": "Card",
+              "label": "Nexus Connections",
+              "content": "Bridging the gap between social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. experts and collaborators."
+            }
+          ]
+        },
+        {
+          "section": "Users",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "U1",
+              "type": "UserCard",
+              "label": "Dr. Aris Thorne",
+              "subtext": "Settings. Architect",
+              "content": "Connect"
+            },
+            {
+              "key": "U2",
+              "type": "UserCard",
+              "label": "Elena Vance",
+              "subtext": "social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. Senior Lead",
+              "content": "Follow"
+            },
+            {
+              "key": "U3",
+              "type": "UserCard",
+              "label": "Marcus Wright",
+              "subtext": "Strategic Settings. Planner",
+              "content": "Bridge"
+            },
+            {
+              "key": "U4",
+              "type": "UserCard",
+              "label": "Sofia G.",
+              "subtext": "Lead Developer",
+              "content": "Message"
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    },
+    {
+      "screen": "Signal Center",
+      "screenKey": "signalcenter",
+      "route": "/signalcenter",
+      "shellType": "Internal",
+      "purpose": "Consolidated notification and alert stream.",
+      "layout": [
+        {
+          "section": "Signals",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "N1",
+              "type": "Notification",
+              "label": "Settings. Threshold",
+              "content": "The performance metrics for social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. have exceeded baseline.",
+              "subtext": "3m ago"
+            },
+            {
+              "key": "N2",
+              "type": "Notification",
+              "label": "Security Protocol",
+              "content": "Your Settings. workspace is now protected with Layer 4 encryption.",
+              "subtext": "15m ago"
+            },
+            {
+              "key": "N3",
+              "type": "Notification",
+              "label": "New Connection",
+              "content": "Marcus Wright wants to bridge your Nexus.",
+              "subtext": "1h ago"
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    },
+    {
+      "screen": "Entity Profile",
+      "screenKey": "entityprofile",
+      "route": "/entityprofile",
+      "shellType": "Internal",
+      "purpose": "Comprehensive presence management.",
+      "layout": [
+        {
+          "section": "Core",
+          "layoutType": "grid",
+          "components": [
+            {
+              "key": "C1",
+              "type": "Hero",
+              "label": "Entity Profile Center",
+              "content": "Comprehensive interface for managing Entity Profile within the social media  that allows users to create profiles, post content, edit and schedule posts, interact through likes and comments, chat in real time, receive notifications, and manage privacy settings. ecosystem.",
+              "subtext": "Explore Settings."
+            }
+          ]
+        },
+        {
+          "section": "Details",
+          "layoutType": "masonryGrid",
+          "components": [
+            {
+              "key": "D1",
+              "type": "ProjectCard",
+              "label": "Settings. Config",
+              "content": "Customize how Entity Profile interacts with your primary system.",
+              "subtext": "Edit"
+            },
+            {
+              "key": "D2",
+              "type": "ProjectCard",
+              "label": "Settings. Intel",
+              "content": "Automated insights derived from Entity Profile data patterns.",
+              "subtext": "View Info"
+            },
+            {
+              "key": "D3",
+              "type": "ProjectCard",
+              "label": "Settings. Logic",
+              "content": "Historical baseline for Entity Profile performance over time.",
+              "subtext": "Audit"
+            }
+          ]
+        }
+      ],
+      "primary_action": "Explore Settings.",
+      "flow": "Standard flow"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "figma": {
+    "pages": [
+      {
+        "name": "Project Wireframes / UI",
+        "frames": [
+          {
+            "name": "landingpage",
+            "description": "Landing Page",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "login",
+            "description": "Login",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "userdashboard",
+            "description": "User Dashboard",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "accountsettings",
+            "description": "Account Settings",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "alertcenter",
+            "description": "Alert Center",
+            "layoutType": "fullPage",
+            "sections": [
+              {
+                "name": "Main",
+                "components": [
+                  {
+                    "key": "HeroSection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

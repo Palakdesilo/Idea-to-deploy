@@ -1,0 +1,58 @@
+[
+  {
+    "id": "bf706b56-2e1c-48a4-af80-bdce1a1657c5",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "b6c2ca85-ace6-43a6-ba15-b2c6890f064e",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "e8bdd93d-0d12-47bd-adc1-3a0fef5ce264",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "60be0690-a5f3-4968-a449-32e5282d1c56",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "2872d032-45eb-4eae-8455-0e985848ee0b",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "86a76a20-de98-49f3-a232-b8e0b2e65d13",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "",
+    "isFinal": true
+  },
+  {
+    "id": "8632eb2d-45f8-4a3a-878f-f1811a1f65af",
+    "projectId": "4637fc0f-c4a7-4ad6-8f78-0a9c7eddfbdb",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "",
+    "isFinal": true
+  }
+]

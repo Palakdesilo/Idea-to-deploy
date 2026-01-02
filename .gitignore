@@ -1,7 +1,7 @@
 node_modules
 webpack/
-artifacts/
-*.json
+
+
 .env
 .DS_Store
 dist/

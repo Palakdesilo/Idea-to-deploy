@@ -1,0 +1,39 @@
+{
+  "screen_inventory": [
+    {
+      "name": "Landing Page",
+      "category": "Public",
+      "description": "Welcome screen"
+    },
+    {
+      "name": "Login",
+      "category": "Auth",
+      "description": "Access account"
+    },
+    {
+      "name": "Home Feed",
+      "category": "User",
+      "description": "Social feed of posts"
+    },
+    {
+      "name": "Friend List",
+      "category": "User",
+      "description": "Connected people"
+    },
+    {
+      "name": "User Dashboard",
+      "category": "User",
+      "description": "Main control center"
+    },
+    {
+      "name": "Account Settings",
+      "category": "User",
+      "description": "Profile management"
+    },
+    {
+      "name": "Alert Center",
+      "category": "User",
+      "description": "All notifications"
+    }
+  ]
+}

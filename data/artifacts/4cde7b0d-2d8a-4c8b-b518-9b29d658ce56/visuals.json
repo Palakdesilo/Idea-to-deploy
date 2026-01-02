@@ -1,0 +1,260 @@
+[
+  {
+    "id": "d91518c0-b63e-40da-b535-917f419b017b",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Landing Page",
+    "description": "Welcome screen",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=0&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "Welcome screen",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "H1",
+      "H2",
+      "Hero"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "landingPage",
+    "uiKey": "landingPage"
+  },
+  {
+    "id": "661b31e5-eecb-4b2d-a184-f37b529b2336",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Login",
+    "description": "Access account",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=1&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "Access account",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "login",
+    "uiKey": "login"
+  },
+  {
+    "id": "7a7b8901-338d-4108-857c-c7a424755b7d",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "User Dashboard",
+    "description": "Main control center",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=2&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "Main control center",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "S1",
+      "U1",
+      "N1",
+      "N2",
+      "M1",
+      "M2",
+      "M3",
+      "T1"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "userDashboard",
+    "uiKey": "userDashboard"
+  },
+  {
+    "id": "d4afd553-245d-4a75-b451-02f70c29c078",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Account Settings",
+    "description": "Profile management",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=3&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "Profile management",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "S1",
+      "U1",
+      "N1",
+      "N2",
+      "I1",
+      "I2"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "accountSettings",
+    "uiKey": "accountSettings"
+  },
+  {
+    "id": "483f1723-5f96-4232-9a08-82deecc7d06b",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Alert Center",
+    "description": "All notifications",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=4&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "All notifications",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "alertCenter",
+    "uiKey": "alertCenter"
+  },
+  {
+    "id": "9c3c803a-038d-477e-9781-457f52474b4e",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Register",
+    "description": "User interaction for Register",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=5&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "User interaction for Register",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "register",
+    "uiKey": "register"
+  },
+  {
+    "id": "0d426e5e-ead8-4d5c-9cda-4d58ad00d828",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Dashboard",
+    "description": "User interaction for Dashboard",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=6&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "User interaction for Dashboard",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "dashboard",
+    "uiKey": "dashboard"
+  },
+  {
+    "id": "ea640332-d6d2-4380-ad5c-ab4adb2f446f",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Settings",
+    "description": "User interaction for Settings",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=7&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "User interaction for Settings",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "settings",
+    "uiKey": "settings"
+  },
+  {
+    "id": "c2aece6e-c812-41b8-9764-551f33df2b2a",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Analytics",
+    "description": "User interaction for Analytics",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=8&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "User interaction for Analytics",
+    "roles": [
+      "Admin",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "analytics",
+    "uiKey": "analytics"
+  },
+  {
+    "id": "26e77687-fb32-4a24-bab5-31a8d661415c",
+    "projectId": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
+    "screenName": "Profile",
+    "description": "User interaction for Profile",
+    "imageUrl": "https://pollinations.ai/p/#%20VISUAL_PROMPT%20Document%20for%20I%20want%20to%20create%20a%20platform%20where%20I%20can%20connect%20direct%20to%20farmer%20for%20buy%20fruits%20or%20vegetables.\n\n?width=1280&height=720&seed=9&nologo=true",
+    "promptUsed": "# VISUAL_PROMPT Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
+    "purpose": "User interaction for Profile",
+    "roles": [
+      "Public",
+      "User"
+    ],
+    "components": [
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component",
+      "Component"
+    ],
+    "interactions": [],
+    "states": [
+      "Default"
+    ],
+    "wireframeKey": "profile",
+    "uiKey": "profile"
+  }
+]

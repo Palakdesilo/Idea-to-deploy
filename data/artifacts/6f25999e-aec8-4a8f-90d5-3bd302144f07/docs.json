@@ -1,0 +1,58 @@
+[
+  {
+    "id": "b6425bf6-6d82-4ccc-aeb0-14f78355e67b",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "# Requirement Document: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Objectives\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "21ceb210-5825-4e96-8360-8d11d39aefd7",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "# Project Planning Document: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Timeline\n- Phase 1: Planning\n- Phase 2: Execution",
+    "isFinal": true
+  },
+  {
+    "id": "99ee3e5b-f990-4baa-9631-a7f12d550f78",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "# Technical Architecture: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Stack\n- Next.js, FastAPI, PostgreSQL",
+    "isFinal": true
+  },
+  {
+    "id": "d02ccca7-f289-4c8e-b78d-e9e38f9f99f4",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "# Integrated Project Management Plan (IPMP): I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Goals\nAutomate workflows\nImprove user experience\nProvide data insights",
+    "isFinal": true
+  },
+  {
+    "id": "24a01c13-065c-4798-b714-6d8cccc6c6ca",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "# Schedule & Cost Plan: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Period\n12-week roadmap",
+    "isFinal": true
+  },
+  {
+    "id": "56ffef97-c347-4ff8-bcd3-a7d7d00b553d",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "# Quality, Risk & Procurement Plan: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Maintenance\nCode review and QA testing.",
+    "isFinal": true
+  },
+  {
+    "id": "7647ef88-6be1-4baa-b5ca-10915a5c29d1",
+    "projectId": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "# Testing & Release Plan: I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n\n\n## Phases\n- Unit\n- Integration\n- UAT",
+    "isFinal": true
+  }
+]
