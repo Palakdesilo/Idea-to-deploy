@@ -1,0 +1,22 @@
+
+            1. Requirement Documents
+            Error: Unable to generate requirements. Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}
+            
+            2. Project Planning Documents
+            Error: Plan generation failed.
+            
+            3. Technical Architecture & Delivery Plans
+            Error: Architecture generation failed.
+            
+            4. Integrated Project Management Plans (IPMP)
+            Error: IPMP generation failed.
+            
+            5. Schedule & Cost Plans
+            Error: Schedule generation failed.
+            
+            6. Quality, Risk & Procurement Plans
+            Error: Quality plan generation failed.
+            
+            7. Testing & Release Plans
+            Error: Testing plan generation failed.
+            

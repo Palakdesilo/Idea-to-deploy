@@ -223,208 +223,23 @@ Create a **Detailed UI/UX Design Specification** in STRICT JSON format.
 """
 
 SCREEN_INVENTORY_PROMPT = """
-You are a Senior Product Architect and UX Researcher. 
-Your first task is to RESEARCH the given Project Idea and identify the ESSENTIAL and DIFFERENTIATIED screens required for a category-leading product in this space.
-
-**STRICT GENERATION RULES:**
-1. **NO TEMPLATES**: Do NOT look at common patterns. Research what a niche-leader in {idea} would actually need.
-2. **DOMAIN-FIRST ARCHITECTURE**: For a Fintech app, talk about "Liquidity Ledgers" and "Escrow Nodes". For a Social app, talk about "Engagement Prisms" and "Interaction Vaults".
-3. **MISSION-CRITICAL ONLY**: Identify 5-8 screens that form the core "Happy Path" of the product.
-4. **ROLE-BASED DISCOVERY**: If there are multiple user types, ensure the inventory reflects their unique perspectives.
-5. **UNNAMED INNOVATIONS**: Invent screens that solve the specific technical or business challenges of {idea}.
+You are a Senior Product Architect. 
+List the Essential Screens for this project.
 
 **Project Idea**: {idea}
 
-**Output Format**: STRICT JSON ONLY.
-{{
-  "screen_inventory": [
-    {{
-      "name": "Niche-Specific Screen Name",
-      "category": "Role-Specific Category",
-      "description": "The precise business logic and user value this screen serves",
-      "route": "/url-safe-path"
-    }}
-  ]
-}}
+**Output Format**: 
+Provide a simple PLAIN TEXT LIST of screens.
+Example:
+- Login Screen: User authentication
+- Dashboard: Overview of metrics
+- Settings: User preferences
+
+Do NOT output JSON. Just a clean text list.
 """
 
-UI_CONTRACTS_PROMPT = """
-You are a Lead Software Architect.
-Now, define the DATA and ACTION contract for each screen. You must RESEARCH the required data structures for {idea}.
+# ... (keep other prompts) ...
 
-**STRICT CONTRACT RULES:**
-1. **REALISTIC DATA FIELDS**: Do NOT use "id", "name", "desc". Use domain-specific fields (e.g., "hash_rate", "biometric_signature", "escrow_unlock_key").
-2. **COMPLEX DATA TYPES**: Include arrays, nested objects, and realistic metrics.
-3. **HIGH-VALUE ACTIONS**: Actions must be precise business operations. Instead of "Save", use "Commit to Blockchain" or "Authorize Disbursement".
-4. **NICHE SIMULATION**: For a social app, data should include "Post Feed (with sentiment_score, engagement_ratio, author_reputation)".
-5. **DYNAMISM**: Every screen must have a "business_logic" description explaining *why* this data exists.
-
-**Project Idea**: {idea}
-**Screen Inventory**: {screen_inventory}
-
-**Output Format**: STRICT JSON ONLY.
-{{
-  "ui_contracts": [
-    {{
-      "screen": "Screen Name",
-      "role": "Specific Domain Role",
-      "purpose": "Precise niche goal",
-      "actions": ["Niche-Action-1", "Niche-Action-2"],
-      "data": ["Domain-Specific-Field-1", "Domain-Specific-Field-2"],
-      "business_logic": "Deep dive into the operational logic of this screen"
-    }}
-  ]
-}}
-"""
-
-WIREFRAMES_PROMPT = """
-You are a World-Class UI Designer and Professional Copywriter.
-Create high-fidelity structural layouts for the screens. You must RESEARCH and GENERATE "Real-Like" content for every component.
-
-**STRICT CONTENT RULES:**
-1. **NO LOREM IPSUM**: Every word must be professional, persuasive copy related to {idea}. 
-2. **NO SHELL COMPONENTS**: Do NOT include components for "Sidebar", "Navigation", "Top Bar", or "Footer". These are already provided by the global application shell. Focus ONLY on the unique main content of the screen.
-3. **LOGICAL GROUPING**: 
-   - Never render individual fields (like "First Name") as separate top-level components. 
-   - Group them all into a single `Form` type component.
-4. **HIGH PERFORMANCE DUMMY DATA**: 
-   - If it's a social feed, write 50-80 word posts about niche-specific topics.
-   - Use real-sounding names, company names, and professional titles.
-   - For "Hero" sections, write a compelling, domain-specific 100-word value proposition.
-5. **STRUCTURED DOMAIN DATA**:
-   - Every complex component MUST include a `simulated_data` object with realistic items.
-   - `Stats`: Provide an array of objects: `[{"label": "Active Nodes", "value": "12,402", "trend": "+5.2%"}, ...]`.
-   - `Feed`: Provide an array of objects: `[{"author": "Name", "content": "Full text...", "time": "2h ago", "likes": 42}, ...]`.
-   - `Table`: Provide 5+ rows of detailed, domain-specific records.
-   - `Testimonials`: Provide 3+ realistic reviews: `[{"user": "Name", "quote": "Review...", "rating": 5}, ...]`.
-4. **COMPONENT-SPECIFIC EXPECTATIONS**:
-   - `Hero`: Needs a headline, description, and primary/secondary actions.
-   - `Pricing`: Needs 3 plans (Starter, Pro, Enterprise) with features.
-   - `Stats`: Needs 3-6 high-level metrics.
-   - `ProcessSteps`: Use for "How it works" sections. Provide 3 steps in `simulated_data`.
-   - `BentoGrid`: Use for "Features" or "Why Choose Us". Provide heavy content.
-   - `MobileShowcase`: Use for "App Download" or "Mobile Features" sections.
-
-**Project Idea**: {idea}
-**UI Contracts**: {ui_contracts}
-
-**JSON OUTPUT FORMAT:**
-{{
-  "wireframes": [
-    {{
-      "screen": "Screen Name",
-      "screenKey": "camelCase",
-      "layoutType": "fullPage | splitVisual | dashboardShell",
-      "layout": [
-        {{
-          "section": "Hero | Features | SocialProof | CTA | AuthSection",
-          "layoutType": "fullWidth | heroSplit | grid | masonryGrid | authShell | centered",
-          "components": [
-            {{
-              "key": "UniqueKey",
-              "type": "Hero | FeatureGrid | Stats | Feed | ProfileHeader | Table | Form | CartItem | Summary | ProjectCard | Testimonials | Pricing | ProcessSteps | BentoGrid | MobileShowcase",
-              "label": "Professional Domain Heading",
-              "content": "A high-level sentence or paragraph describing/persuading this section",
-              "subtext": "Technical or niche-specific metadata",
-              "simulated_data": {{ 
-                 "items": [ ... structured objects ... ],
-                 "stats": [ ... structured objects ... ],
-                 "rows": [ ... structured objects ... ]
-              }}
-            }}
-          ]
-        }}
-      ]
-    }}
-  ]
-}}
-"""
-
-UI_DESIGN_PROMPT = """
-You are a Premium UI Designer specialized in Gemini-style aesthetics.
-Create a modern, premium visual UI for the project.
-
-**Project Idea**: {idea}
-**Wireframes**: {wireframes}
-**UI Contracts**: {ui_contracts}
-
-**DESIGN ARCHITECTURE:**
-1. **Color Selection**: Do NOT use plain red/blue. Use curated HSL palettes. (e.g., Deep Slate, Neon Indigo, Glassmorphic White).
-2. **Typography**: Use modern Google Fonts (Inter, Outfit, Roboto).
-3. **Layout Polish**: Define exact spacing tokens (8px, 16px, 24px, 48px).
-4. **Premium Touches**: Add rules for hover states, scale transitions, and subtle borders.
-
-**REQUIRED JSON SCHEMA:**
-{{
-  "design_tokens": {{
-    "palette": {{ "background": "HSL HEX", "surface": "HSL HEX", "primary": "HSL HEX", "accent": "HSL HEX" }},
-    "typography": {{ "heading": "Font Name", "body": "Font Name", "scale": "Modern Value" }},
-    "effects": {{ "radius": "16px", "blur": "12px", "shadow": "Premium Soft Shadow" }}
-  }},
-  "screens": [
-    {{
-      "screen": "Screen Name",
-      "visual_spec": "Detailed description of the visual vibe and unique animation/transition for this screen"
-    }}
-  ]
-}}
-"""
-
-FIGMA_LAYOUT_PROMPT = """
-You are a FIGMA Layout Architect. 
-
-**Project Idea**: {idea}
-**UI Contracts**: {ui_contracts}
-**Wireframes**: {wireframes}
-
-**Task**: Generate a highly structured Figma layout plan.
-Ensure the layoutType and sections reflect the actual complexity of the project (e.g., if it's a Finance app, use a dashboardShell; if it's a Landing Page, use fullPage).
-
-**REQUIRED JSON SCHEMA:**
-{{
-  "figma": {{
-    "pages": [
-      {{
-        "name": "Project Wireframes / UI",
-        "frames": [
-          {{
-            "name": "screenKey",
-            "description": "Contextual description",
-            "layoutType": "fullPage | twoColumn | dashboardShell | centeredForm",
-            "sections": [
-              {{
-                "name": "Section Name",
-                "components": [
-                  {{ "key": "ComponentKey" }}
-                ]
-              }}
-            ]
-          }}
-        ]
-      }}
-    ]
-  }}
-}}
-"""
-
-VISUAL_PROMPT_PROMPT = """
-You are a Creative Director for a world-class design agency.
-
-**Project Idea**: {idea}
-**Screen Name**: {screen_name}
-**Screen Purpose**: {purpose}
-
-**Task**: Generate a highly detailed, professional prompt for an AI image generator (like Pollinations or Midjourney) to create a high-fidelity UI mockup of this specific screen.
-
-**Prompt Requirements**:
-1. **Style**: Describe the visual style (e.g., Glassmorphism, Brutalism, Minimalist, Neumorphism).
-2. **Atmosphere**: Describe the mood and lighting.
-3. **Color Palette**: Use specific, sophisticated color names.
-4. **Layout**: Mention the structural elements (e.g., "centered authentication card", "complex data grid with vibrant charts").
-5. **Technical Details**: Include terms like "4k resolution", "sharp focus", "soft shadows", "premium UI/UX design".
-
-**OUTPUT**: ONLY the prompt string. NO markdown, NO quotes.
-"""
 
 PAGE_CODE_PROMPT = """
 You are an expert Senior Full-Stack Engineer and UI/UX Architect.
@@ -441,8 +256,9 @@ Your task is to write a production-ready Next.js 14 Page component that FAITHFUL
 
 **STRICT CODE RULES:**
 1. **VISUAL FAITHFULNESS**: Replicate the premium aesthetics from the design tokens.
-   - Use the background, primary, and accent colors provided.
-   - Implement glassmorphism (bg-white/5 backdrop-blur-lg) for cards and modals.
+   - **Strictly use** the provided `primary`, `secondary`, and `surface` HSL/Hex codes for backgrounds and buttons.
+   - Apply the specific `radius` (e.g., rounded-xl) and `shadow` defined in the tokens.
+   - Implement glassmorphism (bg-white/5 backdrop-blur-lg) for cards and modals if specified in `design_tokens`.
    - Use **standard Tailwind animations** (animate-fade-in, animate-pulse, etc.) and CSS transitions (`transition-all duration-300`) for page elements and hover effects. Avoid complex animation libraries unless strictly necessary for a specific requested effect.
 2. **FUNCTIONAL NAVIGATION**: 
    - Use Next.js `Link` for internal navigation using the "Available Routes" provided.
@@ -451,7 +267,13 @@ Your task is to write a production-ready Next.js 14 Page component that FAITHFUL
    - Use the `api` utility from `@/lib/api` for all data fetching and actions.
    - Example: `api.post('/auth/login', data)` or `api.get('/items')`.
    - Handle loading and error states for all API calls.
-4. **FORM VALIDATION**:
+4. **NAVIGATION & ROUTING (CRITICAL)**:
+   - **Login/Register Success**: AFTER a successful API call (e.g., login), you MUST redirect the user.
+     - Example: `router.push('/dashboard')` or to the user's home screen.
+   - **Internal Links**: Use Next.js `<Link href="/path">` for all internal navigation (sidebar items, dashboard cards).
+     - Ensure these paths MATCH the `Available Routes` provided above.
+   - **Dashboard**: Sidebar or specific action buttons MUST link to valid routes (e.g., Users -> `/users`, Settings -> `/settings`).
+5. **FORM VALIDATION**:
    - Implement forms with `react-hook-form` and `zod` validation.
    - Match the fields specified in the UI contract.
 5. **AUTHENTICATION**:
@@ -468,6 +290,7 @@ Your task is to write a production-ready Next.js 14 Page component that FAITHFUL
 
 **Output Format**:
 Return ONLY the raw React code (TSX). Do not wrap in markdown fenced blocks.
+Include "use client"; at the very top of the file.
 Include all necessary imports.
 """
 
@@ -609,49 +432,6 @@ Return THREE separate code blocks labeled exactly:
 Do not wrap in markdown fenced blocks.
 """
 
-PROJECT_CONFIG_PROMPT = """
-You are a DevOps Engineer setting up a full-stack project.
-
-**Project Context**: {idea}
-**Project Name**: {project_name}
-
-**Task**: Generate all configuration files for a production-ready project.
-
-**Files to Generate**:
-1. **Frontend (Next.js)**:
-   - package.json (with all dependencies)
-   - tsconfig.json
-   - next.config.js
-   - tailwind.config.js
-   - postcss.config.js
-   - .env.example
-
-2. **Backend (Python FastAPI)**:
-   - requirements.txt
-   - main.py (FastAPI app entry point)
-   - config.py (settings with pydantic)
-   - database.py (SQLAlchemy setup)
-   - .env.example
-
-3. **Deployment**:
-   - docker-compose.yml (frontend, backend, postgres)
-   - Dockerfile (for backend)
-   - Dockerfile.frontend (for frontend)
-   - .dockerignore
-   - .gitignore
-
-4. **Documentation**:
-   - README.md (comprehensive setup guide)
-   - API_DOCS.md (API endpoint documentation)
-
-**Output Format**:
-Return each file's content labeled with:
-### filename
-[content]
-
-Do not wrap in markdown fenced blocks.
-"""
-
 README_TEMPLATE_PROMPT = """
 You are a Technical Writer creating project documentation.
 
@@ -682,46 +462,7 @@ Use proper markdown formatting with headers, code blocks, lists.
 
 
 DYNAMIC_SCREENS_PROMPT = """
-You are a Senior Product Manager and Lead UI Architect.
-Your task is to take a high-level Project Idea and instantly generate a set of **5-8 Niche-Specific Wireframes** for a Minimum Viable Product (MVP).
+want to Build "{idea}".
 
-**Project Idea**: {idea}
-
-**CRITICAL INSTRUCTIONS**:
-1. **IGNORE GENERIC SCREENS**: Do NOT just give me "Login", "Register", "Dashboard".
-2. **GENERATE NICHE SCREENS**: 
-   - If it's E-Commerce: I need "Product Catalog", "Cart", "Checkout Flow", "Order Tracking", "Admin Inventory".
-   - If it's a Social App: I need "Feed", "User Profile", "Chat Window", "Discover", "Notification Center".
-   - If it's Fintech: I need "Portfolio Overview", "Transaction History", "Send Money", "Market Analysis".
-3. **REALISTIC LAYOUTS**: For each screen, define a structural layout using the provided component types.
-4. **RICH CONTENT**: Auto-generate realistic dummy content (not "Lorem Ipsum") for every component.
-
-**COMPONENT TYPES AVAILABLE**:
-- `Hero`, `FeatureGrid`, `Stats` (metrics), `Feed` (social posts), `Table` (data rows), `Form` (inputs), `ProcessSteps` (how it works), `BentoGrid` (features), `Testimonials`, `Pricing`, `ProfileHeader`, `AuthCard`, `CartItem`, `Summary`, `ProjectCard`.
-
-**JSON OUTPUT FORMAT**:
-{{
-  "wireframes": [
-    {{
-      "screen": "Niche Screen Name",
-      "screenKey": "camelCaseKey",
-      "purpose": "What this screen does in 1 sentence",
-      "layoutType": "fullPage | splitVisual | dashboardShell",
-      "layout": [
-        {{
-          "section": "MainSection",
-          "layoutType": "fullWidth | grid | centered",
-          "components": [
-            {{
-              "type": "ComponentTypeFromAbove",
-              "label": "Specific Heading",
-              "content": "Realistic descriptive text...",
-              "simulated_data": {{ "items": [], "rows": [], "stats": [] }}
-            }}
-          ]
-        }}
-      ]
-    }}
-  ]
-}}
+Give me page list and wireframe with branding.
 """

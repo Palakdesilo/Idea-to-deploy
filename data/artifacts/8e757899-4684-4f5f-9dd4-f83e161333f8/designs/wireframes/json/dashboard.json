@@ -1,0 +1,51 @@
+{
+  "screen_name": "Dashboard",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": {
+    "height": 0
+  },
+  "components": [
+    {
+      "type": "card",
+      "x": 290,
+      "y": 120,
+      "width": 300,
+      "height": 180,
+      "label": "Total Users"
+    },
+    {
+      "type": "card",
+      "x": 630,
+      "y": 120,
+      "width": 300,
+      "height": 180,
+      "label": "Revenue"
+    },
+    {
+      "type": "card",
+      "x": 970,
+      "y": 120,
+      "width": 300,
+      "height": 180,
+      "label": "Active Sessions"
+    },
+    {
+      "type": "table",
+      "x": 290,
+      "y": 340,
+      "width": 1000,
+      "height": 400,
+      "label": "Recent Transactions"
+    }
+  ]
+}

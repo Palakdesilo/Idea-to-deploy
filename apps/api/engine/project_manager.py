@@ -12,40 +12,23 @@ sys.path.append(str(Path(__file__).parent.parent))
 from models import Project, GeneratedDoc, ProjectStatus
 
 def find_data_dir():
-    # Use root data directory
-    data_dir_env = os.getenv("DATA_DIR")
-    if data_dir_env:
-        return Path(data_dir_env)
-    
-    # Try current directory or monorepo locations
-    cwd = Path.cwd()
-    # If in apps, look for apps/api/data
-    if (cwd / "api" / "data").exists():
-        return cwd / "api" / "data"
-    
-    # If in apps/api, look for data
-    if (cwd / "data").exists():
-        return cwd / "data"
-    
-    # Check parent directories (project root)
-    # This helps when running from apps/api but data is in project root
-    if (cwd.parent.parent / "data").exists():
-        return cwd.parent.parent / "data"
-
-    # Root check
-    if (cwd / "apps" / "api" / "data").exists():
-        return cwd / "apps" / "api" / "data"
-    
-    return cwd / "data"
+    # Primary data folder at project root
+    data_path = Path(r"D:\Palak\Idea-to-deploy\data")
+    if not data_path.exists():
+        data_path.mkdir(parents=True, exist_ok=True)
+    return data_path
 
 DATA_DIR = find_data_dir()
 PROJECTS_FILE = DATA_DIR / "projects.json"
 ARTIFACTS_DIR = DATA_DIR / "artifacts"
 
+import asyncio
+
 class ProjectManager:
     def __init__(self):
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
+        self.lock = asyncio.Lock()
         if not PROJECTS_FILE.exists():
             with open(PROJECTS_FILE, 'w') as f:
                 json.dump([], f)
@@ -77,10 +60,10 @@ class ProjectManager:
             with open(PROJECTS_FILE, 'r') as f:
                 data = json.load(f)
             
-            # Synchronize with filesystem: only return projects that actually have artifact folders
-            # This ensures that if a user manually deletes a folder, it disappears from the UI.
+            # 1. Sync JSON -> Disk (Remove entries from JSON if folder missing)
             valid_projects = []
             projects_to_keep = []
+            existing_ids = set()
             
             dirty = False
             for p_data in data:
@@ -88,13 +71,39 @@ class ProjectManager:
                 if p_id and (ARTIFACTS_DIR / p_id).exists():
                     valid_projects.append(Project(**p_data))
                     projects_to_keep.append(p_data)
+                    existing_ids.add(p_id)
                 else:
                     # Project folder is missing, mark as dirty to clean up projects.json later
                     dirty = True
             
+            # 2. Sync Disk -> JSON (Add entries to JSON if folder exists but missing in JSON)
+            # This handles the case where a user sees folders that are not in the UI
+            if ARTIFACTS_DIR.exists():
+                for item in os.listdir(ARTIFACTS_DIR):
+                    item_path = ARTIFACTS_DIR / item
+                    if item_path.is_dir():
+                        if item not in existing_ids:
+                            # It's an orphan! Recover it.
+                            print(f"ProjectManager: Found orphaned project folder {item}, recovering...")
+                            
+                            recovered_project = Project(
+                                id=item,
+                                name=f"Recovered Project ({item[:8]})",
+                                description="Recovered from disk artifacts.",
+                                createdAt=datetime.now(),
+                                status="COMPLETED",
+                                metrics={
+                                    "progress": 100,
+                                    "currentPhase": "Recovered",
+                                    "lastUpdated": datetime.now()
+                                }
+                            )
+                            valid_projects.append(recovered_project)
+                            projects_to_keep.append(recovered_project.dict())
+                            dirty = True
+
             if dirty:
-                # OPTIONAL: Automatically clean up projects.json if folders are missing
-                # This keeps the history in sync with the filesystem
+                print("ProjectManager: Synchronizing projects.json with filesystem...")
                 with open(PROJECTS_FILE, 'w') as f:
                     json.dump(projects_to_keep, f, default=self._serialize_datetime, indent=2)
             
@@ -121,11 +130,17 @@ class ProjectManager:
 
     async def get_docs(self, project_id: str) -> List[GeneratedDoc]:
         docs_file = ARTIFACTS_DIR / project_id / "docs.json"
+        print(f"ProjectManager: FETCHING docs from {docs_file.absolute()}")
         if not docs_file.exists():
+            print(f"ProjectManager: Docs file NOT FOUND at {docs_file.absolute()}")
             return []
         with open(docs_file, 'r') as f:
-            data = json.load(f)
-            return [GeneratedDoc(**d) for d in data]
+            try:
+                data = json.load(f)
+                return [GeneratedDoc(**d) for d in data]
+            except Exception as e:
+                print(f"ProjectManager: ERROR loading docs.json: {e}")
+                return []
 
     async def save_doc(self, project_id: str, category: str, title: str, content: str) -> GeneratedDoc:
         doc = GeneratedDoc(
@@ -135,19 +150,28 @@ class ProjectManager:
             content=content
         )
         
-        docs_file = ARTIFACTS_DIR / project_id / "docs.json"
-        docs = []
-        if docs_file.exists():
-            with open(docs_file, 'r') as f:
-                docs_data = json.load(f)
-                docs = [GeneratedDoc(**d) for d in docs_data]
-                
-        # Remove old doc of same category
-        docs = [d for d in docs if d.category != category]
-        docs.append(doc)
+        project_dir = ARTIFACTS_DIR / project_id
+        project_dir.mkdir(parents=True, exist_ok=True)
         
-        with open(docs_file, 'w') as f:
-            json.dump([d.dict() for d in docs], f, default=self._serialize_datetime, indent=2)
+        docs_file = project_dir / "docs.json"
+        print(f"ProjectManager: SAVING doc {title} to {docs_file.absolute()}")
+        docs = []
+        async with self.lock:
+            if docs_file.exists():
+                with open(docs_file, 'r') as f:
+                    try:
+                        docs_data = json.load(f)
+                        docs = [GeneratedDoc(**d) for d in docs_data]
+                    except Exception as e:
+                        print(f"ProjectManager: Error reading docs.json: {e}")
+                    
+            # Remove old doc of same category
+            docs = [d for d in docs if d.category != category]
+            docs.append(doc)
+            
+            with open(docs_file, 'w') as f:
+                print(f"ProjectManager: Saving doc {title} to {docs_file}")
+                json.dump([d.dict() for d in docs], f, default=self._serialize_datetime, indent=2)
             
         return doc
 
@@ -185,14 +209,37 @@ class ProjectManager:
             await self.save_build_result(project_id, result)
 
     async def delete_project(self, id: str):
+        # 1. Update JSON first (optimistic delete)
         projects = await self.get_all_projects()
         projects = [p for p in projects if p.id != id]
         await self._save_projects(projects)
         
+        # 2. Delete Folder with Robust Error Handling
         project_dir = ARTIFACTS_DIR / id
         if project_dir.exists():
             import shutil
-            shutil.rmtree(project_dir)
+            import stat
+            import time
+
+            def on_rm_error(func, path, exc_info):
+                # path contains the path of the file that couldn't be removed
+                # let's just assume that it's read-only and unlink it.
+                os.chmod(path, stat.S_IWRITE)
+                try:
+                    os.unlink(path)
+                except Exception as e:
+                    print(f"ProjectManager: Failed to force delete {path}: {e}")
+
+            try:
+                shutil.rmtree(project_dir, onerror=on_rm_error)
+            except Exception as e:
+                print(f"ProjectManager: Standard rmtree failed for {project_dir}: {e}")
+                # Retry once after a small delay
+                time.sleep(0.5)
+                try:
+                    shutil.rmtree(project_dir, onerror=on_rm_error)
+                except Exception as e2:
+                    print(f"ProjectManager: Retry rmtree failed for {project_dir}: {e2}")
 
     async def read_generated_code(self, project_id: str) -> Optional[Any]:
         code_dir = ARTIFACTS_DIR / project_id / "code"

@@ -1,0 +1,51 @@
+{
+  "screen_name": "Home Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 0
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 60,
+      "y": 240,
+      "width": 600,
+      "height": 60,
+      "label": "Welcome to Our Platform"
+    },
+    {
+      "type": "text",
+      "x": 60,
+      "y": 320,
+      "width": 500,
+      "height": 40,
+      "label": "The best solution for your business needs."
+    },
+    {
+      "type": "button",
+      "x": 60,
+      "y": 400,
+      "width": 160,
+      "height": 48,
+      "label": "Get Started"
+    },
+    {
+      "type": "image",
+      "x": 700,
+      "y": 120,
+      "width": 600,
+      "height": 500,
+      "label": "Hero Image"
+    }
+  ]
+}

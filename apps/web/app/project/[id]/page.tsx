@@ -105,13 +105,13 @@ export default function ProjectDashboard() {
     const [project, setProject] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
-    const [analyzing, setAnalyzing] = useState(false);
-    const [designing, setDesigning] = useState(false);
+
 
     const [docs, setDocs] = useState<any[]>([]);
     const [visuals, setVisuals] = useState<any[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-    const [coding, setCoding] = useState(false);
+
     const [loadingBuild, setLoadingBuild] = useState(false);
     const [buildResult, setBuildResult] = useState<any>(null);
     const [activeStep, setActiveStep] = useState(1);
@@ -328,21 +328,32 @@ export default function ProjectDashboard() {
         }
     }, [searchParams]);
 
-    // Handle tab auto-switching based on activeStep
+    // Removed auto-switching tab to prevent confusion
     useEffect(() => {
-        if (activeStep === 1) setActiveTab('Docs');
-        else if (activeStep === 2) setActiveTab('Designs');
-        else if (activeStep === 3) setActiveTab('Codebase');
+        // if (activeStep === 1) setActiveTab('Docs');
+        // else if (activeStep === 2) setActiveTab('Designs');
+        // else if (activeStep === 3) setActiveTab('Codebase');
     }, [activeStep]);
 
     useEffect(() => {
-        if (id) {
-            fetchProject(true);
-            fetchDocs();
-            fetchVisuals();
-            fetchBuild();
-        }
-    }, [id]);
+        if (!id) return;
+
+        fetchProject(true);
+        fetchDocs();
+        fetchVisuals();
+        fetchBuild();
+
+        // Auto-refresh when processing
+        const interval = setInterval(() => {
+            if (project && ['ANALYSIS', 'DESIGN', 'CODING', 'PLANNING'].includes(project.status)) {
+                fetchProject();
+                fetchDocs();
+                fetchVisuals();
+            }
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [id, project?.status]);
 
     const fetchProject = async (isInitial = false) => {
         try {
@@ -424,61 +435,54 @@ export default function ProjectDashboard() {
         }
     };
 
+
+
+
+
+
+
     const runAnalysis = async () => {
-        setAnalyzing(true);
         try {
-            await fetch(`${API_BASE_URL}/api/projects/${id}/analyze`, { method: 'POST' });
-            await fetchProject();
-            await fetchDocs();
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setAnalyzing(false);
+            setErrorMessage(null);
+            setCurrentView('Results');
+            setActiveTab('Docs');
+            setProject((prev: any) => ({ ...prev, status: 'ANALYSIS' }));
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/analyze`, { method: 'POST' });
+            if (res.ok) {
+                await fetchProject();
+                await fetchDocs();
+            } else {
+                const data = await res.json();
+                setErrorMessage(data.detail || "Failed to generate documentation. Please try again.");
+                setProject((prev: any) => ({ ...prev, status: 'NEW' }));
+            }
+        } catch (error) {
+            console.error('Analysis failed', error);
+            setErrorMessage("Network error: Could not reach the API server.");
+            setProject((prev: any) => ({ ...prev, status: 'NEW' }));
         }
     };
 
     const runDesign = async () => {
-        setDesigning(true);
         try {
-            await fetch(`${API_BASE_URL}/api/projects/${id}/design`, { method: 'POST' });
-            await fetchProject();
-            await fetchVisuals();
-        } catch (e) {
-            console.error(e);
-        } finally {
-            setDesigning(false);
-        }
-    };
-
-    const runBuild = async () => {
-        setCoding(true);
-        try {
-            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/generate-code`, { method: 'POST' });
-            if (!res.ok) throw new Error('Failed to start generation');
-
-            // Poll for status
-            const pollInterval = setInterval(async () => {
-                const projectRes = await fetch(`${API_BASE_URL}/api/projects/${id}?t=${Date.now()}`);
-                if (projectRes.ok) {
-                    const projectData = await projectRes.json();
-                    setProject(projectData);
-
-                    if (projectData.status === 'COMPLETED' || projectData.status === 'FAILED') {
-                        clearInterval(pollInterval);
-                        setCoding(false);
-                        await fetchProject();
-                        await fetchBuild();
-
-                        if (projectData.status === 'FAILED') {
-                            alert('Code generation failed. Please try again.');
-                        }
-                    }
-                }
-            }, 3000);
-
-        } catch (e) {
-            console.error(e);
-            setCoding(false);
+            setErrorMessage(null);
+            setCurrentView('Results');
+            setActiveTab('Designs');
+            setProject((prev: any) => ({ ...prev, status: 'DESIGN' }));
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/design`, { method: 'POST' });
+            if (res.ok) {
+                await fetchProject();
+                await fetchDocs();
+                await fetchVisuals();
+            } else {
+                const data = await res.json();
+                setErrorMessage(data.detail || "Failed to generate screen list. Please try again.");
+                setProject((prev: any) => ({ ...prev, status: 'PLANNING' }));
+            }
+        } catch (error) {
+            console.error('Design failed', error);
+            setErrorMessage("Network error: Could not reach the API server.");
+            setProject((prev: any) => ({ ...prev, status: 'PLANNING' }));
         }
     };
 
@@ -700,11 +704,40 @@ export default function ProjectDashboard() {
                     )}
                 </div>
 
+                <AnimatePresence>
+                    {errorMessage && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                            animate={{ opacity: 1, height: 'auto', marginBottom: 40 }}
+                            exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                            className="overflow-hidden"
+                        >
+                            <div className="bg-rose-500/10 border border-rose-500/20 rounded-2xl p-6 flex items-center justify-between group">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-rose-500/20 rounded-xl text-rose-400">
+                                        <AlertCircle className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-rose-100">Generation Failed</h4>
+                                        <p className="text-rose-400/80 text-sm mt-0.5">{errorMessage}</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setErrorMessage(null)}
+                                    className="p-2 hover:bg-rose-500/20 rounded-lg text-rose-400 transition-colors"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
                 {/* Sub-navigation Tabs */}
                 <div className="flex items-center gap-2 border-b border-slate-800/60 mb-10 overflow-x-auto scrollbar-hide">
                     {[
                         { id: 'Pipeline', label: 'Development Pipeline', icon: Activity },
-                        { id: 'Results', label: 'Output Assets', icon: Box, hidden: !isCompleted && docs.length === 0 },
+                        { id: 'Results', label: 'Output Assets', icon: Box, hidden: project.status === 'NEW' && docs.length === 0 },
                         { id: 'Preview', label: 'Live Preview', icon: Eye, hidden: !isCompleted },
                     ].filter(tab => !tab.hidden).map((tab) => (
                         <button
@@ -878,7 +911,7 @@ export default function ProjectDashboard() {
                                             <button
                                                 key={step.id}
                                                 onClick={() => setActiveStep(step.id)}
-                                                className={`flex flex-col items-center group ${isActive ? 'cursor-default' : 'cursor-pointer'}`}
+                                                className={`flex flex-col items-center group cursor-pointer`}
                                             >
                                                 <div className={`w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-500 ${stepCompleted ? 'bg-emerald-500 border-emerald-500 text-white' :
                                                     isActive ? 'bg-blue-600 border-blue-600 text-white scale-110 shadow-lg shadow-blue-500/40' :
@@ -927,20 +960,10 @@ export default function ProjectDashboard() {
                                                     {project.status === 'NEW' || project.status === 'ANALYSIS' ? (
                                                         <button
                                                             onClick={runAnalysis}
-                                                            disabled={analyzing}
-                                                            className="w-full py-6 bg-white text-black font-extrabold rounded-2xl hover:bg-slate-200 disabled:opacity-50 transition-all flex items-center justify-center gap-3 text-lg shadow-xl"
+                                                            className="w-full py-6 bg-white text-black font-extrabold rounded-2xl hover:bg-slate-200 transition-all flex items-center justify-center gap-3 text-lg shadow-xl"
                                                         >
-                                                            {analyzing ? (
-                                                                <>
-                                                                    <RotateCcw className="w-6 h-6 animate-spin" />
-                                                                    Analyzing Your Idea...
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <Terminal className="w-6 h-6" />
-                                                                    Start Analysis
-                                                                </>
-                                                            )}
+                                                            <Terminal className="w-6 h-6" />
+                                                            {project.status === 'ANALYSIS' ? 'Analyzing...' : 'Start Analysis'}
                                                         </button>
                                                     ) : (
                                                         <div className="space-y-4">
@@ -996,7 +1019,6 @@ export default function ProjectDashboard() {
                                                                 <CheckCircle2 className="w-6 h-6" /> Design Completed
                                                             </div>
                                                             <button
-                                                                onClick={() => setActiveStep(3)}
                                                                 className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 transition-all flex items-center justify-center gap-3 text-lg group shadow-xl shadow-purple-500/20"
                                                             >
                                                                 Proceed to Build
@@ -1006,23 +1028,13 @@ export default function ProjectDashboard() {
                                                     ) : (project.status === 'PLANNING' || project.status === 'DESIGN') ? (
                                                         <button
                                                             onClick={runDesign}
-                                                            disabled={designing}
-                                                            className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 disabled:opacity-50 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-purple-500/20"
+                                                            className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-purple-500/20"
                                                         >
-                                                            {designing ? (
-                                                                <>
-                                                                    <RotateCcw className="w-6 h-6 animate-spin" />
-                                                                    Generating Visuals...
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <Layout className="w-6 h-6" />
-                                                                    Generate Designs
-                                                                </>
-                                                            )}
+                                                            <Layout className="w-6 h-6" />
+                                                            {project.status === 'DESIGN' ? 'Generating...' : 'Generate Screen List'}
                                                         </button>
                                                     ) : (
-                                                        <button disabled className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">
+                                                        <button className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">
                                                             Complete Analysis First
                                                         </button>
                                                     )}
@@ -1062,21 +1074,10 @@ export default function ProjectDashboard() {
                                                 <div className="flex flex-col justify-center">
                                                     {project.status === 'DESIGNED' || project.status === 'CODING' ? (
                                                         <button
-                                                            onClick={runBuild}
-                                                            disabled={coding}
-                                                            className="w-full py-6 bg-emerald-600 text-white font-extrabold rounded-2xl hover:bg-emerald-700 disabled:opacity-50 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-emerald-500/20"
+                                                            className="w-full py-6 bg-emerald-600 text-white font-extrabold rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-emerald-500/20"
                                                         >
-                                                            {coding ? (
-                                                                <>
-                                                                    <RotateCcw className="w-6 h-6 animate-spin" />
-                                                                    Building Codebase...
-                                                                </>
-                                                            ) : (
-                                                                <>
-                                                                    <Code className="w-6 h-6" />
-                                                                    Generate Codebase
-                                                                </>
-                                                            )}
+                                                            <Code className="w-6 h-6" />
+                                                            Generate Codebase
                                                         </button>
                                                     ) : project.status === 'COMPLETED' ? (
                                                         <div className="space-y-4">
@@ -1092,7 +1093,7 @@ export default function ProjectDashboard() {
                                                             </button>
                                                         </div>
                                                     ) : (
-                                                        <button disabled className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">
+                                                        <button className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">
                                                             Complete Design Phase First
                                                         </button>
                                                     )}
@@ -1159,10 +1160,26 @@ export default function ProjectDashboard() {
                             <div className="min-h-[500px]">
                                 {activeTab === 'Docs' && (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {project.status === 'ANALYSIS' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                className="col-span-1 p-6 rounded-2xl border border-blue-500/30 bg-blue-500/5 flex flex-col items-center justify-center text-center space-y-4 min-h-[250px]"
+                                            >
+                                                <div className="relative">
+                                                    <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin" />
+                                                    <Search className="absolute inset-0 m-auto w-5 h-5 text-blue-400 animate-pulse" />
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-white font-bold">Generating Documentation</h3>
+                                                    <p className="text-slate-400 text-xs mt-1">AI is drafting 7 project documents in parallel...</p>
+                                                </div>
+                                            </motion.div>
+                                        )}
                                         {docs.filter(doc => doc.title.toLowerCase().includes(searchQuery.toLowerCase())).map((doc) => (
                                             <DocumentCard key={doc.id} doc={doc} />
                                         ))}
-                                        {docs.length === 0 && (
+                                        {docs.length === 0 && project.status !== 'ANALYSIS' && (
                                             <div className="col-span-full flex flex-col items-center justify-center py-20 bg-slate-900/40 rounded-[2rem] border border-dashed border-slate-800">
                                                 <FileText className="w-16 h-16 text-slate-700 mb-4" />
                                                 <p className="text-slate-500 font-medium">No documents generated yet</p>
@@ -1173,6 +1190,22 @@ export default function ProjectDashboard() {
 
                                 {activeTab === 'Designs' && (
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                        {project.status === 'DESIGN' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, scale: 0.95 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                className="col-span-full p-12 rounded-[2.5rem] border border-purple-500/30 bg-purple-500/5 flex flex-col items-center justify-center text-center space-y-6"
+                                            >
+                                                <div className="relative">
+                                                    <div className="w-16 h-16 border-4 border-purple-500/20 border-t-purple-500 rounded-full animate-spin" />
+                                                    <Layout className="absolute inset-0 m-auto w-8 h-8 text-purple-400 animate-pulse" />
+                                                </div>
+                                                <div className="max-w-md">
+                                                    <h3 className="text-2xl font-black text-white">Drafting Screen Inventory</h3>
+                                                    <p className="text-slate-400 mt-2">The AI is analyzing your canonical data to outline all required application screens and user flows.</p>
+                                                </div>
+                                            </motion.div>
+                                        )}
                                         {visuals.map((visual: any) => (
                                             <motion.div
                                                 key={visual.id}
@@ -1180,10 +1213,21 @@ export default function ProjectDashboard() {
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 className="group relative overflow-hidden rounded-[2.5rem] border border-slate-800 bg-[#0f172a] hover:border-blue-500/50 transition-all duration-500 shadow-xl flex flex-col"
                                             >
-                                                <div className="aspect-[16/10] w-full overflow-hidden relative">
-                                                    <img src={visual.imageUrl} alt={visual.screenName} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent" />
-                                                    <div className="absolute bottom-8 left-8 right-8">
+                                                <div className="aspect-[16/10] w-full overflow-hidden relative bg-white">
+                                                    {visual.imageUrl.endsWith('.html') ? (
+                                                        <iframe
+                                                            src={visual.imageUrl}
+                                                            title={visual.screenName}
+                                                            className="w-[1280px] h-[800px] border-none origin-top-left transform scale-[calc(100%/1280*var(--scale-factor,0.4))] pointer-events-none absolute inset-0"
+                                                            style={{ '--scale-factor': '0.4' } as React.CSSProperties}
+                                                            scrolling="no"
+                                                        />
+                                                    ) : (
+                                                        <img src={visual.imageUrl} alt={visual.screenName} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                                                    )}
+                                                    <div className="absolute inset-0 bg-transparent hover:bg-slate-900/10 transition-colors" /> {/* Click shield */}
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent pointer-events-none" />
+                                                    <div className="absolute bottom-8 left-8 right-8 pointer-events-none">
                                                         <div className="flex items-center gap-3 mb-3">
                                                             <span className="px-3 py-1 bg-blue-600 text-[10px] font-black uppercase tracking-widest rounded-lg shadow-lg shadow-blue-600/20">Design Ready</span>
                                                             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{visual.roles?.join(', ') || 'All Users'}</span>

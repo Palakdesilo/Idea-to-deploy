@@ -1,0 +1,193 @@
+{
+  "screen_name": "Settings Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": null,
+  "components": [
+    {
+      "type": "text",
+      "x": 16,
+      "y": 24,
+      "width": 150,
+      "height": 32,
+      "label": "Platform Logo/Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Search Bar"
+    },
+    {
+      "type": "button",
+      "x": 1200,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Home Icon"
+    },
+    {
+      "type": "button",
+      "x": 1248,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Notifications Icon"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Messages Icon"
+    },
+    {
+      "type": "button",
+      "x": 1344,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Create Post Icon"
+    },
+    {
+      "type": "button",
+      "x": 1392,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "User Profile Icon"
+    },
+    {
+      "type": "card",
+      "x": 0,
+      "y": 80,
+      "width": 250,
+      "height": 820,
+      "label": "Settings Navigation"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 96,
+      "width": 218,
+      "height": 40,
+      "label": "Nav Link: Account"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 144,
+      "width": 218,
+      "height": 40,
+      "label": "Nav Link: Privacy"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 192,
+      "width": 218,
+      "height": 40,
+      "label": "Nav Link: Notifications"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 240,
+      "width": 218,
+      "height": 40,
+      "label": "Nav Link: Security"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 288,
+      "width": 218,
+      "height": 40,
+      "label": "Nav Link: Help"
+    },
+    {
+      "type": "text",
+      "x": 495,
+      "y": 104,
+      "width": 700,
+      "height": 40,
+      "label": "Account Settings"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 168,
+      "width": 700,
+      "height": 40,
+      "label": "Input: Name"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 216,
+      "width": 700,
+      "height": 40,
+      "label": "Input: Email"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 280,
+      "width": 700,
+      "height": 40,
+      "label": "Input: Old Password"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 328,
+      "width": 700,
+      "height": 40,
+      "label": "Input: New Password"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 376,
+      "width": 700,
+      "height": 40,
+      "label": "Input: Confirm New Password"
+    },
+    {
+      "type": "text",
+      "x": 495,
+      "y": 440,
+      "width": 700,
+      "height": 24,
+      "label": "Checkbox: Private Account"
+    },
+    {
+      "type": "input",
+      "x": 495,
+      "y": 472,
+      "width": 700,
+      "height": 40,
+      "label": "Dropdown: Who can see posts"
+    },
+    {
+      "type": "button",
+      "x": 1047,
+      "y": 536,
+      "width": 148,
+      "height": 48,
+      "label": "Save Changes"
+    }
+  ]
+}

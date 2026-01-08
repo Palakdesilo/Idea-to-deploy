@@ -1,185 +1,5 @@
 [
   {
-    "id": "cfbef073-1e46-4988-aae1-86de54778c32",
-    "name": "I want to create a subscription based social_media...",
-    "description": "I want to create a subscription based social_media_platform ",
-    "createdAt": "2025-12-23T12:44:42.228000+00:00",
-    "status": "DESIGN",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T05:22:01.700000+00:00"
-    }
-  },
-  {
-    "id": "2674f0d4-fa2b-4432-a6a3-d485cddc9fba",
-    "name": "I want to create a subscription based ecommerce_si...",
-    "description": "I want to create a subscription based ecommerce_site ",
-    "createdAt": "2025-12-23T13:09:56.175000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-23T13:10:03.817000+00:00"
-    }
-  },
-  {
-    "id": "ff9c4a24-9486-4d59-b36f-0458e8b0df5b",
-    "name": "Build a full-stack e-commerce platform that allows...",
-    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
-    "createdAt": "2025-12-24T10:17:47.325000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T16:10:47.894109"
-    }
-  },
-  {
-    "id": "814235ee-b128-41e4-9487-36bf264b7845",
-    "name": "Build a subscription-based SaaS platform where use...",
-    "description": "Build a subscription-based SaaS platform where users can register, choose plans, make recurring payments, access features based on subscription level, manage billing, and view usage analytics through a role-based dashboard.",
-    "createdAt": "2025-12-24T10:25:36.789000+00:00",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:25:42.595000+00:00"
-    }
-  },
-  {
-    "id": "3b5c6e2d-435c-4bf0-bf2c-ffc0b66f2cd9",
-    "name": "Build a project and task management system that al...",
-    "description": "Build a project and task management system that allows teams to create projects, assign tasks, track progress, collaborate through comments, manage deadlines, and visualize status through dashboards and reports.",
-    "createdAt": "2025-12-24T10:26:34.457000+00:00",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-24T10:26:58.061000+00:00"
-    }
-  },
-  {
-    "id": "8ec84c28-18c8-4e76-bbd0-b305c05ecf67",
-    "name": "I want to build a platfrom that Automatically dete...",
-    "description": "I want to build a platfrom that Automatically detect Police van or Ambulance with Smart bump system.\n\n",
-    "createdAt": "2025-12-29T15:15:17.950050",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T15:17:04.120850"
-    }
-  },
-  {
-    "id": "6e630e82-4421-48ad-a3dd-c36f62be3a6a",
-    "name": "create a social media web app with subscription ",
-    "description": "create a social media web app with subscription ",
-    "createdAt": "2025-12-29T18:43:49.280804",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-29T18:44:29.601271"
-    }
-  },
-  {
-    "id": "594e2a04-5a42-4375-a0f7-6e887ad655ec",
-    "name": "Build a financial management platform that allows ...",
-    "description": "Build a financial management platform that allows users to track expenses, categorize transactions, set budgets, view analytics dashboards, and receive alerts for spending limits and financial goals.\n\n",
-    "createdAt": "2025-12-30T12:05:28.278854",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:06:04.385207"
-    }
-  },
-  {
-    "id": "a846f604-4e64-4c77-90d2-692678f7e193",
-    "name": "Build a healthcare appointment management platform...",
-    "description": "Build a healthcare appointment management platform that allows patients to register, book appointments, manage medical profiles, receive notifications, and allows healthcare providers to manage schedules and patient records.\n\n",
-    "createdAt": "2025-12-30T12:20:16.559750",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:20:50.676934"
-    }
-  },
-  {
-    "id": "f2de0c22-f00e-45b7-95c0-3e8513ee4c0d",
-    "name": "Premium Sneaker Marketplace",
-    "description": "Premium Sneaker Marketplace",
-    "createdAt": "2025-12-30T12:31:21.361092",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T12:31:57.112272"
-    }
-  },
-  {
-    "id": "74acd338-cc2b-4f09-a8a4-3acbcc416a2a",
-    "name": "A student portfolio\n",
-    "description": "A student portfolio\n",
-    "createdAt": "2025-12-30T15:06:06.132181",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T15:06:44.165980"
-    }
-  },
-  {
-    "id": "2cdc4683-a2d7-4ce7-8e24-d415fab6a9b4",
-    "name": "Want a platform when I can sell my handmade things...",
-    "description": "Want a platform when I can sell my handmade things...\n",
-    "createdAt": "2025-12-30T16:13:25.180569",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T16:13:30.376851"
-    }
-  },
-  {
-    "id": "6f25999e-aec8-4a8f-90d5-3bd302144f07",
-    "name": "I want to create virtual influencer. Where I can g...",
-    "description": "I want to create virtual influencer. Where I can generate AI influencer, create post, schedule post and auto post in social-media.\n\n",
-    "createdAt": "2025-12-30T16:29:59.687726",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T16:30:02.980733"
-    }
-  },
-  {
-    "id": "a527e7fb-77e8-4e9f-b3d8-a332ebd2501a",
-    "name": "I want to build a chatapp where 2 people can chat ...",
-    "description": "I want to build a chatapp where 2 people can chat online.\n\n",
-    "createdAt": "2025-12-30T18:21:27.435411",
-    "status": "DESIGNED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-30T18:21:31.822321"
-    }
-  },
-  {
-    "id": "4cde7b0d-2d8a-4c8b-b518-9b29d658ce56",
-    "name": "I want to create a platform where I can connect di...",
-    "description": "I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.\n\n",
-    "createdAt": "2025-12-31T17:02:46.058922",
-    "status": "COMPLETED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-31T17:02:50.787897"
-    }
-  },
-  {
     "id": "2b64ecdd-a37a-4773-a207-521176a05b07",
     "name": "CREATE A SOCIAL MEDIA PLATFORM\n",
     "description": "CREATE A SOCIAL MEDIA PLATFORM\n",
@@ -192,15 +12,51 @@
     }
   },
   {
-    "id": "e6086f13-7e71-40b8-91b0-8cfd792be0dc",
-    "name": "CREATE A SOCIAL MEDIA PLATFORM\n",
-    "description": "CREATE A SOCIAL MEDIA PLATFORM\n",
-    "createdAt": "2025-12-31T17:52:41.949817",
-    "status": "COMPLETED",
+    "id": "83e2b92b-12a0-48c1-b6ec-12bc22118449",
+    "name": "Build a full-stack e-commerce platform that allows...",
+    "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
+    "createdAt": "2026-01-05T10:42:33.078494",
+    "status": "DESIGNED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-31T17:52:56.073660"
+      "lastUpdated": "2026-01-05T10:46:59.739490"
+    }
+  },
+  {
+    "id": "5a48d48f-10a2-4b3a-9751-53c0b5d15c79",
+    "name": "Build a subscription-based SaaS platform where use...",
+    "description": "Build a subscription-based SaaS platform where users can register, choose plans, make recurring payments, access features based on subscription level, manage billing, and view usage analytics through a role-based dashboard.\n\n",
+    "createdAt": "2026-01-05T11:55:51.396387",
+    "status": "PLANNING",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-05T11:56:13.663726"
+    }
+  },
+  {
+    "id": "8e757899-4684-4f5f-9dd4-f83e161333f8",
+    "name": "Want to create a static portfolio",
+    "description": "Want to create a static portfolio",
+    "createdAt": "2026-01-07T17:26:33.599161",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-07T17:52:18.625055"
+    }
+  },
+  {
+    "id": "0d568e16-700b-411d-a85c-ce5c4af088a3",
+    "name": "I want to build social media platform\n",
+    "description": "I want to build social media platform\n",
+    "createdAt": "2026-01-08T18:02:00.411543",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-08T18:14:47.502578"
     }
   }
 ]

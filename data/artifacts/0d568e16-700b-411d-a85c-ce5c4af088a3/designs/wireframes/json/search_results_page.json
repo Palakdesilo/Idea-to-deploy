@@ -1,0 +1,159 @@
+{
+  "screen_name": "Search Results Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "sidebar": null,
+  "footer": null,
+  "components": [
+    {
+      "type": "text",
+      "x": 16,
+      "y": 24,
+      "width": 150,
+      "height": 32,
+      "label": "Platform Logo/Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Search Bar"
+    },
+    {
+      "type": "button",
+      "x": 1200,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Home Icon"
+    },
+    {
+      "type": "button",
+      "x": 1248,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Notifications Icon"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Messages Icon"
+    },
+    {
+      "type": "button",
+      "x": 1344,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Create Post Icon"
+    },
+    {
+      "type": "button",
+      "x": 1392,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "User Profile Icon"
+    },
+    {
+      "type": "text",
+      "x": 270,
+      "y": 104,
+      "width": 900,
+      "height": 40,
+      "label": "Search Results for '[Query]'"
+    },
+    {
+      "type": "button",
+      "x": 270,
+      "y": 160,
+      "width": 150,
+      "height": 40,
+      "label": "Tab: Top"
+    },
+    {
+      "type": "button",
+      "x": 430,
+      "y": 160,
+      "width": 150,
+      "height": 40,
+      "label": "Tab: People"
+    },
+    {
+      "type": "button",
+      "x": 590,
+      "y": 160,
+      "width": 150,
+      "height": 40,
+      "label": "Tab: Posts"
+    },
+    {
+      "type": "button",
+      "x": 750,
+      "y": 160,
+      "width": 150,
+      "height": 40,
+      "label": "Tab: Media"
+    },
+    {
+      "type": "card",
+      "x": 270,
+      "y": 216,
+      "width": 900,
+      "height": 80,
+      "label": "User Card 1"
+    },
+    {
+      "type": "image",
+      "x": 286,
+      "y": 232,
+      "width": 48,
+      "height": 48,
+      "label": "Profile Pic"
+    },
+    {
+      "type": "text",
+      "x": 342,
+      "y": 232,
+      "width": 200,
+      "height": 24,
+      "label": "User Name"
+    },
+    {
+      "type": "text",
+      "x": 342,
+      "y": 256,
+      "width": 150,
+      "height": 24,
+      "label": "User Handle"
+    },
+    {
+      "type": "button",
+      "x": 1050,
+      "y": 240,
+      "width": 104,
+      "height": 32,
+      "label": "Follow"
+    },
+    {
+      "type": "card",
+      "x": 270,
+      "y": 304,
+      "width": 900,
+      "height": 80,
+      "label": "User Card 2"
+    }
+  ]
+}

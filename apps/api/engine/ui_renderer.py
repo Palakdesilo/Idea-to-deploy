@@ -5,75 +5,20 @@ from typing import List, Dict, Any
 
 class UIRenderer:
     def __init__(self):
-        self.default_tokens = {
-            "palette": {
-                "background": "#0F172A",
-                "surface": "#1E293B",
-                "primary": "#8B5CF6",
-                "foreground": "#F8FAFC",
-                "accent": "#F472B6"
-            }
-        }
+        pass
     
-    def _generate_dynamic_theme(self, desc: str):
-        # Default Theme (Deep Space - Purple/Pink)
-        theme = {
-            "name": "default",
-            "palette": {
-                "background": "#0F172A", "surface": "#1E293B",
-                "primary": "#8B5CF6", "accent": "#F472B6", "foreground": "#F8FAFC"
-            },
-            "gradient_primary": "linear-gradient(135deg, #FF5ACD 0%, #8B5CF6 100%)",
-            "bg_gradient": "radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(255, 90, 205, 0.15) 0%, transparent 20%)",
-            "font": "'Outfit', 'Inter', sans-serif",
-            "glow": "rgba(139, 92, 246, 0.3)",
-            "shadow": "rgba(0,0,0,0.5)"
-        }
-        
-        if any(x in desc for x in ["finance", "bank", "crypto", "security", "corporate", "law", "business"]):
-            # Ocean Blue Theme
-            theme.update({
-                "palette": {"background": "#020617", "surface": "#0F172A", "primary": "#3B82F6", "accent": "#06B6D4", "foreground": "#F8FAFC"},
-                "gradient_primary": "linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%)",
-                "bg_gradient": "radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 20%)",
-                "font": "'Inter', sans-serif",
-                "glow": "rgba(59, 130, 246, 0.3)"
-            })
-        elif any(x in desc for x in ["health", "eco", "green", "bio", "nature", "plant", "garden", "fitness"]):
-            # Emerald Nature Theme
-            theme.update({
-                "palette": {"background": "#052e16", "surface": "#064e3b", "primary": "#10B981", "accent": "#A7F3D0", "foreground": "#ECFDF5"},
-                "gradient_primary": "linear-gradient(135deg, #34D399 0%, #059669 100%)",
-                "bg_gradient": "radial-gradient(circle at 15% 25%, rgba(16, 185, 129, 0.15) 0%, transparent 25%), radial-gradient(circle at 85% 75%, rgba(52, 211, 153, 0.15) 0%, transparent 25%)",
-                "font": "'Outfit', sans-serif",
-                "glow": "rgba(16, 185, 129, 0.3)"
-            })
-        elif any(x in desc for x in ["orange", "warm", "social", "food", "lifestyle", "creative", "art"]):
-            # Sunset Orange Theme
-            theme.update({
-                "palette": {"background": "#1c1917", "surface": "#292524", "primary": "#F97316", "accent": "#FBBF24", "foreground": "#FAFAF9"},
-                "gradient_primary": "linear-gradient(135deg, #FBBF24 0%, #EF4444 100%)",
-                "bg_gradient": "radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 25%), radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.15) 0%, transparent 25%)",
-                "font": "'Outfit', 'Inter', sans-serif",
-                "glow": "rgba(249, 115, 22, 0.3)"
-            })
-            
-        return theme
 
     def render_project(self, project_id: str, wireframes: List[Dict[str, Any]], ui_design: Dict[str, Any], project_name: str = "Project"):
         from .project_manager import ARTIFACTS_DIR
         output_dir = ARTIFACTS_DIR / project_id / "ui"
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        tokens = ui_design.get("design_tokens", self.default_tokens)
+        tokens = ui_design.get("design_tokens", {})
+        palette = tokens.get("palette", {})
+        effects = tokens.get("effects", {})
+        typography = tokens.get("typography", {})
         
-        # Determine theme based on project keywords
-        desc = (project_name + " " + (ui_design.get("description", ""))).lower()
-        theme = self._generate_dynamic_theme(desc)
-        
-        palette = theme["palette"]
-        
-        # Premium CSS with Glassmorphism and HSL
+        # Simplified CSS
         css_template = """
 :root {
     --primary: [PRIMARY];
@@ -81,26 +26,11 @@ class UIRenderer:
     --surface: [SURFACE];
     --accent: [ACCENT];
     --text-primary: [TEXT_PRIMARY];
-    --text-secondary: #94A3B8;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --radius-lg: 24px;
-    --radius-md: 16px;
-    --shadow-premium: 0 20px 40px -10px [SHADOW_COLOR];
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    --radius-lg: 12px;
+    --radius-md: 8px;
     --font-family: [FONT_FAMILY], sans-serif;
-    --glow: 0 0 20px [GLOW_COLOR];
-    --glow-text: 0 0 30px [GLOW_COLOR];
-    --gradient-primary: [GRADIENT_PRIMARY];
-    --gradient-surface: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,35 +38,26 @@ body {
     background-color: var(--bg-color); 
     font-family: var(--font-family); 
     color: var(--text-primary); 
-    line-height: 1.6; 
-    overflow-x: hidden;
-    background-image: [BG_IMAGE_GRADIENT];
+    line-height: 1.5; 
 }
 
-.animate-fade { animation: fadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-.ui-container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
-.glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); }
-.screen-card { min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.ui-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.screen-card { min-height: 100vh; display: flex; flex-direction: column; }
 
 header { 
     display: flex; justify-content: space-between; align-items: center; 
-    padding: 24px 60px; position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 0; border-bottom: 1px solid var(--border-color);
 }
-.logo { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 12px; }
-.logo-icon { width: 32px; height: 32px; background: var(--gradient-primary); border-radius: 8px; }
+.logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 24px; height: 24px; background: var(--primary); border-radius: 4px; }
 
-.nav-links { display: flex; gap: 40px; align-items: center; }
-.nav-links a { 
-    text-decoration: none; color: var(--text-primary); 
-    font-weight: 500; font-size: 15px; transition: all 0.3s; opacity: 0.8; 
-    position: relative;
-}
-.nav-links a:hover { opacity: 1; color: var(--accent); }
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-primary); font-weight: 500; font-size: 14px; }
 
-.section-padding { padding: 100px 0; position: relative; }
-.hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; min-height: 80vh; }
+.section-padding { padding: 60px 0; }
+.hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
 
-.grid-layout { display: grid; gap: 32px; }
+.grid-layout { display: grid; gap: 24px; }
 .grid-cols-12 { grid-template-columns: repeat(12, 1fr); }
 .col-span-12 { grid-column: span 12; }
 .col-span-8 { grid-column: span 8; }
@@ -144,65 +65,43 @@ header {
 .col-span-4 { grid-column: span 4; }
 .col-span-3 { grid-column: span 3; }
 
-.card-premium { 
-    background: var(--gradient-surface); border-radius: 24px; 
-    padding: 40px; border: 1px solid rgba(255,255,255,0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-    position: relative; overflow: hidden; 
+.card { 
+    background: var(--surface); border-radius: var(--radius-lg); 
+    padding: 24px; border: 1px solid var(--border-color);
 }
-.card-premium:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); box-shadow: var(--shadow-premium); }
 
 .btn { 
-    padding: 16px 36px; border-radius: 12px; font-weight: 700; 
+    padding: 12px 24px; border-radius: var(--radius-md); font-weight: 600; 
     text-decoration: none; display: inline-flex; align-items: center; 
-    justify-content: center; transition: all 0.3s; cursor: pointer; 
-    border: none; font-size: 15px; letter-spacing: 0.01em;
+    justify-content: center; cursor: pointer; border: none; font-size: 14px;
 }
-.btn-primary { background: var(--gradient-primary); color: white; box-shadow: var(--glow); }
-.btn-primary:hover { transform: scale(1.02); filter: brightness(1.1); }
-.btn-outline { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-primary); }
-.btn-outline:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.4); }
+.btn-primary { background: var(--primary); color: white; }
+.btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); }
 
 .menu-item {
-    display: flex; align-items: center; gap: 12px; padding: 12px 16px; 
-    border-radius: 12px; text-decoration: none; color: var(--text-primary); 
-    font-weight: 600; opacity: 0.5; transition: all 0.2s;
+    display: flex; align-items: center; gap: 10px; padding: 10px; 
+    border-radius: var(--radius-md); text-decoration: none; color: var(--text-primary); 
 }
-.menu-item:hover, .menu-item.active { opacity: 1; background: rgba(255,255,255,0.05); color: var(--primary); }
-.menu-item.active { background: rgba(255,255,255,0.05); border-left: 3px solid var(--primary); }
+.menu-item.active { background: var(--primary); color: white; }
 
-.input-field { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; color: white; width: 100%; outline: none; transition: 0.3s; }
-.input-field:focus { border-color: var(--primary); background: rgba(0,0,0,0.5); }
+.input-field { border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 12px; width: 100%; outline: none; }
 
-footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.2); }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+footer { padding: 60px 0; border-top: 1px solid var(--border-color); }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 32px; }
 
-/* App Layout Styles */
 .app-shell { display: flex; min-height: 100vh; }
-.sidebar-menu a {
-    display: flex; padding: 14px 20px; border-radius: 12px; color: var(--text-primary); text-decoration: none; font-weight: 600; opacity: 0.6; transition: all 0.2s;
-}
-.sidebar-menu a:hover, .sidebar-menu a.active {
-    background: rgba(255,255,255,0.05); opacity: 1; color: white;
-}
-.sidebar-menu a.active {
-    background: var(--gradient-primary); box-shadow: var(--glow);
-    background: var(--gradient-primary); box-shadow: var(--glow); color: var(--text-primary);
-}
-.top-bar { height: 80px; padding: 0 40px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; }
+.sidebar { width: 240px; border-right: 1px solid var(--border-color); padding: 24px; }
+.sidebar-menu { display: flex; flex-direction: column; gap: 8px; }
+.top-bar { height: 64px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
 
 .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; font-weight: 800; }
 """
-        css_content = css_template.replace("[PRIMARY]", str(palette.get('primary', '#8B5CF6'))) \
-                                  .replace("[BG_COLOR]", str(palette.get('background', '#0F172A'))) \
-                                  .replace("[SURFACE]", str(palette.get('surface', palette.get('card_bg', '#1E293B')))) \
-                                  .replace("[ACCENT]", str(palette.get('accent', '#F472B6'))) \
-                                  .replace("[TEXT_PRIMARY]", str(palette.get('foreground', palette.get('text_main', '#F8FAFC')))) \
-                                  .replace("[GRADIENT_PRIMARY]", theme["gradient_primary"]) \
-                                  .replace("[BG_IMAGE_GRADIENT]", theme["bg_gradient"]) \
-                                  .replace("[FONT_FAMILY]", theme["font"]) \
-                                  .replace("[GLOW_COLOR]", theme["glow"]) \
-                                  .replace("[SHADOW_COLOR]", theme["shadow"])
+        css_content = css_template.replace("[PRIMARY]", str(palette.get('primary', '#3b82f6'))) \
+                                  .replace("[BG_COLOR]", str(palette.get('background', '#ffffff'))) \
+                                  .replace("[SURFACE]", str(palette.get('surface', '#f8fafc'))) \
+                                  .replace("[ACCENT]", str(palette.get('accent', '#f43f5e'))) \
+                                  .replace("[TEXT_PRIMARY]", str(palette.get('foreground', '#0f172a'))) \
+                                  .replace("[FONT_FAMILY]", str(typography.get('body', 'sans-serif')))
 
         with open(output_dir / "style.css", "w", encoding="utf-8") as f:
             f.write(css_content)
@@ -270,38 +169,29 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
 
         if is_app:
             return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>{screen_name} | {project_name}</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body class="animate-fade">
+<body>
     <div class="app-shell">
-            <aside class="sidebar" style="width: 280px; position: fixed; height: 100vh; background: rgba(15, 23, 42, 0.95); border-right: 1px solid var(--border-color); z-index: 50; padding: 32px;">
-                <div class="logo" style="margin-bottom: 60px;">
+            <aside class="sidebar">
+                <div class="logo">
                     <div class="logo-icon"></div>
                     {project_name[:15].upper()}
                 </div>
-                <nav class="sidebar-menu" style="display:flex; flex-direction:column; gap:16px;">
+                <nav class="sidebar-menu">
                     {sidebar_menu}
                 </nav>
-                <div style="margin-top: auto; display: flex; align-items: center; gap: 16px; padding-top: 32px; border-top: 1px solid var(--border-color);">
-                    <div class="avatar" style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">U</div>
-                    <div style="font-size: 14px; font-weight: 700; opacity: 0.8;">User Profile</div>
-                </div>
             </aside>
-            <main class="app-main" style="margin-left: 280px; padding: 0;">
-                <header class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 24px 60px; border-bottom: 1px solid var(--border-color); background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 40;">
-                    <h1 style="font-size: 24px; font-weight: 900; letter-spacing: -0.02em;">{screen_name}</h1>
-                    <div style="display: flex; gap: 20px; align-items:center;">
-                        <div class="btn btn-outline" style="padding: 10px 24px; font-size:13px;">Search Command</div>
-                        <div class="btn btn-primary" style="padding: 10px 24px; font-size:13px;">+ New Entry</div>
+            <main style="flex: 1;">
+                <header class="top-bar">
+                    <h1>{screen_name}</h1>
+                    <div style="display: flex; gap: 12px;">
+                        <div class="btn btn-outline">Search</div>
+                        <div class="btn btn-primary">+ New</div>
                     </div>
                 </header>
-            <div>
+            <div class="ui-container">
                 {content_html}
             </div>
         </main>
@@ -311,50 +201,41 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
 """
         else:
             return f"""
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>{screen_name} | {project_name}</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<body class="animate-fade">
+<body>
     <div class="screen-card">
-        <header>
-             <div class="logo">
-                <div class="logo-icon"></div>
-                {project_name[:20].upper()}...
-             </div>
-             <nav class="nav-links">
-                {header_links}
-                <div class="btn btn-primary">Start Trial</div>
-            </nav>
-        </header>
-        <div>
-            {content_html}
+        <div class="ui-container">
+            <header>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    {project_name[:20].upper()}
+                </div>
+                <nav class="nav-links">
+                    {header_links}
+                    <div class="btn btn-primary">Get Started</div>
+                </nav>
+            </header>
+            <div>
+                {content_html}
+            </div>
         </div>
         <footer>
             <div class="footer-grid ui-container">
                 <div>
-                    <div class="logo" style="margin-bottom: 24px;">{project_name.upper()}</div>
-                    <p style="opacity: 0.6; font-size: 14px;">Next-generation platform for {project_name}.</p>
+                    <div class="logo">{project_name.upper()}</div>
+                    <p>Generated by Idea-to-Deploy.</p>
                 </div>
-                <div class="footer-col">
-                    <h4 style="margin-bottom: 20px; font-size: 12px; text-transform: uppercase;">Product</h4>
-                    <p style="font-size: 14px; opacity: 0.6; margin-bottom: 8px;">Discover</p>
-                    <p style="font-size: 14px; opacity: 0.6; margin-bottom: 8px;">Network</p>
-                    <p style="font-size: 14px; opacity: 0.6;">Intelligence</p>
+                <div>
+                    <h4>Product</h4>
+                    <p>Features</p>
+                    <p>Pricing</p>
                 </div>
-                <div class="footer-col">
-                     <h4 style="margin-bottom: 20px; font-size: 12px; text-transform: uppercase;">Connect</h4>
-                    <p style="font-size: 14px; opacity: 0.6; margin-bottom: 8px;">Twitter</p>
-                    <p style="font-size: 14px; opacity: 0.6; margin-bottom: 8px;">Github</p>
-                </div>
-                <div class="footer-col">
-                     <h4 style="margin-bottom: 20px; font-size: 12px; text-transform: uppercase;">Legal</h4>
-                    <p style="font-size: 14px; opacity: 0.6; margin-bottom: 8px;">Privacy</p>
-                    <p style="font-size: 14px; opacity: 0.6;">Terms</p>
+                <div>
+                    <h4>Support</h4>
+                    <p>Help Center</p>
+                    <p>Contact</p>
                 </div>
             </div>
         </footer>
@@ -392,68 +273,21 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
         if not parsed_data and sim_data:
             parsed_data = sim_data.get("items") or sim_data.get("stats") or sim_data.get("rows")
 
-        # REDUNDANCY FILTER: Skip shell components and obvious placeholders
-        # REDUNDANCY FILTER: Skip shell components and obvious placeholders
-        l_lower = label.lower()
-        
-        # Hard skip for Footer/Header/Copyright regardless of content
-        # These are handled by the global app shell (lines 284+), so they should NEVER be rendered as components.
-        if any(x in l_lower for x in ["footer", "header", "copyright", "nav", "sidebar", "menu", "topbar"]):
-            return ""
-
-        # Skip generic "Product" or "Project" boxes that are just placeholders
-        if ctype in ["box", "card", "projectcard"] and len(str(content)) < 60 and any(x in l_lower for x in ["product", "project", "dashboard", "analytics"]):
-             return ""
-        
-        # Action detection: If it sounds like a button
-        action_keywords = ["save", "update", "delete", "create", "submit", "confirm", "cancel", "apply", "reset", "change", "logout", "signin", "signup", "register", "login"]
-        if any(x in l_lower for x in action_keywords) and ctype in ["box", "card", "button"]:
-             if len(str(content)) < 150:
-                 ctype = "standalone_button"
-            
-        if any(x in l_lower for x in ["testimonial", "review", "what users say", "trust"]):
-            ctype = "testimonials"
-        elif any(x in l_lower for x in ["pricing", "plan", "bill"]):
-            ctype = "pricing"
-        elif any(x in l_lower for x in ["step", "process", "how it works", "flow"]):
-            ctype = "steps"
-        elif any(x in l_lower for x in ["app", "mobile", "ios", "android", "download", "access"]):
-            ctype = "mobile_showcase"
-        elif any(x in l_lower for x in ["offer", "join", "community", "feature box"]):
-             ctype = "bento_grid"
-        elif any(x in l_lower for x in ["overview", "stat", "metric", "performance", "analytic", "traffic", "engagement", "growth", "audience"]):
-            ctype = "stats_grid"
-        elif any(x in l_lower for x in ["feature", "explore", "benefit"]):
-            ctype = "features"
-        # Field detection: If it's a small component with a field-like label
-        elif ctype in ["box", "card", "input"] and any(x in l_lower for x in ["name", "email", "phone", "password", "address", "city", "zip", "country", "title"]):
-            ctype = "field_box"
+        # No heuristic type overrides or redundancy filters
 
         if ctype == "hero":
             return f'''
-            <div class="col-span-12" style="position: relative; z-index: 2; padding: 80px 0 120px;">
+            <div class="col-span-12 section-padding">
                 <div class="hero-split">
                     <div>
-                        <h1 style="font-size: 72px; font-weight: 900; margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.04em;">
-                            {label} <span class="text-gradient">Platform</span>
-                        </h1>
-                        <p style="font-size: 20px; opacity: 0.7; margin-bottom: 48px; max-width: 500px; line-height: 1.6;">{content}</p>
-                        <div style="display: flex; gap: 16px;">
-                            <a href="#" class="btn btn-primary">Get Started ↗</a>
-                            <a href="#" class="btn btn-outline">View Demo</a>
-                        </div>
-                        <div style="margin-top: 48px; display: flex; gap: 32px; opacity: 0.5; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">
-                            <span>★ 4.9/5 Rating</span>
-                            <span>✓ Free 14-Day Trial</span>
-                            <span>♥ Loved by Creators</span>
+                        <h1 style="font-size: 48px; margin-bottom: 16px;">{label}</h1>
+                        <p style="margin-bottom: 24px; opacity: 0.8;">{content}</p>
+                        <div style="display: flex; gap: 12px;">
+                            <a href="#" class="btn btn-primary">Get Started</a>
+                            <a href="#" class="btn btn-outline">Learn More</a>
                         </div>
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; transform: rotate(-5deg) translateY(-20px); opacity: 0.8;">
-                         <div style="grid-column: span 2; height: 180px; background: rgba(255,255,255,0.05); border-radius: 16px; background-image: url('https://source.unsplash.com/random/600x400/?abstract,tech'); background-size: cover;"></div>
-                         <div style="height: 180px; background: rgba(255,255,255,0.05); border-radius: 16px;"></div>
-                         <div style="height: 180px; background: rgba(255,255,255,0.05); border-radius: 16px;"></div>
-                         <div style="grid-column: span 2; height: 180px; background: var(--gradient-primary); border-radius: 16px; display:flex; align-items:center; justify-content:center; color:white; font-weight:900; font-size:24px;">{label}</div>
-                    </div>
+                    <div style="background: var(--surface); height: 300px; border-radius: var(--radius-lg); border: 1px solid var(--border-color);"></div>
                 </div>
             </div>
             '''
@@ -557,30 +391,18 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
             </div>
             '''
         elif ctype == "authcard":
-             is_reg = "register" in label.lower() or "up" in label.lower()
              return f'''
-             <div style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 40px 0;">
-                 <div class="card-premium glass" style="width: 480px; padding: 56px; margin: 0 auto; box-shadow: 0 40px 100px -20px rgba(0,0,0,0.6); position: relative; z-index: 10;">
-                <div style="text-align: center; margin-bottom: 48px;">
-                    <div class="logo-icon" style="margin: 0 auto 24px;"></div>
-                    <h2 style="font-size: 32px; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.04em;">{label}</h2>
-                    <p style="opacity: 0.6; font-size: 15px;">Secure access to your professional workspace</p>
-                </div>
-                
-                <div style="margin-bottom: 24px;">
-                    <label style="display:block; font-size:11px; font-weight:800; margin-bottom:10px; opacity:0.5; text-transform:uppercase; letter-spacing:1px;">EMAIL ADDRESS</label>
-                    <input type="email" class="input-field" placeholder="name@domain.com" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 18px 24px;">
-                </div>
-                <div style="margin-bottom: 40px;">
-                    <label style="display:block; font-size:11px; font-weight:800; margin-bottom:10px; opacity:0.5; text-transform:uppercase; letter-spacing:1px;">PASSWORD</label>
-                    <input type="password" class="input-field" placeholder="••••••••" style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 18px 24px;">
-                </div>
-                
-                <button class="btn btn-primary" style="width:100%; padding: 18px; font-size: 16px; margin-bottom: 32px;">{label}</button>
-                <p style="font-size: 14px; text-align: center; opacity: 0.6;">
-                    { 'Already have an account? <a href="login.html" style="color:var(--primary); font-weight:700; text-decoration:none;">Sign In</a>' if is_reg else 'New here? <a href="register.html" style="color:var(--primary); font-weight:700; text-decoration:none;">Create Account</a>' }
-                </p>
-             </div>
+             <div style="max-width: 400px; margin: 40px auto;">
+                 <div class="card">
+                    <h2 style="margin-bottom: 24px;">{label}</h2>
+                    <div style="margin-bottom: 16px;">
+                        <input type="email" class="input-field" placeholder="Email">
+                    </div>
+                    <div style="margin-bottom: 24px;">
+                        <input type="password" class="input-field" placeholder="Password">
+                    </div>
+                    <button class="btn btn-primary" style="width:100%">{label}</button>
+                 </div>
              </div>
              '''
         elif ctype == "cartitem":
@@ -647,25 +469,21 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
         elif ctype == "projectcard" or ctype == "card":
             span = comp.get("span", 4)
             return f'''
-            <div class="col-span-{span} card-premium">
-               <div style="aspect-ratio: 16/10; background: rgba(255,255,255,0.03); border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🖼️</div>
-               <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                   <h3 style="font-weight: 800; font-size: 18px;">{label}</h3>
-                   {f'<span style="color: var(--primary); font-weight: 900;">{subtext}</span>' if '$' in subtext else ''}
-               </div>
-               <p style="opacity:0.6; font-size:14px; line-height:1.6; margin-bottom: 20px;">{content}</p>
-               {f'<div class="btn btn-outline" style="width: 100%;">{subtext if "$" not in subtext else "View Details"}</div>' if subtext else ''}
+            <div class="col-span-{span}">
+                <div class="card">
+                   <h3 style="margin-bottom: 12px;">{label}</h3>
+                   <p style="opacity:0.8; font-size:14px; margin-bottom: 16px;">{content}</p>
+                   <div class="btn btn-outline" style="width: 100%;">View</div>
+                </div>
             </div>
             '''
-        elif ctype == "statcard" or (ctype == "stats_grid" and not isinstance(parsed_data, list)):
+        elif ctype == "statcard":
             span = comp.get("span", 4)
-            val = content if not parsed_data else str(parsed_data)
             return f'''
             <div class="col-span-{span}">
-                <div class="card-premium glass">
-                    <h4 style="font-size: 12px; font-weight: 800; opacity: 0.5; text-transform: uppercase; margin-bottom: 12px;">{label}</h4>
-                    <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px; color: var(--primary);">{val}</div>
-                    <p style="font-size: 13px; opacity: 0.6;">{subtext}</p>
+                <div class="card">
+                    <div style="font-size: 12px; opacity: 0.6; margin-bottom: 8px;">{label}</div>
+                    <div style="font-size: 24px; font-weight: 700; color: var(--primary);">{content}</div>
                 </div>
             </div>
             '''
@@ -818,12 +636,7 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
         elif ctype == "features":
              items = parsed_data if isinstance(parsed_data, list) else sim_data.get("items", [])
              if not items:
-                 # Generate rich default items if none exist
-                 items = [
-                     {"title": "Advanced Analytics", "desc": "Gain deep insights into your performance metrics with our real-time tracking engine. Understand behavior like never before."},
-                     {"title": "Global Reach", "desc": "Connect with audiences worldwide through our low-latency distributed network. No boundaries, just connection."},
-                     {"title": "Secure Encryption", "desc": "Your data is protected by military-grade AES-256 encryption. We prioritize your privacy above all else."}
-                 ]
+                 items = []
              
              cards_html = ""
              for item in items:
@@ -831,7 +644,7 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
                  i_desc = item.get("desc", item.get("description", "Experience the power of our platform with this cutting-edge feature designed for growth.")) if isinstance(item, dict) else "Detailed feature description goes here."
                  
                  cards_html += f'''
-                 <div class="card-premium glass" style="padding: 40px;">
+                 <div class="card" style="padding: 40px;">
                      <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.05); border-radius: 12px; margin-bottom: 24px; display:flex; align-items:center; justify-content:center; font-size:24px;">⚡</div>
                      <h3 style="font-size: 22px; font-weight: 800; margin-bottom: 16px;">{i_title}</h3>
                      <p style="opacity: 0.7; font-size: 16px; line-height: 1.7;">{i_desc}</p>
@@ -879,7 +692,7 @@ footer { padding: 100px 0 60px; border-top: 1px solid rgba(255,255,255,0.05); ba
                             <th style="text-align: left; padding: 16px 24px;">Status/Value</th>
                             <th style="text-align: right; padding: 16px 24px;">Quick Action</th>
                         </tr>
-                        {rows_html if rows_html else '<tr><td colspan="3" style="padding: 60px; text-align: center; opacity: 0.3;">No records found matching criteria</td></tr>'}
+                        {rows_html}
                     </table>
                 </div>
             </div>

@@ -1,0 +1,151 @@
+{
+  "screen_name": "Friends/Followers List Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "sidebar": null,
+  "footer": null,
+  "components": [
+    {
+      "type": "text",
+      "x": 16,
+      "y": 24,
+      "width": 150,
+      "height": 32,
+      "label": "Platform Logo/Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Search Bar"
+    },
+    {
+      "type": "button",
+      "x": 1200,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Home Icon"
+    },
+    {
+      "type": "button",
+      "x": 1248,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Notifications Icon"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Messages Icon"
+    },
+    {
+      "type": "button",
+      "x": 1344,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "Create Post Icon"
+    },
+    {
+      "type": "button",
+      "x": 1392,
+      "y": 24,
+      "width": 32,
+      "height": 32,
+      "label": "User Profile Icon"
+    },
+    {
+      "type": "text",
+      "x": 320,
+      "y": 104,
+      "width": 800,
+      "height": 40,
+      "label": "Followers / Following"
+    },
+    {
+      "type": "button",
+      "x": 320,
+      "y": 160,
+      "width": 192,
+      "height": 40,
+      "label": "Tab: Followers"
+    },
+    {
+      "type": "button",
+      "x": 520,
+      "y": 160,
+      "width": 192,
+      "height": 40,
+      "label": "Tab: Following"
+    },
+    {
+      "type": "card",
+      "x": 320,
+      "y": 216,
+      "width": 800,
+      "height": 80,
+      "label": "User Card 1"
+    },
+    {
+      "type": "image",
+      "x": 336,
+      "y": 232,
+      "width": 48,
+      "height": 48,
+      "label": "User Profile Pic"
+    },
+    {
+      "type": "text",
+      "x": 392,
+      "y": 232,
+      "width": 200,
+      "height": 24,
+      "label": "User Name"
+    },
+    {
+      "type": "text",
+      "x": 392,
+      "y": 256,
+      "width": 150,
+      "height": 24,
+      "label": "User Handle"
+    },
+    {
+      "type": "text",
+      "x": 552,
+      "y": 256,
+      "width": 200,
+      "height": 24,
+      "label": "Short Bio (Optional)"
+    },
+    {
+      "type": "button",
+      "x": 1000,
+      "y": 240,
+      "width": 104,
+      "height": 32,
+      "label": "Follow Back"
+    },
+    {
+      "type": "card",
+      "x": 320,
+      "y": 304,
+      "width": 800,
+      "height": 80,
+      "label": "User Card 2"
+    }
+  ]
+}

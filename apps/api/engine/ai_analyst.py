@@ -1,391 +1,150 @@
-import json
+import os
+import re
 from pathlib import Path
 from .llm_service import LLMService
-from .ai_prompts import (
-    CANONICAL_JSON_PROMPT,
-    REQUIREMENT_PROMPT, 
-    PLANNING_PROMPT, 
-    ARCHITECTURE_PROMPT, 
-    IPMP_PROMPT, 
-    SCHEDULE_COST_PROMPT, 
-    QUALITY_RISK_PROMPT, 
-    TESTING_RELEASE_PROMPT, 
-    UI_UX_PROMPT,
-    SCREEN_INVENTORY_PROMPT,
-    UI_CONTRACTS_PROMPT,
-    WIREFRAMES_PROMPT,
-    UI_DESIGN_PROMPT,
-    FIGMA_LAYOUT_PROMPT
-)
 from typing import Dict, List
 from .project_manager import ARTIFACTS_DIR
 
 class AIAnalyst:
-    VERSION = "2.1.0-PY-DESIGN"
+    VERSION = "3.2.0-SIMPLIFIED-MAX-ROBUST"
 
     def __init__(self):
         self.llm = LLMService()
 
-    async def analyze_idea(self, idea_description: str, project_id: str = None) -> Dict[str, str]:
-        # STEP 1: IDEA -> CANONICAL JSON
-        print("AIAnalyst: Generating Canonical JSON...")
-        canonical_json_raw = await self.llm.generate_content(
-            'CANONICAL_JSON',
-            {"idea": idea_description},
-            CANONICAL_JSON_PROMPT
-        )
+    async def analyze_idea(self, idea_description: str, project_id: str = None, on_doc_generated=None) -> Dict[str, str]:
+        if not project_id:
+            return {"error": "Project ID is required"}
 
-        canonical_json = canonical_json_raw.strip()
-        if canonical_json.startswith('```json'):
-            canonical_json = canonical_json.replace('```json', '', 1).rsplit('```', 1)[0].strip()
-        elif canonical_json.startswith('```'):
-            canonical_json = canonical_json.replace('```', '', 1).rsplit('```', 1)[0].strip()
-
-        try:
-            json.loads(canonical_json)
-        except:
-            pass
-
-        variables = {
-            "canonical_json": canonical_json
-        }
-
-        # STEP 2: DOCUMENT GENERATION
-        results = {}
+        print(f"AIAnalyst: Starting robust simplified analysis for {project_id}")
         
-        print("AIAnalyst: Generating 7 core project documents...")
-        results['REQUIREMENTS'] = await self.llm.generate_content('REQUIREMENTS', variables, REQUIREMENT_PROMPT)
-        results['PLANNING'] = await self.llm.generate_content('PLANNING', variables, PLANNING_PROMPT)
-        results['ARCHITECTURE'] = await self.llm.generate_content('ARCHITECTURE', variables, ARCHITECTURE_PROMPT)
-        results['IPMP'] = await self.llm.generate_content('IPMP', variables, IPMP_PROMPT)
-        results['SCHEDULE_COST'] = await self.llm.generate_content('SCHEDULE_COST', variables, SCHEDULE_COST_PROMPT)
-        results['QUALITY_RISK'] = await self.llm.generate_content('QUALITY_RISK', variables, QUALITY_RISK_PROMPT)
-        results['TESTING_RELEASE'] = await self.llm.generate_content('TESTING_RELEASE', variables, TESTING_RELEASE_PROMPT)
+        # EXACTLY LIKE REQUESTED PROMPT
+        prompt = f"""
+You are a senior product and project architect.
+
+Given the following product idea:
+"{idea_description}"
+
+Generate the following 7 documents.
+Each document must have:
+- Clear headings
+- Bullet points
+- Industry-standard structure
+- No JSON
+- Plain readable text
+
+Documents:
+1. Requirement Documents
+2. Project Planning Documents
+3. Technical Architecture & Delivery Plans
+4. Integrated Project Management Plans (IPMP)
+5. Schedule & Cost Plans
+6. Quality, Risk & Procurement Plans
+7. Testing & Release Plans
+
+Write each document under a clear heading.
+"""
+
+        print("AIAnalyst: Requesting LLM...")
+        full_result = await self.llm.generate_content("PROJECT_DOCS", {"idea": idea_description}, prompt)
         
-        # UI_UX is now part of design artifacts
-        ui_ux_raw = await self.llm.generate_content('UI_UX', variables, UI_UX_PROMPT)
-        ui_ux_json = self._clean_json(ui_ux_raw)
 
-        # STEP 3: GENERATE STRUCTURED UI DESIGN ARTIFACTS (if project_id provided)
-        if project_id:
-            try:
-                print("AIAnalyst: Generating structured UI design artifacts...")
-                
-                # Bundle the 7 docs
-                bundle = f"""
-                REQUIREMENTS:
-                {results['REQUIREMENTS']}
-                
-                PLANNING:
-                {results['PLANNING']}
-                
-                ARCHITECTURE:
-                {results['ARCHITECTURE']}
-                
-                IPMP:
-                {results['IPMP']}
-                
-                SCHEDULE & COST:
-                {results['SCHEDULE_COST']}
-                
-                QUALITY & RISK:
-                {results['QUALITY_RISK']}
-                
-                TESTING & RELEASE:
-                {results['TESTING_RELEASE']}
-                """
-                
-                # Prompt A: Docs -> Screen Inventory
-                print("  - Running Prompt A: Screen Inventory...")
-                screen_inventory_raw = await self.llm.generate_content(
-                    'SCREEN_INVENTORY', 
-                    {"bundle": bundle, "idea": idea_description}, 
-                    SCREEN_INVENTORY_PROMPT
-                )
-                screen_inventory_json = self._clean_json(screen_inventory_raw)
-                
-                # Prompt B: Screen Inventory -> UI Contracts
-                print("  - Running Prompt B: UI Contracts...")
-                ui_contracts_raw = await self.llm.generate_content(
-                    'UI_CONTRACTS', 
-                    {"screen_inventory": screen_inventory_json, "idea": idea_description}, 
-                    UI_CONTRACTS_PROMPT
-                )
-                ui_contracts_json = self._clean_json(ui_contracts_raw)
-                
-                # Prompt C: UI Contracts -> Wireframes JSON
-                print("  - Running Prompt C: Wireframes...")
-                wireframes_raw = await self.llm.generate_content(
-                    'WIREFRAMES',
-                    {"ui_contracts": ui_contracts_json, "idea": idea_description},
-                    WIREFRAMES_PROMPT
-                )
-                wireframes_json = self._clean_json(wireframes_raw)
-                
-                # Generate UI Design (Optional, but keeping for completeness)
-                print("  - Generating UI Design Tokens & Styles...")
-                ui_design_raw = await self.llm.generate_content(
-                    'UI_DESIGN',
-                    {
-                        "wireframes": wireframes_json,
-                        "ui_contracts": ui_contracts_json,
-                        "idea": idea_description
-                    },
-                    UI_DESIGN_PROMPT
-                )
-                ui_design_json = self._clean_json(ui_design_raw)
-                
-                # Prompt D: Figma Layout
-                print("  - Running Prompt D: Figma Layout...")
-                figma_layout_raw = await self.llm.generate_content(
-                    'FIGMA_LAYOUT',
-                    {
-                        "ui_contracts": ui_contracts_json,
-                        "wireframes": wireframes_json,
-                        "idea": idea_description
-                    },
-                    FIGMA_LAYOUT_PROMPT
-                )
-                figma_layout_json = self._clean_json(figma_layout_raw)
-                
-                # Save artifacts to files
-                self._save_design_artifacts(
-                    project_id, 
-                    screen_inventory_json, 
-                    ui_contracts_json, 
-                    wireframes_json, 
-                    ui_design_json,
-                    figma_layout_json,
-                    ui_ux_json
-                )
-                
-                print("AIAnalyst: UI design artifacts generated and saved successfully!")
-                
-            except Exception as e:
-                print(f"AIAnalyst: Error generating UI design artifacts: {e}")
-
-        return results
-
-    def _clean_json(self, raw_content: str) -> str:
-        """Clean JSON content by removing markdown formatting"""
-        content = raw_content.strip()
-        if content.startswith('```json'):
-            content = content.replace('```json', '', 1).rsplit('```', 1)[0].strip()
-        elif content.startswith('```'):
-            content = content.replace('```', '', 1).rsplit('```', 1)[0].strip()
-        return content
-
-    def _save_design_artifacts(self, project_id: str, screen_inventory: str, ui_contracts: str, wireframes: str, ui_design: str, figma_layout: str = None, ui_ux: str = None):
-        """Save design artifacts as separate JSON files"""
-        artifacts_dir = ARTIFACTS_DIR / project_id / "docs"
-        artifacts_dir.mkdir(parents=True, exist_ok=True)
+        print(f"AIAnalyst: Received content (len: {len(full_result)})")
         
-        # Save UI_UX if provided
-        if ui_ux:
-            with open(artifacts_dir / "ui_ux.json", 'w', encoding='utf-8') as f:
-                f.write(ui_ux)
-        
-        # Save Screen Inventory
-        with open(artifacts_dir / "screen_inventory.json", 'w', encoding='utf-8') as f:
-            f.write(screen_inventory)
+        # Save the full result
+        docs_dir = ARTIFACTS_DIR / project_id / "docs"
+        docs_dir.mkdir(parents=True, exist_ok=True)
+        with open(docs_dir / "project_documents.txt", "w", encoding="utf-8") as f:
+            f.write(full_result)
 
-        # Save UI Contracts
-        with open(artifacts_dir / "ui_contracts.json", 'w', encoding='utf-8') as f:
-            f.write(ui_contracts)
+        mapping = [
+            ("REQUIREMENTS", "Requirement Documents"),
+            ("PLANNING", "Project Planning Documents"),
+            ("ARCHITECTURE", "Technical Architecture & Delivery Plans"),
+            ("IPMP", "Integrated Project Management Plans (IPMP)"),
+            ("SCHEDULE_COST", "Schedule & Cost Plans"),
+            ("QUALITY_RISK", "Quality, Risk & Procurement Plans"),
+            ("TESTING_RELEASE", "Testing & Release Plans")
+        ]
         
-        # Save Wireframes
-        with open(artifacts_dir / "wireframes.json", 'w', encoding='utf-8') as f:
-            f.write(wireframes)
+        generated_docs = {}
         
-        # Save UI Design
-        with open(artifacts_dir / "ui_design.json", 'w', encoding='utf-8') as f:
-            f.write(ui_design)
-
-        if figma_layout:
-            # Save Figma Layout
-            with open(artifacts_dir / "figma_layout.json", 'w', encoding='utf-8') as f:
-                f.write(figma_layout)
+        # Strategy A: Regex Split by Numbered Headers (Strongest if LLM follows instructions)
+        # We look for newline + optional markdown + digit + dot + space
+        # We use capturing group to see what we split, but split logic usually consumes delimiters.
+        # So we use lookahead or just standard split.
+        
+        # Pattern: Newline, optional hash/whitespce, digit, dot, space.
+        # We use a pattern that matches the start of a header.
+        header_pattern = r'(?:^|\n)(?:#+\s*)?\d+\.\s+[A-Z][a-zA-Z\s\&\(\)]+'
+        
+        # Find all start indices of headers
+        matches = list(re.finditer(header_pattern, full_result))
+        
+        if len(matches) >= 4:
+            print(f"AIAnalyst: Found {len(matches)} numbered headers.")
+            # We assume these matches correspond to our 7 documents in order
+            # (Or as many as found)
             
-            try:
-                layout_data = json.loads(figma_layout)
+            for i in range(len(matches)):
+                start_idx = matches[i].start()
+                end_idx = matches[i+1].start() if i < len(matches) - 1 else len(full_result)
                 
-                # Transform to json_to_figma.json
-                json_to_figma = self._transform_to_figma_plugin(layout_data)
-                with open(artifacts_dir / "json_to_figma.json", 'w', encoding='utf-8') as f:
-                    json.dump(json_to_figma, f, indent=2)
+                # Extract content
+                content_chunk = full_result[start_idx:end_idx].strip()
                 
-                # Transform to figma_nodes_output.json
-                figma_nodes = self._generate_figma_nodes(layout_data)
-                with open(artifacts_dir / "figma_nodes_output.json", 'w', encoding='utf-8') as f:
-                    json.dump(figma_nodes, f, indent=2)
-            except Exception as e:
-                print(f"AIAnalyst: Error transforming Figma layout: {e}")
+                # Determine category based on content header or index
+                # We try to match the header text against our mapping
+                header_text = content_chunk.split('\n')[0].lower()
+                
+                matched_cat = None
+                for cat, title in mapping:
+                    # distinct words
+                    keywords = [w.lower() for w in title.replace('&', '').replace('(', '').replace(')', '').split() if len(w) > 3]
+                    # Check if enough keywords match
+                    match_count = sum(1 for k in keywords if k in header_text)
+                    if match_count >= 1:
+                        matched_cat = cat
+                        break
+                
+                # Fallback to index if reliable
+                if not matched_cat and i < len(mapping):
+                    matched_cat = mapping[i][0]
+                
+                if matched_cat:
+                    generated_docs[matched_cat] = content_chunk
 
-    def _transform_to_figma_plugin(self, layout_data: Dict) -> List:
-        """Transform layout data to format suitable for JSON to Figma plugin"""
-        figma_data = layout_data.get('figma', {})
-        all_frames = []
-        frame_x = 0
-        frame_y = 0
-        max_frame_height = 0
-        frame_count = 0
-
-        for page in figma_data.get('pages', []):
-            for frame in page.get('frames', []):
-                figma_frame = {
-                    "type": "FRAME",
-                    "name": frame.get('name', 'Frame'),
-                    "x": frame_x,
-                    "y": frame_y,
-                    "width": 1200,
-                    "height": 800,
-                    "children": [],
-                    "fills": [{"type": "SOLID", "color": {"r": 1, "g": 1, "b": 1}}],
-                    "strokes": [{"type": "SOLID", "color": {"r": 0, "g": 0, "b": 0}}],
-                    "strokeWeight": 1,
-                    "cornerRadius": 8
-                }
-                
-                section_y = 40
-                for section in frame.get('sections', []):
-                    section_frame = {
-                        "type": "FRAME",
-                        "name": section.get('name', 'Section'),
-                        "x": 40,
-                        "y": section_y,
-                        "width": 1120,
-                        "height": 100,
-                        "children": [],
-                        "fills": [{"type": "SOLID", "color": {"r": 0.95, "g": 0.95, "b": 0.95}}],
-                        "strokes": [{"type": "SOLID", "color": {"r": 0.8, "g": 0.8, "b": 0.8}}],
-                        "strokeWeight": 1
-                    }
-                    
-                    section_frame["children"].append({
-                        "type": "TEXT",
-                        "name": "Section Title",
-                        "characters": section.get('name', 'Section').upper(),
-                        "x": 10,
-                        "y": 10,
-                        "fontSize": 14,
-                        "fills": [{"type": "SOLID", "color": {"r": 0.2, "g": 0.2, "b": 0.2}}]
-                    })
-                    
-                    comp_y = 40
-                    for comp in section.get('components', []):
-                        rect = {
-                            "type": "RECTANGLE",
-                            "name": comp.get('key', 'Component'),
-                            "x": 20,
-                            "y": comp_y,
-                            "width": 1080,
-                            "height": 40,
-                            "fills": [{"type": "SOLID", "color": {"r": 0.9, "g": 0.9, "b": 0.9}}]
-                        }
-                        section_frame["children"].append(rect)
-                        
-                        section_frame["children"].append({
-                            "type": "TEXT",
-                            "name": "Component Label",
-                            "characters": comp.get('key', 'Component'),
-                            "x": 35,
-                            "y": comp_y + 12,
-                            "fontSize": 12,
-                            "fills": [{"type": "SOLID", "color": {"r": 0, "g": 0, "b": 0}}]
-                        })
-                        comp_y += 50
-                    
-                    section_frame["height"] = max(comp_y + 10, 60)
-                    figma_frame["children"].append(section_frame)
-                    section_y += section_frame["height"] + 20
-                
-                figma_frame["height"] = max(section_y + 20, 600)
-                all_frames.append(figma_frame)
-                
-                frame_x += 1300
-                max_frame_height = max(max_frame_height, figma_frame["height"])
-                frame_count += 1
-                if frame_count % 4 == 0:
-                    frame_x = 0
-                    frame_y += max_frame_height + 200
-                    max_frame_height = 0
-        return all_frames
-
-    def _generate_figma_nodes(self, layout_plan: Dict) -> Dict:
-        """Generate Figma nodes format"""
-        def create_rectangle_node(component_key, x, y):
-            return {
-                'type': 'RECTANGLE',
-                'name': component_key,
-                'x': x,
-                'y': y,
-                'width': 200,
-                'height': 50,
-                'fills': [{'type': 'SOLID', 'color': {'r': 0.9, 'g': 0.9, 'b': 0.9, 'a': 1}}],
-                'strokes': [],
-                'strokeWeight': 0
-            }
-
-        def create_section_frame(section_name, components, y_offset):
-            children = []
-            current_y = 20
-            for component in components:
-                component_key = component.get('key', 'Component')
-                rect = create_rectangle_node(component_key, 20, current_y)
-                children.append(rect)
-                current_y += 70
+        # Strategy B: If Strategy A failed to find enough sections, try fuzzy title search
+        if len(generated_docs) < 4:
+            print("AIAnalyst: Regex headers not sufficient, trying fuzzy title search.")
+            lower_content = full_result.lower()
+            found_indices = []
             
-            return {
-                'type': 'FRAME',
-                'name': section_name,
-                'x': 0,
-                'y': y_offset,
-                'width': 240,
-                'height': max(current_y + 20, 100),
-                'children': children,
-                'fills': [{'type': 'SOLID', 'color': {'r': 0.98, 'g': 0.98, 'b': 0.98, 'a': 1}}],
-                'strokes': [{'type': 'SOLID', 'color': {'r': 0.8, 'g': 0.8, 'b': 0.8, 'a': 1}}],
-                'strokeWeight': 1,
-                'cornerRadius': 4
-            }
-
-        def create_frame_node(frame_data):
-            name = frame_data.get('name', 'Frame')
-            sections = frame_data.get('sections', [])
-            children = []
-            current_y = 0
+            for cat, title in mapping:
+                # Simplify title for search
+                simple_title = title.lower().split('(')[0].strip()
+                idx = lower_content.find(simple_title)
+                if idx != -1:
+                    found_indices.append((idx, cat))
             
-            for section in sections:
-                section_frame = create_section_frame(section.get('name', 'Section'), section.get('components', []), current_y)
-                section_frame['x'] = 20
-                section_frame['width'] = 760
-                children.append(section_frame)
-                current_y += section_frame['height'] + 20
+            # Sort by position
+            found_indices.sort(key=lambda x: x[0])
             
-            return {
-                'type': 'FRAME',
-                'name': name,
-                'x': 0,
-                'y': 0,
-                'width': 800,
-                'height': max(600, current_y + 20),
-                'children': children,
-                'fills': [{'type': 'SOLID', 'color': {'r': 1, 'g': 1, 'b': 1, 'a': 1}}],
-                'strokes': [{'type': 'SOLID', 'color': {'r': 0.7, 'g': 0.7, 'b': 0.7, 'a': 1}}],
-                'strokeWeight': 2,
-                'cornerRadius': 8
-            }
+            for i in range(len(found_indices)):
+                start, cat = found_indices[i]
+                end = found_indices[i+1][0] if i < len(found_indices) - 1 else len(full_result)
+                generated_docs[cat] = full_result[start:end].strip()
 
-        pages = []
-        for page_data in layout_plan.get('figma', {}).get('pages', []):
-            page_name = page_data.get('name', 'Wireframes')
-            frames = page_data.get('frames', [])
-            frame_nodes = []
-            for idx, frame_data in enumerate(frames):
-                frame_node = create_frame_node(frame_data)
-                frame_node['x'] = (idx % 5) * 850
-                frame_node['y'] = (idx // 5) * 650
-                frame_nodes.append(frame_node)
-            pages.append({'name': page_name, 'frames': frame_nodes})
-        
-        return {'pages': pages}
+        # Strategy C was removed
+
+        # Final Pass: Fill in missing docs and notify UI
+        for cat, title in mapping:
+            if cat not in generated_docs:
+                generated_docs[cat] = ""
+            
+            # Send to UI
+            if on_doc_generated:
+                await on_doc_generated(cat, generated_docs[cat])
+
+        print(f"AIAnalyst: Completed. Docs parsed: {len(generated_docs)}")
+        return generated_docs
+

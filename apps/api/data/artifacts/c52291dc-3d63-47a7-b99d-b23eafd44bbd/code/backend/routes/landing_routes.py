@@ -1,1 +1,0 @@
-Think of it as SpaceX + Maersk + AWS + Bloomberg, but for space resources.

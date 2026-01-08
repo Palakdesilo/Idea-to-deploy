@@ -1,2 +1,0 @@
-# README_TEMPLATE Document for I want to create a platform where I can connect direct to farmer for buy fruits or vegetables.
-

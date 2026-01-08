@@ -1,0 +1,62 @@
+### PAGE LIST
+1. Home Page
+2. Product Listing Page
+3. Product Detail Page
+4. Shopping Cart Page
+5. Checkout Page
+6. Order Confirmation Page
+7. User Registration Page
+8. User Login Page
+9. User Profile Page
+10. Order History Page
+11. Order Tracking Page
+12. Returns Management Page
+13. Admin Dashboard
+14. Product Management Page
+15. Inventory Management Page
+
+### VISUAL PROMPTS
+1. **Home Page**
+   PROMPT: "High-fidelity e-commerce homepage UI, clean and modern design, featuring a hero banner with promotional images, a grid layout for featured products, a search bar at the top, and a sticky navigation menu with categories. Use a light color palette with soft pastels and vibrant accent colors for buttons. Include a footer with links to customer service, privacy policy, and social media icons."
+
+2. **Product Listing Page**
+   PROMPT: "High-fidelity product listing page UI, showcasing a grid of products with images, titles, prices, and 'Add to Cart' buttons. Use a card layout with hover effects for interactivity. The color scheme should be bright and inviting, with a sidebar for filtering options like categories, price range, and ratings. Include a breadcrumb navigation at the top for easy navigation."
+
+3. **Product Detail Page**
+   PROMPT: "High-fidelity product detail page UI, featuring a large product image on the left and product details on the right. Include sections for product description, specifications, customer reviews, and related products. Use a clean layout with ample white space, a bold font for product titles, and a contrasting color for the 'Add to Cart' button. The background should be light to enhance readability."
+
+4. **Shopping Cart Page**
+   PROMPT: "High-fidelity shopping cart page UI, displaying a list of selected products with images, names, quantities, prices, and a total cost summary. Include options to update quantities or remove items. The layout should be straightforward, with a prominent 'Proceed to Checkout' button. Use a warm color palette to create a welcoming feel, with clear typography for easy reading."
+
+5. **Checkout Page**
+   PROMPT: "High-fidelity checkout page UI, organized into sections for shipping information, payment details, and order summary. Use a step-by-step layout with progress indicators at the top. The design should be clean and user-friendly, with a calming color palette. Include input fields for user information, a secure payment option area, and a final review section before placing the order."
+
+6. **Order Confirmation Page**
+   PROMPT: "High-fidelity order confirmation page UI, featuring a thank you message, order summary, and estimated delivery date. Use a celebratory design with bright colors and engaging graphics. Include a button for users to view their order history and a section for tracking their order status. The layout should be simple and reassuring, emphasizing successful completion of the purchase."
+
+7. **User Registration Page**
+   PROMPT: "High-fidelity user registration page UI, with a clean and straightforward layout. Include fields for name, email, password, and a 'Register' button. Use a light background with contrasting colors for input fields and buttons. Incorporate a link to the login page for existing users. The design should be welcoming and encourage sign-ups."
+
+8. **User Login Page**
+   PROMPT: "High-fidelity user login page UI, featuring input fields for email and password, along with a 'Login' button. Use a modern design with a minimalistic approach, incorporating a background image or color gradient. Include options for password recovery and a link to the registration page. The layout should be intuitive and user-friendly."
+
+9. **User Profile Page**
+   PROMPT: "High-fidelity user profile page UI, displaying user information such as name, email, and profile picture. Include sections for managing account settings, payment methods, and addresses. Use a clean layout with tabs for easy navigation between sections. The color scheme should be soft and professional, enhancing the user experience."
+
+10. **Order History Page**
+    PROMPT: "High-fidelity order history page UI, showcasing a list of past orders with details like order number, date, status, and total amount. Use a table format for clarity, with options to view order details or reorder items. The design should be simple and organized, with a muted color palette for a professional appearance."
+
+11. **Order Tracking Page**
+    PROMPT: "High-fidelity order tracking page UI, featuring a tracking status bar with milestones (e.g., Order Placed, Shipped, Out for Delivery). Include a summary of order details and estimated delivery date. The layout should be visually engaging, using icons and colors to represent different statuses. The background should be light to maintain focus on the tracking information."
+
+12. **Returns Management Page**
+    PROMPT: "High-fidelity returns management page UI, with a list of items eligible for return and a simple form for initiating a return request. Use a clean and straightforward layout with clear instructions. Incorporate a color scheme that is calming and professional, with buttons for submitting return requests prominently displayed."
+
+13. **Admin Dashboard**
+    PROMPT: "High-fidelity admin dashboard UI, featuring a sidebar for navigation and a main content area displaying key metrics (e.g., sales, orders, inventory). Use a card layout for metrics with graphs and charts for data visualization. The design should be modern and data-driven, utilizing a dark mode theme with vibrant accent colors for highlights."
+
+14. **Product Management Page**
+    PROMPT: "High-fidelity product management page UI, showcasing a table of products with options to add, edit, or delete items. Include fields for product name, price, stock level, and category. The layout should be organized and user-friendly, with a clean design and a color palette that emphasizes functionality and ease of use."
+
+15. **Inventory Management Page**
+    PROMPT: "High-fidelity inventory management page UI, featuring a detailed list of inventory items with stock levels, reorder alerts, and options to update quantities. Use a grid layout for clarity, with filters for searching items. The design should be professional and straightforward, using a muted color palette to keep the focus on data."

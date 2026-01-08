@@ -1,0 +1,85 @@
+{
+  "screen_name": "Signup Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": null,
+  "sidebar": null,
+  "footer": null,
+  "components": [
+    {
+      "type": "text",
+      "x": 520,
+      "y": 120,
+      "width": 400,
+      "height": 48,
+      "label": "Platform Logo/Name"
+    },
+    {
+      "type": "input",
+      "x": 520,
+      "y": 192,
+      "width": 400,
+      "height": 40,
+      "label": "Full Name"
+    },
+    {
+      "type": "input",
+      "x": 520,
+      "y": 240,
+      "width": 400,
+      "height": 40,
+      "label": "Username"
+    },
+    {
+      "type": "input",
+      "x": 520,
+      "y": 288,
+      "width": 400,
+      "height": 40,
+      "label": "Email"
+    },
+    {
+      "type": "input",
+      "x": 520,
+      "y": 336,
+      "width": 400,
+      "height": 40,
+      "label": "Password"
+    },
+    {
+      "type": "input",
+      "x": 520,
+      "y": 384,
+      "width": 400,
+      "height": 40,
+      "label": "Confirm Password"
+    },
+    {
+      "type": "text",
+      "x": 520,
+      "y": 432,
+      "width": 400,
+      "height": 24,
+      "label": "Checkbox: Agree to Terms and Conditions (Link)"
+    },
+    {
+      "type": "button",
+      "x": 520,
+      "y": 472,
+      "width": 400,
+      "height": 48,
+      "label": "Sign Up"
+    },
+    {
+      "type": "text",
+      "x": 520,
+      "y": 536,
+      "width": 400,
+      "height": 24,
+      "label": "Already have an account? Login"
+    }
+  ]
+}

@@ -1,3 +1,0 @@
-# README_TEMPLATE Document for A futuristic logistics platform for asteroid mining is the end-to-end digital brain that plans, coordinates, tracks, optimizes, and monetizes everything involved in extracting resources from asteroids and moving them to where they’re needed (orbit, Moon, Mars, or Earth).
-
-Think of it as SpaceX + Maersk + AWS + Bloomberg, but for space resources.
