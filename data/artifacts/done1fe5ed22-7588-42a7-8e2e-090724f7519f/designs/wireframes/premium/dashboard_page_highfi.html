@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Premium UI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f8fafc; /* Light gray background */
+        }
+        /* Custom scrollbar for main content area */
+        .main-content-scroll {
+            overflow-y: auto;
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #cbd5e1 #f1f5f9; /* thumb track */
+        }
+        .main-content-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .main-content-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9; /* Light background for the track */
+            border-radius: 10px;
+        }
+        .main-content-scroll::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* Gray thumb */
+            border-radius: 10px;
+            border: 2px solid #f1f5f9; /* Padding around thumb */
+        }
+        .sidebar-nav-item.active {
+            background-color: #e0f2fe; /* Light blue for active state */
+            color: #0c4a6e; /* Darker blue text */
+            font-weight: 600;
+            border-left: 4px solid #0ea5e9; /* Accent border */
+        }
+        .sidebar-nav-item:not(.active):hover {
+            background-color: #f1f5f9; /* Light gray on hover */
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen w-screen max-w-[1440px] mx-auto bg-gray-50">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between h-20 px-6 bg-white border-b border-gray-200 shadow-sm z-10">
+        <div class="flex items-center gap-4">
+            <span class="text-2xl font-bold text-gray-900">Acme Analytics</span>
+        </div>
+        <h1 class="text-xl font-semibold text-gray-700">Dashboard Overview</h1>
+        <div class="flex items-center gap-4">
+            <div class="relative">
+                <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm w-56">
+                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            </div>
+            <div class="relative group">
+                <img src="https://api.dicebear.com/7.x/initials/svg?seed=JD" alt="User Avatar" class="w-9 h-9 rounded-full cursor-pointer border-2 border-transparent hover:border-blue-500 transition-all duration-200">
+                <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block transition-all duration-200 ease-out origin-top-right scale-95 group-hover:scale-100 opacity-0 group-hover:opacity-100">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Logout</a>
+                </div>
+            </div>
+            <button class="p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                <i data-lucide="settings" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout: Sidebar + Content -->
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col py-6 shadow-sm">
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 sidebar-nav-item active">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Users</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                    <i data-lucide="package" class="w-5 h-5"></i>
+                    <span>Products</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors duration-200">
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    <span>Orders</span>
+                </a>
+            </nav>
+            <div class="px-4 mt-auto">
+                <button class="flex items-center justify-center w-full gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 text-sm">
+                    <i data-lucide="chevrons-left" class="w-4 h-4"></i>
+                    <span>Collapse Sidebar</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 bg-gray-50 main-content-scroll">
+            <div class="max-w-full mx-auto">
+                <!-- Page Title and Description -->
+                <div class="mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">Analytics Dashboard</h2>
+                    <p class="text-gray-600 text-lg">Overview of key metrics and recent activities across your business.</p>
+                </div>
+
+                <!-- Filter Section -->
+                <div class="flex flex-wrap items-center gap-4 mb-8 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div class="flex items-center gap-2">
+                        <label for="start-date" class="sr-only">Start Date</label>
+                        <input type="date" id="start-date" value="2023-01-01" class="w-36 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="end-date" class="sr-only">End Date</label>
+                        <input type="date" id="end-date" value="2023-12-31" class="w-36 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="region" class="sr-only">Region</label>
+                        <select id="region" class="w-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                            <option>All Regions</option>
+                            <option>North America</option>
+                            <option>Europe</option>
+                            <option>Asia</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label for="category" class="sr-only">Product Category</label>
+                        <select id="category" class="w-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                            <option>All Categories</option>
+                            <option>Electronics</option>
+                            <option>Apparel</option>
+                            <option>Home Goods</option>
+                        </select>
+                    </div>
+                    <button class="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-200 text-sm font-medium shadow-sm">
+                        Apply Filters
+                    </button>
+                </div>
+
+                <!-- Widgets Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Widget 1: KPI Card -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200 flex flex-col justify-between">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Total Sales</h3>
+                            <i data-lucide="dollar-sign" class="w-6 h-6 text-blue-500"></i>
+                        </div>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-5xl font-bold text-gray-900">$123,456</span>
+                            <span class="text-lg text-green-600 font-medium flex items-center">
+                                <i data-lucide="trending-up" class="w-5 h-5 mr-1"></i>
+                                +5.2%
+                            </span>
+                        </div>
+                        <p class="text-gray-500 text-sm">vs. last month</p>
+                    </div>
+
+                    <!-- Widget 2: Chart/Graph Widget -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Revenue Trend</h3>
+                            <i data-lucide="line-chart" class="w-6 h-6 text-purple-500"></i>
+                        </div>
+                        <div class="h-48 bg-gray-50 rounded-md flex items-center justify-center text-gray-400 text-sm border border-dashed border-gray-300">
+                            <p>Chart Visualization Placeholder</p>
+                            <!-- A real chart library (e.g., Chart.js, Recharts) would render here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Widget 3: Data Table Widget -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Recent Orders</h3>
+                            <i data-lucide="shopping-bag" class="w-6 h-6 text-orange-500"></i>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                                        <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                        <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                        <th scope="col" class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">#ORD001</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">Alice Smith</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">$250.00</td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">#ORD002</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">Bob Johnson</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">$120.50</td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">#ORD003</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">Charlie Brown</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">$50.00</td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Cancelled</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900">#ORD004</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">Diana Prince</td>
+                                        <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-600">$340.00</td>
+                                        <td class="px-4 py-2 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4 flex justify-end">
+                            <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors duration-200 text-sm font-medium">
+                                View All Orders
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Widget 4: Quick Entry Form Widget -->
+                    <div class="bg-white rounded-lg shadow-md p-6 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Add New Task</h3>
+                            <i data-lucide="plus-circle" class="w-6 h-6 text-emerald-500"></i>
+                        </div>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="item-name" class="block text-sm font-medium text-gray-700 mb-1">Task Name</label>
+                                <input type="text" id="item-name" placeholder="e.g., Prepare Q4 Report" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                            </div>
+                            <div>
+                                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                <textarea id="description" rows="3" placeholder="Detailed description of the task..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"></textarea>
+                            </div>
+                            <div>
+                                <label for="category-form" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                <select id="category-form" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                                    <option>Marketing</option>
+                                    <option>Sales</option>
+                                    <option>Development</option>
+                                    <option>Operations</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="due-date" class="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
+                                <input type="date" id="due-date" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                            </div>
+                            <button type="submit" class="w-full px-5 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 transition-colors duration-200 font-medium shadow-sm">
+                                Add Task
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

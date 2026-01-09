@@ -1,0 +1,74 @@
+[
+  {
+    "id": "bbd5c9dc-7f82-46bc-8645-d8b23cf2ec3e",
+    "title": "Category Page (Wireframe)",
+    "screenName": "Category Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/category_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\category_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "6b8dd439-588e-4b57-a267-00b2a9a197cf",
+    "title": "Checkout Page (Wireframe)",
+    "screenName": "Checkout Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/checkout_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\checkout_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "7d713e88-da03-42f4-81e8-d6fceb2f2a3f",
+    "title": "Checkout Page - Shipping Information (Wireframe)",
+    "screenName": "Checkout Page - Shipping Information",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/checkout_page_-_shipping_information.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\checkout_page_-_shipping_information.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "b15b91d0-3ba5-4bd9-9187-7c9e76dc91a4",
+    "title": "Homepage (Wireframe)",
+    "screenName": "Homepage",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/homepage.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\homepage.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "2bfe1ead-0336-4076-a914-17d52dcbf568",
+    "title": "Login  Register Page (Wireframe)",
+    "screenName": "Login  Register Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/login__register_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\login__register_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "96b553f9-1eac-4cb9-9bcf-5b7f888b0455",
+    "title": "Product Detail Page (Wireframe)",
+    "screenName": "Product Detail Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/product_detail_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\product_detail_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "5f2c2975-d45f-4b60-9bc9-d43db34245ca",
+    "title": "Product Listing Page (Wireframe)",
+    "screenName": "Product Listing Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/product_listing_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\product_listing_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "c4011a61-9fd8-47a2-acef-6ed3a3cc4b01",
+    "title": "Shopping Cart Page (Wireframe)",
+    "screenName": "Shopping Cart Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ac2e93f6-b5d0-47b6-840b-6e0571518ac2/wireframes/shopping_cart_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ac2e93f6-b5d0-47b6-840b-6e0571518ac2\\designs\\wireframes\\images\\shopping_cart_page.png",
+    "type": "wireframe"
+  }
+]

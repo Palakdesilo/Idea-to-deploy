@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Emporium - Women's Tops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+        }
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0; /* Slate-200 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* Slate-400 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* Slate-500 */
+        }
+        .product-card-image {
+            aspect-ratio: 1/1; /* Ensure images are square or consistent ratio */
+            object-fit: cover;
+        }
+        /* Custom styling for range input thumb and track */
+        input[type="range"] {
+            -webkit-appearance: none; /* Hides the default slider */
+            width: 100%; /* Full-width */
+            height: 4px; /* Track height */
+            background: #cbd5e1; /* Track color */
+            border-radius: 2px;
+            outline: none; /* Remove focus outline */
+            opacity: 0.7; /* Optional: make track slightly transparent */
+            transition: opacity .2s;
+        }
+
+        input[type="range"]:hover {
+            opacity: 1; /* Fully opaque on hover */
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Hides the default slider thumb */
+            appearance: none;
+            width: 16px; /* Thumb width */
+            height: 16px; /* Thumb height */
+            background: #1e293b; /* Thumb color */
+            border-radius: 50%; /* Make it circular */
+            cursor: pointer; /* Cursor on hover */
+            border: 2px solid #fff; /* White border */
+            box-shadow: 0 0 0 2px #1e293b; /* Outer shadow */
+            margin-top: -6px; /* Adjust to center with track */
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #1e293b;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #1e293b;
+        }
+
+        input[type="range"]::-ms-thumb {
+            width: 16px;
+            height: 16px;
+            background: #1e293b;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #1e293b;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm z-50 sticky top-0 w-full h-20 flex items-center px-8 border-b border-slate-100">
+        <div class="flex items-center justify-between w-full max-w-[1440px] mx-auto">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <i data-lucide="gem" class="w-6 h-6 text-indigo-600"></i>
+                Elegance Emporium
+            </a>
+
+            <!-- Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200 font-medium">Shop</a>
+                <a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200 font-medium">New Arrivals</a>
+                <a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200 font-medium">Collections</a>
+                <a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200 font-medium">Sale</a>
+                <a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200 font-medium">About Us</a>
+            </nav>
+
+            <!-- Search, User, Cart -->
+            <div class="flex items-center space-x-6">
+                <div class="relative">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5"></i>
+                    <input type="text" placeholder="Search products..." class="pl-10 pr-4 py-2 rounded-full border border-slate-200 focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all duration-200 w-64 text-sm bg-slate-50">
+                </div>
+                <a href="#" class="relative p-2 rounded-full hover:bg-slate-100 transition-colors duration-200 group">
+                    <i data-lucide="user" class="w-6 h-6 text-slate-600 group-hover:text-indigo-600 transition-colors duration-200"></i>
+                    <span class="sr-only">User Account</span>
+                </a>
+                <a href="#" class="relative p-2 rounded-full hover:bg-slate-100 transition-colors duration-200 group">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 text-slate-600 group-hover:text-indigo-600 transition-colors duration-200"></i>
+                    <span class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    <span class="sr-only">Cart (3 items)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex max-w-[1440px] mx-auto w-full pt-8 pb-12 px-8">
+        <!-- Sidebar -->
+        <aside class="w-64 pr-8 border-r border-slate-100 mr-8 flex-shrink-0">
+            <!-- Breadcrumbs -->
+            <nav class="text-sm text-slate-500 mb-4">
+                <ol class="list-none p-0 inline-flex">
+                    <li class="flex items-center">
+                        <a href="#" class="hover:text-indigo-600">Home</a>
+                        <i data-lucide="chevron-right" class="w-4 h-4 mx-1"></i>
+                    </li>
+                    <li class="flex items-center">
+                        <a href="#" class="hover:text-indigo-600">Apparel</a>
+                        <i data-lucide="chevron-right" class="w-4 h-4 mx-1"></i>
+                    </li>
+                    <li class="flex items-center text-slate-700 font-medium">Women's Tops</li>
+                </ol>
+            </nav>
+
+            <!-- Category Title -->
+            <h1 class="text-3xl font-extrabold text-slate-900 mb-6">Women's Tops</h1>
+
+            <!-- Category Navigation List -->
+            <div class="mb-8">
+                <h3 class="text-lg font-semibold text-slate-800 mb-3">Sub-Categories</h3>
+                <ul class="space-y-2 text-base">
+                    <li><a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200">T-Shirts & Tanks</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200">Blouses & Shirts</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200">Sweaters & Cardigans</a></li>
+                    <li><a href="#" class="text-slate-600 hover:text-indigo-600 transition-colors duration-200">Hoodies & Sweatshirts</a></li>
+                    <li><a href="#" class="text-indigo-600 font-medium">All Tops</a></li>
+                </ul>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="space-y-6">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4">Filters</h3>
+
+                <!-- Price Range Slider -->
+                <div>
+                    <h4 class="font-medium text-slate-700 mb-2">Price Range</h4>
+                    <div class="flex items-center justify-between text-sm text-slate-600 mb-2">
+                        <span>$10</span>
+                        <span>$200+</span>
+                    </div>
+                    <input type="range" min="10" max="200" value="100" class="w-full">
+                </div>
+
+                <!-- Brand Checkbox List -->
+                <div>
+                    <h4 class="font-medium text-slate-700 mb-2">Brand</h4>
+                    <div class="space-y-2 text-sm">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 rounded focus:ring-indigo-500 border-slate-300">
+                            <span class="ml-2 text-slate-700">Zara</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 rounded focus:ring-indigo-500 border-slate-300">
+                            <span class="ml-2 text-slate-700">H&M</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 rounded focus:ring-indigo-500 border-slate-300">
+                            <span class="ml-2 text-slate-700">Nike</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 rounded focus:ring-indigo-500 border-slate-300">
+                            <span class="ml-2 text-slate-700">Adidas</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 rounded focus:ring-indigo-500 border-slate-300">
+                            <span class="ml-2 text-slate-700">Uniqlo</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Color Swatches/Checkbox List -->
+                <div>
+                    <h4 class="font-medium text-slate-700 mb-2">Color</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #000000;" aria-label="Black"></button>
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #ffffff; border-color: #cbd5e1;" aria-label="White"></button>
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #ef4444;" aria-label="Red"></button>
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #3b82f6;" aria-label="Blue"></button>
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #10b981;" aria-label="Green"></button>
+                        <button class="w-8 h-8 rounded-full border-2 border-transparent hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200" style="background-color: #f59e0b;" aria-label="Yellow"></button>
+                    </div>
+                </div>
+
+                <!-- Size Checkbox List -->
+                <div>
+                    <h4 class="font-medium text-slate-700 mb-2">Size</h4>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <label class="inline-flex items-center justify-center w-10 h-10 border border-slate-300 rounded-md cursor-pointer hover:bg-slate-100 transition-colors duration-200">
+                            <input type="checkbox" class="sr-only peer">
+                            <span class="peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 w-full h-full flex items-center justify-center rounded-md text-slate-700 font-medium">XS</span>
+                        </label>
+                        <label class="inline-flex items-center justify-center w-10 h-10 border border-slate-300 rounded-md cursor-pointer hover:bg-slate-100 transition-colors duration-200">
+                            <input type="checkbox" class="sr-only peer">
+                            <span class="peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 w-full h-full flex items-center justify-center rounded-md text-slate-700 font-medium">S</span>
+                        </label>
+                        <label class="inline-flex items-center justify-center w-10 h-10 border border-slate-300 rounded-md cursor-pointer hover:bg-slate-100 transition-colors duration-200">
+                            <input type="checkbox" class="sr-only peer">
+                            <span class="peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 w-full h-full flex items-center justify-center rounded-md text-slate-700 font-medium">M</span>
+                        </label>
+                        <label class="inline-flex items-center justify-center w-10 h-10 border border-slate-300 rounded-md cursor-pointer hover:bg-slate-100 transition-colors duration-200">
+                            <input type="checkbox" class="sr-only peer">
+                            <span class="peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 w-full h-full flex items-center justify-center rounded-md text-slate-700 font-medium">L</span>
+                        </label>
+                        <label class="inline-flex items-center justify-center w-10 h-10 border border-slate-300 rounded-md cursor-pointer hover:bg-slate-100 transition-colors duration-200">
+                            <input type="checkbox" class="sr-only peer">
+                            <span class="peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 w-full h-full flex items-center justify-center rounded-md text-slate-700 font-medium">XL</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Apply Filters Button -->
+                <button class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200 flex items-center justify-center gap-2">
+                    <i data-lucide="filter" class="w-5 h-5"></i>
+                    Apply Filters
+                </button>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="flex-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1581044777550-4cfa607037dc?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elegant Silk Blouse" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Elegant Silk Blouse</h3>
+                            <p class="text-slate-600 text-sm mb-3">Luxurious feel, perfect for any occasion.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$79.99</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1607082349335-7e5f1d439b1a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Classic Striped T-Shirt" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Classic Striped T-Shirt</h3>
+                            <p class="text-slate-600 text-sm mb-3">Everyday comfort with a timeless design.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$24.50</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91ae64840d6?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cozy Knit Cardigan" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Cozy Knit Cardigan</h3>
+                            <p class="text-slate-600 text-sm mb-3">Warm and stylish, perfect for layering.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$59.00</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a9c?q=80&w=1972&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Modern Crop Top" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Modern Crop Top</h3>
+                            <p class="text-slate-600 text-sm mb-3">Trendy and comfortable for a casual look.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$35.00</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 5 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1574634292864-b81682708304?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Elegant V-Neck Blouse" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Elegant V-Neck Blouse</h3>
+                            <p class="text-slate-600 text-sm mb-3">Sophisticated design for work or evening.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$65.00</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 6 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1590487988211-ea577239b67e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Comfortable Lounge Hoodie" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Comfortable Lounge Hoodie</h3>
+                            <p class="text-slate-600 text-sm mb-3">Ultimate comfort for relaxed days.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$49.99</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 7 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1582552938876-0f46f4142646?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Boho Embroidered Top" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Boho Embroidered Top</h3>
+                            <p class="text-slate-600 text-sm mb-3">Unique style with intricate detailing.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$42.00</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 8 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1598554213192-34f296362540?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ribbed Knit Sweater" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Ribbed Knit Sweater</h3>
+                            <p class="text-slate-600 text-sm mb-3">Soft texture, perfect for cooler weather.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$69.99</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Product Card 9 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden group">
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1590487988211-ea577239b67e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Flowy Chiffon Blouse" class="w-full product-card-image">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors duration-200">Flowy Chiffon Blouse</h3>
+                            <p class="text-slate-600 text-sm mb-3">Lightweight and elegant, ideal for summer.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-xl font-bold text-slate-900">$55.00</span>
+                                <button class="bg-indigo-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-indigo-700 transition-colors duration-200 flex items-center gap-1">
+                                    <i data-lucide="plus" class="w-4 h-4"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center items-center mt-12 space-x-2">
+                <a href="#" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors duration-200">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="px-4 py-2 rounded-lg bg-indigo-600 text-white font-semibold shadow-md">1</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors duration-200">2</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors duration-200">3</a>
+                <span class="px-4 py-2 text-slate-500">...</span>
+                <a href="#" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors duration-200">10</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-200 transition-colors duration-200">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-10 px-8 mt-auto">
+        <div class="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Elegance Emporium</h4>
+                <p class="text-sm">Your destination for premium fashion and accessories. Discover elegance, quality, and style.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Customer Service</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">FAQs</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">Order Tracking</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">My Account</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">Sign In</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">View Cart</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">Wishlist</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors duration-200">My Orders</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4">Follow Us</h4>
+                <div class="flex space-x-4 mb-6">
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors duration-200"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors duration-200"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors duration-200"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-400 transition-colors duration-200"><i data-lucide="pinterest" class="w-6 h-6"></i></a>
+                </div>
+                <h4 class="text-lg font-semibold text-white mb-4">Payment Methods</h4>
+                <div class="flex space-x-2">
+                    <i data-lucide="credit-card" class="w-8 h-8 text-slate-400"></i>
+                    <i data-lucide="banknote" class="w-8 h-8 text-slate-400"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" alt="PayPal" class="h-8 w-auto">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Mastercard_2019_logo.svg/800px-Mastercard_2019_logo.svg.png" alt="Mastercard" class="h-8 w-auto">
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-slate-700 mt-8 pt-6 text-center text-sm text-slate-500">
+            &copy; 2023 Elegance Emporium. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

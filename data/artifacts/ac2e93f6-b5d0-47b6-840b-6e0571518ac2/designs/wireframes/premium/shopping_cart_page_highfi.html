@@ -1,0 +1,267 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - E-commerce Site</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light Slate 50 */
+            color: #1e293b; /* Slate 800 */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; /* Slate 100 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* Slate 300 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* Slate 400 */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b border-gray-100">
+        <div class="max-w-[1440px] mx-auto flex items-center justify-between h-20 px-6 lg:px-8">
+            <!-- Logo -->
+            <a href="#" class="text-3xl font-extrabold text-indigo-600 tracking-tight">
+                Shop<span class="text-gray-900">Flow</span>
+            </a>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex space-x-8 text-lg font-medium">
+                <a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors duration-200">Shop</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors duration-200">Categories</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors duration-200">Deals</a>
+                <a href="#" class="text-gray-600 hover:text-indigo-600 transition-colors duration-200">About Us</a>
+            </nav>
+
+            <!-- Search, User, Cart -->
+            <div class="flex items-center space-x-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" placeholder="Search products..." class="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm w-64">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+                </div>
+                <button class="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 text-gray-600 hover:text-indigo-600">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                </button>
+                <button class="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200 text-gray-600 hover:text-indigo-600">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-28 pb-24 max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <!-- Left Column: Shopping Cart Details -->
+            <section class="lg:col-span-2 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <h1 class="text-4xl font-bold text-gray-900 mb-8">Your Shopping Cart</h1>
+
+                <!-- Cart Items Header -->
+                <div class="hidden md:grid grid-cols-10 gap-4 py-4 border-b-2 border-gray-200 font-semibold text-gray-600 text-sm uppercase tracking-wide">
+                    <div class="col-span-4">Product</div>
+                    <div class="col-span-2 text-center">Price</div>
+                    <div class="col-span-2 text-center">Quantity</div>
+                    <div class="col-span-1 text-center">Subtotal</div>
+                    <div class="col-span-1 text-center">Remove</div>
+                </div>
+
+                <!-- Product Item 1 -->
+                <div class="grid grid-cols-10 gap-4 items-center py-6 border-b border-gray-100">
+                    <div class="col-span-4 flex items-center space-x-4">
+                        <img src="https://images.unsplash.com/photo-1542291026-79eddc9cdfd2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Red Sneakers" class="w-24 h-24 object-cover rounded-lg shadow-md border border-gray-100">
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Premium Running Shoes</h3>
+                            <p class="text-sm text-gray-500">Size: 10, Color: Red</p>
+                        </div>
+                    </div>
+                    <div class="col-span-2 text-center text-gray-700 font-medium">$100.00</div>
+                    <div class="col-span-2 flex justify-center">
+                        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Decrease quantity">
+                                <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <input type="number" value="1" min="1" class="w-12 text-center border-x border-gray-300 py-1 focus:outline-none text-gray-800 text-sm">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Increase quantity">
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-span-1 text-center text-gray-800 font-semibold">$100.00</div>
+                    <div class="col-span-1 flex justify-center">
+                        <button class="text-red-500 hover:text-red-700 transition-colors duration-200 p-2 rounded-full hover:bg-red-50" aria-label="Remove item">
+                            <i data-lucide="x-circle" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Item 2 -->
+                <div class="grid grid-cols-10 gap-4 items-center py-6 border-b border-gray-100">
+                    <div class="col-span-4 flex items-center space-x-4">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555cb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Wireless Headphones" class="w-24 h-24 object-cover rounded-lg shadow-md border border-gray-100">
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Noise-Cancelling Headphones</h3>
+                            <p class="text-sm text-gray-500">Color: Black</p>
+                        </div>
+                    </div>
+                    <div class="col-span-2 text-center text-gray-700 font-medium">$50.00</div>
+                    <div class="col-span-2 flex justify-center">
+                        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Decrease quantity">
+                                <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <input type="number" value="2" min="1" class="w-12 text-center border-x border-gray-300 py-1 focus:outline-none text-gray-800 text-sm">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Increase quantity">
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-span-1 text-center text-gray-800 font-semibold">$100.00</div>
+                    <div class="col-span-1 flex justify-center">
+                        <button class="text-red-500 hover:text-red-700 transition-colors duration-200 p-2 rounded-full hover:bg-red-50" aria-label="Remove item">
+                            <i data-lucide="x-circle" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Item 3 -->
+                <div class="grid grid-cols-10 gap-4 items-center py-6 border-b border-gray-100">
+                    <div class="col-span-4 flex items-center space-x-4">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vintage Camera" class="w-24 h-24 object-cover rounded-lg shadow-md border border-gray-100">
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Classic Instant Camera</h3>
+                            <p class="text-sm text-gray-500">Film Type: Color</p>
+                        </div>
+                    </div>
+                    <div class="col-span-2 text-center text-gray-700 font-medium">$20.00</div>
+                    <div class="col-span-2 flex justify-center">
+                        <div class="flex items-center border border-gray-300 rounded-md overflow-hidden">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Decrease quantity">
+                                <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <input type="number" value="1" min="1" class="w-12 text-center border-x border-gray-300 py-1 focus:outline-none text-gray-800 text-sm">
+                            <button class="p-2 hover:bg-gray-100 transition-colors duration-200" aria-label="Increase quantity">
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-span-1 text-center text-gray-800 font-semibold">$20.00</div>
+                    <div class="col-span-1 flex justify-center">
+                        <button class="text-red-500 hover:text-red-700 transition-colors duration-200 p-2 rounded-full hover:bg-red-50" aria-label="Remove item">
+                            <i data-lucide="x-circle" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cart Action Buttons -->
+                <div class="flex flex-col sm:flex-row justify-between mt-10 space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button class="px-8 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 shadow-sm">
+                        Continue Shopping
+                    </button>
+                    <button class="px-8 py-3 bg-indigo-50 border border-indigo-200 text-indigo-700 font-medium rounded-lg hover:bg-indigo-100 transition-colors duration-200 shadow-sm">
+                        Update Cart
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Column: Order Summary -->
+            <aside class="lg:col-span-1 bg-white p-8 rounded-xl shadow-lg border border-gray-100 h-fit">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Order Summary</h2>
+
+                <div class="space-y-4 text-gray-700">
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="font-medium">Subtotal</span>
+                        <span class="font-semibold text-gray-800">$220.00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="font-medium">Shipping</span>
+                        <span class="text-gray-500 text-sm">Calculated at Checkout</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                        <span class="font-medium">Tax</span>
+                        <span class="text-gray-500 text-sm">Calculated at Checkout</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-3">
+                    <input type="text" placeholder="Discount Code" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm">
+                    <button class="px-6 py-3 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-sm">
+                        Apply
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-6 border-t-2 border-gray-200 flex justify-between items-center">
+                    <span class="text-2xl font-bold text-gray-900">TOTAL</span>
+                    <span class="text-4xl font-extrabold text-indigo-600">$220.00</span>
+                </div>
+
+                <button class="w-full mt-8 py-4 bg-indigo-600 text-white font-semibold text-lg rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-xl shadow-indigo-200">
+                    PROCEED TO CHECKOUT
+                </button>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-10">
+        <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between px-6 lg:px-8 space-y-6 md:space-y-0">
+            <!-- Copyright -->
+            <p class="text-sm">&copy; 2023 ShopFlow. All rights reserved.</p>
+
+            <!-- Footer Links -->
+            <nav class="flex flex-wrap justify-center space-x-6 text-sm font-medium">
+                <a href="#" class="hover:text-white transition-colors duration-200">About Us</a>
+                <a href="#" class="hover:text-white transition-colors duration-200">Contact</a>
+                <a href="#" class="hover:text-white transition-colors duration-200">FAQ</a>
+                <a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a>
+            </nav>
+
+            <!-- Social Icons & Newsletter -->
+            <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Facebook">
+                        <i data-lucide="facebook" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Twitter">
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200" aria-label="Instagram">
+                        <i data-lucide="instagram" class="w-6 h-6"></i>
+                    </a>
+                </div>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Email for Newsletter" class="px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm w-48 sm:w-auto">
+                    <button class="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-md">
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

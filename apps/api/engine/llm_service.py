@@ -7,7 +7,12 @@ from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 import urllib.request
 import urllib.parse
-import google.generativeai as genai
+import google.generativeai as legacy_genai
+try:
+    from google import genai
+    NEW_SDK_AVAILABLE = True
+except ImportError:
+    NEW_SDK_AVAILABLE = False
 
 class LLMService:
     def __init__(self):
@@ -40,8 +45,8 @@ class LLMService:
         if self.google_api_key:
             print("LLMService: SWITCHING TO GEMINI EXCLUSIVE MODE.")
             # List of models to try in order of preference
-            # Using Gemini 1.5 Pro as requested by User
             models_to_try = ["gemini-2.5-flash", "gemini-2.5-pro"]
+            # models_to_try = ["gemini-1.5-pro", "gemini-1.5-flash"]
             
             for model_name in models_to_try:
                 try:
@@ -149,10 +154,11 @@ class LLMService:
         Input: "{user_prompt}"
         
         Rules for the new prompt:
-        1. Expand the description for clarity and detail.
-        2. Focus on professional UI/UX composition.
-        3. Describe layout, typography, and functional clarity.
-        4. Maintain the core intent of the original prompt.
+        1. Keep the "STRICT LAYOUT INSTRUCTIONS" from the input intact and prioritized.
+        2. Expand the visual descriptions for clarity and premium detail (lighting, texture, colors).
+        3. Focus on professional UI/UX composition.
+        4. Describe layout, typography, and functional clarity.
+        5. DO NOT hallucinate new elements that conflict with the layout.
         
         Output ONLY the expanded prompt text. No commentary.
         """
@@ -164,8 +170,10 @@ class LLMService:
             print(f"LLMService: ✅ Prompt Enriched (Length: {len(enriched)})")
             return enriched
         except Exception as e:
-            print(f"LLMService: Prompt enrichment failed: {e}")
-            raise e
+            # FAIL-SAFE: If enrichment fails (e.g. Rate Limit 429), just use the original prompt.
+            # Do NOT crash the entire image generation process.
+            print(f"LLMService: ⚠️ Prompt enrichment failed/skipped ({e}). Using raw prompt.")
+            return user_prompt
 
     async def generate_image(self, prompt: str) -> str:
         """
@@ -173,10 +181,12 @@ class LLMService:
         Matches user request: 'Generate with Gemini 3 Pro Image'
         Automatically 'enriches' the prompt for premium results.
         """
-        debug_log = Path("llm_debug.txt")
+        debug_log = Path("llm_debug_v2.txt")
         def log(msg):
+            print(f"LLM: {msg}", flush=True)
             with open(debug_log, "a", encoding="utf-8") as f:
                 f.write(f"{msg}\n")
+
         
         log(f"\n--- New Image Request: {prompt[:30]} ---")
         try:
@@ -184,45 +194,102 @@ class LLMService:
                 log("ERROR: Google API Key missing")
                 return ""
 
-            # NEW: Enrich the prompt first to get 'Chat Quality' results
-            log("Enriching prompt...")
-            final_prompt = await self._enrich_image_prompt(prompt)
-            log(f"Enriched prompt: {final_prompt[:100]}...")
+            # SKIP ENRICHMENT to save quota.
+            # log("Enriching prompt...")
+            # final_prompt = await self._enrich_image_prompt(prompt)
+            final_prompt = prompt 
+            log(f"Using raw prompt (Enrichment skipped to save quota): {final_prompt[:100]}...")
 
-            log(f"Initializing genai with key...")
-            genai.configure(api_key=self.google_api_key)
+            log("Initializing genai with key...")
             
-            # Use Imagen 3 model (STRICTLY ENFORCED)
-            try:
-                log("Loading strictly imagen-3.0-generate-001...")
-                imagen_model = genai.ImageGenerationModel("imagen-3.0-generate-001")
-            except Exception as e:
-                log(f"ERROR: Could not load imagen: {e}")
-                return ""
+            # Use NEW SDK if available, else fallback to legacy with safety
+            if NEW_SDK_AVAILABLE:
+                log("Using NEW google-genai SDK...")
                 
-            log("Executing generate_images...")
-            result = imagen_model.generate_images(
-                prompt=final_prompt,
-                number_of_images=1,
-            )
-            log("Execution finished.")
-            
-            if not result or not result.images:
+                # FORCE TRY EXPERIMENTAL FREE MODELS FIRST
+                api_versions = ['v1beta']
+                possible_models = [
+                    'models/gemini-2.0-flash-exp-image-generation',
+                    'models/gemini-2.5-flash-image',
+                    'models/gemini-3-pro-image-preview'
+                ]
+                
+                success = False
+                for version in api_versions:
+                    if success: break
+                    log(f"--- Testing API Version: {version} ---")
+                    client = genai.Client(api_key=self.google_api_key, http_options={'api_version': version})
+                    
+                    # Log what's actually available
+                    try:
+                        avail = [m.name for m in client.models.list()]
+                        log(f"Models available for {version}: {avail}")
+                    except:
+                        log(f"Could not list models for {version}")
+
+                    for model_id in possible_models:
+
+                        try:
+                            log(f"Attempting {model_id} (Version: {version})...")
+                            result = client.models.generate_images(
+                                model=model_id,
+                                prompt=final_prompt,
+                                config=genai.types.GenerateImagesConfig(
+                                    number_of_images=1,
+                                )
+                            )
+                            log(f"SUCCESS with {model_id} on {version}")
+                            success = True
+                            break
+                        except Exception as e:
+                            log(f"Failed {model_id} on {version}: {e}")
+                
+                if not success:
+                    log("All Imagen variations failed. This usually means your Google AI Studio account does not have access to Imagen 3 yet.")
+                    return ""
+
+
+            else:
+                log("NEW SDK NOT FOUND. Falling back to LEGACY SDK...")
+                legacy_genai.configure(api_key=self.google_api_key)
+                model_name = "imagen-3.0-generate-001"
+                try:
+                    # Legacy SDK usually uses GenerativeModel for everything now
+                    imagen_model = legacy_genai.GenerativeModel(model_name)
+                    log(f"Calling legacy generate_content on {model_name}...")
+                    result = imagen_model.generate_content(final_prompt)
+                except Exception as e:
+                    log(f"LEGACY SDK Error: {e}")
+                    raise e
+
+            if not result or not result.generated_images if NEW_SDK_AVAILABLE else not result:
                 log("ERROR: No images returned in result")
                 return ""
 
-            img = result.images[0]
-            log("Image object received.")
-            
-            # Save to a temp file
-            base_dir = Path(__file__).parent.parent.parent.parent / "data" / "artifacts" / "tmp"
-            base_dir.mkdir(parents=True, exist_ok=True)
-            
-            tmp_name = f"temp_gen_{os.urandom(4).hex()}.png"
-            tmp_path = base_dir / tmp_name
-            
-            log(f"Saving to {tmp_path}...")
-            img.save(tmp_path)
+            # Standardize image access between SDKs
+            if NEW_SDK_AVAILABLE:
+                img_data = result.generated_images[0].image_bytes
+                # We need to save bytes to file
+                base_dir = Path(__file__).parent.parent.parent.parent / "data" / "artifacts" / "tmp"
+                base_dir.mkdir(parents=True, exist_ok=True)
+                tmp_name = f"temp_gen_{os.urandom(4).hex()}.png"
+                tmp_path = base_dir / tmp_name
+                log(f"Saving bytes to {tmp_path}...")
+                with open(tmp_path, "wb") as f:
+                    f.write(img_data)
+            else:
+                # Legacy handling (assumes result.images[0])
+                if not hasattr(result, 'images') or not result.images:
+                    log("LEGACY ERROR: No images in result object")
+                    return ""
+                img = result.images[0]
+                base_dir = Path(__file__).parent.parent.parent.parent / "data" / "artifacts" / "tmp"
+                base_dir.mkdir(parents=True, exist_ok=True)
+                tmp_name = f"temp_gen_{os.urandom(4).hex()}.png"
+                tmp_path = base_dir / tmp_name
+                log(f"Saving PIL image to {tmp_path}...")
+                img.save(tmp_path)
+
             log("Save successful.")
             
             # Return a file:// URL that urllib can handle

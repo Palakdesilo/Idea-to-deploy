@@ -1,0 +1,216 @@
+{
+  "screen_name": "Login / Register Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "width": 100,
+      "height": 32,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 670,
+      "y": 24,
+      "width": 100,
+      "height": 32,
+      "label": "My Account"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 96,
+      "width": 300,
+      "height": 32,
+      "label": "Login / Register"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 144,
+      "width": 300,
+      "height": 24,
+      "label": "Login"
+    },
+    {
+      "type": "input",
+      "x": 24,
+      "y": 176,
+      "width": 600,
+      "height": 32,
+      "label": "Email Address"
+    },
+    {
+      "type": "input",
+      "x": 24,
+      "y": 216,
+      "width": 600,
+      "height": 32,
+      "label": "Password"
+    },
+    {
+      "type": "input",
+      "x": 24,
+      "y": 256,
+      "width": 150,
+      "height": 24,
+      "label": "Remember Me"
+    },
+    {
+      "type": "text",
+      "x": 184,
+      "y": 256,
+      "width": 150,
+      "height": 24,
+      "label": "Forgot Password?"
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 296,
+      "width": 200,
+      "height": 40,
+      "label": "LOGIN"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 352,
+      "width": 600,
+      "height": 24,
+      "label": "--- OR ---"
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 384,
+      "width": 250,
+      "height": 40,
+      "label": "Login with Google"
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 432,
+      "width": 250,
+      "height": 40,
+      "label": "Login with Facebook"
+    },
+    {
+      "type": "text",
+      "x": 732,
+      "y": 144,
+      "width": 300,
+      "height": 24,
+      "label": "Create an Account"
+    },
+    {
+      "type": "input",
+      "x": 732,
+      "y": 176,
+      "width": 300,
+      "height": 32,
+      "label": "First Name"
+    },
+    {
+      "type": "input",
+      "x": 1044,
+      "y": 176,
+      "width": 300,
+      "height": 32,
+      "label": "Last Name"
+    },
+    {
+      "type": "input",
+      "x": 732,
+      "y": 216,
+      "width": 600,
+      "height": 32,
+      "label": "Email Address"
+    },
+    {
+      "type": "input",
+      "x": 732,
+      "y": 256,
+      "width": 600,
+      "height": 32,
+      "label": "Password"
+    },
+    {
+      "type": "input",
+      "x": 732,
+      "y": 296,
+      "width": 600,
+      "height": 32,
+      "label": "Confirm Password"
+    },
+    {
+      "type": "input",
+      "x": 732,
+      "y": 336,
+      "width": 300,
+      "height": 24,
+      "label": "Subscribe to Newsletter"
+    },
+    {
+      "type": "button",
+      "x": 732,
+      "y": 376,
+      "width": 200,
+      "height": 40,
+      "label": "REGISTER"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 832,
+      "width": 300,
+      "height": 24,
+      "label": "\u00a9 2023 E-commerce Site"
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 832,
+      "width": 400,
+      "height": 24,
+      "label": "About Us | Contact | FAQ | Privacy"
+    },
+    {
+      "type": "text",
+      "x": 900,
+      "y": 832,
+      "width": 150,
+      "height": 24,
+      "label": "Social Icons"
+    },
+    {
+      "type": "input",
+      "x": 1080,
+      "y": 832,
+      "width": 200,
+      "height": 24,
+      "label": "Email for Newsletter"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 832,
+      "width": 100,
+      "height": 24,
+      "label": "Subscribe"
+    }
+  ]
+}

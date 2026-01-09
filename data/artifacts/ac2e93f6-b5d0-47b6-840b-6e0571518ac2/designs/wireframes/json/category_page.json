@@ -1,0 +1,219 @@
+{
+  "screen_name": "Category Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 16,
+      "y": 24,
+      "width": 100,
+      "height": 32,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 300,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Navigation Menu"
+    },
+    {
+      "type": "input",
+      "x": 900,
+      "y": 24,
+      "width": 250,
+      "height": 32,
+      "label": "Search Bar"
+    },
+    {
+      "type": "text",
+      "x": 1180,
+      "y": 24,
+      "width": 100,
+      "height": 32,
+      "label": "User Account"
+    },
+    {
+      "type": "text",
+      "x": 1300,
+      "y": 24,
+      "width": 80,
+      "height": 32,
+      "label": "Cart (0)"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 96,
+      "width": 400,
+      "height": 24,
+      "label": "Breadcrumbs: Home > Category Name"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 128,
+      "width": 400,
+      "height": 32,
+      "label": "Category Title: Category Name"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 176,
+      "width": 220,
+      "height": 100,
+      "label": "Category Navigation List"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 296,
+      "width": 220,
+      "height": 24,
+      "label": "Filters Section"
+    },
+    {
+      "type": "input",
+      "x": 16,
+      "y": 328,
+      "width": 220,
+      "height": 32,
+      "label": "Price Range Slider"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 368,
+      "width": 220,
+      "height": 64,
+      "label": "Brand Checkbox List"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 440,
+      "width": 220,
+      "height": 64,
+      "label": "Color Swatches/Checkbox List"
+    },
+    {
+      "type": "text",
+      "x": 16,
+      "y": 512,
+      "width": 220,
+      "height": 64,
+      "label": "Size Checkbox List"
+    },
+    {
+      "type": "button",
+      "x": 16,
+      "y": 592,
+      "width": 220,
+      "height": 32,
+      "label": "Apply Filters Button"
+    },
+    {
+      "type": "card",
+      "x": 266,
+      "y": 176,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 666,
+      "y": 176,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 1066,
+      "y": 176,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 266,
+      "y": 352,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 666,
+      "y": 352,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 1066,
+      "y": 352,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 266,
+      "y": 528,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 666,
+      "y": 528,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "card",
+      "x": 1066,
+      "y": 528,
+      "width": 384,
+      "height": 160,
+      "label": "Image\nProduct Name\nPrice\nAdd to Cart"
+    },
+    {
+      "type": "text",
+      "x": 266,
+      "y": 720,
+      "width": 400,
+      "height": 32,
+      "label": "Pagination: 1 2 3 ... Next"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 800,
+      "width": 1440,
+      "height": 100,
+      "label": "Footer (About Us Links, Customer Service Links, My Account Links, Follow Us Icons, Copyright Text, Payment Method Icons)"
+    }
+  ]
+}

@@ -181,9 +181,55 @@ generate png design"""
 
         return wireframes
 
+    def _describe_wireframe_structure(self, wf: Dict) -> str:
+        """
+        Creates a natural language description of the wireframe structure to guide the image generator.
+        """
+        parts = []
+        
+        # 1. Macro Layout
+        header_h = wf.get("header", {}).get("height", 0)
+        sidebar_w = wf.get("sidebar", {}).get("width", 0)
+        
+        parts.append(f"Layout Structure: {wf.get('layout_type', 'standard')}.")
+        if header_h > 0:
+            parts.append("Has a top navigation header.")
+        if sidebar_w > 0:
+            parts.append("Has a left-side vertical navigation sidebar.")
+            
+        # 2. Components Structure
+        components = wf.get("components", [])
+        if not components:
+            return " ".join(parts)
+
+        # Describe significant components
+        parts.append("Page Content:")
+        # Sort top-to-bottom
+        sorted_comps = sorted(components, key=lambda c: c.get("y", 0))
+        
+        for c in sorted_comps[:15]: # Limit to top 15 elements to avoid overwhelming prompt
+            ctype = c.get("type", "element")
+            label = c.get("label", "")
+            
+            # Simple spatial context
+            x = c.get("x", 0)
+            y = c.get("y", 0)
+            
+            location = "central area"
+            if y < header_h + 50: location = "top area"
+            elif sidebar_w > 0 and x < sidebar_w + 50: location = "sidebar"
+            
+            desc = f"A {ctype}"
+            if label:
+                desc += f" labeled '{label}'"
+            desc += f" located in the {location}."
+            parts.append(desc)
+            
+        return "\n".join(parts)
+
     async def generate_ai_renders(self, project_id: str, wireframes: List[Dict], idea_description: str):
         """
-        Generates high-fidelity images for each screen using the LLM's image generation capability (DALL-E 3).
+        Generates high-fidelity images for each screen using the LLM's image generation capability.
         Saves as distinct files in the 'ui' folder.
         """
         print(f"AIDesigner: Generating High-Fidelity AI Images for {project_id}...")
@@ -198,25 +244,24 @@ generate png design"""
             clean_name = re.sub(r'[\\/*?:"<>|]', "", screen_name)
             s_filename = clean_name.replace(" ", "_").lower()
             
-            # Prepare key elements string
-            components = wf.get('components', [])
-            labels = [c.get('label', c.get('type')) for c in components]
-            key_elements_str = ', '.join(labels[:8])
+            # Generate detailed structural description
+            structure_description = self._describe_wireframe_structure(wf)
 
-            # Construct a prompt that enforces the requested premium style
+            # Construct a prompt that enforces the requested premium style AND structure
             prompt = f"""
-            High fidelity UI design of a {screen_name} screen for an application described as: "{idea_description}".
+            Design a High-Fidelity, Production-Ready UI Mockup for: {screen_name}.
+            App Description: "{idea_description}"
             
-            Layout Hints (based on structure):
-            - Layout: {wf.get('layout_type', 'Standard Web Layout')}
-            - Key Elements: {key_elements_str}
+            STRICT LAYOUT INSTRUCTIONS (Must match exactly):
+            {structure_description}
             
-            Visual Style:
-            - Modern, clean, and professional UI.
-            - Focus on clarity and usability.
-            - Harmonious color palette suitable for {idea_description}.
+            VISUAL STYLE:
+            - Aesthetics: Very Modern, Premium, Clean, Professional.
+            - Tech Stack Feel: React/Tailwind, Glassmorphism elements.
+            - Color Palette: Harmonious and suitable for the brand.
+            - Typography: Readable, sleek sans-serif.
             
-            This must be a polished, final production-ready UI mock-up.
+            The output must look like a real screenshot of a finished application, perfectly matching the described layout structure.
             """
             
             print(f"AIDesigner: Requesting Image Gen for '{screen_name}'...")
@@ -236,11 +281,80 @@ generate png design"""
                             f.write(image_bytes)
                         print(f"AIDesigner: SUCCESS - Saved High-Fi image to {file_path}")
                     else:
-                        print(f"AIDesigner: Download returned empty bytes for {screen_name}")
+                         # Fallback to code render
+                        await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
                 else:
-                     print(f"AIDesigner: No URL returned for {screen_name}")
+                    # Fallback to code render
+                    await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
             except Exception as e:
-                print(f"AIDesigner: Image Gen failed for {screen_name}: {e}")
+                print(f"AIDesigner: Image Gen failed for {screen_name}: {e}. Trying code-render fallback...")
+                await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
+
+    async def generate_code_render_fallback(self, project_id: str, wireframe: Dict[str, Any], idea_description: str, filename: str):
+        """
+        FALLBACK: Generates a high-fidelity 'Proper UI' by asking the LLM to write a 
+        complete, premium Tailwind HTML version of the wireframe.
+        """
+        print(f"AIDesigner: Generating High-Fidelity UI Fallback (Code-to-Image) for {filename}...")
+        
+        screen_name = wireframe.get("screen_name", "Screen")
+        
+        # We pass the WHOLE wireframe JSON so the LLM knows exactly where everything goes
+        wf_json_str = json.dumps(wireframe, indent=2)
+        
+        prompt = f"""
+        Act as a Lead UI/UX Engineer. Your task is to transform a wireframe JSON into a **Premium, Production-Ready UI Mockup**.
+        
+        Project: "{idea_description}"
+        Screen: {screen_name}
+        
+        Wireframe Structural Data:
+        {wf_json_str}
+        
+        GUIDELINES:
+        - Aesthetics: Ultra-modern SaaS, Clean, High-Contrast, Professional.
+        - Tech: Tailwind CSS (use CDN), Lucide Icons (use CDN).
+        - Layout: You MUST follow the structural layout provided in the JSON (Header, Sidebar, Grid locations), but make it look like a finished application (Modern nav, sleek cards, professional buttons).
+        - Content: Use REAL professional copy and data, not placeholders.
+        - Quality: High-fidelity. Use shadows, gradients, and proper typography (Inter font).
+        
+        OUTPUT:
+        - Return a SINGLE self-contained HTML file (including Tailwind CDN and styles).
+        - Output ONLY the raw HTML code. No markdown code blocks, no explanation.
+        """
+        
+        try:
+            # 1. Generate High-Fi HTML
+            high_fi_html = await self.llm.generate_content("UI_ENGINEER", {}, prompt)
+            high_fi_html = self._clean_json(high_fi_html)
+            
+            # 2. Save it to the premium folder
+            premium_dir = ARTIFACTS_DIR / project_id / "designs" / "wireframes" / "premium"
+            premium_dir.mkdir(parents=True, exist_ok=True)
+            
+            html_filename = f"{filename}_highfi.html"
+            html_path = premium_dir / html_filename
+            with open(html_path, "w", encoding="utf-8") as f:
+                f.write(high_fi_html)
+            
+            # 3. Capture Screenshot
+            ui_dir = ARTIFACTS_DIR / project_id / "ui"
+            ui_dir.mkdir(parents=True, exist_ok=True)
+            
+            script_path = Path(__file__).parent / "screenshot_capture.py"
+            img_path = ui_dir / f"{filename}.png"
+            
+            print(f"AIDesigner: Capturing high-fidelity screenshot for {filename}...")
+            # Point capture script to the specific premium directory
+            subprocess.run([sys.executable, str(script_path), str(premium_dir), str(ui_dir)], check=True)
+            
+            print(f"AIDesigner: SUCCESS - Proper UI generated via High-Fi fallback for {filename}")
+            return True
+        except Exception as e:
+            print(f"AIDesigner: High-Fi fallback FAILED for {filename}: {e}")
+            return False
+
+
 
     def _clean_json(self, text: str) -> str:
         text = re.sub(r"```json\s*", "", text)

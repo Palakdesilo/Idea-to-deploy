@@ -1,0 +1,328 @@
+{
+  "screen_name": "Product Detail Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "width": 120,
+      "height": 32,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 200,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Shop | Categories | Deals | About Us"
+    },
+    {
+      "type": "input",
+      "x": 900,
+      "y": 24,
+      "width": 250,
+      "height": 32,
+      "label": "Search..."
+    },
+    {
+      "type": "button",
+      "x": 1170,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "User"
+    },
+    {
+      "type": "button",
+      "x": 1220,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "Cart (3)"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 96,
+      "width": 400,
+      "height": 24,
+      "label": "Home > Electronics > Smartphones > iPhone 15"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 128,
+      "width": 680,
+      "height": 400,
+      "label": "Large Product Image"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 544,
+      "width": 164,
+      "height": 64,
+      "label": "Thumb 1"
+    },
+    {
+      "type": "image",
+      "x": 196,
+      "y": 544,
+      "width": 164,
+      "height": 64,
+      "label": "Thumb 2"
+    },
+    {
+      "type": "image",
+      "x": 368,
+      "y": 544,
+      "width": 164,
+      "height": 64,
+      "label": "Thumb 3"
+    },
+    {
+      "type": "image",
+      "x": 540,
+      "y": 544,
+      "width": 164,
+      "height": 64,
+      "label": "Thumb 4"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 128,
+      "width": 680,
+      "height": 32,
+      "label": "iPhone 15 Pro Max 256GB"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 168,
+      "width": 200,
+      "height": 24,
+      "label": "Brand: Apple"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 200,
+      "width": 200,
+      "height": 40,
+      "label": "$1299.00"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 248,
+      "width": 250,
+      "height": 24,
+      "label": "\u2605\u2605\u2605\u2605\u2605 (120 Reviews)"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 280,
+      "width": 680,
+      "height": 64,
+      "label": "Short product description text..."
+    },
+    {
+      "type": "input",
+      "x": 728,
+      "y": 352,
+      "width": 200,
+      "height": 32,
+      "label": "Color: Space Black"
+    },
+    {
+      "type": "input",
+      "x": 944,
+      "y": 352,
+      "width": 200,
+      "height": 32,
+      "label": "Storage: 256GB"
+    },
+    {
+      "type": "input",
+      "x": 728,
+      "y": 392,
+      "width": 100,
+      "height": 32,
+      "label": "Qty: 1"
+    },
+    {
+      "type": "button",
+      "x": 728,
+      "y": 432,
+      "width": 200,
+      "height": 48,
+      "label": "ADD TO CART"
+    },
+    {
+      "type": "button",
+      "x": 944,
+      "y": 432,
+      "width": 200,
+      "height": 48,
+      "label": "BUY NOW"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 488,
+      "width": 150,
+      "height": 24,
+      "label": "In Stock"
+    },
+    {
+      "type": "text",
+      "x": 728,
+      "y": 512,
+      "width": 300,
+      "height": 24,
+      "label": "Est. Delivery: 3-5 days"
+    },
+    {
+      "type": "button",
+      "x": 1160,
+      "y": 440,
+      "width": 100,
+      "height": 32,
+      "label": "Wishlist"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 624,
+      "width": 340,
+      "height": 32,
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "x": 372,
+      "y": 624,
+      "width": 340,
+      "height": 32,
+      "label": "Specifications"
+    },
+    {
+      "type": "text",
+      "x": 720,
+      "y": 624,
+      "width": 340,
+      "height": 32,
+      "label": "Reviews"
+    },
+    {
+      "type": "text",
+      "x": 1068,
+      "y": 624,
+      "width": 340,
+      "height": 32,
+      "label": "Q&A"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 664,
+      "width": 1392,
+      "height": 64,
+      "label": "Detailed product description content..."
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 736,
+      "width": 200,
+      "height": 24,
+      "label": "Related Products"
+    },
+    {
+      "type": "card",
+      "x": 24,
+      "y": 768,
+      "width": 328,
+      "height": 64,
+      "label": "Related Product 1"
+    },
+    {
+      "type": "card",
+      "x": 376,
+      "y": 768,
+      "width": 328,
+      "height": 64,
+      "label": "Related Product 2"
+    },
+    {
+      "type": "card",
+      "x": 728,
+      "y": 768,
+      "width": 328,
+      "height": 64,
+      "label": "Related Product 3"
+    },
+    {
+      "type": "card",
+      "x": 1080,
+      "y": 768,
+      "width": 328,
+      "height": 64,
+      "label": "Related Product 4"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 832,
+      "width": 300,
+      "height": 24,
+      "label": "\u00a9 2023 E-commerce Site"
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 832,
+      "width": 400,
+      "height": 24,
+      "label": "About Us | Contact | FAQ | Privacy"
+    },
+    {
+      "type": "text",
+      "x": 900,
+      "y": 832,
+      "width": 150,
+      "height": 24,
+      "label": "Social Icons"
+    },
+    {
+      "type": "input",
+      "x": 1080,
+      "y": 832,
+      "width": 200,
+      "height": 24,
+      "label": "Email for Newsletter"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 832,
+      "width": 100,
+      "height": 24,
+      "label": "Subscribe"
+    }
+  ]
+}

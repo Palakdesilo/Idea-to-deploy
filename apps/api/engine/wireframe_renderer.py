@@ -1,17 +1,19 @@
 from typing import Dict, List, Any
+import re
 
 class WireframeRenderer:
     def __init__(self):
         self.base_css = """
 /* Reset & Base */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    background-color: #f0f0f0; 
-    font-family: 'Courier New', Courier, monospace; /* Monospace for technical/wireframe feel */
+    background-color: #f8f9fa; 
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     display: flex;
     justify-content: center;
     padding: 20px;
+    color: #1a1a1a;
 }
+
 
 /* Canvas */
 .wireframe-canvas {
@@ -112,7 +114,33 @@ body {
                 "file": filename
             })
 
-    def generate_html(self, wf: Dict[str, Any]) -> str:
+    def render_premium(self, project_id: str, wireframe: Dict[str, Any], custom_css: str = ""):
+        """
+        Renders a single wireframe in 'Premium' mode for high-fidelity renders.
+        """
+        from .project_manager import ARTIFACTS_DIR
+        output_dir = ARTIFACTS_DIR / project_id / "designs" / "wireframes" / "premium"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        
+        cleaned_name = re.sub(r'[\\/*?:"<>|]', "", wireframe.get("screen_name", "screen"))
+        screen_name = cleaned_name.replace(" ", "_").lower()
+        
+        # Write custom CSS
+        css_filename = f"{screen_name}_premium.css"
+        with open(output_dir / css_filename, "w", encoding="utf-8") as f:
+            f.write(custom_css or self.base_css)
+            
+        html = self.generate_html(wireframe, css_file=css_filename, is_premium=True)
+        html_filename = f"{screen_name}_premium.html"
+        
+        with open(output_dir / html_filename, "w", encoding="utf-8") as f:
+            f.write(html)
+        
+        return output_dir, html_filename
+
+
+    def generate_html(self, wf: Dict[str, Any], css_file: str = "style.css", is_premium: bool = False) -> str:
+
         screen_name = wf.get("screen_name", "Wireframe")
         
         # 1. Parse Dimensions
@@ -173,13 +201,15 @@ body {
 <head>
     <meta charset="UTF-8">
     <title>{screen_name}</title>
-    <link rel="stylesheet" href="style.css">
+    {"<link rel='preconnect' href='https://fonts.googleapis.com'><link rel='preconnect' href='https://fonts.gstatic.com' crossorigin><link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet'>" if is_premium else ""}
+    <link rel="stylesheet" href="{css_file}">
 </head>
 <body>
-    <div class="wireframe-canvas" style="width:{cw}px; height:{ch}px;">
+    <div class="wireframe-canvas" style="width:{cw}px; height:{ch}px; border: { 'none; box-shadow: 0 10px 30px rgba(0,0,0,0.1)' if is_premium else '2px solid #000' }">
         {layout_html}
         {components_html}
     </div>
 </body>
 </html>
 """
+

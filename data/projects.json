@@ -1,17 +1,5 @@
 [
   {
-    "id": "2b64ecdd-a37a-4773-a207-521176a05b07",
-    "name": "CREATE A SOCIAL MEDIA PLATFORM\n",
-    "description": "CREATE A SOCIAL MEDIA PLATFORM\n",
-    "createdAt": "2025-12-31T17:51:13.950806",
-    "status": "FAILED",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2025-12-31T17:51:18.814007"
-    }
-  },
-  {
     "id": "83e2b92b-12a0-48c1-b6ec-12bc22118449",
     "name": "Build a full-stack e-commerce platform that allows...",
     "description": "Build a full-stack e-commerce platform that allows users to register, browse products, manage a shopping cart, place orders, make payments, track order status, and manage returns, with an admin dashboard for product, inventory, and order management.\n\n",
@@ -57,6 +45,30 @@
       "progress": 0,
       "currentPhase": "Initialization",
       "lastUpdated": "2026-01-08T18:14:47.502578"
+    }
+  },
+  {
+    "id": "ac2e93f6-b5d0-47b6-840b-6e0571518ac2",
+    "name": "I want to build an E-commerce site.",
+    "description": "I want to build an E-commerce site.",
+    "createdAt": "2026-01-09T11:27:35.961448",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-09T11:34:43.207845"
+    }
+  },
+  {
+    "id": "done1fe5ed22-7588-42a7-8e2e-090724f7519f",
+    "name": "Recovered Project (done1fe5)",
+    "description": "Recovered from disk artifacts.",
+    "createdAt": "2026-01-09T17:37:31.932925",
+    "status": "COMPLETED",
+    "metrics": {
+      "progress": 100,
+      "currentPhase": "Recovered",
+      "lastUpdated": "2026-01-09T17:37:31.932925"
     }
   }
 ]

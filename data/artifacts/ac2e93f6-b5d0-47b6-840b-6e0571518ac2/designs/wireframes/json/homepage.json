@@ -1,0 +1,200 @@
+{
+  "screen_name": "Homepage",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "width": 120,
+      "height": 32,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 200,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Shop | Categories | Deals | About Us"
+    },
+    {
+      "type": "input",
+      "x": 900,
+      "y": 24,
+      "width": 250,
+      "height": 32,
+      "label": "Search..."
+    },
+    {
+      "type": "button",
+      "x": 1170,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "User"
+    },
+    {
+      "type": "button",
+      "x": 1220,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "Cart (3)"
+    },
+    {
+      "type": "image",
+      "x": 0,
+      "y": 80,
+      "width": 1440,
+      "height": 300,
+      "label": "Hero Banner"
+    },
+    {
+      "type": "text",
+      "x": 100,
+      "y": 180,
+      "width": 400,
+      "height": 40,
+      "label": "Amazing Deals!"
+    },
+    {
+      "type": "button",
+      "x": 100,
+      "y": 230,
+      "width": 150,
+      "height": 40,
+      "label": "Shop Now"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 408,
+      "width": 200,
+      "height": 24,
+      "label": "Featured Categories"
+    },
+    {
+      "type": "card",
+      "x": 24,
+      "y": 440,
+      "width": 448,
+      "height": 100,
+      "label": "Category 1"
+    },
+    {
+      "type": "card",
+      "x": 496,
+      "y": 440,
+      "width": 448,
+      "height": 100,
+      "label": "Category 2"
+    },
+    {
+      "type": "card",
+      "x": 968,
+      "y": 440,
+      "width": 448,
+      "height": 100,
+      "label": "Category 3"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 560,
+      "width": 200,
+      "height": 24,
+      "label": "New Arrivals"
+    },
+    {
+      "type": "card",
+      "x": 24,
+      "y": 592,
+      "width": 328,
+      "height": 150,
+      "label": "Product Card 1"
+    },
+    {
+      "type": "card",
+      "x": 376,
+      "y": 592,
+      "width": 328,
+      "height": 150,
+      "label": "Product Card 2"
+    },
+    {
+      "type": "card",
+      "x": 728,
+      "y": 592,
+      "width": 328,
+      "height": 150,
+      "label": "Product Card 3"
+    },
+    {
+      "type": "card",
+      "x": 1080,
+      "y": 592,
+      "width": 328,
+      "height": 150,
+      "label": "Product Card 4"
+    },
+    {
+      "type": "image",
+      "x": 0,
+      "y": 760,
+      "width": 1440,
+      "height": 60,
+      "label": "Promo Banner"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 832,
+      "width": 300,
+      "height": 24,
+      "label": "\u00a9 2023 E-commerce Site"
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 832,
+      "width": 400,
+      "height": 24,
+      "label": "About Us | Contact | FAQ | Privacy"
+    },
+    {
+      "type": "text",
+      "x": 900,
+      "y": 832,
+      "width": 150,
+      "height": 24,
+      "label": "Social Icons"
+    },
+    {
+      "type": "input",
+      "x": 1080,
+      "y": 832,
+      "width": 200,
+      "height": 24,
+      "label": "Email for Newsletter"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 832,
+      "width": 100,
+      "height": 24,
+      "label": "Subscribe"
+    }
+  ]
+}

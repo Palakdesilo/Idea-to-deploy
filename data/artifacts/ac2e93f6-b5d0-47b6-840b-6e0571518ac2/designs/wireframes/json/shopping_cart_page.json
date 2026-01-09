@@ -1,0 +1,336 @@
+{
+  "screen_name": "Shopping Cart Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 24,
+      "y": 24,
+      "width": 120,
+      "height": 32,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 200,
+      "y": 24,
+      "width": 400,
+      "height": 32,
+      "label": "Shop | Categories | Deals | About Us"
+    },
+    {
+      "type": "input",
+      "x": 900,
+      "y": 24,
+      "width": 250,
+      "height": 32,
+      "label": "Search..."
+    },
+    {
+      "type": "button",
+      "x": 1170,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "User"
+    },
+    {
+      "type": "button",
+      "x": 1220,
+      "y": 24,
+      "width": 40,
+      "height": 32,
+      "label": "Cart (3)"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 96,
+      "width": 300,
+      "height": 32,
+      "label": "Shopping Cart"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 144,
+      "width": 904,
+      "height": 32,
+      "label": "Product | Price | Quantity | Subtotal | Remove"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 184,
+      "width": 64,
+      "height": 64,
+      "label": "Prod Img"
+    },
+    {
+      "type": "text",
+      "x": 104,
+      "y": 200,
+      "width": 300,
+      "height": 24,
+      "label": "Product Name 1"
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 200,
+      "width": 100,
+      "height": 24,
+      "label": "$100.00"
+    },
+    {
+      "type": "input",
+      "x": 544,
+      "y": 200,
+      "width": 80,
+      "height": 24,
+      "label": "Qty: 1"
+    },
+    {
+      "type": "text",
+      "x": 640,
+      "y": 200,
+      "width": 100,
+      "height": 24,
+      "label": "$100.00"
+    },
+    {
+      "type": "button",
+      "x": 760,
+      "y": 200,
+      "width": 80,
+      "height": 24,
+      "label": "Remove"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 264,
+      "width": 64,
+      "height": 64,
+      "label": "Prod Img"
+    },
+    {
+      "type": "text",
+      "x": 104,
+      "y": 280,
+      "width": 300,
+      "height": 24,
+      "label": "Product Name 2"
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 280,
+      "width": 100,
+      "height": 24,
+      "label": "$50.00"
+    },
+    {
+      "type": "input",
+      "x": 544,
+      "y": 280,
+      "width": 80,
+      "height": 24,
+      "label": "Qty: 2"
+    },
+    {
+      "type": "text",
+      "x": 640,
+      "y": 280,
+      "width": 100,
+      "height": 24,
+      "label": "$100.00"
+    },
+    {
+      "type": "button",
+      "x": 760,
+      "y": 280,
+      "width": 80,
+      "height": 24,
+      "label": "Remove"
+    },
+    {
+      "type": "image",
+      "x": 24,
+      "y": 344,
+      "width": 64,
+      "height": 64,
+      "label": "Prod Img"
+    },
+    {
+      "type": "text",
+      "x": 104,
+      "y": 360,
+      "width": 300,
+      "height": 24,
+      "label": "Product Name 3"
+    },
+    {
+      "type": "text",
+      "x": 424,
+      "y": 360,
+      "width": 100,
+      "height": 24,
+      "label": "$20.00"
+    },
+    {
+      "type": "input",
+      "x": 544,
+      "y": 360,
+      "width": 80,
+      "height": 24,
+      "label": "Qty: 1"
+    },
+    {
+      "type": "text",
+      "x": 640,
+      "y": 360,
+      "width": 100,
+      "height": 24,
+      "label": "$20.00"
+    },
+    {
+      "type": "button",
+      "x": 760,
+      "y": 360,
+      "width": 80,
+      "height": 24,
+      "label": "Remove"
+    },
+    {
+      "type": "button",
+      "x": 24,
+      "y": 440,
+      "width": 180,
+      "height": 40,
+      "label": "Continue Shopping"
+    },
+    {
+      "type": "button",
+      "x": 220,
+      "y": 440,
+      "width": 150,
+      "height": 40,
+      "label": "Update Cart"
+    },
+    {
+      "type": "text",
+      "x": 952,
+      "y": 144,
+      "width": 200,
+      "height": 32,
+      "label": "Order Summary"
+    },
+    {
+      "type": "text",
+      "x": 952,
+      "y": 192,
+      "width": 300,
+      "height": 24,
+      "label": "Subtotal: $220.00"
+    },
+    {
+      "type": "text",
+      "x": 952,
+      "y": 224,
+      "width": 300,
+      "height": 24,
+      "label": "Shipping: Calculated at Checkout"
+    },
+    {
+      "type": "text",
+      "x": 952,
+      "y": 256,
+      "width": 300,
+      "height": 24,
+      "label": "Tax: Calculated at Checkout"
+    },
+    {
+      "type": "input",
+      "x": 952,
+      "y": 296,
+      "width": 250,
+      "height": 32,
+      "label": "Discount Code"
+    },
+    {
+      "type": "button",
+      "x": 1216,
+      "y": 296,
+      "width": 80,
+      "height": 32,
+      "label": "Apply"
+    },
+    {
+      "type": "text",
+      "x": 952,
+      "y": 352,
+      "width": 300,
+      "height": 40,
+      "label": "TOTAL: $220.00"
+    },
+    {
+      "type": "button",
+      "x": 952,
+      "y": 408,
+      "width": 400,
+      "height": 48,
+      "label": "PROCEED TO CHECKOUT"
+    },
+    {
+      "type": "text",
+      "x": 24,
+      "y": 832,
+      "width": 300,
+      "height": 24,
+      "label": "\u00a9 2023 E-commerce Site"
+    },
+    {
+      "type": "text",
+      "x": 400,
+      "y": 832,
+      "width": 400,
+      "height": 24,
+      "label": "About Us | Contact | FAQ | Privacy"
+    },
+    {
+      "type": "text",
+      "x": 900,
+      "y": 832,
+      "width": 150,
+      "height": 24,
+      "label": "Social Icons"
+    },
+    {
+      "type": "input",
+      "x": 1080,
+      "y": 832,
+      "width": 200,
+      "height": 24,
+      "label": "Email for Newsletter"
+    },
+    {
+      "type": "button",
+      "x": 1296,
+      "y": 832,
+      "width": 100,
+      "height": 24,
+      "label": "Subscribe"
+    }
+  ]
+}
