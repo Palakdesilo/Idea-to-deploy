@@ -10,7 +10,7 @@ import {
     ClipboardList, Users, ListTodo, Map,
     Activity, Shield, CheckCircle2, Clock,
     LayoutGrid, History, Plus, AlertCircle, Palette,
-    Folder, FolderOpen, Copy, Check, Save, Edit3, XCircle
+    Folder, FolderOpen, Copy, Check, Save, Edit3, XCircle, Maximize
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
@@ -1216,27 +1216,23 @@ export default function ProjectDashboard() {
                                                 <div className="aspect-[16/10] w-full overflow-hidden relative bg-white">
                                                     {visual.imageUrl.endsWith('.html') ? (
                                                         <iframe
-                                                            src={visual.imageUrl}
+                                                            src={visual.imageUrl.startsWith('http') ? visual.imageUrl : `${API_BASE_URL}${visual.imageUrl}`}
                                                             title={visual.screenName}
                                                             className="w-[1280px] h-[800px] border-none origin-top-left transform scale-[calc(100%/1280*var(--scale-factor,0.4))] pointer-events-none absolute inset-0"
                                                             style={{ '--scale-factor': '0.4' } as React.CSSProperties}
                                                             scrolling="no"
                                                         />
                                                     ) : (
-                                                        <img src={visual.imageUrl} alt={visual.screenName} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+                                                        <img src={visual.imageUrl.startsWith('http') ? visual.imageUrl : `${API_BASE_URL}${visual.imageUrl}`} alt={visual.screenName} className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                                                     )}
                                                     <div className="absolute inset-0 bg-transparent hover:bg-slate-900/10 transition-colors" /> {/* Click shield */}
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/20 to-transparent pointer-events-none" />
-                                                    <div className="absolute bottom-8 left-8 right-8 pointer-events-none">
-                                                        <div className="flex items-center gap-3 mb-3">
-                                                            <span className="px-3 py-1 bg-blue-600 text-[10px] font-black uppercase tracking-widest rounded-lg shadow-lg shadow-blue-600/20">Design Ready</span>
-                                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{visual.roles?.join(', ') || 'All Users'}</span>
-                                                        </div>
-                                                        <h3 className="text-3xl font-black text-white tracking-tight">{visual.screenName}</h3>
-                                                    </div>
                                                 </div>
                                                 <div className="p-8 space-y-8 flex-1">
                                                     <div>
+                                                        <div className="flex items-center justify-between mb-4">
+                                                            <h3 className="text-2xl font-black text-white tracking-tight">{visual.screenName}</h3>
+                                                            <span className="px-3 py-1 bg-blue-600 text-[10px] font-black uppercase tracking-widest rounded-lg shadow-lg shadow-blue-600/20">Design Ready</span>
+                                                        </div>
                                                         <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3 flex items-center gap-2">
                                                             <Activity className="w-3.5 h-3.5 text-blue-500" />
                                                             Purpose & Context
@@ -1275,6 +1271,13 @@ export default function ProjectDashboard() {
                                                             </div>
                                                         </div>
                                                         <div className="flex items-center gap-2">
+                                                            <button
+                                                                onClick={() => window.open(visual.imageUrl.startsWith('http') ? visual.imageUrl : `${API_BASE_URL}${visual.imageUrl}`, '_blank')}
+                                                                className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl transition-all text-xs font-black border border-slate-700 hover:text-white"
+                                                            >
+                                                                <Maximize className="w-4 h-4" />
+                                                                View Image
+                                                            </button>
                                                             {visual.wireframeKey && (
                                                                 <button
                                                                     onClick={() => window.open(`${API_BASE_URL}/api/projects/${id}/wireframes/${visual.wireframeKey}.html`, '_blank')}
