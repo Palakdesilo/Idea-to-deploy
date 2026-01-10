@@ -11,445 +11,247 @@ class AIBuilder:
         self.llm = LLMService()
 
     def _clean_code(self, raw: str) -> str:
-        """Strip markdown code blocks"""
-        code = raw.strip()
-        if code.startswith('```'):
-            parts = code.split('\n', 1)
-            if len(parts) > 1:
-                code = parts[1]
-        if code.endswith('```'):
-            code = code.rsplit('\n', 1)[0]
-        # Remove language identifier if present
-        if code.startswith('tsx') or code.startswith('typescript') or code.startswith('javascript'):
-            code = code.split('\n', 1)[1]
-        return code
+        """Strip markdown code blocks aggressively"""
+        import re
+        if raw.strip() == "Limit Exists":
+            return "# Generation failed due to AI rate limits. Please try again."
+        
+        # Look for content between triple backticks
+        match = re.search(r'```(?:\w+)?\n?(.*?)\n?```', raw, re.DOTALL)
+        if match:
+            return match.group(1).strip()
+        
+        # Fallback if no backticks but looks like code
+        return raw.strip()
 
     async def build_project(self, project_id: str, description: str) -> Dict[str, Any]:
         docs = await self.project_manager.get_docs(project_id)
+        visuals = await self.project_manager.get_visuals(project_id)
         
-        # Find Functional and UI/UX docs
+        # 1. Identify Core Sources
         functional_doc = next((d for d in docs if d.category == 'REQUIREMENTS'), None)
+        architecture_doc = next((d for d in docs if d.category == 'ARCHITECTURE'), None)
         uiux_doc = next((d for d in docs if d.category == 'UI_UX'), None)
-        
-        # Extract features
+
+        # 2. Extract Data for Generation
+        # Features from Requirements
         features = []
         if functional_doc:
             matches = re.findall(r'- \*\*(.*?)\*\*', functional_doc.content)
-            if matches:
-                features = [m.replace('- **', '').replace('**', '') for m in matches]
+            features = [m.replace('- **', '').replace('**', '') for m in matches] if matches else []
 
-        # Extract screens
-        screens = []
-        if uiux_doc:
-            matches = re.findall(r'### (.*?) Screen', uiux_doc.content)
-            if matches:
-                screens = [m.replace('### ', '').replace(' Screen', '') for m in matches]
+        # Screens from Wireframe JSONs (Primary Source of Structure)
+        screens_map = {} # screen_name -> json_data
+        json_dir = ARTIFACTS_DIR / project_id / "designs" / "wireframes" / "json"
+        if json_dir.exists():
+            for json_file in json_dir.glob("*.json"):
+                try:
+                    with open(json_file, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        screens_map[data.get('screen_name', json_file.stem).lower()] = data
+                except: pass
+        
+        # Fallback to visuals.json if directory scan found nothing (legacy/different structure)
+        if not screens_map:
+            for v in visuals:
+                v_type = v.get('type')
+                v_path = v.get('localPath')
+                if (v_type == 'WIRE_JSON' or v_type == 'wireframe_json') and v_path:
+                    json_path = Path(v_path)
+                    if json_path.exists():
+                        try:
+                            with open(json_path, 'r', encoding='utf-8') as f:
+                                data = json.load(f)
+                                screens_map[v.get('screenName', 'unknown').lower()] = data
+                        except: pass
+        
+        screen_names = list(screens_map.keys())
+        all_routes = [f"/{s.replace(' ', '-').lower()}" for s in screen_names]
+        if 'home feed' in screen_names: all_routes.append('/')
 
+        # 3. Generate Backend Models & Logic (FastAPI)
+        ui_contracts_summary = "\n".join([f"- {s}: {list(data.get('components', []))}" for s, data in screens_map.items()])
+        
+        from .ai_prompts import (
+            SQLALCHEMY_MODEL_PROMPT, 
+            AUTH_SETUP_PROMPT, 
+            FASTAPI_ROUTE_PROMPT, 
+            README_TEMPLATE_PROMPT, 
+            COMPONENT_LIBRARY_PROMPT
+        )
+
+        # Generate SQL Models
+        raw_models = await self.llm.generate_content('SQL_MODELS', {
+            "idea": description,
+            "ui_contracts": ui_contracts_summary
+        }, SQLALCHEMY_MODEL_PROMPT)
+        models_code = self._clean_code(raw_models)
+
+        # Generate Auth System
+        raw_auth = await self.llm.generate_content('AUTH_SETUP', {
+            "idea": description
+        }, AUTH_SETUP_PROMPT)
+        # auth prompt returns 3 blocks
+        auth_blocks = {}
+        current_file = None
+        for line in raw_auth.split('\n'):
+            if line.startswith('### '):
+                current_file = line.replace('### ', '').strip()
+                auth_blocks[current_file] = ""
+            elif current_file:
+                auth_blocks[current_file] += line + "\n"
+        
+        for k, v in auth_blocks.items(): auth_blocks[k] = self._clean_code(v)
+
+        # Assemble Files List
         files = []
 
-        # 1. Root Configuration
-        short_name = description.lower().split(' ')[:3]
-        short_name = '-'.join(short_name)
-        short_name = re.sub(r'[^a-z0-9-]', '', short_name)[:30]
+        # Root Configs
+        files.append({ "path": "package.json", "content": json.dumps({"name": "app", "workspaces": ["apps/*"], "scripts": {"dev": "turbo run dev"}}, indent=2) })
+        files.append({ "path": "turbo.json", "content": json.dumps({"pipeline": {"dev": {"cache": False, "persistent": True}}}, indent=2) })
+        
+        # --- API FILES ---
+        files.append({ "path": "apps/api/requirements.txt", "content": "fastapi\nuvicorn\nsqlalchemy\npsycopg2-binary\npydantic\npython-dotenv\npasslib[bcrypt]\npython-jose[cryptography]" })
+        files.append({ "path": "apps/api/database.py", "content": "from sqlalchemy import create_engine\nfrom sqlalchemy.ext.declarative import declarative_base\nfrom sqlalchemy.orm import sessionmaker\nSQLALCHEMY_DATABASE_URL = 'sqlite:///./sql_app.db'\nBase = declarative_base()" })
+        files.append({ "path": "apps/api/models.py", "content": models_code })
+        
+        # Auth Files
+        files.append({ "path": "apps/api/auth.py", "content": auth_blocks.get('auth.py', '# Auth missing') })
+        files.append({ "path": "apps/api/auth_routes.py", "content": auth_blocks.get('auth_routes.py', '# Auth routes missing') })
+        files.append({ "path": "apps/api/dependencies.py", "content": auth_blocks.get('dependencies.py', '# Deps missing') })
 
-        files.append({
-            "path": "package.json",
-            "content": json.dumps({
-                "name": short_name,
-                "version": "1.0.0",
-                "private": True,
-                "workspaces": ["apps/*"],
-                "scripts": {
-                    "dev": "turbo run dev",
-                    "build": "turbo run build",
-                    "lint": "turbo run lint",
-                    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-                    "dev:web": "npm run dev --workspace=web",
-                    "dev:api": "npm run dev --workspace=api"
-                },
-                "devDependencies": {
-                    "turbo": "^1.12.4",
-                    "prettier": "^3.2.5",
-                    "typescript": "^5.3.3"
-                }
-            }, indent=2)
-        })
+        # Entity Routers
+        # Extract entities from models or docs (simplified: generate one main router for now)
+        raw_router = await self.llm.generate_content('API_ROUTER', {
+            "idea": description,
+            "screen_name": "Main",
+            "entity_name": "Entity",
+            "actions": "All requirements",
+            "data_fields": "As per models"
+        }, FASTAPI_ROUTE_PROMPT)
+        files.append({ "path": "apps/api/routers/main.py", "content": self._clean_code(raw_router) })
 
-        files.append({
-            "path": "turbo.json",
-            "content": json.dumps({
-                "$schema": "https://turbo.build/schema.json",
-                "globalDependencies": ["**/.env.*local"],
-                "pipeline": {
-                    "build": {
-                        "dependsOn": ["^build"],
-                        "outputs": [".next/**", "dist/**"]
-                    },
-                    "lint": {},
-                    "dev": {
-                        "cache": False,
-                        "persistent": True
-                    }
-                }
-            }, indent=2)
-        })
+        # API Main
+        files.append({ "path": "apps/api/main.py", "content": """
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from auth_routes import router as auth_router
+from routers.main import router as main_router
 
-        files.append({
-            "path": "tsconfig.json",
-            "content": json.dumps({
-                "compilerOptions": {
-                    "target": "ESNext",
-                    "lib": ["dom", "dom.iterable", "esnext"],
-                    "allowJs": True,
-                    "skipLibCheck": True,
-                    "strict": True,
-                    "forceConsistentCasingInFileNames": True,
-                    "noEmit": True,
-                    "esModuleInterop": True,
-                    "module": "esnext",
-                    "moduleResolution": "node",
-                    "resolveJsonModule": True,
-                    "isolatedModules": True,
-                    "jsx": "preserve",
-                    "incremental": True,
-                    "baseUrl": ".",
-                    "paths": {
-                        "@/*": ["./*"]
-                    }
-                },
-                "exclude": ["node_modules"]
-            }, indent=2)
-        })
-        
-        # README (Placeholder, updated later?)
-        readme_content = f"""# {description}
-Automatically generated by **Idea-to-Deploy Platform**.
-"""
-        files.append({
-            "path": "README.md",
-            "content": readme_content
-        })
-        
-        files.append({ "path": ".env.example", "content": 'DATABASE_URL="postgresql://user:pass@localhost:5432/db"\nJWT_SECRET="generate-a-secure-secret-here"\nPORT=4000' })
+app = FastAPI()
+app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
 
-        # 2. Frontend (Next.js + Tailwind)
-        files.append({
-            "path": "apps/web/package.json",
-            "content": json.dumps({
-                "name": "web",
-                "version": "1.0.0",
-                "scripts": {
-                    "dev": "next dev",
-                    "build": "next build",
-                    "start": "next start",
-                    "lint": "next lint"
-                },
-                "dependencies": {
-                    "next": "14.2.22",
-                    "react": "^18.2.0",
-                    "react-dom": "^18.2.0",
-                    "lucide-react": "^0.344.0",
-                    "clsx": "^2.1.0",
-                    "tailwind-merge": "^2.2.1"
-                },
-                "devDependencies": {
-                    "autoprefixer": "^10.4.17",
-                    "postcss": "^8.4.35",
-                    "tailwindcss": "^3.4.1",
-                    "typescript": "^5.3.3",
-                    "@types/node": "^20.11.20",
-                    "@types/react": "^18.2.57",
-                    "@types/react-dom": "^18.2.19"
-                }
-            }, indent=2)
-        })
+app.include_router(auth_router, prefix='/auth', tags=['auth'])
+app.include_router(main_router, prefix='/api', tags=['api'])
 
-        files.append({
-            "path": "apps/web/tailwind.config.js",
-            "content": """module.exports = {
-  content: [
-    "./app/**/*.{js,ts,tsx,jsx}",
-    "./components/**/*.{js,ts,tsx,jsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}"""
-        })
-        
-        files.append({
-            "path": "apps/web/next.config.js",
-            "content": "/** @type {import('next').NextConfig} */\nconst nextConfig = { reactStrictMode: true }\nmodule.exports = nextConfig"
-        })
-        
-        files.append({
-            "path": "apps/web/postcss.config.js",
-            "content": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {} } }"
-        })
-        
-        files.append({
-            "path": "apps/web/app/globals.css",
-            "content": """@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@app.get('/health')
+def health(): return {'status': 'ok'}
+""" })
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  min-height: 100vh;
-}"""
-        })
+        # --- WEB FILES ---
+        files.append({ "path": "apps/web/package.json", "content": json.dumps({
+            "name": "web",
+            "version": "0.1.0",
+            "private": True,
+            "scripts": { "dev": "next dev", "build": "next build", "start": "next start" },
+            "dependencies": {
+                "next": "14.2.3",
+                "react": "^18",
+                "react-dom": "^18",
+                "lucide-react": "latest",
+                "framer-motion": "latest",
+                "react-hook-form": "latest",
+                "clsx": "latest",
+                "tailwind-merge": "latest"
+            },
+            "devDependencies": {
+                "typescript": "^5",
+                "@types/node": "^20",
+                "@types/react": "^18",
+                "@types/react-dom": "^18",
+                "postcss": "^8",
+                "tailwindcss": "^3.4.1"
+            }
+        }, indent=2) })
+        files.append({ "path": "apps/web/next.config.mjs", "content": "/** @type {import('next').NextConfig} */\nconst nextConfig = {};\nexport default nextConfig;" })
+        files.append({ "path": "apps/web/tailwind.config.ts", "content": "import type { Config } from 'tailwindcss';\nconst config: Config = { content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'], theme: { extend: {} }, plugins: [] };\nexport default config;" })
+        files.append({ "path": "apps/web/postcss.config.js", "content": "module.exports = { plugins: { tailwindcss: {}, autoprefixer: {}, }, };" })
         
-        files.append({
-            "path": "apps/web/tsconfig.json",
-            "content": json.dumps({
-                "compilerOptions": {
-                    "target": "ESNext",
-                    "lib": ["dom", "dom.iterable", "esnext"],
-                    "allowJs": True,
-                    "skipLibCheck": True,
-                    "strict": True,
-                    "noEmit": True,
-                    "esModuleInterop": True,
-                    "module": "esnext",
-                    "moduleResolution": "node",
-                    "resolveJsonModule": True,
-                    "isolatedModules": True,
-                    "jsx": "preserve",
-                    "incremental": True,
-                    "plugins": [{"name": "next"}],
-                    "paths": { "@/*": ["./*"] }
-                },
-                "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-                "exclude": ["node_modules"]
-            }, indent=2)
-        })
+        # Tailwind Infrastructure
+        files.append({ "path": "apps/web/app/globals.css", "content": "@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n:root {\n  --foreground-rgb: 255, 255, 255;\n  --background-start-rgb: 15, 23, 42;\n  --background-end-rgb: 2, 6, 23;\n}\n\nbody {\n  color: rgb(var(--foreground-rgb));\n  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));\n  min-height: 100vh;\n}\n" })
         
-        files.append({
-            "path": "apps/web/next-env.d.ts",
-            "content": '/// <reference types="next" />\\n/// <reference types="next/navigation-types/navigation" />\\n'
-        })
-        
-        files.append({
-            "path": "apps/web/app/layout.tsx",
-            "content": """
-import './globals.css';
+        files.append({ "path": "apps/web/app/layout.tsx", "content": """import './globals.css';
 import { Inter } from 'next/font/google';
-import { AuthProvider } from '../context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const metadata = {
+  title: 'E-commerce Platform',
+  description: 'Premium AI-generated e-commerce experience',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-            {children}
-        </AuthProvider>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
-"""
-        })
+""" })
 
-        # Auth Utils
-        files.append({
-            "path": "apps/web/context/AuthContext.tsx", 
-            "content": """
-'use client';
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-
-interface User { id: number; email: string; name: string; }
-interface AuthContextType { user: User | null; login: (token: string) => void; logout: () => void; isLoading: boolean; }
-
-const AuthContext = createContext<AuthContextType>({ user: null, login: () => {}, logout: () => {}, isLoading: true });
-export const useAuth = () => useContext(AuthContext);
-
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const router = useRouter();
-    const pathname = usePathname();
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            fetch('http://localhost:4000/auth/me', { headers: { 'Authorization': `Bearer ${token}` } })
-            .then(res => res.ok ? res.json() : null)
-            .then(userData => { if (userData) setUser(userData); else logout(); })
-            .catch(() => logout())
-            .finally(() => setIsLoading(false));
-        } else { setIsLoading(false); }
-    }, []);
-
-    const login = (token: string) => {
-        localStorage.setItem('token', token);
-        fetch('http://localhost:4000/auth/me', { headers: { 'Authorization': `Bearer ${token}` } })
-        .then(res => res.json())
-        .then(userData => { setUser(userData); router.push('/dashboard'); });
-    };
-
-    const logout = () => { localStorage.removeItem('token'); setUser(null); router.push('/login'); };
-
-    useEffect(() => {
-        if (!isLoading) {
-            const publicRoutes = ['/', '/login', '/register'];
-            if (!user && !publicRoutes.includes(pathname)) { router.push('/login'); }
-            if (user && (pathname === '/login' || pathname === '/register')) { router.push('/dashboard'); }
-        }
-    }, [user, isLoading, pathname]);
-
-    return ( <AuthContext.Provider value={{ user, login, logout, isLoading }}> {children} </AuthContext.Provider> );
+        # Component Library
+        raw_comp = await self.llm.generate_content('COMP_LIB', {
+            "idea": description,
+            "component_type": "Main Library"
+        }, COMPONENT_LIBRARY_PROMPT)
+        files.append({ "path": "apps/web/components/UI.tsx", "content": self._clean_code(raw_comp) })
+        
+        # API Client helper
+        files.append({ "path": "apps/web/lib/api.ts", "content": """
+const BASE_URL = 'http://localhost:8080';
+export const api = {
+    get: (url: string) => fetch(`${BASE_URL}${url}`, { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }).then(r => r.json()),
+    post: (url: string, data: any) => fetch(`${BASE_URL}${url}`, { 
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        body: JSON.stringify(data)
+    }).then(r => r.json())
 };
-"""
-        })
+""" })
 
-        # --- DYNAMIC UI GENERATION ENGINE ---
-
-        # 1. Inject Reusable Component Library (Using @ alias in fallback)
-        files.append({
-            "path": "apps/web/components/UIComponents.tsx",
-            "content": """
-import React from 'react';
-import { ArrowRight, CheckCircle, Star, Shield, Zap, Menu, Bell, Settings, User, LogOut, Layout, PieChart } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
-
-// Base Components
-export const Button = ({ children, variant = 'primary', className = '', ...props }: any) => {
-  const base = "px-4 py-2 rounded font-medium transition-colors flex items-center justify-center gap-2";
-  const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-700",
-    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
-    neutral: "bg-gray-100 text-gray-900 border border-gray-200",
-    outline: "border border-blue-600 text-blue-600 hover:bg-blue-50",
-    ghost: "text-gray-600 hover:bg-gray-100"
-  };
-  return <button className={`${base} ${variants[variant] || variants.primary} ${className}`} {...props}>{children}</button>;
-};
-
-export const Input = ({ label, ...props }: any) => (
-  <div className="mb-4">
-    {label && <label className="block text-sm font-medium mb-1">{label}</label>}
-    <input className="w-full px-3 py-2 border rounded outline-none focus:ring-1 focus:ring-blue-600" {...props} />
-  </div>
-);
-
-// Sections (Simplified)
-export const Header = ({ label }: any) => (
-    <nav className="border-b px-6 py-4 mb-8 flex items-center justify-between">
-        <div className="font-bold text-xl">{label}</div>
-        <div className="flex items-center gap-4">
-             <Button variant="ghost"><Bell className="w-5 h-5" /></Button>
-        </div>
-    </nav>
-);
-
-export const Hero = ({ label, content, subtext }: any) => (
-    <section className="py-12 px-4 text-center">
-        <div className="text-blue-600 text-xs font-bold uppercase mb-4">{label}</div>
-        <h1 className="text-4xl font-bold mb-4">{content}</h1>
-        <p className="text-gray-600 mb-8">{subtext}</p>
-        <div className="flex justify-center gap-4">
-            <Button>{subtext}</Button>
-            <Button variant="secondary">Learn More</Button>
-        </div>
-    </section>
-);
-
-export const AuthCard = ({ label }: any) => {
-    const { login } = useAuth();
-    return (
-        <div className="max-w-md mx-auto border p-8 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-bold mb-4 text-center">{label}</h2>
-             <div className="space-y-4">
-                <Input label="Email" placeholder="email@example.com" />
-                <Input label="Password" type="password" />
-                <Button className="w-full" onClick={() => login('token')}>{label}</Button>
-             </div>
-        </div>
-    );
-};
-
-export const Sidebar = ({ label }: any) => (
-    <div className="hidden lg:flex flex-col w-64 fixed left-0 top-0 bottom-0 bg-gray-100 border-r p-6">
-        <div className="text-xl font-bold mb-10 tracking-tight">{label}</div>
-        <div className="space-y-2 flex-1">
-             <Button variant="ghost" className="w-full justify-start">Dashboard</Button>
-             <Button variant="ghost" className="w-full justify-start">Settings</Button>
-        </div>
-        <Button variant="ghost" className="w-full justify-start text-red-600">Logout</Button>
-    </div>
-);
-
-export const Footer = ({ label }: any) => (
-    <footer className="border-t py-8 text-center text-gray-500 text-sm">
-        © 2024 idea-to-deploy.
-    </footer>
-);
-"""
-        })
-        
-        # 2. Dynamic Component & Page Builder
-        wireframes_path = ARTIFACTS_DIR / project_id / "docs" / "wireframes.json"
-        
-        design_specs = {}
-        if wireframes_path.exists():
-            with open(wireframes_path, 'r', encoding='utf-8') as f:
-                wf_data = json.loads(f.read())
-                for wf in wf_data.get('wireframes', []):
-                    key = wf.get('screenKey') or wf.get('screen', '').lower().replace(' ', '')
-                    design_specs[key.lower()] = wf
-        
-        defined_screens = list(design_specs.keys())
-        normalized_screens = list(set([s.lower().replace(' ', '') for s in screens] + defined_screens))
-        
-        
-        generated_slugs = []
-        
-        # Generate Pages List
-        for screen_key in normalized_screens:
-            is_root = False
-            slug = screen_key
-            if 'dashboard' in screen_key or 'home' in screen_key or 'landing' in screen_key:
-                 if 'dashboard' in screen_key: is_root = True 
-            layout = design_specs.get(screen_key, {}).get('layout', [])
+        # App Pages
+        for screen_name, json_data in screens_map.items():
+            slug = screen_name.replace(' ', '-').lower()
+            is_home = 'home' in screen_name or 'welcome' in screen_name
             
-            wf_layout_str = json.dumps(design_specs.get(screen_key, {}), indent=2)
-            raw = await self.llm.generate_content('PAGE_CODE', {
+            raw_page = await self.llm.generate_content('PAGE_CODE', {
                 "idea": description,
-                "screen_name": screen_key,
-                "wireframe": wf_layout_str
+                "screen_name": screen_name,
+                "design_tokens": "{'primary': '#0f172a', 'secondary': '#3b82f6', 'radius': '1rem'}",
+                "all_routes": json.dumps(all_routes),
+                "wireframe": json.dumps(json_data, indent=2),
+                "ui_contract": "Use /auth and /api endpoints"
             }, PAGE_CODE_PROMPT)
-            content = self._clean_code(raw)
             
-            # Determine Path
-            path_slug = '' if is_root else screen_key
-            if path_slug == 'dashboard': path_slug = ''
-            
-            if path_slug == '': path = "apps/web/app/page.tsx"
-            else: path = f"apps/web/app/{path_slug}/page.tsx"
-            
-            files.append({ "path": path, "content": content })
-            generated_slugs.append(path_slug)
-            
+            path = "apps/web/app/page.tsx" if is_home else f"apps/web/app/{slug}/page.tsx"
+            files.append({ "path": path, "content": self._clean_code(raw_page) })
 
-        # 3. Backend (Simple Keep)
-        files.append({
-            "path": "apps/api/package.json",
-            "content": json.dumps({ "name": "api", "version": "1.0.0", "scripts": { "dev": "uvicorn main:app --reload --port 4000", "start": "uvicorn main:app --port 4000" } }, indent=2)
-        })
-        files.append({ "path": "apps/api/requirements.txt", "content": "fastapi==0.109.0\nuvicorn==0.27.0\npydantic==2.6.0\npython-dotenv==1.0.1\nsqlalchemy==2.0.25\npasslib[bcrypt]==1.7.4\npython-jose[cryptography]==3.3.0" })
-        files.append({ "path": "apps/api/main.py", "content": "from fastapi import FastAPI\nfrom fastapi.middleware.cors import CORSMiddleware\napp = FastAPI()\napp.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'])\n@app.get('/health')\ndef health(): return {'status': 'ok'}\nif __name__ == '__main__': import uvicorn; uvicorn.run(app, port=4000)" })
-        files.append({ "path": "run_dev.bat", "content": "@echo off\nstart cmd /k \"cd apps\\api && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt && uvicorn main:app --reload --port 4000\"\nstart cmd /k \"cd apps\\web && npm install && npm run dev\"" })
-        files.append({ "path": "run_dev.sh", "content": "#!/bin/bash\n(cd apps/api && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt && uvicorn main:app --reload --port 4000) &\n(cd apps/web && npm install && npm run dev)" })
+        # Readme
+        raw_readme = await self.llm.generate_content('README', { "idea": description, "project_name": description.title(), "project_id": project_id }, README_TEMPLATE_PROMPT)
+        files.append({ "path": "README.md", "content": self._clean_code(raw_readme) })
+
+        # --- ZIP PACKAGING ---
+        # We'll use a simple zipfile approach to match AICoder's output format
+        import zipfile
+        import io
+        
+        # We'll do this in the ProjectManager.save_build_result or here?
+        # Better to do it here and include it in the build_result or let ProjectManager handle it.
+        # Given main.py expects a file on disk for download, ProjectManager should handle the zip creation.
         
         return {
             "projectId": project_id,

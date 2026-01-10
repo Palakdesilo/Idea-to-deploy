@@ -14,6 +14,12 @@ try:
 except ImportError:
     NEW_SDK_AVAILABLE = False
 
+try:
+    from langchain_ollama import ChatOllama
+    OLLAMA_AVAILABLE = True
+except ImportError:
+    OLLAMA_AVAILABLE = False
+
 class LLMService:
     def __init__(self):
         # Load .env - try multiple locations to be safe
@@ -40,13 +46,22 @@ class LLMService:
         
         self.llm = None
         self.gemini_llm = None
+        self.ollama_llm = None
+
+        # 4. INITIALIZE OLLAMA (Local Fallback)
+        if OLLAMA_AVAILABLE:
+            try:
+                self.ollama_llm = ChatOllama(model="llama3", temperature=0.3)
+                print("LLMService: 🟢 Ollama (llama3) initialized as local fallback.")
+            except Exception as e:
+                print(f"LLMService: Ollama init failed: {e}")
 
         # 3. INITIALIZE MODELS
         if self.google_api_key:
             print("LLMService: SWITCHING TO GEMINI EXCLUSIVE MODE.")
             # List of models to try in order of preference
-            models_to_try = ["gemini-2.5-flash", "gemini-2.5-pro"]
-            # models_to_try = ["gemini-1.5-pro", "gemini-1.5-flash"]
+            models_to_try = ["gemini-1.5-flash", "gemini-1.5-pro"]
+            # models_to_try = ["gemini-2.5-flash", "gemini-2.5-pro"]
             
             for model_name in models_to_try:
                 try:
@@ -118,11 +133,17 @@ class LLMService:
                             return result
                         except Exception:
                             continue
-                print(f"LLMService: ❌ Gemini Generation ERROR: {e}")
-                
+                # FINAL FALLBACK: OLLAMA (Local)
+                if self.ollama_llm:
+                    try:
+                        print(f"LLMService: 🏠 Cloud failed. Falling back to LOCAL OLLAMA for {task_name}...")
+                        return await try_generate(self.ollama_llm)
+                    except Exception as ollama_err:
+                        print(f"LLMService: ❌ Ollama also failed: {ollama_err}")
+
                 # FALLBACK FOR QUOTA/404 if everything fails
                 if any(x in str(e).lower() for x in ["429", "quota", "limit", "404", "not found"]):
-                    return "Limit Exists"
+                    return "# ERROR: AI Rate Limit or Model Not Found. Generation skipped."
                 
                 raise e # Fail hard for other errors
         

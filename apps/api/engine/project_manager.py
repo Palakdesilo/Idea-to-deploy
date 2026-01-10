@@ -195,9 +195,51 @@ class ProjectManager:
             return json.load(f)
 
     async def save_build_result(self, project_id: str, build_result: Any):
-        build_file = ARTIFACTS_DIR / project_id / "build.json"
+        project_dir = ARTIFACTS_DIR / project_id
+        project_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 1. Save build.json (Metadata and full list)
+        build_file = project_dir / "build.json"
         with open(build_file, 'w') as f:
             json.dump(build_result, f, default=self._serialize_datetime, indent=2)
+            
+        # 2. Persist files to 'code' directory for exploration and download
+        if isinstance(build_result, dict) and "files" in build_result:
+            code_dir = project_dir / "code"
+            # Optional: Clean code dir if it exists to avoid stale files?
+            # For now, just write/overwrite
+            for file_info in build_result["files"]:
+                path = file_info.get("path")
+                content = file_info.get("content", "")
+                if path:
+                    # Security: Ensure path is relative and doesn't escape code_dir
+                    # We convert to string, remove leading / or \, and then resolve
+                    clean_path = str(path).lstrip('/').lstrip('\\')
+                    # If it's something like C:\... we remove the drive
+                    if ':' in clean_path:
+                        clean_path = clean_path.split(':')[-1].lstrip('/').lstrip('\\')
+                    
+                    full_path = (code_dir / clean_path).resolve()
+                    if not str(full_path).startswith(str(code_dir.resolve())):
+                         print(f"SECURITY WARNING: Attempted path escape blocked: {path}")
+                         continue
+
+                    full_path.parent.mkdir(parents=True, exist_ok=True)
+                    with open(full_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+
+            # 3. Create ZIP package for download
+            import zipfile
+            # Use project name if possible, else use ID
+            zip_filename = f"{project_id}-generated.zip"
+            # Try to get project name for a nicer filename if possible (main.py does this too)
+            zip_path = project_dir / zip_filename
+            
+            with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                for file_path in code_dir.rglob('*'):
+                    if file_path.is_file():
+                        arcname = file_path.relative_to(code_dir)
+                        zipf.write(file_path, arcname)
 
     async def update_file_content(self, project_id: str, file_path: str, content: str):
         result = await self.get_build_result(project_id)

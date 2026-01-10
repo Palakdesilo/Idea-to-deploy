@@ -15,8 +15,10 @@ class ProjectRunner:
 
     async def install_dependencies(self, project_id: str, type: str = "backend") -> Tuple[bool, str]:
         """Install dependencies for the specified project component"""
-        project_path = self.artifacts_dir / project_id / "code" / type
-        log_dir = self.artifacts_dir / project_id
+        # Map internal types to generated folder names
+        comp_folder = "apps/api" if type == "backend" else "apps/web"
+        project_path = (self.artifacts_dir / project_id / "code" / comp_folder).resolve()
+        log_dir = (self.artifacts_dir / project_id).resolve()
         log_dir.mkdir(parents=True, exist_ok=True)
         
         log_file = log_dir / f"{type}_install.log"
@@ -32,14 +34,16 @@ class ProjectRunner:
             return False, msg
 
         # sanity check for config files
-        if type == "backend" and not (project_path / "requirements.txt").exists():
-             msg = "requirements.txt not found. Code generation might be incomplete."
-             with open(log_file, "w") as f: f.write(msg)
-             return False, msg
-        if type == "frontend" and not (project_path / "package.json").exists():
-             msg = "package.json not found. Code generation might be incomplete."
-             with open(log_file, "w") as f: f.write(msg)
-             return False, msg
+        if type == "backend":
+             if not (project_path / "requirements.txt").exists():
+                  msg = "requirements.txt not found. Code generation might be incomplete."
+                  with open(log_file, "w") as f: f.write(msg)
+                  return False, msg
+        if type == "frontend":
+             if not (project_path / "package.json").exists():
+                  msg = "package.json not found. Code generation might be incomplete."
+                  with open(log_file, "w") as f: f.write(msg)
+                  return False, msg
 
         cmd = []
         if type == "backend":
@@ -89,7 +93,9 @@ class ProjectRunner:
         # Stop existing if any
         await self.stop_server(project_id, type)
         
-        project_path = self.artifacts_dir / project_id / "code" / type
+        # Map internal types to generated folder names
+        comp_folder = "apps/api" if type == "backend" else "apps/web"
+        project_path = self.artifacts_dir / project_id / "code" / comp_folder
         log_file = self.artifacts_dir / project_id / f"{type}_run.log"
         
         cmd = []

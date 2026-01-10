@@ -486,6 +486,28 @@ export default function ProjectDashboard() {
         }
     };
 
+    const runBuild = async () => {
+        try {
+            setErrorMessage(null);
+            setCurrentView('Results');
+            setActiveTab('Codebase');
+            setProject((prev: any) => ({ ...prev, status: 'CODING' }));
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/build`, { method: 'POST' });
+            if (res.ok) {
+                await fetchProject();
+                await fetchBuild();
+            } else {
+                const data = await res.json();
+                setErrorMessage(data.detail || "Failed to generate codebase. Please try again.");
+                setProject((prev: any) => ({ ...prev, status: 'DESIGNED' }));
+            }
+        } catch (error) {
+            console.error('Build failed', error);
+            setErrorMessage("Network error: Could not reach the API server.");
+            setProject((prev: any) => ({ ...prev, status: 'DESIGNED' }));
+        }
+    };
+
     const getDocIcon = (title: string) => {
         const t = title.toLowerCase();
         if (t.includes('requirement')) return <FileText className="w-6 h-6 text-blue-400" />;
@@ -1072,25 +1094,30 @@ export default function ProjectDashboard() {
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-col justify-center">
-                                                    {project.status === 'DESIGNED' || project.status === 'CODING' ? (
-                                                        <button
-                                                            className="w-full py-6 bg-emerald-600 text-white font-extrabold rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-emerald-500/20"
-                                                        >
-                                                            <Code className="w-6 h-6" />
-                                                            Generate Codebase
-                                                        </button>
-                                                    ) : project.status === 'COMPLETED' ? (
+                                                    {project.status === 'DESIGNED' || project.status === 'CODING' || project.status === 'COMPLETED' ? (
                                                         <div className="space-y-4">
-                                                            <div className="flex items-center gap-3 text-emerald-400 font-bold justify-center py-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-lg">
-                                                                <CheckCircle2 className="w-6 h-6" /> Build Completed
-                                                            </div>
+                                                            {project.status === 'COMPLETED' && (
+                                                                <div className="flex items-center gap-3 text-emerald-400 font-bold justify-center py-6 bg-emerald-500/10 rounded-2xl border border-emerald-500/20 text-lg">
+                                                                    <CheckCircle2 className="w-6 h-6" /> Build Completed
+                                                                </div>
+                                                            )}
                                                             <button
-                                                                onClick={() => setCurrentView('Results')}
-                                                                className="w-full py-6 bg-white text-black font-extrabold rounded-2xl hover:bg-slate-200 transition-all flex items-center justify-center gap-3 text-lg shadow-xl"
+                                                                onClick={runBuild}
+                                                                disabled={project.status === 'CODING'}
+                                                                className={`w-full py-6 bg-emerald-600 text-white font-extrabold rounded-2xl hover:bg-emerald-700 transition-all flex items-center justify-center gap-3 text-lg shadow-xl shadow-emerald-500/20 ${project.status === 'CODING' ? 'opacity-50 cursor-not-allowed' : ''}`}
                                                             >
-                                                                View Result Assets
-                                                                <ChevronRight className="w-6 h-6" />
+                                                                <Code className={`w-6 h-6 ${project.status === 'CODING' ? 'animate-pulse' : ''}`} />
+                                                                {project.status === 'CODING' ? 'Generating...' : project.status === 'COMPLETED' ? 'Regenerate Codebase' : 'Generate Codebase'}
                                                             </button>
+                                                            {project.status === 'COMPLETED' && (
+                                                                <button
+                                                                    onClick={() => setCurrentView('Results')}
+                                                                    className="w-full py-6 bg-white text-black font-extrabold rounded-2xl hover:bg-slate-200 transition-all flex items-center justify-center gap-3 text-lg shadow-xl"
+                                                                >
+                                                                    View Result Assets
+                                                                    <ChevronRight className="w-6 h-6" />
+                                                                </button>
+                                                            )}
                                                         </div>
                                                     ) : (
                                                         <button className="w-full py-6 bg-slate-800 text-slate-500 font-extrabold rounded-2xl opacity-50 cursor-not-allowed text-lg">

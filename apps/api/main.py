@@ -390,7 +390,7 @@ async def download_code(id: str):
         raise HTTPException(status_code=404, detail="Project not found")
         
     project_name = project.name
-    zip_filename = f"{project_name.lower().replace(' ', '-')}-generated.zip"
+    zip_filename = f"{id}-generated.zip"
     zip_path = ARTIFACTS_DIR / id / zip_filename
     
     if not zip_path.exists():

@@ -52,11 +52,11 @@
     "name": "I want to build an E-commerce site.",
     "description": "I want to build an E-commerce site.",
     "createdAt": "2026-01-09T11:27:35.961448",
-    "status": "DESIGNED",
+    "status": "COMPLETED",
     "metrics": {
       "progress": 0,
       "currentPhase": "Initialization",
-      "lastUpdated": "2026-01-09T11:34:43.207845"
+      "lastUpdated": "2026-01-10T14:18:57.650300"
     }
   },
   {
