@@ -6,3 +6,16 @@ webpack/
 .DS_Store
 dist/
 .next/
+
+# Python
+__pycache__/
+*.pyc
+
+# Next.js
+.next/
+out/
+
+# Logs & artifacts
+*.log
+*.zip
+data/artifacts/

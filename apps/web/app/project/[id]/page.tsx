@@ -19,6 +19,9 @@ import { useEffect, useState, useMemo } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { API_BASE_URL } from '@/lib/api-config';
 
+// @ts-ignore
+const SafeMotionDiv = motion.div as any;
+
 
 
 const FileTreeNode = ({ node, level, selectedFile, onSelect }: { node: any, level: number, selectedFile: any, onSelect: (node: any) => void }) => {
@@ -525,58 +528,61 @@ export default function ProjectDashboard() {
         saveAs(blob, `${doc.title.replace(/\s+/g, '-').toLowerCase()}.md`);
     };
 
-    const DocumentCard = ({ doc }: { doc: any }) => (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="group relative bg-[#1e293b]/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:bg-[#1e293b]/60 transition-all duration-300 flex flex-col h-full"
-        >
-            <div className="flex items-start justify-between mb-4">
-                <div className="p-3 bg-slate-900/50 rounded-xl border border-slate-700/50">
-                    {getDocIcon(doc.title)}
+    const DocumentCard = ({ doc }: { doc: any }) => {
+        const MotionDiv = motion.div as any;
+        return (
+            <MotionDiv
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="group relative bg-[#1e293b]/40 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 hover:bg-[#1e293b]/60 transition-all duration-300 flex flex-col h-full"
+            >
+                <div className="flex items-start justify-between mb-4">
+                    <div className="p-3 bg-slate-900/50 rounded-xl border border-slate-700/50">
+                        {getDocIcon(doc.title)}
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>{Math.ceil(doc.content.length / 1500)} pages</span>
+                    </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-medium text-slate-500">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{Math.ceil(doc.content.length / 1500)} pages</span>
+
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{doc.title}</h3>
+                <p className="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow">
+                    {doc.content.split('\n').find((l: string) => l.length > 20 && !l.startsWith('#')) || "Detailed documentation for the project implementation."}
+                </p>
+
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={() => setPreviewDoc(doc)}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm font-semibold"
+                    >
+                        <Eye className="w-4 h-4" />
+                        Preview
+                    </button>
+                    <button
+                        onClick={() => downloadDoc(doc)}
+                        className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 text-white hover:bg-blue-500 transition-all text-sm font-semibold shadow-lg shadow-blue-500/20"
+                    >
+                        <Download className="w-4 h-4" />
+                        Download
+                    </button>
                 </div>
-            </div>
-
-            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{doc.title}</h3>
-            <p className="text-slate-400 text-sm line-clamp-2 mb-6 flex-grow">
-                {doc.content.split('\n').find((l: string) => l.length > 20 && !l.startsWith('#')) || "Detailed documentation for the project implementation."}
-            </p>
-
-            <div className="flex items-center gap-3">
-                <button
-                    onClick={() => setPreviewDoc(doc)}
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white transition-all text-sm font-semibold"
-                >
-                    <Eye className="w-4 h-4" />
-                    Preview
-                </button>
-                <button
-                    onClick={() => downloadDoc(doc)}
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 text-white hover:bg-blue-500 transition-all text-sm font-semibold shadow-lg shadow-blue-500/20"
-                >
-                    <Download className="w-4 h-4" />
-                    Download
-                </button>
-            </div>
-        </motion.div>
-    );
+            </MotionDiv>
+        );
+    };
 
     const DocumentPreviewModal = () => (
         <AnimatePresence>
             {previewDoc && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
-                    <motion.div
+                    <SafeMotionDiv
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setPreviewDoc(null)}
                         className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
                     />
-                    <motion.div
+                    <SafeMotionDiv
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -627,7 +633,7 @@ export default function ProjectDashboard() {
                                 </ReactMarkdown>
                             </article>
                         </div>
-                    </motion.div>
+                    </SafeMotionDiv>
                 </div>
             )}
         </AnimatePresence>
@@ -728,7 +734,7 @@ export default function ProjectDashboard() {
 
                 <AnimatePresence>
                     {errorMessage && (
-                        <motion.div
+                        <SafeMotionDiv
                             initial={{ opacity: 0, height: 0, marginBottom: 0 }}
                             animate={{ opacity: 1, height: 'auto', marginBottom: 40 }}
                             exit={{ opacity: 0, height: 0, marginBottom: 0 }}
@@ -751,7 +757,7 @@ export default function ProjectDashboard() {
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
-                        </motion.div>
+                        </SafeMotionDiv>
                     )}
                 </AnimatePresence>
 
@@ -773,7 +779,7 @@ export default function ProjectDashboard() {
                             <tab.icon className={`w-4 h-4 ${currentView === tab.id ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'}`} />
                             {tab.label}
                             {currentView === tab.id && (
-                                <motion.div layoutId="projectTab" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+                                <SafeMotionDiv layoutId="projectTab" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
                             )}
                         </button>
                     ))}
@@ -781,7 +787,7 @@ export default function ProjectDashboard() {
 
                 <AnimatePresence mode="wait">
                     {currentView === 'Preview' && (
-                        <motion.div
+                        <SafeMotionDiv
                             key="preview"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -902,11 +908,11 @@ export default function ProjectDashboard() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
+                        </SafeMotionDiv>
                     )}
 
                     {currentView === 'Pipeline' ? (
-                        <motion.div
+                        <SafeMotionDiv
                             key="pipeline"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -916,7 +922,7 @@ export default function ProjectDashboard() {
                             {/* Pipeline Content */}
                             <div className="max-w-4xl mx-auto mb-20 relative px-12">
                                 <div className="absolute top-5 left-12 right-12 h-[2px] bg-slate-800 z-0">
-                                    <motion.div
+                                    <SafeMotionDiv
                                         initial={{ width: 0 }}
                                         animate={{ width: project.status === 'COMPLETED' ? '100%' : project.status === 'CODING' ? '66%' : project.status === 'PLANNING' ? '33%' : '0%' }}
                                         className="h-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.5)]"
@@ -952,7 +958,7 @@ export default function ProjectDashboard() {
 
                             <div className="max-w-5xl mx-auto min-h-[400px]">
                                 {activeStep === 1 && (
-                                    <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                                    <SafeMotionDiv initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
                                         <div className={`p-10 rounded-3xl border ${project.status === 'ANALYSIS' ? 'border-blue-500/50 bg-blue-500/5' : 'border-slate-800 bg-slate-900/40'} shadow-2xl backdrop-blur-sm`}>
                                             <h2 className="text-2xl font-bold mb-8 flex items-center gap-4">
                                                 <div className="p-3 bg-blue-600 rounded-xl flex items-center justify-center">
@@ -1004,11 +1010,11 @@ export default function ProjectDashboard() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </SafeMotionDiv>
                                 )}
 
                                 {activeStep === 2 && (
-                                    <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
+                                    <SafeMotionDiv initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-8">
                                         <div className={`p-10 rounded-3xl border ${project.status === 'DESIGN' ? 'border-purple-500/50 bg-purple-500/5' : 'border-slate-800 bg-slate-900/40'} shadow-2xl backdrop-blur-sm`}>
                                             <h2 className="text-2xl font-bold mb-8 flex items-center gap-4">
                                                 <div className="p-3 bg-purple-600 rounded-xl flex items-center justify-center">
@@ -1063,11 +1069,11 @@ export default function ProjectDashboard() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </SafeMotionDiv>
                                 )}
 
                                 {activeStep === 3 && (
-                                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+                                    <SafeMotionDiv initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
                                         <div className={`p-10 rounded-3xl border ${project.status === 'CODING' ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-slate-800 bg-slate-900/40'} shadow-2xl backdrop-blur-sm`}>
                                             <h2 className="text-2xl font-bold mb-8 flex items-center gap-4">
                                                 <div className="p-3 bg-emerald-600 rounded-xl flex items-center justify-center">
@@ -1127,12 +1133,12 @@ export default function ProjectDashboard() {
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
+                                    </SafeMotionDiv>
                                 )}
                             </div>
-                        </motion.div>
+                        </SafeMotionDiv>
                     ) : (
-                        <motion.div
+                        <SafeMotionDiv
                             key="results"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1167,7 +1173,7 @@ export default function ProjectDashboard() {
                                                 {tab.count}
                                             </span>
                                             {activeTab === tab.id && (
-                                                <motion.div layoutId="activeArtifactTab" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
+                                                <SafeMotionDiv layoutId="activeArtifactTab" className="absolute bottom-[-1px] left-0 right-0 h-0.5 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]" />
                                             )}
                                         </button>
                                     ))}
@@ -1188,7 +1194,7 @@ export default function ProjectDashboard() {
                                 {activeTab === 'Docs' && (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {project.status === 'ANALYSIS' && (
-                                            <motion.div
+                                            <SafeMotionDiv
                                                 initial={{ opacity: 0, scale: 0.95 }}
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 className="col-span-1 p-6 rounded-2xl border border-blue-500/30 bg-blue-500/5 flex flex-col items-center justify-center text-center space-y-4 min-h-[250px]"
@@ -1201,7 +1207,7 @@ export default function ProjectDashboard() {
                                                     <h3 className="text-white font-bold">Generating Documentation</h3>
                                                     <p className="text-slate-400 text-xs mt-1">AI is drafting 7 project documents in parallel...</p>
                                                 </div>
-                                            </motion.div>
+                                            </SafeMotionDiv>
                                         )}
                                         {docs.filter(doc => doc.title.toLowerCase().includes(searchQuery.toLowerCase())).map((doc) => (
                                             <DocumentCard key={doc.id} doc={doc} />
@@ -1218,7 +1224,7 @@ export default function ProjectDashboard() {
                                 {activeTab === 'Designs' && (
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                         {project.status === 'DESIGN' && (
-                                            <motion.div
+                                            <SafeMotionDiv
                                                 initial={{ opacity: 0, scale: 0.95 }}
                                                 animate={{ opacity: 1, scale: 1 }}
                                                 className="col-span-full p-12 rounded-[2.5rem] border border-purple-500/30 bg-purple-500/5 flex flex-col items-center justify-center text-center space-y-6"
@@ -1231,10 +1237,10 @@ export default function ProjectDashboard() {
                                                     <h3 className="text-2xl font-black text-white">Drafting Screen Inventory</h3>
                                                     <p className="text-slate-400 mt-2">The AI is analyzing your canonical data to outline all required application screens and user flows.</p>
                                                 </div>
-                                            </motion.div>
+                                            </SafeMotionDiv>
                                         )}
                                         {visuals.map((visual: any) => (
-                                            <motion.div
+                                            <SafeMotionDiv
                                                 key={visual.id}
                                                 initial={{ opacity: 0, scale: 0.98 }}
                                                 animate={{ opacity: 1, scale: 1 }}
@@ -1326,7 +1332,7 @@ export default function ProjectDashboard() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </motion.div>
+                                            </SafeMotionDiv>
                                         ))}
                                     </div>
                                 )}
@@ -1510,7 +1516,7 @@ export default function ProjectDashboard() {
                                             activeTab === 'Backend' ? categorizedFiles.backend :
                                                 activeTab === 'Tests' ? categorizedFiles.tests :
                                                     categorizedFiles.others).map((file: any, idx: number) => (
-                                                        <motion.div
+                                                        <SafeMotionDiv
                                                             key={idx}
                                                             initial={{ opacity: 0, y: 10 }}
                                                             animate={{ opacity: 1, y: 0 }}
@@ -1539,7 +1545,7 @@ export default function ProjectDashboard() {
                                                                     <Download className="w-4 h-4" />
                                                                 </button>
                                                             </div>
-                                                        </motion.div>
+                                                        </SafeMotionDiv>
                                                     ))}
                                         {(activeTab === 'Frontend' ? categorizedFiles.frontend.length :
                                             activeTab === 'Backend' ? categorizedFiles.backend.length :
@@ -1556,7 +1562,7 @@ export default function ProjectDashboard() {
                                     </div>
                                 )}
                             </div>
-                        </motion.div>
+                        </SafeMotionDiv>
                     )}
                 </AnimatePresence>
             </div>

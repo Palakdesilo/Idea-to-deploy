@@ -49,10 +49,8 @@ const shippingSchema = z.object({
   country: z.string().min(1, "Country is required"),
   phone: z.string().min(1, "Phone number is required").regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format (e.g., +1234567890)"),
   email: z.string().email("Invalid email address"),
-  useAsBilling: z.boolean().default(false),
-  shippingMethod: z.enum(["standard", "express"], {
-    errorMap: () => ({ message: "Please select a shipping method" }),
-  }),
+  useAsBilling: z.boolean(),
+  shippingMethod: z.enum(["standard", "express"]),
 });
 
 type ShippingFormValues = z.infer<typeof shippingSchema>;
@@ -80,9 +78,8 @@ const InputField: React.FC<InputFieldProps> = ({ label, name, icon: Icon, error,
       <input
         id={name}
         {...register(name)}
-        className={`block w-full pl-${Icon ? '10' : '3'} pr-3 py-2 border ${
-          error ? "border-red-500" : "border-gray-300"
-        } rounded-xl shadow-sm focus:outline-none focus:ring-[#3b82f6] focus:border-[#3b82f6] sm:text-sm transition-all duration-200`}
+        className={`block w-full pl-${Icon ? '10' : '3'} pr-3 py-2 border ${error ? "border-red-500" : "border-gray-300"
+          } rounded-xl shadow-sm focus:outline-none focus:ring-[#3b82f6] focus:border-[#3b82f6] sm:text-sm transition-all duration-200`}
         {...props}
       />
     </div>
@@ -143,7 +140,7 @@ export default function CheckoutShippingPage() {
       // Redirect to the next step in checkout flow
       // As per available routes, '/checkout-page' is the closest generic checkout route.
       // Ideally, this would be a more specific route like '/checkout-page---payment-information'.
-      router.push("/checkout-page"); 
+      router.push("/checkout-page");
     } catch (error: any) {
       console.error("Submission error:", error.message);
       alert(error.message); // Simple alert for error display
@@ -298,11 +295,10 @@ export default function CheckoutShippingPage() {
               <div className="space-y-4">
                 <label
                   htmlFor="standardShipping"
-                  className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${
-                    currentShippingMethod === "standard"
+                  className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${currentShippingMethod === "standard"
                       ? "border-[#3b82f6] ring-2 ring-[#3b82f6] bg-blue-50"
                       : "border-gray-300 hover:border-gray-400"
-                  }`}
+                    }`}
                 >
                   <input
                     type="radio"
@@ -319,11 +315,10 @@ export default function CheckoutShippingPage() {
 
                 <label
                   htmlFor="expressShipping"
-                  className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${
-                    currentShippingMethod === "express"
+                  className={`flex items-center p-4 border rounded-xl cursor-pointer transition-all duration-200 ${currentShippingMethod === "express"
                       ? "border-[#3b82f6] ring-2 ring-[#3b82f6] bg-blue-50"
                       : "border-gray-300 hover:border-gray-400"
-                  }`}
+                    }`}
                 >
                   <input
                     type="radio"
@@ -345,9 +340,8 @@ export default function CheckoutShippingPage() {
 
             <button
               type="submit"
-              className={`w-full flex justify-center items-center py-3 px-6 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-[#3b82f6] hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3b82f6] transition-all duration-300 ${
-                isLoading ? "opacity-70 cursor-not-allowed animate-pulse" : ""
-              }`}
+              className={`w-full flex justify-center items-center py-3 px-6 border border-transparent rounded-xl shadow-sm text-lg font-medium text-white bg-[#3b82f6] hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3b82f6] transition-all duration-300 ${isLoading ? "opacity-70 cursor-not-allowed animate-pulse" : ""
+                }`}
               disabled={isLoading}
             >
               {isLoading ? (

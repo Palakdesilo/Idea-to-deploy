@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { toast } from 'react-hot-toast'; // Assuming a toast notification library like react-hot-toast
+import { toast } from '@/lib/toast'; // Using local mock due to missing package
 
 // Mock API utility - In a real application, this would be from '@/lib/api'
 // For demonstration, it simulates an async API call.
@@ -127,7 +127,7 @@ export default function CheckoutPage() {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<CheckoutFormValues>({
+  } = useForm({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
       fullName: '',
@@ -140,6 +140,10 @@ export default function CheckoutPage() {
       shippingMethod: 'standard', // Default to standard shipping
       paymentMethod: 'creditCard', // Default to credit card
       agreeToTerms: false,
+      cardNumber: '',
+      expiryDate: '',
+      cvv: '',
+      cardholderName: '',
     },
   });
 
@@ -157,7 +161,7 @@ export default function CheckoutPage() {
 
   const { subtotal, shippingCost, tax, total } = calculateOrderSummary();
 
-  const onSubmit = async (data: CheckoutFormValues) => {
+  const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
       // In a real app, you'd send this data to your backend

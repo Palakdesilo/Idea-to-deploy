@@ -15,7 +15,15 @@
     "framer-motion": "latest",
     "react-hook-form": "latest",
     "clsx": "latest",
-    "tailwind-merge": "latest"
+    "tailwind-merge": "latest",
+    "react-hot-toast": "latest",
+    "class-variance-authority": "latest",
+    "@radix-ui/react-label": "latest",
+    "@radix-ui/react-slot": "latest",
+    "@radix-ui/react-checkbox": "latest",
+    "@radix-ui/react-radio-group": "latest",
+    "@hookform/resolvers": "latest",
+    "zod": "latest"
   },
   "devDependencies": {
     "typescript": "^5",
