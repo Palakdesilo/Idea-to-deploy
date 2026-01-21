@@ -1,0 +1,66 @@
+[
+  {
+    "id": "28f7747d-6b5a-4e9c-b868-6b477823f3f8",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "Requirement Documents**\n\n**One-Page Personal/Professional Profile Requirements**\n\n**Overview**\nThe One-Page Personal/Professional Profile is a single scrolling page that represents an individual or brand clearly and professionally. This document outlines the requirements for the project.\n\n**Functional Requirements**\n\n* The profile page will display essential information about the individual or brand, including:\n\t+ Name\n\t+ Title\n\t+ Professional summary (max 150 words)\n\t+ Contact information (email, phone number, LinkedIn link)\n* The page will have a clean and modern design, with easy-to-read typography and sufficient white space.\n* The profile will be responsive, adapting to different screen sizes and devices.\n\n**Non-Functional Requirements**\n\n* Performance: The page should load within 2 seconds on average internet connection.\n* Security: The page will use HTTPS encryption to ensure secure data transmission.\n* Accessibility: The page will follow WCAG 2.1 guidelines for accessibility.\n\n**Acceptance Criteria**\nThe profile page is considered complete when:\n\t+ All required information is displayed correctly.\n\t+ The design meets the modern and clean standards.\n\t+ The page is responsive and loads within the performance requirement.\n\n**Document 2:",
+    "isFinal": true
+  },
+  {
+    "id": "5b0dd679-7cd3-490c-a51c-d995fc189dc3",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "Project Planning Documents**\n\n**One-Page Personal/Professional Profile Project Plan**\n\n**Project Scope**\nThe scope of this project is to develop a single scrolling page that represents an individual or brand clearly and professionally.\n\n**Project Objectives**\nThe objectives of this project are:\n\t+ To create a visually appealing profile page.\n\t+ To ensure the page is easy to navigate and understand.\n\t+ To deliver the project within the given timeline and budget.\n\n**Project Timeline**\nThe project will be completed in 6 weeks, with the following milestones:\n\t+ Week 1-2: Requirements gathering and design development.\n\t+ Week 3-4: Front-end development.\n\t+ Week 5-6: Testing and quality assurance.\n\n**Document 3:",
+    "isFinal": true
+  },
+  {
+    "id": "e4c77964-ceab-4d59-97be-52dfdf94dfe5",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "Technical Architecture & Delivery Plans**\n\n**One-Page Personal/Professional Profile Technical Architecture**\n\n**Technical Stack**\nThe project will use the following technical stack:\n\t+ Front-end: HTML, CSS, JavaScript (using React or Angular).\n\t+ Back-end: Node.js or Python (depending on the chosen framework).\n\t+ Database: None required for this project.\n\n**Deployment Plan**\nThe page will be deployed to a cloud-based hosting service (e.g., AWS S3 or Google Cloud Storage).\n\n**Security Measures**\nThe page will use HTTPS encryption and follow best practices for secure coding and testing.\n\n**Document 4:",
+    "isFinal": true
+  },
+  {
+    "id": "4c3cc9fd-493a-4246-978d-425f7e6abf23",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "Integrated Project Management Plans (IPMP)**\n\n**One-Page Personal/Professional Profile IPMP**\n\n**Project Scope Statement**\nThis project aims to develop a single scrolling page that represents an individual or brand clearly and professionally.\n\n**WBS (Work Breakdown Structure)**\nThe project will be broken down into the following tasks:\n\t+ Requirements gathering.\n\t+ Design development.\n\t+ Front-end development.\n\t+ Testing and quality assurance.\n\t+ Deployment.\n\n**Project Schedule**\nThe project schedule is as follows:\n\t+ Week 1-2: Requirements gathering and design development.\n\t+ Week 3-4: Front-end development.\n\t+ Week 5-6: Testing and quality assurance.\n\t+ Week 7: Deployment.\n\n**Document 5:",
+    "isFinal": true
+  },
+  {
+    "id": "6043f309-e42e-478b-9029-0f185c14c5b0",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "Schedule & Cost Plans**\n\n**One-Page Personal/Professional Profile Schedule and Cost Plan**\n\n**Schedule**\nThe project will be completed in 6 weeks, with the following milestones:\n\t+ Week 1-2: Requirements gathering and design development.\n\t+ Week 3-4: Front-end development.\n\t+ Week 5-6: Testing and quality assurance.\n\t+ Week 7: Deployment.\n\n**Cost**\nThe estimated cost for this project is $15,000, broken down into:\n\t+ Design and development: $10,000.\n\t+ Testing and quality assurance: $2,000.\n\t+ Deployment and maintenance: $3,000.\n\n**Document 6:",
+    "isFinal": true
+  },
+  {
+    "id": "6f73178b-450e-4971-a1de-38c2aaf7f7a7",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "Quality, Risk & Procurement Plans**\n\n**One-Page Personal/Professional Profile Quality, Risk, and Procurement Plan**\n\n**Quality Plan**\nThe project will follow the Agile development process, with daily stand-ups, bi-weekly sprints, and regular code reviews. The quality plan includes:\n\t+ Code reviews.\n\t+ Unit testing.\n\t+ Integration testing.\n\t+ User acceptance testing (UAT).\n\n**Risk Plan**\nThe following risks have been identified:\n\t+ Delays in design development or front-end development.\n\t+ Issues with deployment to the cloud-based hosting service.\n\t+ Changes in project scope or requirements.\n\n**Procurement Plan**\nNo procurement is required for this project, as all necessary tools and services will be provided by the development team.\n\n**Document 7:",
+    "isFinal": true
+  },
+  {
+    "id": "598bb10b-67c5-424a-aff0-5658fe5c509f",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "Testing & Release Plans**\n\n**One-Page Personal/Professional Profile Testing and Release Plan**\n\n**Testing Plan**\nThe testing plan includes:\n\t+ Unit testing.\n\t+ Integration testing.\n\t+ User acceptance testing (UAT).\n\t+ Cross-browser testing.\n\t+ Mobile device testing.\n\n**Release Plan**\nThe page will be released to the cloud-based hosting service after successful completion of UAT. The release plan includes:\n\t+ Deployment to production environment.\n\t+ Configuration and setup of analytics tools (if required).\n\t+ Notification to stakeholders and users.",
+    "isFinal": true
+  },
+  {
+    "id": "14c5cf19-5a68-4e71-842d-bcd3db08dd1b",
+    "projectId": "c288b648-7798-438e-ae51-cc2432867283",
+    "category": "SCREEN_LIST",
+    "title": "Screen Inventory",
+    "content": "Here is the wireframe for a one-page personal/professional profile:\n\n**Page Structure:**\n\n1. **Header**\n2. **Sidebar**\n3. **Main Content Area**\n\t* **Grid Section**\n\t* **Form Section**\n4. **Footer**\n\n**Wireframe Descriptions:**\n\n**Header (150px x 50px)**\n\n* A horizontal bar at the top of the page with the following elements:\n\t+ Logo (30px x 20px) on the left\n\t+ Navigation menu (20px x 20px) with links to About, Skills, Experience, and Contact\n\t+ Profile name (max 15 characters) on the right\n\n**Sidebar (250px x 1000px)**\n\n* A vertical bar on the left side of the page with the following elements:\n\t+ **About Me** section (150px x 50px) with a brief summary of who you are\n\t+ **Skills** list (100px x 20px) with bullet points and icons for each skill\n\t+ **Experience** timeline (200px x 20px) with job titles, dates, and company logos\n\n**Main Content Area**\n\n* A grid section that takes up most of the page:\n\t+ **Grid Section** (800px x 500px):\n\t\t- 4 columns, each containing a different piece of information about you:\n\t\t\t1. **Headline**: A short summary of your professional brand\n\t\t\t2. **Summary**: A brief overview of your experience and skills\n\t\t\t3. **Achievements**: A list of notable achievements or awards\n\t\t\t4. **Quote**: A motivational quote or a statement about your values\n\n* A form section below the grid:\n\t+ **Form Section** (300px x 100px):\n\t\t- A simple contact form with fields for name, email, and message\n\t\t- A submit button to send the form\n\n**Footer**\n\n* A horizontal bar at the bottom of the page with the following elements:\n\t+ Copyright information (max 20 characters)\n\t+ Social media links (icons only) for LinkedIn, Twitter, Facebook, and Instagram\n\nHere is a PNG design based on this wireframe:\n\n[Insert PNG design]\n\nPlease note that this is just one possible design, and you can adjust it to fit your personal or professional brand.",
+    "isFinal": true
+  }
+]

@@ -12,18 +12,6 @@
     }
   },
   {
-    "id": "5a48d48f-10a2-4b3a-9751-53c0b5d15c79",
-    "name": "Build a subscription-based SaaS platform where use...",
-    "description": "Build a subscription-based SaaS platform where users can register, choose plans, make recurring payments, access features based on subscription level, manage billing, and view usage analytics through a role-based dashboard.\n\n",
-    "createdAt": "2026-01-05T11:55:51.396387",
-    "status": "PLANNING",
-    "metrics": {
-      "progress": 0,
-      "currentPhase": "Initialization",
-      "lastUpdated": "2026-01-05T11:56:13.663726"
-    }
-  },
-  {
     "id": "8e757899-4684-4f5f-9dd4-f83e161333f8",
     "name": "Want to create a static portfolio",
     "description": "Want to create a static portfolio",
@@ -69,6 +57,78 @@
       "progress": 100,
       "currentPhase": "Recovered",
       "lastUpdated": "2026-01-09T17:37:31.932925"
+    }
+  },
+  {
+    "id": "dfd7b2d2-46ab-4628-bcaf-e12fc2612b47",
+    "name": "A minimal recipe website that helps users quickly ...",
+    "description": "A minimal recipe website that helps users quickly find and cook simple, everyday meals.\nThe focus is on clarity, ease of use, and fast access",
+    "createdAt": "2026-01-17T12:13:28.529990",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-17T17:36:55.866110"
+    }
+  },
+  {
+    "id": "ab60aa93-32f2-416e-900f-e1063b7b3b29",
+    "name": "Recovered Project (ab60aa93)",
+    "description": "Recovered from disk artifacts.",
+    "createdAt": "2026-01-17T18:10:31.869707",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 100,
+      "currentPhase": "Recovered",
+      "lastUpdated": "2026-01-19T11:37:30.148356"
+    }
+  },
+  {
+    "id": "c288b648-7798-438e-ae51-cc2432867283",
+    "name": "I want to build a single scrolling page that repre...",
+    "description": "I want to build a single scrolling page that represents you (or a brand) clearly and professionally. (One-Page Personal / Professional Profile).\n",
+    "createdAt": "2026-01-21T10:21:37.948680",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-21T12:09:16.791257"
+    }
+  },
+  {
+    "id": "199134f9-a4c2-4e10-a7c2-9cdded6b0a66",
+    "name": "Build a responsive dashboard UI only.",
+    "description": "Build a responsive dashboard UI only.",
+    "createdAt": "2026-01-21T14:32:57.244492",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-21T14:34:26.809567"
+    }
+  },
+  {
+    "id": "a9401970-9a9a-4dd8-a94f-a360c03df82f",
+    "name": "Design a short onboarding experience UI that intro...",
+    "description": "Design a short onboarding experience UI that introduces a product, collects basic preferences, and confirms completion.\n\nUse friendly visuals, progress indicators, and minimal copy.\n\nUse mock data only.\nUI-only, responsive design.",
+    "createdAt": "2026-01-21T15:10:43.973743",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-21T15:11:30.628229"
+    }
+  },
+  {
+    "id": "f3b79555-447f-48d7-838d-547f34d93049",
+    "name": "Create an auth page (onboarding) and a dashboard w...",
+    "description": "Create an auth page (onboarding) and a dashboard with graph, KPIs, Datatable etc..",
+    "createdAt": "2026-01-21T15:15:59.719833",
+    "status": "DESIGNED",
+    "metrics": {
+      "progress": 0,
+      "currentPhase": "Initialization",
+      "lastUpdated": "2026-01-21T15:17:08.828633"
     }
   }
 ]

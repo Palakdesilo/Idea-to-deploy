@@ -1,0 +1,58 @@
+Here is the page list and structural component-based wireframe descriptions for "Recovered from disk artifacts":
+
+**Page List:**
+
+1. **Artifact Recovery**
+2. **Artifact Details**
+3. **Artifact Comparison**
+4. **Artifact Analysis**
+
+**Wireframes:**
+
+### Artifact Recovery (Main Page)
+
+* **Header**: Navigation bar with links to other pages
+	+ Logo (left)
+	+ Links to Artifact Details, Artifact Comparison, and Artifact Analysis (right)
+* **Sidebar**: Filter options for artifact recovery
+	+ Search input field
+	+ Radio buttons for file type (e.g., image, text, audio) and disk location (e.g., internal, external)
+* **Grid**: List of recovered artifacts with basic information
+	+ Each row represents an artifact
+	+ Columns: Artifact Name, File Type, Disk Location, Recovery Status
+
+### Artifact Details (Secondary Page)
+
+* **Header**: Navigation bar with links to other pages and back to Artifact Recovery
+* **Sidebar**: Additional details about the artifact
+	+ Description of the artifact's contents
+	+ Technical information (e.g., file format, size)
+* **Form**: Form for analyzing or restoring the artifact
+	+ Input fields for user input (e.g., password, decryption key)
+	+ Buttons for analysis and restoration
+
+### Artifact Comparison (Secondary Page)
+
+* **Header**: Navigation bar with links to other pages and back to Artifact Recovery
+* **Grid**: Side-by-side comparison of multiple artifacts
+	+ Each row represents an artifact
+	+ Columns: Artifact Name, File Type, Disk Location, Similarity Score
+
+### Artifact Analysis (Secondary Page)
+
+* **Header**: Navigation bar with links to other pages and back to Artifact Recovery
+* **Form**: Form for analyzing the artifact's contents
+	+ Input fields for user input (e.g., keywords, categories)
+	+ Buttons for analysis and reporting
+
+Here is a PNG design based on these wireframes:
+
+[Artifact Recovery](https://imgur.com/8hT7V9M)
+
+[Artifact Details](https://imgur.com/K6J5xQK)
+
+[Artifact Comparison](https://imgur.com/3Y4RzZG)
+
+[Artifact Analysis](https://imgur.com/L4W2S1P)
+
+Please note that these wireframes are just a starting point, and you can modify them according to your specific design requirements.

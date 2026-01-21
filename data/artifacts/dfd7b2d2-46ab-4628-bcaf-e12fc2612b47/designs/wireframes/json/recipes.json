@@ -1,0 +1,62 @@
+{
+  "screen_name": "Recipes",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 8,
+      "y": 8,
+      "width": 120,
+      "height": 24,
+      "label": "Recipe Hub"
+    },
+    {
+      "type": "sidebar",
+      "x": 248,
+      "y": 8,
+      "width": 250,
+      "height": 792,
+      "components": [
+        {
+          "type": "text",
+          "x": 0,
+          "y": 0,
+          "width": 250,
+          "height": 24,
+          "label": "Filter options"
+        },
+        {
+          "type": "button",
+          "x": 0,
+          "y": 32,
+          "width": 50,
+          "height": 20,
+          "label": "Appetizer"
+        },
+        {
+          "type": "button",
+          "x": 52,
+          "y": 32,
+          "width": 50,
+          "height": 20,
+          "label": "Main Course"
+        },
+        {
+          "type": "button",
+          "x": 104,
+          "y": 32,
+          "width": 50,
+          "height": 20,
+          "label": "Dessert"
+        }
+      ]
+    }
+  ]
+}

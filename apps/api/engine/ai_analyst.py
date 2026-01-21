@@ -42,6 +42,13 @@ Documents:
 7. Testing & Release Plans
 
 Write each document under a clear heading.
+
+IMPORTANT RULE FOR TIMELINES:
+- You must ESTIMATE REALISTIC TIMELINES based on the complexity of the idea.
+- If the idea is a Simple Static Website, the TOTAL duration should be 3-7 days.
+- If the idea is a Basic Web App (CRUD), the TOTAL duration should be 2-4 weeks.
+- If the idea is a Complex Enterprise System, the TOTAL duration can be 2-3 months.
+- Adjust the "Schedule & Cost Plan" specifically to reflect this. DO NOT propose a 6-month timeline for a simple landing page.
 """
 
         print("AIAnalyst: Requesting LLM...")
@@ -73,9 +80,9 @@ Write each document under a clear heading.
         # We use capturing group to see what we split, but split logic usually consumes delimiters.
         # So we use lookahead or just standard split.
         
-        # Pattern: Newline, optional hash/whitespce, digit, dot, space.
-        # We use a pattern that matches the start of a header.
-        header_pattern = r'(?:^|\n)(?:#+\s*)?\d+\.\s+[A-Z][a-zA-Z\s\&\(\)]+'
+        # Pattern: Newline, optional hash/asterisk/whitespace, digit, dot, space.
+        # Updated to handle **bold** numbers or ## headers
+        header_pattern = r'(?:^|\n)(?:[\#\*]+\s*)?\d+\.\s+[A-Z][a-zA-Z\s\&\(\)]+'
         
         # Find all start indices of headers
         matches = list(re.finditer(header_pattern, full_result))

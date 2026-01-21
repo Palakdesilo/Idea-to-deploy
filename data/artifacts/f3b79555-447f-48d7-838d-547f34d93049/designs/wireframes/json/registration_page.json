@@ -1,0 +1,96 @@
+{
+  "screen_name": "Registration Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "image",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 80,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 1200,
+      "y": 16,
+      "width": 200,
+      "height": 48,
+      "label": "Navigation Menu"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 120,
+      "width": 640,
+      "height": 40,
+      "label": "First Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 168,
+      "width": 640,
+      "height": 40,
+      "label": "Last Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 216,
+      "width": 640,
+      "height": 40,
+      "label": "Email"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 264,
+      "width": 640,
+      "height": 40,
+      "label": "Password"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 312,
+      "width": 640,
+      "height": 40,
+      "label": "Confirm Password"
+    },
+    {
+      "type": "button",
+      "x": 400,
+      "y": 360,
+      "width": 640,
+      "height": 40,
+      "label": "Register"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 800,
+      "width": 1440,
+      "height": 24,
+      "label": "Copyright Information"
+    },
+    {
+      "type": "text",
+      "x": 1200,
+      "y": 824,
+      "width": 200,
+      "height": 24,
+      "label": "Terms and Conditions"
+    }
+  ]
+}

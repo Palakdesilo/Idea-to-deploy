@@ -1,0 +1,110 @@
+[
+  {
+    "id": "9cb3c3c3-dd98-454e-be4c-1a1ea0aba7c1",
+    "title": "Artifact Analysis (Wireframe)",
+    "screenName": "Artifact Analysis",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/artifact_analysis.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\artifact_analysis.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "c57d7f51-9e39-4770-b9ca-02477aa26154",
+    "title": "Artifact Analysis Highfi (High-Fidelity)",
+    "screenName": "Artifact Analysis Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/artifact_analysis_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\artifact_analysis_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "bba48df5-e6df-4209-9153-52da768f7641",
+    "title": "Artifact Comparison (Wireframe)",
+    "screenName": "Artifact Comparison",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/artifact_comparison.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\artifact_comparison.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "d213d689-f7f0-4082-adb9-5f23518b6c6e",
+    "title": "Artifact Comparison Highfi (High-Fidelity)",
+    "screenName": "Artifact Comparison Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/artifact_comparison_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\artifact_comparison_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "ef3749e8-7d51-40bf-b650-9887d2419ffe",
+    "title": "Artifact Details (Wireframe)",
+    "screenName": "Artifact Details",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/artifact_details.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\artifact_details.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "d3aca36f-b026-4b57-aef8-64e6ab9d320e",
+    "title": "Artifact Details Highfi (High-Fidelity)",
+    "screenName": "Artifact Details Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/artifact_details_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\artifact_details_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "d4b498ef-866e-4ee3-9eee-6278ceb27578",
+    "title": "Artifact Recovery (Wireframe)",
+    "screenName": "Artifact Recovery",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/artifact_recovery.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\artifact_recovery.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "a78e51c7-464a-40f8-a0ee-143ab943a16e",
+    "title": "Artifact Recovery Highfi (High-Fidelity)",
+    "screenName": "Artifact Recovery Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/artifact_recovery_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\artifact_recovery_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "2cc7256c-870f-46a4-962a-7b387c27d231",
+    "title": "Recovered From Disk Artifacts (Wireframe)",
+    "screenName": "Recovered From Disk Artifacts",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/recovered_from_disk_artifacts.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\recovered_from_disk_artifacts.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "8e75276d-d2ee-472c-8c4d-3657b2b2c982",
+    "title": "Recovered From Disk Artifacts Highfi (High-Fidelity)",
+    "screenName": "Recovered From Disk Artifacts Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/recovered_from_disk_artifacts_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\recovered_from_disk_artifacts_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "19f743bf-27f5-44ec-a778-4eb312731cde",
+    "title": "Search Results (Wireframe)",
+    "screenName": "Search Results",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/wireframes/search_results.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\designs\\wireframes\\images\\search_results.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "c3e92a5a-f3fe-4721-bf53-7b15e95736ff",
+    "title": "Search Results Highfi (High-Fidelity)",
+    "screenName": "Search Results Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/ab60aa93-32f2-416e-900f-e1063b7b3b29/ui/search_results_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\ab60aa93-32f2-416e-900f-e1063b7b3b29\\ui\\search_results_highfi.png",
+    "type": "ui"
+  }
+]

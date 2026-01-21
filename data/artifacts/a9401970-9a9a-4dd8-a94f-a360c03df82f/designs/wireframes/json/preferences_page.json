@@ -1,0 +1,88 @@
+{
+  "screen_name": "Preferences Page",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "input",
+      "x": 400,
+      "y": 120,
+      "width": 640,
+      "height": 40,
+      "label": "Name"
+    },
+    {
+      "type": "input",
+      "x": 400,
+      "y": 200,
+      "width": 640,
+      "height": 40,
+      "label": "Email"
+    },
+    {
+      "type": "select",
+      "x": 400,
+      "y": 280,
+      "width": 640,
+      "height": 40,
+      "label": "Language"
+    },
+    {
+      "type": "checkbox",
+      "x": 400,
+      "y": 360,
+      "width": 20,
+      "height": 20,
+      "label": "Notification preferences"
+    },
+    {
+      "type": "grid",
+      "x": 400,
+      "y": 440,
+      "width": 640,
+      "height": 200,
+      "label": "Interests or topics"
+    },
+    {
+      "type": "button",
+      "x": 640,
+      "y": 680,
+      "width": 160,
+      "height": 40,
+      "label": "Submit Preferences"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 840,
+      "width": 1440,
+      "height": 20,
+      "label": "Back to Introduction Page"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 20,
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "x": 1360,
+      "y": 0,
+      "width": 80,
+      "height": 20,
+      "label": "2/3"
+    }
+  ]
+}

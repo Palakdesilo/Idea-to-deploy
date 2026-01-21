@@ -1,0 +1,56 @@
+[
+  {
+    "id": "a5739bb4-ce84-4da4-b532-2a60cf39f367",
+    "title": "Confirmation Page (Wireframe)",
+    "screenName": "Confirmation Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/wireframes/confirmation_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\designs\\wireframes\\images\\confirmation_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "cb1cacf8-b455-4890-8df0-a837075012bb",
+    "title": "Confirmation Page Highfi (High-Fidelity)",
+    "screenName": "Confirmation Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/ui/confirmation_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\ui\\confirmation_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "98b74ef3-d17b-41ff-84a4-93904c5a90ae",
+    "title": "Introduction Page (Wireframe)",
+    "screenName": "Introduction Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/wireframes/introduction_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\designs\\wireframes\\images\\introduction_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "d46bace1-0cea-4dd7-9d1d-7ba1f2b161d8",
+    "title": "Introduction Page Highfi (High-Fidelity)",
+    "screenName": "Introduction Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/ui/introduction_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\ui\\introduction_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "72195b15-5065-42d2-a567-096bced3e92f",
+    "title": "Preferences Page (Wireframe)",
+    "screenName": "Preferences Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/wireframes/preferences_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\designs\\wireframes\\images\\preferences_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "791a15b2-88b9-42e4-8b96-9dedb0007dc8",
+    "title": "Preferences Page Highfi (High-Fidelity)",
+    "screenName": "Preferences Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/a9401970-9a9a-4dd8-a94f-a360c03df82f/ui/preferences_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\a9401970-9a9a-4dd8-a94f-a360c03df82f\\ui\\preferences_page_highfi.png",
+    "type": "ui"
+  }
+]

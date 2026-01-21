@@ -1,0 +1,92 @@
+[
+  {
+    "id": "7e4fb8a3-e18e-43ba-b3a8-bd42c862fa9a",
+    "title": "Footer (Wireframe)",
+    "screenName": "Footer",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/wireframes/footer.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\designs\\wireframes\\images\\footer.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "58915e85-65a1-43ff-9529-4df7eceee624",
+    "title": "Footer Highfi (High-Fidelity)",
+    "screenName": "Footer Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/ui/footer_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\ui\\footer_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "f92c0e7d-e1d2-4403-8032-8d36b8ae75e1",
+    "title": "Header (Wireframe)",
+    "screenName": "Header",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/wireframes/header.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\designs\\wireframes\\images\\header.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "f1aec7c4-e2b6-4f6f-860d-369ef1ec0f7c",
+    "title": "Header Highfi (High-Fidelity)",
+    "screenName": "Header Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/ui/header_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\ui\\header_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "01e19de0-5558-4dfb-b40b-c187f5b5a22a",
+    "title": "Home (Wireframe)",
+    "screenName": "Home",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/wireframes/home.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\designs\\wireframes\\images\\home.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "c435d440-3960-4556-9a6f-2bc021753504",
+    "title": "Home Highfi (High-Fidelity)",
+    "screenName": "Home Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/ui/home_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\ui\\home_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "aa560e08-0ec1-4b36-84bc-19b89469e4e5",
+    "title": "Main Content Area (Wireframe)",
+    "screenName": "Main Content Area",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/wireframes/main_content_area.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\designs\\wireframes\\images\\main_content_area.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "45e6fcb7-4885-43d0-ae40-1db920dc52d0",
+    "title": "Main Content Area Highfi (High-Fidelity)",
+    "screenName": "Main Content Area Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/ui/main_content_area_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\ui\\main_content_area_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "eda76d38-9d41-4bd7-aa8f-d76781990ac8",
+    "title": "Sidebar (Wireframe)",
+    "screenName": "Sidebar",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/wireframes/sidebar.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\designs\\wireframes\\images\\sidebar.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "413e5806-7fb8-489b-9a53-486f11f41c77",
+    "title": "Sidebar Highfi (High-Fidelity)",
+    "screenName": "Sidebar Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/c288b648-7798-438e-ae51-cc2432867283/ui/sidebar_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\c288b648-7798-438e-ae51-cc2432867283\\ui\\sidebar_highfi.png",
+    "type": "ui"
+  }
+]

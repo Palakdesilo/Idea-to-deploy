@@ -1,0 +1,21 @@
+{
+  "screen_name": "About",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 8,
+      "y": 8,
+      "width": 120,
+      "height": 24,
+      "label": "Recipe Hub"
+    }
+  ]
+}

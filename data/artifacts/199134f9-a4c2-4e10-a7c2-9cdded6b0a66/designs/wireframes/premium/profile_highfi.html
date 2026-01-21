@@ -1,0 +1,84 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.6.0/dist/lucide.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #f7f7f7, #ffffff);
+            background-size: 100% 100%;
+        }
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="h-20 w-full bg-transparent glassmorphism flex justify-between items-center px-10">
+        <h1 class="text-2xl font-bold text-indigo-600">Profile Dashboard</h1>
+        <button class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-4 py-2 rounded-md hover:from-indigo-700 hover:to-violet-700">
+            <lucide-icon name="plus" size="20" class="mr-2"></lucide-icon>
+            Create New
+        </button>
+    </header>
+    <div class="flex h-screen">
+        <aside class="w-64 h-screen bg-white shadow-md p-4">
+            <h2 class="text-lg font-bold text-indigo-600 mb-4">Navigation</h2>
+            <ul>
+                <li class="mb-2">
+                    <a href="#" class="text-indigo-600 hover:text-violet-600">
+                        <lucide-icon name="home" size="20" class="mr-2"></lucide-icon>
+                        Home
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="#" class="text-indigo-600 hover:text-violet-600">
+                        <lucide-icon name="settings" size="20" class="mr-2"></lucide-icon>
+                        Settings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="#" class="text-indigo-600 hover:text-violet-600">
+                        <lucide-icon name="logout" size="20" class="mr-2"></lucide-icon>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="flex-1 p-4">
+            <section class="bg-white shadow-md p-4 mb-4">
+                <h2 class="text-lg font-bold text-indigo-600 mb-4">Profile Information</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="John Doe">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="johndoe@example.com">
+                    </div>
+                    <button type="submit" class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-4 py-2 rounded-md hover:from-indigo-700 hover:to-violet-700">
+                        Save Changes
+                    </button>
+                </form>
+            </section>
+            <section class="bg-white shadow-md p-4">
+                <h2 class="text-lg font-bold text-indigo-600 mb-4">Profile Picture</h2>
+                <img src="https://source.unsplash.com/200x200/?profile-picture" alt="Profile Picture" class="w-32 h-32 rounded-full object-cover mb-4">
+                <button class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white px-4 py-2 rounded-md hover:from-indigo-700 hover:to-violet-700">
+                    <lucide-icon name="camera" size="20" class="mr-2"></lucide-icon>
+                    Change Picture
+                </button>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

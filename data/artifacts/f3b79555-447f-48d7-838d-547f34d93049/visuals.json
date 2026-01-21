@@ -1,0 +1,92 @@
+[
+  {
+    "id": "28e3e323-39e3-4c90-b7b6-5f1841994bc3",
+    "title": "Dashboard Page (Wireframe)",
+    "screenName": "Dashboard Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/wireframes/dashboard_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\designs\\wireframes\\images\\dashboard_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "b17485a5-c2d0-412b-873e-52ce12c9db98",
+    "title": "Dashboard Page Highfi (High-Fidelity)",
+    "screenName": "Dashboard Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/ui/dashboard_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\ui\\dashboard_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "d3ebd6e3-83eb-4f74-85c3-d05cb48031df",
+    "title": "Forgot Password Page (Wireframe)",
+    "screenName": "Forgot Password Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/wireframes/forgot_password_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\designs\\wireframes\\images\\forgot_password_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "9bb24c39-7c1f-4a2c-8cd3-15b31e49786e",
+    "title": "Forgot Password Page Highfi (High-Fidelity)",
+    "screenName": "Forgot Password Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/ui/forgot_password_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\ui\\forgot_password_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "7a3f66d3-0118-425f-8a73-d0eedfdff7e6",
+    "title": "Login Page (Wireframe)",
+    "screenName": "Login Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/wireframes/login_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\designs\\wireframes\\images\\login_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "3a36d2e7-3939-4ab7-8fb2-b294f2a9fced",
+    "title": "Login Page Highfi (High-Fidelity)",
+    "screenName": "Login Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/ui/login_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\ui\\login_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "1c6193ae-cf5d-44b3-8be5-1a5e571a8991",
+    "title": "Registration Page (Wireframe)",
+    "screenName": "Registration Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/wireframes/registration_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\designs\\wireframes\\images\\registration_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "28d56a1a-46a4-4beb-99b2-823e8b31e5ac",
+    "title": "Registration Page Highfi (High-Fidelity)",
+    "screenName": "Registration Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/ui/registration_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\ui\\registration_page_highfi.png",
+    "type": "ui"
+  },
+  {
+    "id": "2c75a2ff-c1ca-48cc-bbe6-2cc671f9079c",
+    "title": "Settings Page (Wireframe)",
+    "screenName": "Settings Page",
+    "description": "Low-fidelity structural wireframe",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/wireframes/settings_page.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\designs\\wireframes\\images\\settings_page.png",
+    "type": "wireframe"
+  },
+  {
+    "id": "0711582c-2cb4-49ac-bb24-f2067c133942",
+    "title": "Settings Page Highfi (High-Fidelity)",
+    "screenName": "Settings Page Highfi",
+    "description": "High-fidelity production ready UI",
+    "imageUrl": "/api/projects/f3b79555-447f-48d7-838d-547f34d93049/ui/settings_page_highfi.png",
+    "localPath": "D:\\Palak\\Idea-to-deploy\\data\\artifacts\\f3b79555-447f-48d7-838d-547f34d93049\\ui\\settings_page_highfi.png",
+    "type": "ui"
+  }
+]

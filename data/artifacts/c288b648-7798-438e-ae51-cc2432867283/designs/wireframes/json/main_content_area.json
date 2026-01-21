@@ -1,0 +1,51 @@
+{
+  "screen_name": "Main Content Area",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "grid",
+  "header": {
+    "height": 50
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 8,
+      "y": 4,
+      "width": 200,
+      "height": 20,
+      "label": ""
+    },
+    {
+      "type": "text",
+      "x": 208,
+      "y": 4,
+      "width": 200,
+      "height": 20,
+      "label": ""
+    },
+    {
+      "type": "list",
+      "x": 416,
+      "y": 4,
+      "width": 100,
+      "height": 20,
+      "label": ""
+    },
+    {
+      "type": "text",
+      "x": 8,
+      "y": 24,
+      "width": 200,
+      "height": 20,
+      "label": ""
+    }
+  ]
+}

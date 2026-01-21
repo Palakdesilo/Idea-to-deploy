@@ -1,0 +1,35 @@
+{
+  "screen_name": "Search Results",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "grid",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": {
+    "height": 100
+  },
+  "components": [
+    {
+      "type": "card",
+      "x": 8,
+      "y": 40,
+      "width": 200,
+      "height": 120,
+      "label": "Artifact Cards"
+    },
+    {
+      "type": "pagination",
+      "x": 216,
+      "y": 160,
+      "width": 100,
+      "height": 24,
+      "label": "Pagination"
+    }
+  ]
+}

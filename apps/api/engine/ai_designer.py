@@ -156,6 +156,7 @@ generate png design"""
         json_dir.mkdir(parents=True, exist_ok=True)
 
         for wf in wireframes:
+            if not wf: continue
             raw_name = wf.get("screen_name", "screen")
             # Sanitize: replace non-alphanumeric chars (except space/hyphen) with nothing, then underscores
             s_name = re.sub(r'[\\/*?:"<>|]', "", raw_name) 
@@ -188,8 +189,11 @@ generate png design"""
         parts = []
         
         # 1. Macro Layout
-        header_h = wf.get("header", {}).get("height", 0)
-        sidebar_w = wf.get("sidebar", {}).get("width", 0)
+        header = wf.get("header") or {}
+        header_h = header.get("height", 0)
+        
+        sidebar = wf.get("sidebar") or {}
+        sidebar_w = sidebar.get("width", 0)
         
         parts.append(f"Layout Structure: {wf.get('layout_type', 'standard')}.")
         if header_h > 0:
@@ -198,14 +202,14 @@ generate png design"""
             parts.append("Has a left-side vertical navigation sidebar.")
             
         # 2. Components Structure
-        components = wf.get("components", [])
+        components = wf.get("components") or []
         if not components:
             return " ".join(parts)
 
         # Describe significant components
         parts.append("Page Content:")
         # Sort top-to-bottom
-        sorted_comps = sorted(components, key=lambda c: c.get("y", 0))
+        sorted_comps = sorted(components, key=lambda c: c.get("y", 0) if c else 0)
         
         for c in sorted_comps[:15]: # Limit to top 15 elements to avoid overwhelming prompt
             ctype = c.get("type", "element")
@@ -264,31 +268,11 @@ generate png design"""
             The output must look like a real screenshot of a finished application, perfectly matching the described layout structure.
             """
             
-            print(f"AIDesigner: Requesting Image Gen for '{screen_name}'...")
-            try:
-                # 1. Generate URL
-                image_url = await self.llm.generate_image(prompt)
-                
-                if image_url:
-                    print(f"AIDesigner: Downloading image for {screen_name}...")
-                    
-                    # 2. Download Bytes (Using new dep-free method)
-                    image_bytes = await self.llm.download_image_bytes(image_url)
-                    
-                    if image_bytes:
-                        file_path = ui_dir / f"{s_filename}.png"
-                        with open(file_path, "wb") as f:
-                            f.write(image_bytes)
-                        print(f"AIDesigner: SUCCESS - Saved High-Fi image to {file_path}")
-                    else:
-                         # Fallback to code render
-                        await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
-                else:
-                    # Fallback to code render
-                    await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
-            except Exception as e:
-                print(f"AIDesigner: Image Gen failed for {screen_name}: {e}. Trying code-render fallback...")
-                await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
+            print(f"AIDesigner: Requesting High-Fidelity Render for '{screen_name}'...")
+            
+            # FORCE CODE-TO-IMAGE RENDER (User Preference: "Best Image Ever")
+            # We skip direct image generation because it is unreliable (404s) and less consistent than code-based rendering.
+            await self.generate_code_render_fallback(project_id, wf, idea_description, s_filename)
 
     async def generate_code_render_fallback(self, project_id: str, wireframe: Dict[str, Any], idea_description: str, filename: str):
         """
@@ -311,12 +295,30 @@ generate png design"""
         Wireframe Structural Data:
         {wf_json_str}
         
+        CRITICAL CONSISTENCY RULES:
+        1. **Dynamic Brand Identity**: 
+           - Analyze the Project Description: "{idea_description}" to determine the SINGLE best fitting Color Palette.
+           - (e.g. Construction -> Orange/Black, EdTech -> Blue/White, Gaming -> Dark/Neon).
+           - Use this selected palette strictly and consistently.
+        2. **Smart Contrast & Theme**: 
+           - Decide if "Dark Mode" or "Light Mode" fits the industry best.
+           - Ensure High Contrast (e.g., if Dark Mode, use light/white text).
+        3. **Global Components**: 
+           - If the JSON includes a 'sidebar', you MUST render a visible, permanent Left Sidebar (width ~250px). Do NOT hide it behind a menu.
+           - If the JSON includes a 'header', you MUST render a top Navigation Header.
+           - These global components must look IDENTICAL in style across every single page you generate.
+        4. **Layout Fidelity**: Follow the x/y positions in the JSON as a strict guide for where major sections belong.
+        
         GUIDELINES:
         - Aesthetics: Ultra-modern SaaS, Clean, High-Contrast, Professional.
-        - Tech: Tailwind CSS (use CDN), Lucide Icons (use CDN).
-        - Layout: You MUST follow the structural layout provided in the JSON (Header, Sidebar, Grid locations), but make it look like a finished application (Modern nav, sleek cards, professional buttons).
-        - Content: Use REAL professional copy and data, not placeholders.
-        - Quality: High-fidelity. Use shadows, gradients, and proper typography (Inter font).
+        - Tech: Tailwind CSS (use CDN), Lucide Icons (use CDN), Google Fonts (Inter, Plus Jakarta Sans).
+        - **Visual Style**: Use glassmorphism (`backdrop-blur`) for sticky headers/sidebars. Deep shadows (`shadow-xl`) for cards.
+        - **Imagery**: You MUST use `https://images.unsplash.com/...` URLs with search keywords. 
+          - EXAMPLE: `https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80` (Furniture)
+          - DO NOT USE `source.unsplash.com` (It is broken).
+          - DO NOT USE placeholders.
+        - **Logo**: Do NOT write the word "LOGO". Create a real looking logo using a relevant Lucide Icon + Styled Text (e.g. 🏗️ Constructo).
+        - Content: Use REAL professional copy and data.
         
         OUTPUT:
         - Return a SINGLE self-contained HTML file (including Tailwind CDN and styles).
@@ -357,7 +359,18 @@ generate png design"""
 
 
     def _clean_json(self, text: str) -> str:
+        # 1. Remove Markdown code blocks
         text = re.sub(r"```json\s*", "", text)
         text = re.sub(r"```\s*$", "", text)
         text = re.sub(r"```", "", text)
-        return text.strip()
+        text = text.strip()
+
+        # 2. Extract strictly the JSON array if conversational text exists
+        # Find the first '[' and the last ']'
+        start_idx = text.find('[')
+        end_idx = text.rfind(']')
+
+        if start_idx != -1 and end_idx != -1 and end_idx > start_idx:
+            text = text[start_idx : end_idx + 1]
+        
+        return text

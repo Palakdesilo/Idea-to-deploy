@@ -1,0 +1,37 @@
+{
+  "screen_name": "Search",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "single",
+  "header": {
+    "height": 80
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 8,
+      "y": 8,
+      "width": 120,
+      "height": 24,
+      "label": "Recipe Hub"
+    },
+    {
+      "type": "input",
+      "x": 248,
+      "y": 32,
+      "width": 250,
+      "height": 20,
+      "label": ""
+    },
+    {
+      "type": "button",
+      "x": 248,
+      "y": 64,
+      "width": 50,
+      "height": 24,
+      "label": "Search"
+    }
+  ]
+}

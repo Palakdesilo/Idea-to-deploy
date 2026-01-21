@@ -1,0 +1,59 @@
+{
+  "screen_name": "Dashboard",
+  "canvas_size": {
+    "width": 1440,
+    "height": 900
+  },
+  "layout_type": "two-column",
+  "header": {
+    "height": 80
+  },
+  "sidebar": {
+    "width": 250
+  },
+  "footer": {
+    "height": 0
+  },
+  "components": [
+    {
+      "type": "text",
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 80,
+      "label": "Header"
+    },
+    {
+      "type": "text",
+      "x": 0,
+      "y": 80,
+      "width": 250,
+      "height": 820,
+      "label": "Sidebar"
+    },
+    {
+      "type": "table",
+      "x": 250,
+      "y": 80,
+      "width": 1190,
+      "height": 400,
+      "label": "Grid"
+    },
+    {
+      "type": "card",
+      "x": 250,
+      "y": 480,
+      "width": 590,
+      "height": 200,
+      "label": "Card 1"
+    },
+    {
+      "type": "card",
+      "x": 840,
+      "y": 480,
+      "width": 590,
+      "height": 200,
+      "label": "Card 2"
+    }
+  ]
+}

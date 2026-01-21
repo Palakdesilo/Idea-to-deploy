@@ -1,0 +1,66 @@
+[
+  {
+    "id": "711373ca-dbf8-4717-a7d7-498f821fdc93",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "REQUIREMENTS",
+    "title": "Requirement Document",
+    "content": "Requirement Documents\n### Introduction\nThe product idea is to create an authentication page (onboarding) and a dashboard with a graph, KPIs, and a datatable. The requirements for this project are outlined below.\n\n### Functional Requirements\n* User authentication and authorization\n* Onboarding process for new users\n* Dashboard with graph, KPIs, and datatable\n* Data visualization and reporting\n* User profile management\n\n### Non-Functional Requirements\n* Performance: The system should be able to handle a minimum of 100 concurrent users\n* Security: The system should comply with industry-standard security protocols\n* Usability: The system should be user-friendly and easy to navigate\n* Scalability: The system should be able to scale up or down as needed\n\n### User Stories\n* As a user, I want to be able to log in to the system securely\n* As a user, I want to be able to view my dashboard with graph, KPIs, and datatable\n* As an administrator, I want to be able to manage user profiles and access levels\n\n## 2.",
+    "isFinal": true
+  },
+  {
+    "id": "aac9c2cd-d044-4af5-9c12-0f117c7c0c54",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "PLANNING",
+    "title": "Project Planning Document",
+    "content": "Project Planning Documents\n### Project Overview\nThe project involves creating an authentication page and a dashboard with a graph, KPIs, and a datatable.\n\n### Project Scope\n* Create an authentication page (onboarding)\n* Create a dashboard with graph, KPIs, and datatable\n* Integrate user profile management\n\n### Project Timeline\nThe estimated project duration is 4 weeks.\n\n### Project Milestones\n* Week 1: Complete authentication page (onboarding)\n* Week 2: Complete dashboard with graph, KPIs, and datatable\n* Week 3: Integrate user profile management\n* Week 4: Testing and deployment\n\n## 3.",
+    "isFinal": true
+  },
+  {
+    "id": "badf0607-b891-4b9f-95a9-aca8d24425aa",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "ARCHITECTURE",
+    "title": "Technical Architecture & Delivery Plan",
+    "content": "Technical Architecture & Delivery Plans\n### Technical Overview\nThe system will be built using a web-based architecture with a front-end and back-end.\n\n### Front-end\n* Framework: React or Angular\n* Library: D3.js for data visualization\n* UI Components: Material-UI or Bootstrap\n\n### Back-end\n* Framework: Node.js with Express.js\n* Database: MySQL or MongoDB\n* API: RESTful API\n\n### Deployment\n* Cloud Platform: AWS or Google Cloud\n* Containerization: Docker\n* Orchestration: Kubernetes\n\n## 4.",
+    "isFinal": true
+  },
+  {
+    "id": "a54f94db-23d6-40d4-bc40-cce3759d4d8f",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "IPMP",
+    "title": "Integrated Project Management Plan (IPMP)",
+    "content": "Integrated Project Management Plans (IPMP)\n### Introduction\nThe IPMP outlines the project management approach for the project.\n\n### Project Organization\n* Project Manager: Responsible for overall project management\n* Technical Lead: Responsible for technical architecture and delivery\n* Development Team: Responsible for development and testing\n* QA Team: Responsible for quality assurance\n\n### Communication Plan\n* Regular team meetings\n* Weekly progress updates\n* Issue tracking and resolution\n\n### Change Management\n* Change request process\n* Change impact assessment\n* Change approval and implementation\n\n## 5.",
+    "isFinal": true
+  },
+  {
+    "id": "af59f71e-dc02-4342-8ede-261d8ece1bfe",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "SCHEDULE_COST",
+    "title": "Schedule & Cost Plan",
+    "content": "Schedule & Cost Plans\n### Project Schedule\nThe estimated project duration is 4 weeks.\n\n### Week 1: Authentication Page (Onboarding)\n* Task: Design and develop authentication page\n* Duration: 5 days\n* Cost: $5,000\n\n### Week 2: Dashboard with Graph, KPIs, and Datatable\n* Task: Design and develop dashboard\n* Duration: 5 days\n* Cost: $5,000\n\n### Week 3: User Profile Management\n* Task: Integrate user profile management\n* Duration: 5 days\n* Cost: $3,000\n\n### Week 4: Testing and Deployment\n* Task: Test and deploy the system\n* Duration: 5 days\n* Cost: $2,000\n\n### Total Cost\nThe estimated total cost for the project is $15,000.\n\n## 6.",
+    "isFinal": true
+  },
+  {
+    "id": "1c4e5dee-e1bd-4df2-a4b5-717f46508a48",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "QUALITY_RISK",
+    "title": "Quality, Risk & Procurement Plan",
+    "content": "Quality, Risk & Procurement Plans\n### Quality Plan\n* Code reviews\n* Unit testing\n* Integration testing\n* User acceptance testing\n\n### Risk Plan\n* Technical risks: Complexity of the system, integration issues\n* Schedule risks: Delays in development, testing, and deployment\n* Budget risks: Cost overruns, changes in scope\n\n### Procurement Plan\n* Software licenses: D3.js, Material-UI, etc.\n* Cloud services: AWS or Google Cloud\n* Hardware: Servers, storage, etc.\n\n## 7.",
+    "isFinal": true
+  },
+  {
+    "id": "018b4513-1b4c-4c82-b86a-2d1220bcc7c7",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "TESTING_RELEASE",
+    "title": "Testing & Release Plan",
+    "content": "Testing & Release Plans\n### Testing Plan\n* Unit testing: Test individual components\n* Integration testing: Test integration of components\n* User acceptance testing: Test the system with real users\n\n### Release Plan\n* Alpha release: Internal release for testing and feedback\n* Beta release: External release for testing and feedback\n* Production release: Final release to production environment\n\n### Deployment Plan\n* Cloud deployment: Deploy to AWS or Google Cloud\n* Containerization: Use Docker for containerization\n* Orchestration: Use Kubernetes for orchestration\n\nThe estimated testing and release duration is 5 days.",
+    "isFinal": true
+  },
+  {
+    "id": "60814de1-b72c-4cf5-9e49-4b0f5b435d28",
+    "projectId": "f3b79555-447f-48d7-838d-547f34d93049",
+    "category": "SCREEN_LIST",
+    "title": "Screen Inventory",
+    "content": "Here is a suggested page list and structural component-based wireframe descriptions for the auth page and dashboard:\n\n**Page List:**\n\n1. Login Page\n2. Registration Page\n3. Forgot Password Page\n4. Dashboard Page\n5. Settings Page\n\n**Login Page:**\n\n* Header:\n\t+ Logo\n\t+ Navigation menu (with links to registration and forgot password pages)\n* Form:\n\t+ Email input field\n\t+ Password input field\n\t+ Login button\n\t+ Forgot password link\n* Footer:\n\t+ Copyright information\n\t+ Terms and conditions link\n\n**Registration Page:**\n\n* Header:\n\t+ Logo\n\t+ Navigation menu (with links to login and forgot password pages)\n* Form:\n\t+ First name input field\n\t+ Last name input field\n\t+ Email input field\n\t+ Password input field\n\t+ Confirm password input field\n\t+ Registration button\n* Footer:\n\t+ Copyright information\n\t+ Terms and conditions link\n\n**Forgot Password Page:**\n\n* Header:\n\t+ Logo\n\t+ Navigation menu (with links to login and registration pages)\n* Form:\n\t+ Email input field\n\t+ Send password reset link button\n* Footer:\n\t+ Copyright information\n\t+ Terms and conditions link\n\n**Dashboard Page:**\n\n* Header:\n\t+ Logo\n\t+ Navigation menu (with links to settings and logout)\n* Sidebar:\n\t+ Navigation menu (with links to different sections of the dashboard)\n* Main Content:\n\t+ Grid:\n\t\t- KPI 1 (with value and label)\n\t\t- KPI 2 (with value and label)\n\t\t- KPI 3 (with value and label)\n\t+ Graph:\n\t\t- Line chart or other type of graph\n\t+ Datatable:\n\t\t- Table with columns and rows of data\n* Footer:\n\t+ Copyright information\n\n**Settings Page:**\n\n* Header:\n\t+ Logo\n\t+ Navigation menu (with links to dashboard and logout)\n* Form:\n\t+ User information (with input fields for first name, last name, email, etc.)\n\t+ Password change (with input fields for current password, new password, and confirm new password)\n\t+ Save changes button\n* Footer:\n\t+ Copyright information\n\nAs for generating a PNG design, I'm a text-based AI and do not have the capability to create visual designs. However, I can provide you with a simple text-based representation of the wireframe using ASCII art:\n```\n+---------------------------------------+\n|                  Header               |\n+---------------------------------------+\n|  Logo  |  Navigation Menu  |  Logout  |\n+---------------------------------------+\n|                  Sidebar             |\n+---------------------------------------+\n|  Navigation Menu  |  Section 1  |  Section 2  |\n+---------------------------------------+\n|                  Main Content        |\n+---------------------------------------+\n|  Grid  |  KPI 1  |  KPI 2  |  KPI 3  |\n|  Graph  |  Line Chart  |  Data  |\n|  Datatable  |  Table  |  Columns  |  Rows  |\n+---------------------------------------+\n|                  Footer             |\n+---------------------------------------+\n|  Copyright Information  |  Terms  |\n+---------------------------------------+\n```\nNote that this is a highly simplified representation and is not intended to be a final design. You will need to use a design tool or work with a designer to create a visually appealing and user-friendly design.",
+    "isFinal": true
+  }
+]

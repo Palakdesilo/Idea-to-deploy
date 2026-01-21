@@ -1,0 +1,64 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/lucide@1.4.0/dist/lucide.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .glassmorphism {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .deep-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="glassmorphism sticky top-0 z-10 h-20 flex justify-between items-center">
+        <div class="ml-4">
+            <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" alt="Logo" class="h-12 w-12 rounded-full">
+            <span class="text-lg font-bold ml-2">DataPro</span>
+        </div>
+        <nav class="mr-4">
+            <ul class="flex justify-between items-center">
+                <li class="mr-4">
+                    <a href="#" class="text-gray-600 hover:text-gray-900">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="mt-20 flex justify-center items-center">
+        <div class="deep-shadow bg-white p-12 rounded-2xl w-1/2">
+            <h2 class="text-3xl font-bold mb-4">Login to DataPro</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700">Email</label>
+                    <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="example@example.com">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-700">Password</label>
+                    <input type="password" id="password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="password">
+                </div>
+                <button type="submit" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Login</button>
+            </form>
+            <p class="mt-4 text-gray-600">Forgot Password? <a href="#" class="text-indigo-500 hover:text-indigo-700">Reset Password</a></p>
+        </div>
+    </main>
+    <footer class="mt-20 bg-gray-200 p-4 text-center">
+        <p class="text-gray-600">Copyright 2023 DataPro. All rights reserved.</p>
+        <p class="text-gray-600 mt-2">Terms and Conditions</p>
+    </footer>
+</body>
+</html>

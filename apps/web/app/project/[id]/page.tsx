@@ -999,6 +999,17 @@ export default function ProjectDashboard() {
                                                                 Proceed to Design
                                                                 <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                                                             </button>
+                                                            <button
+                                                                onClick={() => {
+                                                                    if (confirm("Regenerating analysis will overwrite existing requirements. Continue?")) {
+                                                                        runAnalysis();
+                                                                    }
+                                                                }}
+                                                                className="w-full py-4 bg-slate-800 text-slate-400 font-bold rounded-2xl hover:bg-slate-700 hover:text-white transition-all text-sm flex items-center justify-center gap-2"
+                                                            >
+                                                                <RotateCcw className="w-4 h-4" />
+                                                                Regenerate Analysis
+                                                            </button>
                                                         </div>
                                                     )}
                                                 </div>
@@ -1041,10 +1052,22 @@ export default function ProjectDashboard() {
                                                                 <CheckCircle2 className="w-6 h-6" /> Design Completed
                                                             </div>
                                                             <button
+                                                                onClick={() => setActiveStep(3)}
                                                                 className="w-full py-6 bg-purple-600 text-white font-extrabold rounded-2xl hover:bg-purple-700 transition-all flex items-center justify-center gap-3 text-lg group shadow-xl shadow-purple-500/20"
                                                             >
                                                                 Proceed to Build
                                                                 <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                                                            </button>
+                                                            <button
+                                                                onClick={() => {
+                                                                    if (confirm("Regenerating designs will overwrite existing screens and mockups. Continue?")) {
+                                                                        runDesign();
+                                                                    }
+                                                                }}
+                                                                className="w-full py-4 bg-slate-800 text-slate-400 font-bold rounded-2xl hover:bg-slate-700 hover:text-white transition-all text-sm flex items-center justify-center gap-2"
+                                                            >
+                                                                <RotateCcw className="w-4 h-4" />
+                                                                Regenerate Designs
                                                             </button>
                                                         </div>
                                                     ) : (project.status === 'PLANNING' || project.status === 'DESIGN') ? (

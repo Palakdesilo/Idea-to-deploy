@@ -20,6 +20,12 @@ try:
 except ImportError:
     OLLAMA_AVAILABLE = False
 
+try:
+    from langchain_groq import ChatGroq
+    GROQ_AVAILABLE = True
+except ImportError:
+    GROQ_AVAILABLE = False
+
 class LLMService:
     def __init__(self):
         # Load .env - try multiple locations to be safe
@@ -47,6 +53,29 @@ class LLMService:
         self.llm = None
         self.gemini_llm = None
         self.ollama_llm = None
+        self.groq_llm = None
+
+        # 3. INITIALIZE GROQ (Secondary Cloud)
+        self.groq_api_key = os.getenv("GROQ_API_KEY", "").strip()
+        # Define array of models to try in order
+        self.groq_models = [
+            "llama-3.3-70b-versatile",
+            "llama-3.1-70b-versatile", 
+            "mixtral-8x7b-32768",
+            "gemma2-9b-it"
+        ]
+
+        if self.groq_api_key and GROQ_AVAILABLE:
+            try:
+                # Initialize with primary
+                self.groq_llm = ChatGroq(
+                    model_name=self.groq_models[0],
+                    temperature=0.3,
+                    groq_api_key=self.groq_api_key
+                )
+                print(f"LLMService: 🟢 Groq initialized (Primary: {self.groq_models[0]}).")
+            except Exception as e:
+                print(f"LLMService: Groq init failed: {e}")
 
         # 4. INITIALIZE OLLAMA (Local Fallback)
         if OLLAMA_AVAILABLE:
@@ -133,11 +162,36 @@ class LLMService:
                             return result
                         except Exception:
                             continue
+                
+                # FALLBACK TO GROQ
+                if self.groq_llm:
+                    print(f"LLMService: ⚡ Gemini failed. Entering Groq Cascading Fallback...")
+                    for g_model in self.groq_models:
+                        try:
+                            # If we already have an instance and it matches, use it to save init time
+                            # But if it failed before, we might want to recreate or just move to next.
+                            # Simple reliable way: Create fresh client for specific model in loop
+                            print(f"LLMService: ⚡ Attempting GROQ ({g_model})...")
+                            runner = ChatGroq(
+                                model_name=g_model, 
+                                temperature=0.3, 
+                                groq_api_key=self.groq_api_key
+                            )
+                            response = await runner.ainvoke([HumanMessage(content=final_prompt)])
+                            self.groq_llm = runner # Promote successful model to be default
+                            return response.content
+                        except Exception as g_err:
+                            print(f"LLMService: ❌ Groq ({g_model}) failed: {g_err}")
+                            continue
+                    
+                    print("LLMService: ❌ All Groq models failed.")
+
                 # FINAL FALLBACK: OLLAMA (Local)
                 if self.ollama_llm:
                     try:
                         print(f"LLMService: 🏠 Cloud failed. Falling back to LOCAL OLLAMA for {task_name}...")
-                        return await try_generate(self.ollama_llm)
+                        response = await self.ollama_llm.ainvoke([HumanMessage(content=final_prompt)])
+                        return response.content
                     except Exception as ollama_err:
                         print(f"LLMService: ❌ Ollama also failed: {ollama_err}")
 
@@ -147,7 +201,19 @@ class LLMService:
                 
                 raise e # Fail hard for other errors
         
-        # EXCLUSIVE PATH: OPENAI (Only if Gemini is null)
+        # EXCLUSIVE PATH: GROQ (If Gemini is missing but Groq is present)
+        if self.groq_llm:
+             try:
+                 print(f"LLMService: ⚡ Using GROQ ({self.groq_llm.model_name}) for {task_name}...")
+                 response = await self.groq_llm.ainvoke([HumanMessage(content=final_prompt)])
+                 return response.content
+             except Exception as e:
+                 print(f"LLMService: Groq failed: {e}. Falling back to Ollama...")
+                 if self.ollama_llm:
+                    return await self.ollama_llm.ainvoke([HumanMessage(content=final_prompt)]).content
+                 raise e
+
+        # EXCLUSIVE PATH: OPENAI (Only if Gemini and Groq are null)
         if self.llm:
             try:
                 print(f"LLMService: Using OpenAI for {task_name}...")

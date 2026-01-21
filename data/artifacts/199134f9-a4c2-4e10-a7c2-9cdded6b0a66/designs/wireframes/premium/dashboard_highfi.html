@@ -1,0 +1,91 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@1.6.0/dist/lucide.min.js" integrity="sha256-3x0vJ7x6XK4Z6Xh3mD3h8W4B8j+Tf+4kYh3L+Vj3cA=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #3a3d41, #333);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        .glass {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="glass sticky top-0 z-10 h-20 flex items-center justify-between px-8 py-4">
+        <div class="flex items-center space-x-4">
+            <img src="https://source.unsplash.com/64x64/?logo" alt="Logo" class="rounded-full">
+            <h1 class="text-lg font-bold text-white">Application Name</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <input type="search" placeholder="Search" class="w-80 h-10 pl-10 pr-4 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-600">
+            <button class="p-2 text-gray-100 hover:text-white">
+                <lucide-search class="w-5 h-5"></lucide-search>
+            </button>
+            <button class="p-2 text-gray-100 hover:text-white">
+                <lucide-bell class="w-5 h-5"></lucide-bell>
+            </button>
+        </div>
+    </header>
+    <div class="flex h-screen">
+        <nav class="w-64 h-screen p-4 bg-gray-100 border-r border-gray-300">
+            <ul>
+                <li class="py-2">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <lucide-home class="w-5 h-5 inline-block mr-2"></lucide-home>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="py-2">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <lucide-chart-bar class="w-5 h-5 inline-block mr-2"></lucide-chart-bar>
+                        Reports
+                    </a>
+                </li>
+                <li class="py-2">
+                    <a href="#" class="text-gray-600 hover:text-indigo-600">
+                        <lucide-bell class="w-5 h-5 inline-block mr-2"></lucide-bell>
+                        Notifications
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main class="flex-1 p-4">
+            <div class="flex items-center space-x-4 mb-4">
+                <p class="text-gray-600">Breadcrumbs</p>
+                <p class="text-gray-600">Current Page</p>
+            </div>
+            <div class="grid grid-cols-1 gap-4 mb-4">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md" style="background-image: url('https://source.unsplash.com/1168x200/?key-metrics'); background-size: cover; background-position: center;">
+                    <h2 class="text-lg font-bold text-gray-600">Key Metrics</h2>
+                    <p class="text-gray-600">Some key metrics data</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md" style="background-image: url('https://source.unsplash.com/1168x200/?reports'); background-size: cover; background-position: center;">
+                    <h2 class="text-lg font-bold text-gray-600">Reports</h2>
+                    <p class="text-gray-600">Some reports data</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md" style="background-image: url('https://source.unsplash.com/1168x200/?notifications'); background-size: cover; background-position: center;">
+                    <h2 class="text-lg font-bold text-gray-600">Notifications</h2>
+                    <p class="text-gray-600">Some notifications data</p>
+                </div>
+            </div>
+            <button class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white py-2 px-4 rounded-lg shadow-md hover:from-indigo-700 hover:to-violet-700">
+                Create New Report
+            </button>
+        </main>
+    </div>
+</body>
+</html>
