@@ -83,15 +83,32 @@ async def start_preview(id: str, component: str = "backend"):
     if not success:
         raise HTTPException(status_code=500, detail=msg)
     
-    # 2. Assign Port (Simple logic: Backend 8000+ID_HASH, Frontend 3000+ID_HASH)
-    # For now, let's use fixed ports for single user mode, or random
-    import random
-    port = 8000 if component == "backend" else 3000
-    # Add offset to avoid conflict with main app
-    port += random.randint(1, 100)
+    # 2. Assign Port Deterministically (avoiding random changes on restart)
+    # This ensures "rerun with correct port" is consistent for a given project
+    project_hash = sum(ord(c) for c in id)
+    if component == "backend":
+        port = 8000 + (project_hash % 100) + 1
+    else:
+        port = 3000 + (project_hash % 100) + 1
+        
+    # 3. Handle Cross-Component Dependencies (Frontend depends on Backend port)
+    env = None
+    if component == "frontend":
+        # Try to find if backend is already assigned a port
+        backend_key = f"{id}_backend"
+        backend_port = project_runner.ports.get(backend_key)
+        
+        # If not running/known, use the deterministic one we WOULD assign
+        if not backend_port:
+            backend_port = 8000 + (project_hash % 100) + 1
+            
+        env = {
+            "NEXT_PUBLIC_API_URL": f"http://localhost:{backend_port}"
+        }
+        logger.info(f"Starting frontend with backend URL: {env['NEXT_PUBLIC_API_URL']}")
     
-    # 3. Start Server
-    success, msg = await project_runner.start_server(id, component, port)
+    # 4. Start Server
+    success, msg = await project_runner.start_server(id, component, port, env=env)
     if not success:
         raise HTTPException(status_code=500, detail=msg)
         

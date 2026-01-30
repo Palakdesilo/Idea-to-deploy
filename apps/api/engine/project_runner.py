@@ -88,7 +88,7 @@ class ProjectRunner:
                 f.write(f"Exception during install:\n{err_details}")
             return False, f"Install Error: {repr(e)}"
 
-    async def start_server(self, project_id: str, type: str, port: int) -> Tuple[bool, str]:
+    async def start_server(self, project_id: str, type: str, port: int, env: Optional[Dict[str, str]] = None) -> Tuple[bool, str]:
         """Start a dev server for the component"""
         # Stop existing if any
         await self.stop_server(project_id, type)
@@ -115,12 +115,19 @@ class ProjectRunner:
             out_f = open(log_file, "a")
             # Write start marker
             out_f.write(f"\n--- STARTING SERVER ON PORT {port} ---\n")
+            if env:
+                out_f.write(f"Environment variables injected: {list(env.keys())}\n")
             out_f.flush()
 
             if os.name == 'nt':
                 creationflags = subprocess.CREATE_NEW_PROCESS_GROUP
             else:
                 creationflags = 0
+
+            # Merge current environment with custom environment
+            full_env = os.environ.copy()
+            if env:
+                full_env.update(env)
 
             # Start process without shell=True for better control, using npm.cmd above helps
             process = subprocess.Popen(
@@ -129,7 +136,8 @@ class ProjectRunner:
                 stdout=out_f,
                 stderr=subprocess.STDOUT, # Merge stderr into stdout
                 creationflags=creationflags,
-                shell=False # Better for PID tracking
+                shell=False, # Better for PID tracking
+                env=full_env
             )
             
             self.processes[f"{project_id}_{type}"] = process

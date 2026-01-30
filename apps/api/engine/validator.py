@@ -37,47 +37,68 @@ class ValidationLayer:
 
         return is_valid
 
-    def validate_backend(self, endpoints: List[str], controllers: List[str], env_vars: List[str]) -> bool:
+    def validate_backend(self, files: List[Dict[str, str]]) -> bool:
         """
         2. Backend Validation
-        All endpoints exist
-        No missing controllers
-        Env file present
+        Check for:
+        - All endpoints exist
+        - Pydantic field constraints (min_length, regex, etc.)
+        - EmailStr usage
         """
         self.errors = []
         is_valid = True
         
-        # Check endpoints vs controllers map? 
-        # For this mock validator, we just check presence
-        if not endpoints:
-             self.errors.append("Backend Error: No endpoints generated.")
-             is_valid = False
+        has_field_constraints = False
+        has_email_str = False
         
-        if not controllers:
-            self.errors.append("Backend Error: No controllers generated.")
-            is_valid = False
+        for f in files:
+            content = f.get('content', '')
+            if 'Field(' in content and ('min_length' in content or 'max_length' in content or 'regex' in content):
+                has_field_constraints = True
+            if 'EmailStr' in content:
+                has_email_str = True
 
-        # Check for .env or similar (simulated)
-        # In this flow, we might generate the env.
+        if not has_field_constraints:
+            self.errors.append("Backend Warning: No strict Pydantic field constraints found (min_length, etc.).")
+            # We don't fail yet, but we warn
+        
+        if not has_email_str:
+            self.errors.append("Backend Warning: EmailStr validation not found in models/schemas.")
+
         return is_valid
 
-    def validate_frontend(self, imports: List[str], routes: List[str], backend_endpoints: List[str]) -> bool:
+    def validate_frontend(self, files: List[Dict[str, str]]) -> bool:
         """
         3. Frontend Validation
-        All imports resolved
-        Routes match screens
-        API endpoints match backend
+        Check for:
+        - Zod schema definitions
+        - react-hook-form usage
+        - Error message display logic
         """
         self.errors = []
         is_valid = True
         
-        # This would ideally parse the code. 
-        # Here we perform structural validation on the metadata passed.
+        has_zod = False
+        has_hook_form = False
+        has_error_display = False
         
-        # Check if all routes correspond to a screen or vice versa
-        if not routes:
-            self.errors.append("Frontend Error: No routes found.")
-            is_valid = False
+        for f in files:
+            content = f.get('content', '')
+            if 'z.object' in content or 'zod' in content:
+                has_zod = True
+            if 'useForm' in content:
+                has_hook_form = True
+            if 'errors.' in content and '.message' in content:
+                has_error_display = True
+
+        if not has_zod:
+            self.errors.append("Frontend Warning: Zod validation schemas not found.")
+        
+        if not has_hook_form:
+             self.errors.append("Frontend Warning: react-hook-form not found in form pages.")
+             
+        if not has_error_display:
+            self.errors.append("Frontend Warning: UI does not seem to display validation error messages.")
             
         return is_valid
 

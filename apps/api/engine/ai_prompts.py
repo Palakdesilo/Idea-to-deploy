@@ -265,11 +265,19 @@ Requirements:
 1. Use 'lucide-react' for icons.
 2. Use 'framer-motion' for animations.
 3. Use Tailwind CSS for styling, adhering faithfully to the Design System colors and radius.
-4. Implement fully functional components.
-5. If an action button exists, bind it to the corresponding API endpont using 'fetch' or 'axios'.
-6. Handle loading and error states.
-7. CRITICAL: If you use ANY React hooks (useState, useEffect, etc.) or event handlers (onClick, onSubmit), you MUST start the file with the "use client" directive at the very top. Default to adding "use client" unless you are 100% sure it is a static server component.
-8. Output the full TSX file content.
+4. **COMPREHENSIVE VALIDATION**: 
+   - Use 'react-hook-form' and 'zod' for all forms.
+   - **Mandatory Logic**: 
+     * EVERY form field must have a corresponding Zod validation rule.
+     * All mandatory fields must use `.min(1, "This field is required")`.
+     * Specific types (email, number, phone, URL) must use appropriate Zod methods.
+     * Passwords must enforce complexity (min 8 chars, must include number/special char).
+   - Display clear, user-friendly error messages immediately below each field.
+5. Implement fully functional components.
+6. If an action button exists, bind it to the corresponding API endpoint using 'fetch' or 'axios'.
+7. Handle loading, error, and success states with feedback (toasts or alerts).
+8. CRITICAL: If you use ANY React hooks (useState, useEffect, etc.) or event handlers (onClick, onSubmit), you MUST start the file with the "use client" directive at the very top.
+9. Output the full TSX file content.
 """
 
 
@@ -397,12 +405,17 @@ You are a Security Engineer specializing in FastAPI authentication.
 **Requirements**:
 1. **JWT Strategy**: Use `python-jose` to create access tokens (30 min exp) and refresh tokens (7 days exp).
 2. **Password Hashing**: Use `passlib` with `bcrypt` context.
-3. **Endpoints**:
-   - `POST /auth/register`: Create new user.
+3. **COMPREHENSIVE BACKEND VALIDATION**:
+   - Use Pydantic `Field` for **ALL** request schemas.
+   - Every input field must have constraints (min_length, max_length, gt/lt, regex) where applicable.
+   - Password: min_length=8, must be validated for complexity.
+   - Email: Use Pydantic's `EmailStr` type.
+4. **Endpoints**:
+   - `POST /auth/register`: Create new user with valid data.
    - `POST /auth/login`: Return access_token and refresh_token.
    - `POST /auth/refresh`: Use refresh_token to get new access_token.
    - `GET /auth/me`: Get current user profile.
-4. **Dependencies**:
+5. **Dependencies**:
    - `get_db`: Yields database session.
    - `get_current_user`: Validates token and returns User object.
    - `get_current_active_user`: Ensures user is not suspended.
@@ -495,23 +508,23 @@ Generate the specific backend code for the following actions:
 Master Project Spec: {project_spec}
 Design System Context: {design_system}
 
-Output valid Python code using Pydantic models for validation and FastAPI routers.
-The Output should be a single Python file content that includes:
-1. Pydantic Models for Request/Response
-2. FastAPI Router definition
-3. Controller logic (mocked but functional structure)
+**Requirements**:
+1. **COMPREHENSIVE VALIDATION**: Use Pydantic models with explicit field constraints (min_length, max_length, gt/lt, regex) for **EVERY request field** in EVERY endpoint.
+2. **FastAPI Router**: Organize routes clearly.
+3. **Controller Logic**: Implement robust logic for data persistence.
+4. **Database Safety**: Ensure transactional integrity.
 
-Ensure all endpoints match the method and path defined in the actions.
+Output valid Python code.
 """
 
 PROJECT_PLAN_PROMPT = """
 You are a Chief Technology Officer (CTO) and Product Architect.
 Your goal is to create a specific "Project Master Plan" (Spec) that freezes all requirements before code generation.
-This ensures a "Live Working Product" is built without scope creep.
+This ensures a "Live Working Product" is built with robust validation and security.
 
 Input Idea: {idea}
 
-CRITICAL: Output STRICT JSON only. No markdown. No comments.
+CRITICAL: Output STRICT JSON only. No markdown.
 
 JSON Structure:
 {
@@ -520,35 +533,27 @@ JSON Structure:
     "screens": ["List of all user-facing screens to be built"],
     "api_actions": ["List of critical backend actions/jobs"]
   },
+  "validation_rules": {
+    "all_fields": { "required_validation": "non-empty mapping", "error_feedback": "ui-inline" },
+    "password": { "min_length": 8, "require_special": true, "require_number": true },
+    "email": { "format": "strict_rfc5322" },
+    "global_policy": "No input field shall bypass validation schemas (Zod/Pydantic)"
+  },
   "tech_stack": {
-    "frontend": "Next.js 14 (App Router)",
-    "backend": "FastAPI (Python)",
+    "frontend": "Next.js 14 (App Router), Zod, React Hook Form",
+    "backend": "FastAPI (Python), Pydantic v2",
     "database": "PostgreSQL (or SQLite for local dev)",
-    "auth": "JWT (OAuth2)",
+    "auth": "JWT (OAuth2) with Bcrypt",
     "styling": "Tailwind CSS + Lucide Icons"
   },
   "system_contracts": {
     "api_structure": {
       "base_url": "/api/v1",
       "endpoints": [
-        { "method": "GET/POST", "path": "/example", "description": "...", "access": "public/authenticated" }
+        { "method": "GET/POST", "path": "/example", "description": "...", "access": "public/authenticated", "requires_validation": true }
       ]
     },
-    "database_schema": {
-      "tables": [
-        { 
-          "name": "users", 
-          "columns": ["id", "email", "hashed_password", "role", "created_at"] 
-        }
-      ]
-    },
-    "auth_roles": ["user", "admin", "etc"]
-  },
-  "file_structure": {
-    "backend_files": ["apps/api/main.py", "apps/api/models.py", "..."],
-    "frontend_files": ["apps/web/app/page.tsx", "..."]
+    ...
   }
 }
-
-Ensure the "api_structure" and "database_schema" are detailed enough to generate code directly from them.
 """

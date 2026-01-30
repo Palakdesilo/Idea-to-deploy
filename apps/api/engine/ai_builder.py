@@ -84,15 +84,17 @@ class AIBuilder:
         backend_files = await self._generate_backend(description, actions_map, design_system, screens_map, project_spec)
         
         # 6. VALIDATE BACKEND
-        endpoints = self._extract_endpoints_from_files(backend_files)
-        self.validator.validate_backend(endpoints, ["MockController"], [])
+        if not self.validator.validate_backend(backend_files):
+             self._log_step("Backend Validation Warning: " + ", ".join(self.validator.get_errors()))
 
         # 7. GENERATE FRONTEND (Component Library & Screen Assembly)
         self._log_step("Generating Frontend Layer...")
         frontend_files = await self._generate_frontend(description, screens_map, design_system, backend_files, project_spec)
 
         # 8. VALIDATE FRONTEND
-        self.validator.validate_frontend(["react"], [f"/{k}" for k in screens_map.keys()], endpoints)
+        self.validator.validate_frontend(frontend_files)
+        if self.validator.get_errors():
+             self._log_step("Frontend Validation Warning: " + ", ".join(self.validator.get_errors()))
 
         # 9. ASSEMBLE PROJECT
         all_files = backend_files + frontend_files
@@ -237,8 +239,13 @@ class AIBuilder:
         files.append({ "path": "apps/api/main.py", "content": """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from database import engine, Base
+import models  # Ensure all models are imported to register with Base
 from auth_routes import router as auth_router
 from routers.main import router as main_router
+
+# Automatic Database Initialization
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
@@ -363,13 +370,25 @@ if __name__ == "__main__":
         
         # 2. Pages
         all_routes = [f"/{s.replace(' ', '-').lower()}" for s in screens_map.keys()]
-        if 'home feed' in screens_map: all_routes.append('/')
         
-        # Ensure 'home' maps to / if exists
+        # Intelligently determine the root entry point (app/page.tsx)
+        # Priority: Landing -> Welcome -> Home -> Login -> First available screen
+        root_candidate = None
+        candidates = ['landing', 'welcome', 'home', 'index', 'login', 'signin', 'signup', 'registration']
         
+        for cand in candidates:
+            for screen_name in screens_map.keys():
+                if cand in screen_name.lower():
+                    root_candidate = screen_name
+                    break
+            if root_candidate: break
+            
+        if not root_candidate and screens_map:
+            root_candidate = list(screens_map.keys())[0]
+
         for screen_name, json_data in screens_map.items():
             slug = screen_name.replace(' ', '-').lower()
-            is_home = 'home' in slug or 'welcome' in slug
+            is_root = (screen_name == root_candidate)
             
             raw_page = await self.llm.generate_content('PAGE_CODE', {
                 "idea": idea,
@@ -378,10 +397,10 @@ if __name__ == "__main__":
                 "design_tokens": design_tokens_str,
                 "all_routes": json.dumps(all_routes),
                 "wireframe": json.dumps(json_data, indent=2),
-                "ui_contract": "Use /auth and /api endpoints" # simplified for now
+                "ui_contract": json.dumps(project_spec.get('system_contracts', {}).get('api_structure', {}), indent=2)
             }, PAGE_CODE_PROMPT)
             
-            path = "apps/web/app/page.tsx" if is_home else f"apps/web/app/{slug}/page.tsx"
+            path = "apps/web/app/page.tsx" if is_root else f"apps/web/app/{slug}/page.tsx"
             files.append({ "path": path, "content": self._clean_code(raw_page) })
 
         # 3. Base Configs
@@ -389,20 +408,27 @@ if __name__ == "__main__":
         
         # 4. API Client
         files.append({ "path": "apps/web/lib/api.ts", "content": """
-const BASE_URL = 'http://localhost:8000'; // Matched python backend
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 export const api = {
     get: async (url: string) => {
-        const token = localStorage.getItem('token');
-        const res = await fetch(`${BASE_URL}${url}`, { headers: { 'Authorization': `Bearer ${token}` } });
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+        const res = await fetch(`${BASE_URL}${url}`, { 
+            headers: { 'Authorization': `Bearer ${token}` } 
+        });
+        if (!res.ok) throw new Error(`API Error: ${res.statusText}`);
         return res.json();
     },
     post: async (url: string, data: any) => {
-        const token = localStorage.getItem('token');
+        const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
         const res = await fetch(`${BASE_URL}${url}`, { 
             method: 'POST', 
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${token}` 
+            },
             body: JSON.stringify(data)
         });
+        if (!res.ok) throw new Error(`API Error: ${res.statusText}`);
         return res.json();
     }
 };
