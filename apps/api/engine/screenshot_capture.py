@@ -5,9 +5,10 @@ from pathlib import Path
 try:
     from playwright.sync_api import sync_playwright
 except ImportError:
-    # Do not exit immediately if imported, just warn
-    print("Playwright not installed.")
-    sync_playwright = None
+    print("CRITICAL ERROR: Playwright is not installed or not found.")
+    print("Please run: pip install playwright && playwright install")
+    import sys
+    sys.exit(1)
 
 def capture_screenshots(input_dir_str: str, output_dir_str: str):
     input_dir = Path(input_dir_str)

@@ -18,12 +18,14 @@ try:
     from langchain_ollama import ChatOllama
     OLLAMA_AVAILABLE = True
 except ImportError:
+    print("LLMService: ⚠️ 'langchain_ollama' not found. Local fallback disabled. Run: pip install langchain-ollama")
     OLLAMA_AVAILABLE = False
 
 try:
     from langchain_groq import ChatGroq
     GROQ_AVAILABLE = True
 except ImportError:
+    print("LLMService: ⚠️ 'langchain_groq' not found. Groq fallback disabled. Run: pip install langchain-groq")
     GROQ_AVAILABLE = False
 
 class LLMService:

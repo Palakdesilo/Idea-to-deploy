@@ -161,8 +161,23 @@ class AICoder:
             written_routes.add(str(target_file.relative_to(app_dir)))
         
         
+
         # Generate reusable components
         await self._generate_ui_components(components_dir, description)
+
+        # CRITICAL: Ensure root page exists. If not, redirect to the first available route to avoid 404s.
+        # This addresses the user's need for the app to "just work" based on the project content.
+        if not (app_dir / "page.tsx").exists() and all_routes:
+            default_route = all_routes[0]['path']
+            # Only creating redirect if the target isn't root itself
+            if default_route != "/":
+                with open(app_dir / "page.tsx", "w", encoding="utf-8") as f:
+                    f.write(f"""import {{ redirect }} from 'next/navigation';
+
+export default function Home() {{
+  redirect('{default_route}');
+}}
+""")
         
         # Generate API client
         await self._generate_api_client(lib_dir)

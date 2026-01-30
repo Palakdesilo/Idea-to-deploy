@@ -242,57 +242,36 @@ Do NOT output JSON. Just a clean text list.
 
 
 PAGE_CODE_PROMPT = """
-You are an expert Senior Full-Stack Engineer and UI/UX Architect.
-Your task is to write a production-ready Next.js 14 Page component that FAITHFULLY replicates the provided design and functionality.
+You are an expert React/Next.js developer.
+Generate the full page code for screen: "{screen_name}".
+Description/Idea: {idea}
 
-**Project Context**: {idea}
-**Screen Name**: {screen_name}
-**Design Tokens**: {design_tokens}
-**Available Routes**: {all_routes}
-**Wireframe Definition**: 
+Master Project Specification:
+{project_spec}
+
+Global Design System (STRICTLY FOLLOW THIS):
+{design_tokens}
+
+Routes Context:
+{all_routes}
+
+Wireframe Structure (JSON):
 {wireframe}
-**UI Contract (API/Actions)**:
+
+Backend API Contracts (Bind UI to these):
 {ui_contract}
 
-**STRICT CODE RULES:**
-1. **VISUAL FAITHFULNESS**: Replicate the premium aesthetics from the design tokens.
-   - **Strictly use** the provided `primary`, `secondary`, and `surface` HSL/Hex codes for backgrounds and buttons.
-   - Apply the specific `radius` (e.g., rounded-xl) and `shadow` defined in the tokens.
-   - Implement glassmorphism (bg-white/5 backdrop-blur-lg) for cards and modals if specified in `design_tokens`.
-   - Use **standard Tailwind animations** (animate-fade-in, animate-pulse, etc.) and CSS transitions (`transition-all duration-300`) for page elements and hover effects. Avoid complex animation libraries unless strictly necessary for a specific requested effect.
-2. **FUNCTIONAL NAVIGATION**: 
-   - Use Next.js `Link` for internal navigation using the "Available Routes" provided.
-   - Ensure navigation links mentioned in the wireframe/contract are functional.
-3. **API INTEGRATION**:
-   - Use the `api` utility from `@/lib/api` for all data fetching and actions.
-   - Example: `api.post('/auth/login', data)` or `api.get('/items')`.
-   - Handle loading and error states for all API calls.
-4. **NAVIGATION & ROUTING (CRITICAL)**:
-   - **Login/Register Success**: AFTER a successful API call (e.g., login), you MUST redirect the user.
-     - Example: `router.push('/dashboard')` or to the user's home screen.
-   - **Internal Links**: Use Next.js `<Link href="/path">` for all internal navigation (sidebar items, dashboard cards).
-     - Ensure these paths MATCH the `Available Routes` provided above.
-   - **Dashboard**: Sidebar or specific action buttons MUST link to valid routes (e.g., Users -> `/users`, Settings -> `/settings`).
-5. **FORM VALIDATION**:
-   - Implement forms with `react-hook-form` and `zod` validation.
-   - Match the fields specified in the UI contract.
-5. **AUTHENTICATION**:
-   - If it's a login/register page, implement the full flow using the `api` client (storing token in localStorage).
-   - For protected pages, implement a check using the `api` client or assume `useAuth` is available.
-6. **DOMAIN-SPECIFIC COPY**: Use real, professional copy. NO LOREM IPSUM.
-
-**Technical Stack**:
-- Next.js 14 (App Router, TSX)
-- Tailwind CSS (Premium glassmorphism, gradients)
-- Lucide React Icons
-- Framer Motion (Animations)
-- react-hook-form + zod (Forms)
-
-**Output Format**:
-Return ONLY the raw React code (TSX). Do not wrap in markdown fenced blocks.
-Include "use client"; at the very top of the file.
-Include all necessary imports.
+Requirements:
+1. Use 'lucide-react' for icons.
+2. Use 'framer-motion' for animations.
+3. Use Tailwind CSS for styling, adhering faithfully to the Design System colors and radius.
+4. Implement fully functional components.
+5. If an action button exists, bind it to the corresponding API endpont using 'fetch' or 'axios'.
+6. Handle loading and error states.
+7. CRITICAL: If you use ANY React hooks (useState, useEffect, etc.) or event handlers (onClick, onSubmit), you MUST start the file with the "use client" directive at the very top. Default to adding "use client" unless you are 100% sure it is a static server component.
+8. Output the full TSX file content.
 """
+
 
 COMPONENT_LIBRARY_PROMPT = """
 You are a Senior UI Engineer creating a reusable component library.
@@ -366,12 +345,17 @@ You are a Senior Backend Engineer specializing in Python FastAPI.
 Return ONLY the raw Python code.
 Do not wrap in markdown fenced blocks.
 Start directly with imports.
+**CRITICAL**: Use ABSOLUTE imports for project files.
+- `from database import get_db` (NOT `from ..database`)
+- `from models import User` (NOT `from ..models`)
+- `from dependencies import get_current_user`
 """
 
 SQLALCHEMY_MODEL_PROMPT = """
 You are a Database Architect specializing in SQLAlchemy.
 
 **Project Context**: {idea}
+**Master Project Spec**: {project_spec}
 **UI Contracts**: {ui_contracts}
 
 **Task**: Generate SQLAlchemy models for all entities in this project.
@@ -429,7 +413,9 @@ Return THREE separate code blocks labeled exactly:
 ### auth_routes.py
 ### dependencies.py
 
-Do not wrap in markdown fenced blocks.
+**CRITICAL**: Use ABSOLUTE imports. 
+- DO NOT write `from .auth import`. Write `from auth import`.
+- DO NOT write `from .database import`. Write `from database import`.
 """
 
 README_TEMPLATE_PROMPT = """
@@ -451,8 +437,7 @@ You are a Technical Writer creating project documentation.
 7. Running the Application (dev and production)
 8. API Documentation (link to /docs)
 9. Project Structure (directory tree)
-10. Contributing Guidelines
-11. License
+10. Contributing Guidelines   
 
 **Output Format**:
 Return ONLY the markdown content for README.md.
@@ -465,4 +450,105 @@ DYNAMIC_SCREENS_PROMPT = """
 want to Build "{idea}".
 
 Give me page list and wireframe with branding.
+"""
+
+
+DESIGN_SYSTEM_PROMPT = """
+You are an expert UI/UX Designer and Frontend Architect.
+Your goal is to create a comprehensive Design System for a web application based on the user's idea.
+Output strictly valid JSON.
+
+Input Idea: {idea}
+
+Return a JSON object with the following structure:
+{
+  "theme": {
+    "colors": {
+      "primary": "#hex",
+      "secondary": "#hex",
+      "accent": "#hex",
+      "background": "#hex",
+      "foreground": "#hex",
+      "success": "#hex",
+      "error": "#hex"
+    },
+    "typography": {
+      "fontFamily": "font, sans-serif",
+      "h1": { "fontSize": "...", "fontWeight": "..." },
+      "body": { "fontSize": "...", "lineHeight": "..." }
+    },
+    "borderRadius": "0.5rem",
+    "spacing": { "unit": 4 }
+  },
+  "components": [
+    { "name": "Button", "variants": ["solid", "outline", "ghost"] },
+    { "name": "Input", "states": ["default", "focus", "error"] }
+  ]
+}
+"""
+
+BACKEND_ACTION_PROMPT = """
+You are a Backend API Architect using FastAPI.
+Generate the specific backend code for the following actions:
+{actions}
+
+Master Project Spec: {project_spec}
+Design System Context: {design_system}
+
+Output valid Python code using Pydantic models for validation and FastAPI routers.
+The Output should be a single Python file content that includes:
+1. Pydantic Models for Request/Response
+2. FastAPI Router definition
+3. Controller logic (mocked but functional structure)
+
+Ensure all endpoints match the method and path defined in the actions.
+"""
+
+PROJECT_PLAN_PROMPT = """
+You are a Chief Technology Officer (CTO) and Product Architect.
+Your goal is to create a specific "Project Master Plan" (Spec) that freezes all requirements before code generation.
+This ensures a "Live Working Product" is built without scope creep.
+
+Input Idea: {idea}
+
+CRITICAL: Output STRICT JSON only. No markdown. No comments.
+
+JSON Structure:
+{
+  "features": {
+    "core_features": ["List of strictly necessary features for MVP"],
+    "screens": ["List of all user-facing screens to be built"],
+    "api_actions": ["List of critical backend actions/jobs"]
+  },
+  "tech_stack": {
+    "frontend": "Next.js 14 (App Router)",
+    "backend": "FastAPI (Python)",
+    "database": "PostgreSQL (or SQLite for local dev)",
+    "auth": "JWT (OAuth2)",
+    "styling": "Tailwind CSS + Lucide Icons"
+  },
+  "system_contracts": {
+    "api_structure": {
+      "base_url": "/api/v1",
+      "endpoints": [
+        { "method": "GET/POST", "path": "/example", "description": "...", "access": "public/authenticated" }
+      ]
+    },
+    "database_schema": {
+      "tables": [
+        { 
+          "name": "users", 
+          "columns": ["id", "email", "hashed_password", "role", "created_at"] 
+        }
+      ]
+    },
+    "auth_roles": ["user", "admin", "etc"]
+  },
+  "file_structure": {
+    "backend_files": ["apps/api/main.py", "apps/api/models.py", "..."],
+    "frontend_files": ["apps/web/app/page.tsx", "..."]
+  }
+}
+
+Ensure the "api_structure" and "database_schema" are detailed enough to generate code directly from them.
 """
