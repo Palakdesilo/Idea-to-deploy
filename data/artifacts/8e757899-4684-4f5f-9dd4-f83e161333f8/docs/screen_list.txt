@@ -1,9 +1,0 @@
-
-                1. Home Page
-                - Hero Section
-                - Features
-                
-                2. Dashboard
-                - Stats Cards
-                - Data Table
-                

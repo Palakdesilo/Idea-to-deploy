@@ -1,9 +1,0 @@
-{
-  "name": "app",
-  "workspaces": [
-    "apps/*"
-  ],
-  "scripts": {
-    "dev": "turbo run dev"
-  }
-}
