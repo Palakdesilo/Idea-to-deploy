@@ -100,8 +100,9 @@ class ProjectRunner:
         
         cmd = []
         if type == "backend":
-            # Run uvicorn
-            cmd = [sys.executable, "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", str(port)]
+            # Use hypercorn instead of uvicorn for Python 3.13 compatibility
+            # hypercorn is a stable ASGI server that works with FastAPI
+            cmd = [sys.executable, "-m", "hypercorn", "main:app", "--bind", f"0.0.0.0:{port}", "--reload"]
         elif type == "frontend":
             # Run next dev
             # On Windows, we must use npm.cmd explicitly if shell=False, or just use shell=True carefully

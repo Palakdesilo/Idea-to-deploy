@@ -10,7 +10,8 @@ import {
     ClipboardList, Users, ListTodo, Map,
     Activity, Shield, CheckCircle2, Clock,
     LayoutGrid, History, Plus, AlertCircle, Palette,
-    Folder, FolderOpen, Copy, Check, Save, Edit3, XCircle, Maximize
+    Folder, FolderOpen, Copy, Check, Save, Edit3, XCircle, Maximize,
+    Zap, Loader2, Wand2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
@@ -253,6 +254,41 @@ export default function ProjectDashboard() {
         } catch (e) {
             console.error(e);
             alert('Fix failed due to network error.');
+        }
+    };
+
+    const [refinePrompt, setRefinePrompt] = useState('');
+    const [isRefining, setIsRefining] = useState(false);
+
+    const attemptRefine = async () => {
+        if (!refinePrompt.trim()) return;
+
+        setIsRefining(true);
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/projects/${id}/preview/refine`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    file_path: 'frontend', // Default to frontend root/page for now
+                    instruction: refinePrompt
+                })
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                alert(`AI Refinement Applied: ${data.action}`);
+                setRefinePrompt('');
+                // Refresh logs to show restart status
+                fetchLogs();
+            } else {
+                const err = await res.json();
+                alert(`Refinement failed: ${err.detail}`);
+            }
+        } catch (e) {
+            console.error(e);
+            alert('Refinement failed due to network error.');
+        } finally {
+            setIsRefining(false);
         }
     };
 
@@ -843,11 +879,36 @@ export default function ProjectDashboard() {
                                         <h3 className="text-sm font-bold mb-4 text-slate-400 uppercase tracking-wider">Troubleshooting</h3>
                                         <button
                                             onClick={() => attemptFix(activePreviewTab)}
-                                            className="w-full py-3 bg-purple-600/10 border border-purple-500/20 text-purple-400 hover:bg-purple-600/20 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all"
+                                            className="w-full py-3 bg-purple-600/10 border border-purple-500/20 text-purple-400 hover:bg-purple-600/20 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition-all mb-6"
                                         >
                                             <ShieldCheck className="w-4 h-4" />
                                             Auto-Fix Error
                                         </button>
+
+                                        <h3 className="text-sm font-bold mb-4 text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                                            <Zap className="w-4 h-4 text-amber-400" />
+                                            Refine with AI
+                                        </h3>
+                                        <div className="space-y-3">
+                                            <textarea
+                                                className="w-full bg-slate-950/50 border border-slate-700/50 rounded-xl p-3 text-xs text-slate-300 focus:outline-none focus:border-blue-500/50 resize-none"
+                                                rows={3}
+                                                placeholder="Describe changes (e.g. 'Make it a grid layout')"
+                                                value={refinePrompt}
+                                                onChange={(e) => setRefinePrompt(e.target.value)}
+                                            />
+                                            <button
+                                                onClick={attemptRefine}
+                                                disabled={isRefining || !refinePrompt.trim()}
+                                                className={`w-full py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${isRefining || !refinePrompt.trim()
+                                                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                                                    : 'bg-amber-500 text-black hover:bg-amber-400'
+                                                    }`}
+                                            >
+                                                {isRefining ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Wand2 className="w-3.5 h-3.5" />}
+                                                {isRefining ? 'Refining...' : 'Apply Magic Fix'}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 

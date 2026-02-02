@@ -64,6 +64,39 @@ class AICoder:
         
 
         return str(zip_path)
+
+    async def refine_code(self, code: str, instructions: str) -> str:
+        """
+        Refine existing code based on user instructions.
+        """
+        prompt = f"""
+        You are an expert full-stack developer. 
+        
+        TASK: Refine the following code based on the user's instructions.
+        
+        USER INSTRUCTIONS:
+        {instructions}
+        
+        CURRENT CODE:
+        {code}
+        
+        OUTPUT RULES:
+        1. Return ONLY the complete, updated code.
+        2. Do NOT include markdown blocks (```), comments about what you changed, or any conversational text.
+        3. Maintain the existing style and structure of the code unless asked to change it.
+        4. CRITICAL: If the code starts with 'use client'; or 'use server'; directive, you MUST preserve it at the very top of the output.
+        5. CRITICAL: Preserve all existing imports unless the instruction explicitly asks to change them.
+        6. If the instruction is impossible or unclear, do your best to interpret it logically.
+        """
+        
+        refined_code = await self.llm.generate_content("REFINE_CODE", {}, prompt)
+        cleaned = self._clean_code(refined_code)
+        
+        # Safety check: If original had 'use client' but refined doesn't, prepend it
+        if code.strip().startswith("'use client'") and not cleaned.strip().startswith("'use client'"):
+            cleaned = "'use client';\n\n" + cleaned
+        
+        return cleaned
     
     async def generate_nextjs_app(self, output_dir: Path, wireframes: List[Dict], ui_contracts: Dict, ui_design: Dict, description: str, project_name: str):
         """Generate Next.js frontend application"""

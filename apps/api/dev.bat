@@ -1,2 +1,2 @@
 @echo off
-python -m uvicorn main:app --reload --port 4000
+python -m hypercorn main:app --bind 0.0.0.0:4000 --reload

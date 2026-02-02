@@ -313,12 +313,17 @@ generate png design"""
         - Aesthetics: Ultra-modern SaaS, Clean, High-Contrast, Professional.
         - Tech: Tailwind CSS (use CDN), Lucide Icons (use CDN), Google Fonts (Inter, Plus Jakarta Sans).
         - **Visual Style**: Use glassmorphism (`backdrop-blur`) for sticky headers/sidebars. Deep shadows (`shadow-xl`) for cards.
-        - **Imagery**: You MUST use `https://images.unsplash.com/...` URLs with search keywords. 
-          - EXAMPLE: `https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80` (Furniture)
-          - DO NOT USE `source.unsplash.com` (It is broken).
-          - DO NOT USE placeholders.
-        - **Logo**: Do NOT write the word "LOGO". Create a real looking logo using a relevant Lucide Icon + Styled Text (e.g. 🏗️ Constructo).
-        - Content: Use REAL professional copy and data.
+        - **Imagery**: If you need images, use contextually relevant Unsplash URLs based on the project theme:
+          - Format: `https://images.unsplash.com/photo-[PHOTO_ID]?auto=format&fit=crop&w=800&q=80`
+          - Choose images that match the PROJECT DESCRIPTION: "{idea_description}"
+          - For Tic-Tac-Toe: Use gaming/abstract/geometric patterns, NOT furniture or unrelated content
+          - For E-commerce: Use product/shopping images
+          - For SaaS: Use tech/workspace images
+          - DO NOT reuse the same image across different screens
+          - DO NOT USE `source.unsplash.com` (It is broken)
+          - Only use images where they add value (hero sections, backgrounds, cards). Don't force images everywhere.
+        - **Logo**: Do NOT write the word "LOGO". Create a real looking logo using a relevant Lucide Icon + Styled Text that matches the project theme.
+        - Content: Use REAL professional copy and data that matches the screen's purpose.
         
         OUTPUT:
         - Return a SINGLE self-contained HTML file (including Tailwind CDN and styles).

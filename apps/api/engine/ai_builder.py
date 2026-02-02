@@ -233,8 +233,8 @@ class AIBuilder:
         files.append({ "path": "apps/api/routers/main.py", "content": self._clean_code(raw_router) })
         
         # 4. Standard Backend Configs
-        files.append({ "path": "apps/api/requirements.txt", "content": "fastapi\nuvicorn\nsqlalchemy\npsycopg2-binary\npydantic\npython-dotenv\npasslib[bcrypt]\npython-jose[cryptography]" })
-        files.append({ "path": "apps/api/database.py", "content": "from sqlalchemy import create_engine\nfrom sqlalchemy.ext.declarative import declarative_base\nSQLALCHEMY_DATABASE_URL = 'sqlite:///./sql_app.db'\nBase = declarative_base()\nengine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={'check_same_thread': False})" })
+        files.append({ "path": "apps/api/requirements.txt", "content": "fastapi>=0.115.0\nhypercorn>=0.17.0\nsqlalchemy>=2.0.0\npsycopg2-binary\npydantic>=2.0.0\npython-dotenv\npasslib[bcrypt]\npython-jose[cryptography]" })
+        files.append({ "path": "apps/api/database.py", "content": "from sqlalchemy import create_engine\nfrom sqlalchemy.ext.declarative import declarative_base\nfrom sqlalchemy.orm import sessionmaker\n\nSQLALCHEMY_DATABASE_URL = 'sqlite:///./sql_app.db'\n\nengine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={'check_same_thread': False})\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n\nBase = declarative_base()" })
         files.append({ "path": "apps/api/create_tables.py", "content": "from database import engine, Base\nfrom models import *\n\nprint('Creating tables...')\nBase.metadata.create_all(bind=engine)\nprint('Tables created successfully.')" })
         files.append({ "path": "apps/api/main.py", "content": """
 from fastapi import FastAPI
@@ -466,7 +466,7 @@ body {{
         return [
            { "path": "apps/web/package.json", "content": json.dumps({
                 "name": "web", "version": "0.1.0", "scripts": { "dev": "next dev", "build": "next build" },
-                "dependencies": { "next": "14.2.3", "react": "^18", "react-dom": "^18", "lucide-react": "latest", "framer-motion": "latest", "react-hook-form": "latest", "zod": "latest", "clsx": "latest", "tailwind-merge": "latest" },
+                "dependencies": { "next": "14.2.3", "react": "^18", "react-dom": "^18", "lucide-react": "latest", "framer-motion": "latest", "react-hook-form": "latest", "@hookform/resolvers": "latest", "zod": "latest", "clsx": "latest", "tailwind-merge": "latest" },
                 "devDependencies": { "typescript": "^5", "tailwindcss": "^3.4.1", "postcss": "^8", "@types/react": "^18" }
             }, indent=2) },
            { "path": "apps/web/tailwind.config.ts", "content": "import type { Config } from 'tailwindcss';\nconst config: Config = { content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'], theme: { extend: {} }, plugins: [] };\nexport default config;" },

@@ -1,6 +1,11 @@
 import logging
 import sys
 import os
+import asyncio
+
+# Fix for Windows ProactorEventLoop issues with Hypercorn/FastAPI
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -135,6 +140,19 @@ async def fix_preview_error(id: str, error_log: str, file_path: str):
     # Read file content
     project = await project_manager.get_project(id)
     code_dir = ARTIFACTS_DIR / id / "code"
+    
+    # Handle legacy path mapping (frontend -> apps/web, backend -> apps/api)
+    # Check if we need to remap
+    if "frontend" in file_path and not (code_dir / file_path).exists():
+        new_path = file_path.replace("frontend", "apps/web")
+        if (code_dir / new_path).exists():
+            file_path = new_path
+            
+    if "backend" in file_path and not (code_dir / file_path).exists():
+        new_path = file_path.replace("backend", "apps/api")
+        if (code_dir / new_path).exists():
+            file_path = new_path
+
     full_path = code_dir / file_path
     
     if not full_path.exists():
@@ -181,6 +199,77 @@ async def fix_preview_error(id: str, error_log: str, file_path: str):
         restart_status = "restarted"
         
     return {"status": "fixed", "file": file_path, "action": restart_status}
+
+class RefineRequest(BaseModel):
+    file_path: str
+    instruction: str
+
+@app.post("/api/projects/{id}/preview/refine")
+async def refine_preview_code(id: str, request: RefineRequest):
+    """Refine code based on user instruction"""
+    # Fix: Strip ANSI escape codes
+    import re
+    file_path = re.sub(r'\x1b\[[0-9;]*[mK]', '', request.file_path).strip()
+    
+    # Read file content
+    code_dir = ARTIFACTS_DIR / id / "code"
+    
+    # Handle legacy path mapping
+    if "frontend" in file_path and not (code_dir / file_path).exists():
+        new_path = file_path.replace("frontend", "apps/web")
+        if (code_dir / new_path).exists():
+            file_path = new_path
+            
+    if "backend" in file_path and not (code_dir / file_path).exists():
+        new_path = file_path.replace("backend", "apps/api")
+        if (code_dir / new_path).exists():
+            file_path = new_path
+            
+    # Default to page.tsx for the root if just "frontend" is passed or implied
+    if file_path == "frontend" or file_path == "apps/web":
+         # Try to find the main page
+         candidates = ["apps/web/app/page.tsx", "apps/web/src/app/page.tsx", "frontend/app/page.tsx"]
+         for cand in candidates:
+             if (code_dir / cand).exists():
+                 file_path = cand
+                 break
+
+    full_path = code_dir / file_path
+    
+    if not full_path.exists():
+        logger.error(f"Refine Error: File not found at {full_path}")
+        raise HTTPException(status_code=404, detail=f"File not found at: {full_path}")
+        
+    with open(full_path, "r", encoding="utf-8") as f:
+        current_code = f.read()
+        
+    # Generate refinement
+    try:
+        refined_code = await ai_coder.refine_code(current_code, request.instruction)
+    except Exception as e:
+         raise HTTPException(status_code=500, detail=f"AI Generation Failed: {str(e)}")
+    
+    if not refined_code or len(refined_code.strip()) < 10:
+        logger.error("Refine Error: Generated code is empty")
+        raise HTTPException(status_code=500, detail="Failed to generate valid code.")
+    
+    # Save refinement
+    with open(full_path, "w", encoding="utf-8") as f:
+        f.write(refined_code)
+        
+    # Restart server if running
+    component = "backend" if "backend" in file_path or "api" in file_path else "frontend"
+    server_key = f"{id}_{component}"
+    existing_port = project_runner.ports.get(server_key)
+    
+    restart_status = "saved"
+    # For frontend (Next.js), it usually HMRs, but restarting ensures fresh state if config changed
+    # We will trigger a soft rebuild if possible, but here we just leave it to Next.js HMR or user manual restart
+    # actually, forcing restart might be safer for bigger changes
+    # Let's NOT force restart for frontend to allow HMR to work if possible, unless it crashes.
+    # But usually Next.js handles file changes well.
+    
+    return {"status": "refined", "file": file_path, "action": restart_status}
 
 
 class IdeaRequest(BaseModel):

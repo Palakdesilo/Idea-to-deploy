@@ -20,8 +20,9 @@ Run the backend server:
 Type 'dev' to run the backend server
 OR
 Run the following command in the backend directory:
-python -m uvicorn main:app --reload --port 4000
+python -m hypercorn main:app --bind 0.0.0.0:4000 --reload
 ```
+
 
 ### 2. Frontend (Next.js)
 Navigate to the frontend directory and install dependencies:
